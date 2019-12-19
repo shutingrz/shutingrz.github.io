@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>web on Shooting!!!</title>
+    <link>https://www.shutingrz.com/tags/web/</link>
+    <description>Recent content in web on Shooting!!!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 08 May 2019 02:43:52 +0900</lastBuildDate>
+    
+	<atom:link href="https://www.shutingrz.com/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>記事に特定のタグがあったら「悪用禁止」と表示されるようにしてみた</title>
+      <link>https://www.shutingrz.com/post/hugo-notice-banner/</link>
+      <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/hugo-notice-banner/</guid>
+      <description>&lt;p&gt;要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。&lt;br /&gt;
+記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。&lt;br /&gt;
+※この記事はハッキングには関係ありませんが、デモ用に表示が出るようにしています。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

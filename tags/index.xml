@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Shooting!!!</title>
+    <link>https://www.shutingrz.com/tags/</link>
+    <description>Recent content in Tags on Shooting!!!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 03 Oct 2019 04:34:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://www.shutingrz.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>car-security</title>
+      <link>https://www.shutingrz.com/tags/car-security/</link>
+      <pubDate>Thu, 03 Oct 2019 04:34:00 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/car-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ethical_hacking</title>
+      <link>https://www.shutingrz.com/tags/ethical_hacking/</link>
+      <pubDate>Thu, 03 Oct 2019 04:34:00 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/ethical_hacking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pentest</title>
+      <link>https://www.shutingrz.com/tags/pentest/</link>
+      <pubDate>Mon, 13 May 2019 03:15:21 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/pentest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>priv_escalation</title>
+      <link>https://www.shutingrz.com/tags/priv_escalation/</link>
+      <pubDate>Mon, 13 May 2019 03:15:21 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/priv_escalation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>exploit</title>
+      <link>https://www.shutingrz.com/tags/exploit/</link>
+      <pubDate>Sat, 11 May 2019 07:01:20 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/exploit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>develop</title>
+      <link>https://www.shutingrz.com/tags/develop/</link>
+      <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/develop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>https://www.shutingrz.com/tags/web/</link>
+      <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>仮想通貨</title>
+      <link>https://www.shutingrz.com/tags/%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8/</link>
+      <pubDate>Mon, 29 Apr 2019 23:19:55 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門</title>
+      <link>https://www.shutingrz.com/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80/</link>
+      <pubDate>Mon, 29 Apr 2019 23:19:55 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>misc</title>
+      <link>https://www.shutingrz.com/tags/misc/</link>
+      <pubDate>Sat, 27 Apr 2019 02:37:37 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/tags/misc/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

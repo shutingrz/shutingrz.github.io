@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>自作仮想通貨入門 on Shooting!!!</title>
+    <link>https://www.shutingrz.com/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80/</link>
+    <description>Recent content in 自作仮想通貨入門 on Shooting!!!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 29 Apr 2019 23:19:55 +0900</lastBuildDate>
+    
+	<atom:link href="https://www.shutingrz.com/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>自作仮想通貨入門(10) - 著作権表示の記載・おわりに</title>
+      <link>https://www.shutingrz.com/post/oreore-coin10/</link>
+      <pubDate>Mon, 29 Apr 2019 23:19:55 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin10/</guid>
+      <description>&lt;p&gt;この章で自作仮想通貨入門は終わりです。&lt;br /&gt;
+著作権表示をしてあなたの仮想通貨をアピールしましょう。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(9) - ブロックデータのマジックバイト変更</title>
+      <link>https://www.shutingrz.com/post/oreore-coin9/</link>
+      <pubDate>Mon, 29 Apr 2019 22:52:33 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin9/</guid>
+      <description>&lt;p&gt;※この章では src/chainparams.cpp を変更します。&lt;/p&gt;
+
+&lt;p&gt;あまり話題にならないものの仮想通貨では極めて重要な、ブロックデータのマジックバイトを変更します。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(8) - アドレスのプレフィックス変更</title>
+      <link>https://www.shutingrz.com/post/oreore-coin8/</link>
+      <pubDate>Mon, 29 Apr 2019 00:45:29 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin8/</guid>
+      <description>&lt;p&gt;※この章では src/chainparams.cpp を変更します。&lt;/p&gt;
+
+&lt;p&gt;仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(7) - コンセンサスの設定</title>
+      <link>https://www.shutingrz.com/post/oreore-coin7/</link>
+      <pubDate>Mon, 29 Apr 2019 00:17:41 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin7/</guid>
+      <description>&lt;p&gt;※この章では src/chainparams.cpp を変更します。&lt;/p&gt;
+
+&lt;p&gt;ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。
+実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(6) - ジェネシスブロックの作成と設定</title>
+      <link>https://www.shutingrz.com/post/oreore-coin6/</link>
+      <pubDate>Sun, 28 Apr 2019 23:47:48 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin6/</guid>
+      <description>&lt;p&gt;※この章では src/chainparams.cpp を変更します。&lt;/p&gt;
+
+&lt;p&gt;仮想通貨はブロックチェーンの原理を基にして運用されています。&lt;br /&gt;
+つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、&lt;br /&gt;
+すなわちジェネシス（起源）ブロックを作成する必要があります。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(5) - 単純な文字列置換</title>
+      <link>https://www.shutingrz.com/post/oreore-coin5/</link>
+      <pubDate>Sun, 28 Apr 2019 23:17:11 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin5/</guid>
+      <description>&lt;p&gt;この章からいよいよLitecoinのソースコードに修正を加えていきます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(4) - テンプレートファイルのコピー</title>
+      <link>https://www.shutingrz.com/post/oreore-coin4/</link>
+      <pubDate>Sun, 28 Apr 2019 22:45:13 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin4/</guid>
+      <description>&lt;p&gt;チェックポイントなどの確認処理を全て消したテンプレートファイルをコピーし新しい仮想通貨に合わせて色々な設定をしていきます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(3) - Litecoinを試してみよう</title>
+      <link>https://www.shutingrz.com/post/oreore-coin3/</link>
+      <pubDate>Sun, 28 Apr 2019 22:05:53 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin3/</guid>
+      <description>&lt;p&gt;自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。&lt;br /&gt;
+既にコマンドラインでマイニングや送金を行ったことがあるかたは、読み飛ばしてもかまいません。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(2) - Litecoinの準備</title>
+      <link>https://www.shutingrz.com/post/oreore-coin2/</link>
+      <pubDate>Sat, 27 Apr 2019 15:11:43 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin2/</guid>
+      <description>&lt;p&gt;自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。&lt;br /&gt;
+今回は、フォークとリリースを容易に行えるように、gitを使って作業していきましょう。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自作仮想通貨入門(1) - はじめに</title>
+      <link>https://www.shutingrz.com/post/oreore-coin1/</link>
+      <pubDate>Sat, 27 Apr 2019 14:24:31 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/oreore-coin1/</guid>
+      <description>&lt;div class=&#34;box&#34; &gt;
+  &lt;figure  itemprop=&#34;associatedMedia&#34; itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+    &lt;div class=&#34;img&#34;&gt;
+      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;./raccoin.png&#34; alt=&#34;自作仮想通貨「Raccoin」のアイコン&#34;/&gt;
+    &lt;/div&gt;
+    &lt;a href=&#34;./raccoin.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+      &lt;figcaption&gt;
+          &lt;p&gt;自作仮想通貨「Raccoin」のアイコン&lt;/p&gt;
+      &lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+
+&lt;hr /&gt;
+
+&lt;p&gt;皆さんは自作仮想通貨を作ったことはあるでしょうか？&lt;br /&gt;
+イーサリアムのトークンやCounterPartyもいいですが、やはり仮想通貨の思想を深く知りたいなら、好きな仮想通貨のソースコードをフォークして自作仮想通貨を作ってみるべきです。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

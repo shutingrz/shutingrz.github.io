@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>priv_escalation on Shooting!!!</title>
+    <link>https://www.shutingrz.com/tags/priv_escalation/</link>
+    <description>Recent content in priv_escalation on Shooting!!!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 13 May 2019 03:15:21 +0900</lastBuildDate>
+    
+	<atom:link href="https://www.shutingrz.com/tags/priv_escalation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ペネトレ検証-権限昇格とWildcard Injectionの原理</title>
+      <link>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</link>
+      <pubDate>Mon, 13 May 2019 03:15:21 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</guid>
+      <description>&lt;p&gt;しゅーとです。&lt;/p&gt;
+
+&lt;p&gt;引き続きペネトレーションテストの検証をしていきます。&lt;br /&gt;
+前回の記事はこちら。&lt;br /&gt;
+&lt;br/&gt;
+&lt;a href=&#34;https://www.shutingrz.com/post/ad_hack-ec_exploit/&#34;&gt;ペネトレ検証-ECサイトに侵入&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
