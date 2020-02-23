@@ -1,35 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.shutingrz.com/tags/ethical_hacking/</loc>
+    <lastmod>2020-02-24T01:18:40+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.shutingrz.com/tags/pentest/</loc>
+    <lastmod>2020-02-24T01:18:40+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.shutingrz.com/post/</loc>
-    <lastmod>2019-10-03T04:34:00+09:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-02-24T01:18:40+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.shutingrz.com/</loc>
-    <lastmod>2019-10-03T04:34:00+09:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-02-24T01:18:40+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.shutingrz.com/tags/</loc>
-    <lastmod>2019-10-03T04:34:00+09:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2020-02-24T01:18:40+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.shutingrz.com/post/remote-uac/</loc>
+    <lastmod>2020-02-24T01:18:40+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.shutingrz.com/tags/car-security/</loc>
     <lastmod>2019-10-03T04:34:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.shutingrz.com/tags/ethical_hacking/</loc>
-    <lastmod>2019-10-03T04:34:00+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -58,15 +63,8 @@
   </url>
   
   <url>
-    <loc>https://www.shutingrz.com/tags/pentest/</loc>
-    <lastmod>2019-05-13T03:15:21+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.shutingrz.com/tags/priv_escalation/</loc>
     <lastmod>2019-05-13T03:15:21+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -77,7 +75,6 @@
   <url>
     <loc>https://www.shutingrz.com/tags/exploit/</loc>
     <lastmod>2019-05-11T07:01:20+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -88,13 +85,11 @@
   <url>
     <loc>https://www.shutingrz.com/tags/develop/</loc>
     <lastmod>2019-05-08T02:43:52+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.shutingrz.com/tags/web/</loc>
     <lastmod>2019-05-08T02:43:52+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -105,7 +100,6 @@
   <url>
     <loc>https://www.shutingrz.com/pages/</loc>
     <lastmod>2019-05-08T00:42:34+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -121,13 +115,11 @@
   <url>
     <loc>https://www.shutingrz.com/tags/%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8/</loc>
     <lastmod>2019-04-29T23:19:55+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.shutingrz.com/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80/</loc>
     <lastmod>2019-04-29T23:19:55+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -183,7 +175,6 @@
   <url>
     <loc>https://www.shutingrz.com/tags/misc/</loc>
     <lastmod>2019-04-27T02:37:37+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -198,7 +189,6 @@
   
   <url>
     <loc>https://www.shutingrz.com/categories/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

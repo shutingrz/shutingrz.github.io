@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>priv_escalation on Shooting!!!</title>
@@ -17,10 +17,9 @@
       
       <guid>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</guid>
       <description>&lt;p&gt;しゅーとです。&lt;/p&gt;
-
-&lt;p&gt;引き続きペネトレーションテストの検証をしていきます。&lt;br /&gt;
-前回の記事はこちら。&lt;br /&gt;
-&lt;br/&gt;
+&lt;p&gt;引き続きペネトレーションテストの検証をしていきます。&lt;br&gt;
+前回の記事はこちら。&lt;br&gt;
+&lt;!-- raw HTML omitted --&gt;
 &lt;a href=&#34;https://www.shutingrz.com/post/ad_hack-ec_exploit/&#34;&gt;ペネトレ検証-ECサイトに侵入&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     

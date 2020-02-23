@@ -11,15 +11,12 @@
   <meta property="og:title" content="自作仮想通貨入門(7) - コンセンサスの設定" />
   <meta name="twitter:title" content="自作仮想通貨入門(7) - コンセンサスの設定" />
   <meta name="description" content="※この章では src/chainparams.cpp を変更します。
-
 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。
 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。">
   <meta property="og:description" content="※この章では src/chainparams.cpp を変更します。
-
 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。
 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。">
   <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。
-
 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。
 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。">
   <meta name="author" content="しゅーと"/><script type="application/ld+json">
@@ -93,7 +90,6 @@
 
 <meta property="og:title" content="自作仮想通貨入門(7) - コンセンサスの設定" />
 <meta property="og:description" content="※この章では src/chainparams.cpp を変更します。
-
 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。
 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。">
 <meta property="og:url" content="https://www.shutingrz.com/post/oreore-coin7/" />
@@ -101,7 +97,6 @@
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="自作仮想通貨入門(7) - コンセンサスの設定" />
   <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。
-
 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。
 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。">
   <meta name="twitter:card" content="summary" />
@@ -115,7 +110,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -297,67 +292,45 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>※この章では src/chainparams.cpp を変更します。</p>
-
 <p>ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。
 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。</p>
-
-<hr />
-
+<hr>
 <h1 id="コンセンサスについて">コンセンサスについて</h1>
-
-<p>chainparams.cpp には Mainnet, Testnet, Regtest それぞれでconsensusというコンセンサスに関わる変数が存在します。<br />
-コンセンサスには色々な設定項目がありますが、この章では実際の仮想通貨の運営で重要な設定項目のみ説明をします。<br />
+<p>chainparams.cpp には Mainnet, Testnet, Regtest それぞれでconsensusというコンセンサスに関わる変数が存在します。<br>
+コンセンサスには色々な設定項目がありますが、この章では実際の仮想通貨の運営で重要な設定項目のみ説明をします。<br>
 ※コンセンサスには非常に沢山の設設定項目があり、1から説明するとそれだけで長文になってしまうのでここでは省きました。</p>
-
-<h3 id="採掘難易度-difficulty-を見直す間隔-npowtargettimespan">採掘難易度/Difficulty を見直す間隔(nPowTargetTimespan)/</h3>
-
+<h3 id="採掘難易度difficulty-を見直す間隔npowtargettimespan">採掘難易度/Difficulty を見直す間隔(nPowTargetTimespan)/</h3>
 <p>単位は秒。</p>
-
 <p>長いとマイニングが安定しますが、一度確定すると実際のハッシュレートにそぐわない難易度で続き、難易度が高くなるとブロックが生成されにくくなる時間が増え、難易度が下がるとブロックが生成されやすくなるためPoWの弱点を悪用した攻撃の影響を受けやすくなります。
 短いと実際のハッシュレートがリアルタイムで反映されるようになりますが、ハッシュレートが一時的に上昇すると難易度もすぐに上昇し、マイニングが不安定になります。</p>
-
 <p>bitcoinは2週間、Litecoinは3.5日、Monacoinは1.1日です。
 ハッシュレートが高い仮想通貨のほうが長くする傾向にあるようです。</p>
-
-<h3 id="ブロック生成間隔-npowtargetspacing">ブロック生成間隔(nPowTargetSpacing)</h3>
-
+<h3 id="ブロック生成間隔npowtargetspacing">ブロック生成間隔(nPowTargetSpacing)</h3>
 <p>単位は秒。</p>
-
 <p>長いと確定したブロックが不変になりやすく安定する一方、ブロックが生成されにくくなりトランザクションの流通が阻害されます。
 短いとトランザクションの流通が盛んになる一方、ブロックの生成が容易になります。
 これによりnPowTargetTimespanとハッシュレート、ノードの規模との兼ね合いでBlock Withholding AttackなどPoWの弱点を悪用した攻撃の影響を受けやすくなります。
 Block Withholding Attack はモナコインが受けた攻撃ですね。</p>
-
-<h3 id="新ルールのアクティベートの閾値計測期間-nminerconfirmationwindow">新ルールのアクティベートの閾値計測期間(nMinerConfirmationWindow)</h3>
-
+<h3 id="新ルールのアクティベートの閾値計測期間nminerconfirmationwindow">新ルールのアクティベートの閾値計測期間(nMinerConfirmationWindow)</h3>
 <p>単位はブロック数。</p>
-
 <p>BIP9で定められた、ソフトフォークのアクティベーション方法に関する変数です。
 ソフトフォークによって新しいルールに対応したシグナルをどのブロック数計測するかをここで定めます。</p>
-
-<h3 id="新ルールのアクティベートを行うための計測期間あたりの対応率-nrulechangeactivationthreshold">新ルールのアクティベートを行うための計測期間あたりの対応率(nRuleChangeActivationThreshold)</h3>
-
+<h3 id="新ルールのアクティベートを行うための計測期間あたりの対応率nrulechangeactivationthreshold">新ルールのアクティベートを行うための計測期間あたりの対応率(nRuleChangeActivationThreshold)</h3>
 <p>単位はブロック数。 新しいルールが、上記のnMinerConfirmationWindowのうちどれくらいのブロック数で対応していればそのルールが有効になるかを示す変数。
 bitcoinはnMinerConfirmationWindowの95%にあたるブロック数が設定されており、Litecoinは75%になっています。</p>
-
-<hr />
-
+<hr>
 <h1 id="ソースコードの変更作業">ソースコードの変更作業</h1>
-
-<p>本当に流通を考えない限り、ここは特に変えなくても問題ありません。<br />
-ただし、実験用途で利用するなら自分だけしかノードがいないので、円滑な実験のためにTestnet/Regtestはうんと数を小さくしておいたほうがいいです。<br />
+<p>本当に流通を考えない限り、ここは特に変えなくても問題ありません。<br>
+ただし、実験用途で利用するなら自分だけしかノードがいないので、円滑な実験のためにTestnet/Regtestはうんと数を小さくしておいたほうがいいです。<br>
 私はTestnet/Regtestのコンセンサスを以下にしました。</p>
-
 <ul>
 <li>nPowTargetTimespan: 5 * 30</li>
 <li>nPowTargetSpacing: 30</li>
 <li>nMinerConfirmationWindow: 10</li>
 <li>nRuleChangeActivationThreshold: 7</li>
 </ul>
-
-<hr />
-
-<p>コンセンサスの設定は以上です。<br />
+<hr>
+<p>コンセンサスの設定は以上です。<br>
 次の章では仮想通貨の華である、ウォレットアドレスのプレフィックスを設定します。</p>
 
         
@@ -524,7 +497,7 @@ bitcoinはnMinerConfirmationWindowの95%にあたるブロック数が設定さ�
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -534,7 +507,7 @@ bitcoinはnMinerConfirmationWindowの95%にあたるブロック数が設定さ�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

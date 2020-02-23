@@ -100,7 +100,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -282,30 +282,21 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>チェックポイントなどの確認処理を全て消したテンプレートファイルをコピーし新しい仮想通貨に合わせて色々な設定をしていきます。</p>
-
-<h2 id="chainparams-cpp-chainparams-h-の置き換え">chainparams.cpp / chainparams.h の置き換え</h2>
-
+<h2 id="chainparamscpp--chainparamsh-の置き換え">chainparams.cpp / chainparams.h の置き換え</h2>
 <p>BitcoinやLitecoinなど既に流通済みの仮想通貨は、その仮想通貨が流通済みの仮想通貨の仕様と合致しているかを確認するため、様々なチェックを行います。
 例えばジェネシスブロックのハッシュがこの値と一致しているかだとか、その通貨の1000番目のブロックがこの値と一致しているか、などです。</p>
-
 <p>これらのいわば鶏卵問題のようなチェックは既に流通済みのものを対象にしているため、今回のように全く新しい仮想通貨を作る際には全て不要であるばかりか、存在していると実行時にエラーで止まってしまいます。</p>
-
 <p>そのため、これらの不要な記載を全て削除したテンプレートファイルを用意しました。
 下記のGithubからtmpl_chainparams.cpp、tmpl_chainparamsseeds.hをダウンロードし、srcディレクトリにコピーしてください。</p>
-
 <blockquote>
 <p><a href="https://github.com/shutingrz/oreore_cryptocurrency_template">https://github.com/shutingrz/oreore_cryptocurrency_template</a></p>
 </blockquote>
-
 <h2 id="ファイルのコピー">ファイルのコピー</h2>
-
 <p>コピー先のディレクトリ名(raccoin等)は自分のディレクトリ名に置き換えてください。</p>
-
 <pre><code>$ cp tmpl_chainparams.cpp raccoin/src/chainparams.cpp
 $ cp tmpl_chainparamsseeds.h raccoin/src/chainparamsseeds.h
 </code></pre>
-
-<p>これでテンプレートのコピーは完了です。<br />
+<p>これでテンプレートのコピーは完了です。<br>
 次の章からはいよいよソースコードの修正に入ります。</p>
 
         
@@ -472,7 +463,7 @@ $ cp tmpl_chainparamsseeds.h raccoin/src/chainparamsseeds.h
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -482,7 +473,7 @@ $ cp tmpl_chainparamsseeds.h raccoin/src/chainparamsseeds.h
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

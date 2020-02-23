@@ -11,13 +11,10 @@
   <meta property="og:title" content="自作仮想通貨入門(8) - アドレスのプレフィックス変更" />
   <meta name="twitter:title" content="自作仮想通貨入門(8) - アドレスのプレフィックス変更" />
   <meta name="description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。">
   <meta property="og:description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。">
   <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。">
   <meta name="author" content="しゅーと"/><script type="application/ld+json">
 {
@@ -90,14 +87,12 @@
 
 <meta property="og:title" content="自作仮想通貨入門(8) - アドレスのプレフィックス変更" />
 <meta property="og:description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。">
 <meta property="og:url" content="https://www.shutingrz.com/post/oreore-coin8/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="自作仮想通貨入門(8) - アドレスのプレフィックス変更" />
   <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。">
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@shutingrz" />
@@ -110,7 +105,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -292,95 +287,75 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>※この章では src/chainparams.cpp を変更します。</p>
-
 <p>仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。</p>
-
 <h2 id="プレフィックスの仕組みについて">プレフィックスの仕組みについて</h2>
-
-<p>Litecoinではアドレスの1文字目に必ず&rdquo;L&rdquo;が入ります。このようにアドレスの1文字目に何らかのプレフィックスがつく仕様は、bitcoinの実装に由来するものです。<br />
-bitcoinでは各種管理情報(ウォレットの秘密鍵や公開鍵など)の視認性をあげるためにデータをハッシュ化したのちBase58エンコードを行います。<br />
-また、Base58エンコード前に、タイプミスによる事故の発生を防ぐ目的でチェックサムをつけています。<br />
-これらの一連の処理を base58Check と呼びますが、base58Check にはヘッダを付与することでアドレスの種類を仕分けることが可能になっています。<br />
+<p>Litecoinではアドレスの1文字目に必ず&quot;L&quot;が入ります。このようにアドレスの1文字目に何らかのプレフィックスがつく仕様は、bitcoinの実装に由来するものです。<br>
+bitcoinでは各種管理情報(ウォレットの秘密鍵や公開鍵など)の視認性をあげるためにデータをハッシュ化したのちBase58エンコードを行います。<br>
+また、Base58エンコード前に、タイプミスによる事故の発生を防ぐ目的でチェックサムをつけています。<br>
+これらの一連の処理を base58Check と呼びますが、base58Check にはヘッダを付与することでアドレスの種類を仕分けることが可能になっています。<br>
 技術的詳細については下記URLを参照してください。</p>
-
 <blockquote>
 <p><a href="https://en.bitcoin.it/wiki/List_of_address_prefixes">https://en.bitcoin.it/wiki/List_of_address_prefixes</a></p>
 </blockquote>
-
-<p>初期のbitcoinはビットコインアドレス(P2PKHアドレス)を生成するとき、 アドレスが必ず&rdquo;1&rdquo;から始まっていました。<br />
-なお、今回の仮想通貨の基となるLitecoinはP2PKHアドレスが必ず&rdquo;L&rdquo;で始まります。<br />
+<p>初期のbitcoinはビットコインアドレス(P2PKHアドレス)を生成するとき、 アドレスが必ず&quot;1&quot;から始まっていました。<br>
+なお、今回の仮想通貨の基となるLitecoinはP2PKHアドレスが必ず&quot;L&quot;で始まります。<br>
 これは下記コードで指定することで実現しています。</p>
-
 <pre><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,48);
 </code></pre>
-
-<p>上記のURLを確認すると、48を指定すれば1文字目が必ず&rdquo;L&rdquo;で始まることがわかります。</p>
-
-<h2 id="アドレスプレフィックスを決める-pubkey-address">アドレスプレフィックスを決める(PUBKEY_ADDRESS)</h2>
-
-<p>今回作成する仮想通貨名称はRaccoinで、接頭辞がRなのでアドレスもRから始まるように変更します。<br />
+<p>上記のURLを確認すると、48を指定すれば1文字目が必ず&quot;L&quot;で始まることがわかります。</p>
+<h2 id="アドレスプレフィックスを決めるpubkey_address">アドレスプレフィックスを決める(PUBKEY_ADDRESS)</h2>
+<p>今回作成する仮想通貨名称はRaccoinで、接頭辞がRなのでアドレスもRから始まるように変更します。<br>
 上記URLを参考にすると60か61を指定すれば必ず R から始まるようなので、60 を指定します。</p>
-
-<h2 id="p2sh-用のアドレスプレフィックスを決める-script-address">P2SH 用のアドレスプレフィックスを決める(SCRIPT_ADDRESS)</h2>
-
-<p>Litecoin 0.16 は P2SH にも対応しています。<br />
-P2SH はより汎用的なデータを定義できる方式で、メジャーな例ではマルチシグに利用されたりしています。<br />
+<h2 id="p2sh-用のアドレスプレフィックスを決めるscript_address">P2SH 用のアドレスプレフィックスを決める(SCRIPT_ADDRESS)</h2>
+<p>Litecoin 0.16 は P2SH にも対応しています。<br>
+P2SH はより汎用的なデータを定義できる方式で、メジャーな例ではマルチシグに利用されたりしています。<br>
 P2SH 用のプレフィックスは BIP-13 で 5 にする(3から始まる)よう決められていますから、何も変えないようにしましょう。</p>
-
-<h2 id="p2sh-ベースの-segwit-用アドレスプレフィックスを決める-script-address2">P2SH ベースの Segwit 用アドレスプレフィックスを決める (SCRIPT_ADDRESS2)</h2>
-
-<p>Litecoin 0.16 は Segwit にも対応しています。(というかそのために0.16を使いました)<br />
-ただ Segwit は新しい機能であるため、Segwit アドレスの形式に対応していないウォレットがあります。<br />
-そのため、P2SH に対応した Segwit 用のアドレスプレフィックスを上記のURLを参考にして設定します。<br />
+<h2 id="p2sh-ベースの-segwit-用アドレスプレフィックスを決める-script_address2">P2SH ベースの Segwit 用アドレスプレフィックスを決める (SCRIPT_ADDRESS2)</h2>
+<p>Litecoin 0.16 は Segwit にも対応しています。(というかそのために0.16を使いました)<br>
+ただ Segwit は新しい機能であるため、Segwit アドレスの形式に対応していないウォレットがあります。<br>
+そのため、P2SH に対応した Segwit 用のアドレスプレフィックスを上記のURLを参考にして設定します。<br>
 今回は S から始めることにしたので、 63 を指定します。</p>
-
-<h2 id="ネイティブ-segwit-用のアドレスプレフィックスを決める-bech32">ネイティブ Segwit 用のアドレスプレフィックスを決める(bech32)</h2>
-
-<p>こちらは完全に Segwit に対応したウォレット同士で利用するためのアドレスプレフィックスです。<br />
-Litecoin の Segwit 用のアドレスプレフィックスは3文字で、&rdquo;ltc&rdquo;です。<br />
-この値は割と好きに決めてよさそうですが、今後作成するウォレットのバリデータにあまり手を加えたくないため、同じく3文字で設定することにします。<br />
-今回は Raccoin から3文字とって、&rdquo;xri&rdquo; にします。<br />
+<h2 id="ネイティブ-segwit-用のアドレスプレフィックスを決めるbech32">ネイティブ Segwit 用のアドレスプレフィックスを決める(bech32)</h2>
+<p>こちらは完全に Segwit に対応したウォレット同士で利用するためのアドレスプレフィックスです。<br>
+Litecoin の Segwit 用のアドレスプレフィックスは3文字で、&ldquo;ltc&quot;です。<br>
+この値は割と好きに決めてよさそうですが、今後作成するウォレットのバリデータにあまり手を加えたくないため、同じく3文字で設定することにします。<br>
+今回は Raccoin から3文字とって、&ldquo;xri&rdquo; にします。<br>
 ・・・が、実はこの変更は「単純な文字列置換」章の「小文字略称の書き換え」で既に行っているのでこの項目での置き換えは不要です。</p>
-
-<h2 id="testnet-regtest-用のアドレスプレフィックス">Testnet/Regtest 用のアドレスプレフィックス</h2>
-
-<p>今まで決めてきたのは Mainnet 用のアドレスプレフィックスであり、テスト用のネットワークであるTestnetとRegtestのアドレスプレフィックスも決めないといけません。<br />
+<h2 id="testnetregtest-用のアドレスプレフィックス">Testnet/Regtest 用のアドレスプレフィックス</h2>
+<p>今まで決めてきたのは Mainnet 用のアドレスプレフィックスであり、テスト用のネットワークであるTestnetとRegtestのアドレスプレフィックスも決めないといけません。<br>
 ただこれらは本番環境では使わないのでカジュアルに決めていきましょう。</p>
-
 <h3 id="testnet">Testnet</h3>
-
 <ul>
-<li><p>アドレスプレフィックス(PUBKEY_ADDRESS)<br />
-一般的に、Mainnetのプレフィックスを小文字に変えるようです。<br />
-今回は&rdquo;r&rdquo;から始めたいので、122 を指定します。</p></li>
-
-<li><p>P2SH 用のアドレスプレフィックス(SCRIPT_ADDRESS)<br />
-こちらもBIP13で196を指定（2から始まる）されているので、変更しません。</p></li>
-
-<li><p>P2SH ベースの Segwit 用アドレスプレフィックス (SCRIPT_ADDRESS2)<br />
-今回は&rdquo;s&rdquo;から始めるようにするので、 125 にします。</p></li>
-
-<li><p>ネイティブ Segwit 用のアドレスプレフィックス(bech32)
-一般的に、Mainnetのアドレスプレフィックスの最初に&rdquo;t&rdquo;を付与する形にするようです。<br />
-なので今回は&rdquo;txri&rdquo;にします。<br />
-・・・が、実はこの変更は「単純な文字列置換」章の「小文字略称の書き換え」で既に行っているのでこの項目での置き換えは不要です。</p></li>
+<li>
+<p>アドレスプレフィックス(PUBKEY_ADDRESS)<br>
+一般的に、Mainnetのプレフィックスを小文字に変えるようです。<br>
+今回は&quot;r&quot;から始めたいので、122 を指定します。</p>
+</li>
+<li>
+<p>P2SH 用のアドレスプレフィックス(SCRIPT_ADDRESS)<br>
+こちらもBIP13で196を指定（2から始まる）されているので、変更しません。</p>
+</li>
+<li>
+<p>P2SH ベースの Segwit 用アドレスプレフィックス (SCRIPT_ADDRESS2)<br>
+今回は&quot;s&quot;から始めるようにするので、 125 にします。</p>
+</li>
+<li>
+<p>ネイティブ Segwit 用のアドレスプレフィックス(bech32)
+一般的に、Mainnetのアドレスプレフィックスの最初に&quot;t&quot;を付与する形にするようです。<br>
+なので今回は&quot;txri&quot;にします。<br>
+・・・が、実はこの変更は「単純な文字列置換」章の「小文字略称の書き換え」で既に行っているのでこの項目での置き換えは不要です。</p>
+</li>
 </ul>
-
 <h3 id="regtest">Regtest</h3>
-
 <p>PUBKEY_ADDRESS、SCIPRT_ADDRESS、SCRIPT_ADDRESS2 ともにTestnetと同様でよいです。</p>
-
 <ul>
-<li>ネイティブ Segwit 用のアドレスプレフィックス(bech32)<br />
-一般的に、Mainnetのアドレスプレフィックスの最初に&rdquo;r&rdquo;を付与する形にするようです。<br />
-なので今回は&rdquo;rxri&rdquo;にします。<br />
+<li>ネイティブ Segwit 用のアドレスプレフィックス(bech32)<br>
+一般的に、Mainnetのアドレスプレフィックスの最初に&quot;r&quot;を付与する形にするようです。<br>
+なので今回は&quot;rxri&quot;にします。<br>
 ・・・が、実はこの変更は「単純な文字列置換」章の「小文字略称の書き換え」で既に行っているのでこの項目での置き換えは不要です。</li>
 </ul>
-
 <h1 id="ソースコードの変更作業">ソースコードの変更作業</h1>
-
 <h2 id="cmainparams">CMainParams()</h2>
-
 <pre><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,60);
 base58Prefixes[SCRIPT_ADDRESS] = std::vector&lt;unsigned char&gt;(1,5);
 base58Prefixes[SCRIPT_ADDRESS2] = std::vector&lt;unsigned char&gt;(1,63);  
@@ -388,15 +363,12 @@ base58Prefixes[SECRET_KEY] =     std::vector&lt;unsigned char&gt;(1,188);
 
 bech32_hrp = &quot;xri&quot;;
 </code></pre>
-
 <ul>
 <li>アドレスは「R」 から始まるようにしました。</li>
 <li>マルチシグアドレスは「S」から始まるようにしました。</li>
 <li>SECRET_KEY は PUBKEY_ADDRESS + 128 にするようなので、今回は 188 にしました。</li>
 </ul>
-
 <h2 id="ctestnetparams">CTestNetParams()</h2>
-
 <pre><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,122);
 base58Prefixes[SCRIPT_ADDRESS] = std::vector&lt;unsigned char&gt;(1,196);
 base58Prefixes[SCRIPT_ADDRESS2] = std::vector&lt;unsigned char&gt;(1,125);  
@@ -404,15 +376,12 @@ base58Prefixes[SECRET_KEY] =     std::vector&lt;unsigned char&gt;(1,254);
 
 bech32_hrp = &quot;txri&quot;;
 </code></pre>
-
 <ul>
 <li>アドレスは「r」 から始まるようにしました。</li>
 <li>マルチシグアドレスは「s」から始まるようにしました。</li>
-<li>SECRET_KEY は PUBKEY_ADDRESS + 128 にするようですが、それだと255を超えてしまうので254にしました。<br /></li>
+<li>SECRET_KEY は PUBKEY_ADDRESS + 128 にするようですが、それだと255を超えてしまうので254にしました。</li>
 </ul>
-
 <h2 id="cregtestparams">CRegTestParams()</h2>
-
 <pre><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,122);
 base58Prefixes[SCRIPT_ADDRESS] = std::vector&lt;unsigned char&gt;(1,196);
 base58Prefixes[SCRIPT_ADDRESS2] = std::vector&lt;unsigned char&gt;(1,125);  
@@ -420,16 +389,13 @@ base58Prefixes[SECRET_KEY] =     std::vector&lt;unsigned char&gt;(1,254);
 
 bech32_hrp = &quot;rxri&quot;;
 </code></pre>
-
 <ul>
 <li>アドレスは「r」 から始まるようにしました。</li>
 <li>マルチシグアドレスは「s」から始まるようにしました。</li>
-<li>SECRET_KEY は PUBKEY_ADDRESS + 128 にするようですが、それだと255を超えてしまうので254にしました。<br /></li>
+<li>SECRET_KEY は PUBKEY_ADDRESS + 128 にするようですが、それだと255を超えてしまうので254にしました。</li>
 </ul>
-
-<hr />
-
-<p>本章ではアドレスのプレフィックスの説明と変更をしました。<br />
+<hr>
+<p>本章ではアドレスのプレフィックスの説明と変更をしました。<br>
 次の章でやっとchainparams.cppの変更は終わりで、もうすぐで完成です。</p>
 
         
@@ -596,7 +562,7 @@ bech32_hrp = &quot;rxri&quot;;
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -606,7 +572,7 @@ bech32_hrp = &quot;rxri&quot;;
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

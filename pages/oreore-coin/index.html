@@ -14,7 +14,7 @@
 ただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。
 なお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方へのスペシャルとしてここでは公開しません😏
 このコンテンツがビットコインの理解の助けになれば幸いです。
-目次 全10章です。
+ 目次 全10章です。
 自作仮想通貨入門(1) - はじめに
 自作仮想通貨入門(2) - Litecoinの準備
 自作仮想通貨入門(3) - Litecoinを試してみよう
@@ -25,14 +25,14 @@
 自作仮想通貨入門(8) - アドレスのプレフィックス変更
 自作仮想通貨入門(9) - ブロックデータのマジックバイト変更
 自作仮想通貨入門(10) - 著作権表示の記載・おわりに
-重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
-この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&rdquo;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。
+ 重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
+この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&quot;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。
 - if (!CheckTransaction(*tx, state, false)) &#43; if (!CheckTransaction(*tx, state, true))  false を true にするだけです。">
   <meta property="og:description" content="自作仮想通貨入門 - 実際に作って学ぶビットコイン 2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記事を寄稿しました。
 ただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。
 なお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方へのスペシャルとしてここでは公開しません😏
 このコンテンツがビットコインの理解の助けになれば幸いです。
-目次 全10章です。
+ 目次 全10章です。
 自作仮想通貨入門(1) - はじめに
 自作仮想通貨入門(2) - Litecoinの準備
 自作仮想通貨入門(3) - Litecoinを試してみよう
@@ -43,8 +43,8 @@
 自作仮想通貨入門(8) - アドレスのプレフィックス変更
 自作仮想通貨入門(9) - ブロックデータのマジックバイト変更
 自作仮想通貨入門(10) - 著作権表示の記載・おわりに
-重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
-この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&rdquo;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。
+ 重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
+この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&quot;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。
 - if (!CheckTransaction(*tx, state, false)) &#43; if (!CheckTransaction(*tx, state, true))  false を true にするだけです。">
   <meta name="twitter:description" content="自作仮想通貨入門 - 実際に作って学ぶビットコイン 2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記事を寄稿しました。
 ただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。
@@ -97,7 +97,7 @@
     "name" : "しゅーと"
   },
   "headline": "自作仮想通貨入門",
-  "description" : "自作仮想通貨入門 - 実際に作って学ぶビットコイン 2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記事を寄稿しました。\nただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。\nなお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方へのスペシャルとしてここでは公開しません😏\nこのコンテンツがビットコインの理解の助けになれば幸いです。\n目次 全10章です。\n自作仮想通貨入門(1) - はじめに\n自作仮想通貨入門(2) - Litecoinの準備\n自作仮想通貨入門(3) - Litecoinを試してみよう\n自作仮想通貨入門(4) - テンプレートファイルのコピー\n自作仮想通貨入門(5) - 単純な文字列置換\n自作仮想通貨入門(6) - ジェネシスブロックの作成と設定\n自作仮想通貨入門(7) - コンセンサスの設定\n自作仮想通貨入門(8) - アドレスのプレフィックス変更\n自作仮想通貨入門(9) - ブロックデータのマジックバイト変更\n自作仮想通貨入門(10) - 著作権表示の記載・おわりに\n重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。\nこの脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに\x26rdquo;src\/validation.cpp\x26rdquo; の 3003 行目を以下のように変更してください。\n- if (!CheckTransaction(*tx, state, false)) \x2b if (!CheckTransaction(*tx, state, true))  false を true にするだけです。",
+  "description" : "自作仮想通貨入門 - 実際に作って学ぶビットコイン 2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記事を寄稿しました。\nただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。\nなお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方へのスペシャルとしてここでは公開しません😏\nこのコンテンツがビットコインの理解の助けになれば幸いです。\n 目次 全10章です。\n自作仮想通貨入門(1) - はじめに\n自作仮想通貨入門(2) - Litecoinの準備\n自作仮想通貨入門(3) - Litecoinを試してみよう\n自作仮想通貨入門(4) - テンプレートファイルのコピー\n自作仮想通貨入門(5) - 単純な文字列置換\n自作仮想通貨入門(6) - ジェネシスブロックの作成と設定\n自作仮想通貨入門(7) - コンセンサスの設定\n自作仮想通貨入門(8) - アドレスのプレフィックス変更\n自作仮想通貨入門(9) - ブロックデータのマジックバイト変更\n自作仮想通貨入門(10) - 著作権表示の記載・おわりに\n 重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。\nこの脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに\x26quot;src\/validation.cpp\x26rdquo; の 3003 行目を以下のように変更してください。\n- if (!CheckTransaction(*tx, state, false)) \x2b if (!CheckTransaction(*tx, state, true))  false を true にするだけです。",
   "inLanguage" : "en",
   "wordCount":  77 ,
   "datePublished" : "2019-04-30T00:03:52",
@@ -123,7 +123,7 @@
 ただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。
 なお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方へのスペシャルとしてここでは公開しません😏
 このコンテンツがビットコインの理解の助けになれば幸いです。
-目次 全10章です。
+ 目次 全10章です。
 自作仮想通貨入門(1) - はじめに
 自作仮想通貨入門(2) - Litecoinの準備
 自作仮想通貨入門(3) - Litecoinを試してみよう
@@ -134,8 +134,8 @@
 自作仮想通貨入門(8) - アドレスのプレフィックス変更
 自作仮想通貨入門(9) - ブロックデータのマジックバイト変更
 自作仮想通貨入門(10) - 著作権表示の記載・おわりに
-重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
-この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&rdquo;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。
+ 重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
+この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&quot;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。
 - if (!CheckTransaction(*tx, state, false)) &#43; if (!CheckTransaction(*tx, state, true))  false を true にするだけです。">
 <meta property="og:url" content="https://www.shutingrz.com/pages/oreore-coin/" />
 <meta property="og:type" content="website" />
@@ -155,7 +155,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -323,64 +323,36 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<h1 id="自作仮想通貨入門-実際に作って学ぶビットコイン">自作仮想通貨入門 - 実際に作って学ぶビットコイン</h1>
-
-<p>2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記事を寄稿しました。<br />
+        <h1 id="自作仮想通貨入門---実際に作って学ぶビットコイン">自作仮想通貨入門 - 実際に作って学ぶビットコイン</h1>
+<p>2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記事を寄稿しました。<br>
 ただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。</p>
-
 <p>なお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方へのスペシャルとしてここでは公開しません😏</p>
-
 <p>このコンテンツがビットコインの理解の助けになれば幸いです。</p>
-
-<hr />
-
+<hr>
 <h1 id="目次">目次</h1>
-
 <p>全10章です。</p>
-
 <p><a href="/post/oreore-coin1/">自作仮想通貨入門(1) - はじめに</a></p>
-
 <p><a href="/post/oreore-coin2/">自作仮想通貨入門(2) - Litecoinの準備</a></p>
-
 <p><a href="/post/oreore-coin3/">自作仮想通貨入門(3) - Litecoinを試してみよう</a></p>
-
 <p><a href="/post/oreore-coin4/">自作仮想通貨入門(4) - テンプレートファイルのコピー</a></p>
-
 <p><a href="/post/oreore-coin5/">自作仮想通貨入門(5) - 単純な文字列置換</a></p>
-
 <p><a href="/post/oreore-coin6/">自作仮想通貨入門(6) - ジェネシスブロックの作成と設定</a></p>
-
 <p><a href="/post/oreore-coin7/">自作仮想通貨入門(7) - コンセンサスの設定</a></p>
-
 <p><a href="/post/oreore-coin8/">自作仮想通貨入門(8) - アドレスのプレフィックス変更</a></p>
-
 <p><a href="/post/oreore-coin9/">自作仮想通貨入門(9) - ブロックデータのマジックバイト変更</a></p>
-
 <p><a href="/post/oreore-coin10/">自作仮想通貨入門(10) - 著作権表示の記載・おわりに</a></p>
-
-<hr />
-
+<hr>
 <h2 id="重要-cve-2018-17144-の対策">重要: CVE-2018-17144 の対策</h2>
-
 <p>今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。
 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。</p>
-
-<p>この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&rdquo;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。</p>
-
+<p>この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&quot;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。</p>
 <pre><code>-        if (!CheckTransaction(*tx, state, false))
 +        if (!CheckTransaction(*tx, state, true))
 </code></pre>
-
 <p>false を true にするだけです。</p>
-
 <p>一応ソースコードを変更する項目でも再掲しますが、忘れずに修正してください。</p>
-
-<hr />
-
+<hr>
 <p>記事を執筆した時点ではCVE-2018-17144が公開される前だったのでこういうことになってしまいました。。</p>
-
 <p>ビットコイン実装であるBitcoinCoreにはこのような脆弱性が時々見つかるので、可能なら常に最新バージョンを使って自作仮想通貨を作ったほうがいいのです。</p>
 
 
@@ -523,7 +495,7 @@ Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆�
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -533,7 +505,7 @@ Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

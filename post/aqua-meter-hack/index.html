@@ -12,15 +12,12 @@
   <meta name="twitter:title" content="アクアのスピードメーターを解析してPS3のコントローラで動かす" />
   <meta name="description" content="しゅーとです。
 リアルECUシリーズ第二作目。
-
 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。">
   <meta property="og:description" content="しゅーとです。
 リアルECUシリーズ第二作目。
-
 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。">
   <meta name="twitter:description" content="しゅーとです。
 リアルECUシリーズ第二作目。
-
 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。">
   <meta name="author" content="しゅーと"/><script type="application/ld+json">
 {
@@ -72,7 +69,7 @@
   "headline": "アクアのスピードメーターを解析してPS3のコントローラで動かす",
   "description" : "しゅーとです。\nリアルECUシリーズ第二作目。\nヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。\n",
   "inLanguage" : "en",
-  "wordCount":  1061 ,
+  "wordCount":  1025 ,
   "datePublished" : "2019-10-03T04:34:00",
   "dateModified" : "2019-10-03T04:34:00",
   "image" : "https:\/\/www.shutingrz.com\/",
@@ -94,7 +91,6 @@
 <meta property="og:title" content="アクアのスピードメーターを解析してPS3のコントローラで動かす" />
 <meta property="og:description" content="しゅーとです。
 リアルECUシリーズ第二作目。
-
 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。">
 <meta property="og:image" content="https://www.shutingrz.com/post/aqua-meter-hack/logo.png" />
 <meta property="og:url" content="https://www.shutingrz.com/post/aqua-meter-hack/" />
@@ -103,7 +99,6 @@
   <meta name="twitter:title" content="アクアのスピードメーターを解析してPS3のコントローラで動かす" />
   <meta name="twitter:description" content="しゅーとです。
 リアルECUシリーズ第二作目。
-
 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。">
   <meta name="twitter:image" content="https://www.shutingrz.com/post/aqua-meter-hack/logo.png" />
   <meta name="twitter:card" content="summary" />
@@ -119,7 +114,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -300,146 +295,105 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>しゅーとです。<br />
+        <p>しゅーとです。<br>
 リアルECUシリーズ第二作目。</p>
-
 <p>ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。</p>
-
 <h2 id="要約">要約</h2>
-
-<p>スピードメーターが反応するCANIDを特定できた。<br />
+<p>スピードメーターが反応するCANIDを特定できた。<br>
 そしてその情報を使ってPS3コントローラでスピードメーターを操作してみたよ。</p>
-
 <p>コントローラで動いているのだけ見たい人はこの動画を見てください。</p>
 
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//www.youtube.com/embed/5ZJSc0vtP5E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+  <iframe src="https://www.youtube.com/embed/5ZJSc0vtP5E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-
-<hr />
-
+<hr>
 <h1 id="検証環境">検証環境</h1>
-
 <ul>
 <li>DC安定化電源
-
 <ul>
 <li>メーターへの給電用</li>
-</ul></li>
+</ul>
+</li>
 <li>Canable
-
 <ul>
 <li>CAN通信ができるUSB機器。(ファームウェアは candlelight に更新済み)</li>
-</ul></li>
+</ul>
+</li>
 <li>ジャンパワイヤ
-
 <ul>
 <li>メーターの IG+, GND, CAN-H, CAN-L に用いるので最低4本必要</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>ちなみに我が家のCANの検証環境は画像のような感じ。</p>
-
-<p><img src="car_env.png" alt="car_env"  /></p>
-
+<p><!-- raw HTML omitted --></p>
 <p>CANだけであれば、電源・GNDと、CANバスとみなしたブレッドボード2ライン分を用意するだけで検証が可能。</p>
-
 <p>これだけなら結構すぐ始められる。みんなも始めよう！</p>
-
 <h2 id="コンビネーションメーターの仕様">コンビネーションメーターの仕様</h2>
-
 <ul>
 <li>メーカー: デンソー</li>
 <li>型番: 83800-5CF71</li>
 <li>使用車種: アクア NHP-10 (2013年製造)</li>
 <li>端子1: 40pin
-
 <ul>
 <li>コネクタ: 90980-12557
 025型NHシリーズ40極F側コネクタ / 40P025K-NH-F</li>
-</ul></li>
-<li>端子2 : 13pin
-
-<ul>
-<li>コネクタ :  90980-12767<br />
-13P(090型)-SMHMメス端子側コネクタ / 13P090K-SMHM-F</li>
-</ul></li>
 </ul>
-
-<p><img src="ecu_pins.png" alt="ecu_pins"  /></p>
-
+</li>
+<li>端子2 : 13pin
+<ul>
+<li>コネクタ :  90980-12767<br>
+13P(090型)-SMHMメス端子側コネクタ / 13P090K-SMHM-F</li>
+</ul>
+</li>
+</ul>
+<p><!-- raw HTML omitted --></p>
 <p>ピン数がめちゃくちゃ多い。</p>
-
 <h1 id="ハードウェア解析">ハードウェア解析</h1>
-
 <p>解析というほどできていない。ただの紹介である。</p>
-
 <h2 id="ハードウェア仕様">ハードウェア仕様</h2>
-
-<p><img src="cpu_rom.png" alt="cpu_rom"  /></p>
-
+<p><!-- raw HTML omitted --></p>
 <ul>
 <li>CPU: MB91F047
-
 <ul>
 <li>富士通製MCU。</li>
-</ul></li>
+</ul>
+</li>
 <li>EEPROM: 93C66a
-
 <ul>
 <li>ODOメータ管理用。このチップを外しROMライタで書き換えることでODOメータの数値を好きに変えることができる。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="denso-デバッグポート">DENSO デバッグポート</h2>
-
 <p>DENSOが工場で使っているデバッグポートがある。ここにアクセスすることでもEEPROMの内容を書き換えることができる模様。</p>
-
 <p>ピンはそれぞれ「UINA」「UOUTA」「TEST1」「TEST2」と表記されており、実際にこのポートを使ってEEPROMの内容を書き換える怪しい製品が売っている (SFTool, iProg+, M Toolなど)。</p>
-
 <p>ただ残念ながら書き換えるための技術的な情報はノウハウのためか公開されていない。</p>
-
-<p><img src="debug_port.png" alt="debug_port"  /></p>
-
-<h2 id="電源-通信用ピンの特定">電源・通信用ピンの特定</h2>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="電源通信用ピンの特定">電源・通信用ピンの特定</h2>
 <p>アクアのコンビネーションメータは、40ピンコネクタと13ピンコネクタの合計53ピンある。</p>
-
-<p>GNDピンはGNDのレイヤとの導通チェックで、IG+ピンは電源回路っぽいパターンから追うとすぐに推測が可能。<br />
+<p>GNDピンはGNDのレイヤとの導通チェックで、IG+ピンは電源回路っぽいパターンから追うとすぐに推測が可能。<br>
 見つけ方は前回の記事で紹介している。</p>
-
 <p><a href="/post/summon-real-ecu/">リアルECUを召喚して本物のCAN通信の雰囲気を知る</a></p>
-
 <p>しかし、CAN-H、CAN-Lに関しては前回と違いピンが多すぎて推測が困難。</p>
-
 <h3 id="電子技術マニュアル">電子技術マニュアル</h3>
-
-<p>この問題を解決するのがトヨタが発行・販売している電子技術マニュアル。<br />
-電子技術マニュアルは車種ごとに発行されており、CD媒体で販売される。<br />
+<p>この問題を解決するのがトヨタが発行・販売している電子技術マニュアル。<br>
+電子技術マニュアルは車種ごとに発行されており、CD媒体で販売される。<br>
 新品の流通ルートはディーラーらしいが、中古であればヤフオク等でも手に入る。</p>
-
 <p>電子技術マニュアルの「修理書」から、「内装ボデー&amp;エレクトリカル」→「メーター」→「メーター&amp;ゲージシステム」→「ECU端子配列」の順に開いていけばピンアサインが載っている。</p>
-
-<p>ピンアサインは以下。<br />
+<p>ピンアサインは以下。<br>
 ※端子1の右上を1、左下を40として数えていく。</p>
-
 <ul>
 <li>IG+: 21</li>
 <li>GND: 20</li>
 <li>CAN-H: 31</li>
 <li>CAN-L: 32</li>
 </ul>
-
-<p><img src="meter_pinassign.png" alt="meter_pinassign"  /></p>
-
+<p><!-- raw HTML omitted --></p>
 <p>このとおりに接続すると無事に起動する。</p>
-
 <h1 id="can通信解析">CAN通信解析</h1>
-
 <p>スピードメーターを起動すると、以下のようなデータがひたすら垂れ流される。</p>
-
 <pre><code>  can0  RX - -  442   [8]  42 04 00 00 02 00 00 00   'B.......'
   can0  RX - -  610   [8]  20 00 00 64 C0 FF FF 20   ' ..d... '
   can0  RX - -  4A6   [8]  08 90 07 FE FE FE FE 00   '........'
@@ -448,59 +402,38 @@ if (!doNotTrack) {
   can0  RX - -  616   [8]  2B 00 00 00 00 00 00 00   '+.......'
   can0  RX - -  613   [8]  28 00 80 00 00 00 00 00   '(.......'
 </code></pre>
-
 <p>ただ今回のハックの目的は通信を見ることではなく、データを送ってメーターがどういう表示になるかという点なので無視する。</p>
-
 <h4 id="odoメータ">ODOメータ</h4>
-
 <p>ちなみにCANID: 611 の5~8バイトはODOメータ(総走行距離)の内容になっている。</p>
-
 <blockquote>
 <p>02 58 B8 =&gt; 153784 (km)</p>
 </blockquote>
-
 <h2 id="canデータファジングをしてみる">CANデータファジングをしてみる</h2>
-
 <p>CANIDが 0 ~ 7FF の全てについて、全データFFなデータを送ってみる。</p>
-
 <p>ファジングに使うツールはcan-utilsに入っているcangen。candumpが使える環境ならcangenも使える。</p>
-
 <pre><code># cangen can0 -g 4 -I i -L 8 -D FFFFFFFFFFFFFFFF -n 2048 -v -v
 </code></pre>
-
 <p>動画を撮ったのでぜひどうぞ。</p>
 
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//www.youtube.com/embed/rMZjkm46sYY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+  <iframe src="https://www.youtube.com/embed/rMZjkm46sYY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-
 <p>たまごっちがお亡くなりになった時みたいな音が鳴り響く。結構うるさい。</p>
-
 <p>ファジング中、様々な表示灯や警告ブザー、そして車速が変わったのがわかると思う。</p>
-
-<h2 id="cangen-canplayerを使って車速周りを特定する">cangen、canplayerを使って車速周りを特定する</h2>
-
-<p>ファジングで車速が変わることを確認した。<br />
+<h2 id="cangencanplayerを使って車速周りを特定する">cangen、canplayerを使って車速周りを特定する</h2>
+<p>ファジングで車速が変わることを確認した。<br>
 よって何らかのCANIDで特定のデータを送ればスピードメーターが変わることがわかる。</p>
-
 <p>ということで今回はGUIではなくCUIツールであるcangenとcanplayerを使って車速周りを特定していく。</p>
-
 <h3 id="ファジングデータの生成">ファジングデータの生成</h3>
-
 <p>まずは candump を使って SocketCANコンパクト形式でCANデータを記録・保存する。</p>
-
 <pre><code># candump can0 -l
 Disabled standard output while logging.
 
 Enabling Logfile 'candump-2019-08-11_145103.log'
 </code></pre>
-
-<p>→&rsquo;candump-2019-08-11_145103.log&rsquo;というファイル名で保存される。</p>
-
+<p>→'candump-2019-08-11_145103.log'というファイル名で保存される。</p>
 <p>candumpをバックグラウンドで動かしながらcangenでファジングする。</p>
-
 <pre><code># cangen can0 -g 4 -I i -L 8 -D FFFFFFFFFFFFFFFF -n 2048 -v -v
   can0  000   [8]  FF FF FF FF FF FF FF FF
   can0  001   [8]  FF FF FF FF FF FF FF FF
@@ -508,147 +441,94 @@ Enabling Logfile 'candump-2019-08-11_145103.log'
   can0  7FE   [8]  FF FF FF FF FF FF FF FF
   can0  7FF   [8]  FF FF FF FF FF FF FF FF
 </code></pre>
-
 <blockquote>
-<p>オプションの意味。<br />
--g 4      : 通信間隔 4ms<br />
--I i      : CANIDを0x000からインクリメント<br />
--L 8      : データサイズは8バイト<br />
--D FFFFFFFFFFFFFFFF : データペイロード「FFFFFFFFFFFFFFFF 」<br />
--n 2048   : 通信回数。0からCANIDをインクリメントして2048回通信するので 0x000 ~ 0x7FF まで全てなめてくれる。<br />
--v -v     : ただの冗長表示オプション。</p>
+<p>オプションの意味。<br>
+-g 4		: 通信間隔 4ms<br>
+-I i		: CANIDを0x000からインクリメント<br>
+-L 8		: データサイズは8バイト<br>
+-D FFFFFFFFFFFFFFFF : データペイロード「FFFFFFFFFFFFFFFF 」<br>
+-n 2048	: 通信回数。0からCANIDをインクリメントして2048回通信するので 0x000 ~ 0x7FF まで全てなめてくれる。<br>
+-v -v 	: ただの冗長表示オプション。</p>
 </blockquote>
-
 <p>通信が終了したらcandumpを終了させる。</p>
-
-<p>結果、&rsquo;candump-2019-08-11_145103.log&rsquo;というファイルでファジングデータを含むCAN通信がダンプされる。</p>
-
+<p>結果、&lsquo;candump-2019-08-11_145103.log'というファイルでファジングデータを含むCAN通信がダンプされる。</p>
 <p>ここからgrepしてファジングデータを取り出す。</p>
-
 <pre><code># grep &quot;FFFFFFFFFFFF&quot; candump-2019-08-11_145103.log &gt; candump-FF.log
 </code></pre>
-
 <p><strong>これで CANID 0x000 から 0x7FF の、全てのデータが FF で埋まっているデータが手に入る！</strong></p>
-
 <h3 id="ワンライナーでcan-idを絞りながらリプレイ攻撃">ワンライナーでCAN IDを絞りながらリプレイ攻撃</h3>
-
 <p>canplayerはSocketCANコンパクト形式のログデータを標準入力からリプレイすることが可能。</p>
-
 <p>candump-FF.log が下記のような形式のとき、</p>
-
 <pre><code>(1565531468.574284) can0 000#FFFFFFFFFFFFFFFF
 (1565531468.578885) can0 001#FFFFFFFFFFFFFFFF
 (1565531468.583324) can0 002#FFFFFFFFFFFFFFFF
 ...
 </code></pre>
-
-<p>ログにはCANインターフェイス名のあとにCANIDが記録されているので、CANID: 0x000 ~ 0x0FF のデータが取り出せる。<br />
+<p>ログにはCANインターフェイス名のあとにCANIDが記録されているので、CANID: 0x000 ~ 0x0FF のデータが取り出せる。<br>
 そしてこれをパイプでcanplayer に食わせる。</p>
-
 <pre><code># grep &quot;can0 0&quot; candump-FF.log | canplayer can0=can0
 </code></pre>
-
 <blockquote>
 <p>canplayer の オプションの意味。(canplayer &ndash;help)</p>
-
+</blockquote>
 <pre><code> Interface assignment:
  0..n assignments like &lt;write-if&gt;=&lt;log-if&gt;
  e.g. vcan2=can0 (send frames received from can0 on vcan2)
 </code></pre>
-
+<blockquote>
 <p>ログに残っている インターフェイス名の置換ルールであり、同じcan0でやるなら can0=can0 とすればいい。</p>
 </blockquote>
-
 <p>こうすると CANID 0x000 ~ 0x0FF かつ データ FFFFFFFFFFFFFFFF なCANメッセージが送られる。</p>
-
 <p>データを送ったところスピードメーターが180kmを指すことを確認した。</p>
-
 <p>あとは二分探索法みたいにファジングするCANIDの範囲を狭めていき特定していくことになる。grepやheadコマンドを使えば送るCANIDの範囲を簡単に調整できる。</p>
-
-<p><br/></p>
-
-<h4 id="前半-0x000-0x07f-を送る">前半(0x000 ~ 0x07F)を送る</h4>
-
+<!-- raw HTML omitted -->
+<h4 id="前半0x000--0x07fを送る">前半(0x000 ~ 0x07F)を送る</h4>
 <pre><code># grep &quot;can0 0&quot; candump-FF.log| head -n 128 | canplayer can0=can0
 </code></pre>
-
 <p>→速度は変わらなかった。</p>
-
-<h4 id="後半-0x080-0x0ff-を送る">後半(0x080 ~ 0x0FF)を送る</h4>
-
+<h4 id="後半0x080--0x0ffを送る">後半(0x080 ~ 0x0FF)を送る</h4>
 <pre><code># grep &quot;can0 0&quot; candump-FF.log| tail -n 128 | canplayer can0=can0
 </code></pre>
-
 <p>→速度が変わった。0x080 ~ 0x0FF の範囲である。</p>
-
 <h4 id="0x080-から-64-個送る">0x080 から 64 個送る</h4>
-
 <pre><code># grep &quot;can0 0&quot; candump-FF.log | tail -n 128 | head -n 64 | canplayer can0=can0
 </code></pre>
-
 <p>→速度が変わった。0x080 から64 個の範囲である。</p>
-
 <h4 id="0x080-から-32-個送る">0x080 から 32 個送る</h4>
-
 <pre><code># grep &quot;can0 0&quot; candump-FF.log | tail -n 128 | head -n 32 | canplayer can0=can0
 </code></pre>
-
 <p>→変わらない。</p>
-
 <h4 id="0x0a0-から-32個送る">0x0A0 から 32個送る</h4>
-
 <pre><code># grep &quot;can0 0&quot; candump-FF.log | tail -n 128 | head -n 64 | tail -n 32 | canplayer can0=can0
 </code></pre>
-
-<p>→変わった。0x0A0 から32 個の範囲である。<br />
+<p>→変わった。0x0A0 から32 個の範囲である。<br>
 32は0x10 * 2 でありキリがいいので grep でCAN IDを絞る。</p>
-
-<h4 id="0x0a0-0x0af">0x0A0 ~ 0x0AF</h4>
-
+<h4 id="0x0a0--0x0af">0x0A0 ~ 0x0AF</h4>
 <pre><code># grep &quot;can0 0A&quot; candump-FF.log | canplayer can0=can0
 </code></pre>
-
 <p>→変わらない。</p>
-
-<h4 id="0x0b0-0x0bf">0x0B0 ~ 0x0BF</h4>
-
+<h4 id="0x0b0--0x0bf">0x0B0 ~ 0x0BF</h4>
 <pre><code># grep &quot;can0 0B&quot; candump-FF.log | canplayer can0=can0
 </code></pre>
-
 <p>→変わった。0x0B0 ~ 0x0BF の範囲である。</p>
-
-<h4 id="0x0b0-0b8">0x0B0 ~ 0B8</h4>
-
+<h4 id="0x0b0--0b8">0x0B0 ~ 0B8</h4>
 <pre><code># grep &quot;can0 0B&quot; candump-FF.log | head -n 8 | canplayer can0=can0
 </code></pre>
-
 <p>→変わった。0x0B0 ~ 0x0B8 の範囲である</p>
-
 <p>もうここまでくると8個から1個を推測するだけなので、cansend で打っていく。</p>
-
 <p>&hellip;</p>
-
 <p>&hellip;結果、<strong>車速に関するCAN IDは 0x0b4 だった</strong>。</p>
-
-<p>なお、データ部8バイトのうちどのバイト部が車速を示すかどうかについては、cansendで各バイトデータを00にしてみたりFFにしてみたりするだけなので割愛。<br />
+<p>なお、データ部8バイトのうちどのバイト部が車速を示すかどうかについては、cansendで各バイトデータを00にしてみたりFFにしてみたりするだけなので割愛。<br>
 コツを書いておくと、バイト単位ではなくビット単位で考えるとよい。</p>
-
 <p>結果、6バイト目の1バイトが車速に関する部分ということがわかった。</p>
-
 <pre><code># cangen can0 -g 4 -I 0b4 -L 8 -D 0000000000450000  -v -v
 </code></pre>
-
 <p>上記のように 4ms間隔で6バイト目に45を入れておけば、スピードメーターは180kmを指す。</p>
-
-<p><img src="speed_max.png" alt="speed_max" /></p>
-
-<hr />
-
-<p>こんなことを繰り返し車速以外も特定していく。<br />
+<p><img src="speed_max.png" alt="speed_max"></p>
+<hr>
+<p>こんなことを繰り返し車速以外も特定していく。<br>
 そしてCANID・データ部と機能の対応表ができあがった。</p>
-
 <h2 id="アクア-メーター機能対応表">アクア メーター機能対応表</h2>
-
 <table>
 <thead>
 <tr>
@@ -658,183 +538,157 @@ Enabling Logfile 'candump-2019-08-11_145103.log'
 <th>備考</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>0x0b4</td>
 <td>00 00 00 00 00 XX 00 00</td>
 <td>車速</td>
-<td>XX =&gt; Speed <br />車速の絶対値というか単位時間あたりの回転数のような感じ。短い時間に複数回送ると0 ~ 180kmの範囲で速度が上昇する。</td>
+<td>XX =&gt; Speed <!-- raw HTML omitted -->車速の絶対値というか単位時間あたりの回転数のような感じ。短い時間に複数回送ると0 ~ 180kmの範囲で速度が上昇する。</td>
 </tr>
-
 <tr>
 <td>0x1C4</td>
 <td>00 00 00 00 00 00 00 01</td>
 <td>EV表示</td>
 <td></td>
 </tr>
-
 <tr>
 <td>0x247</td>
 <td>XX XX 00 00 00 00 00 00</td>
 <td>ハイブリッドシステムインジケーター</td>
-<td>XX =&gt; インジケータのメモリ<br />1バイト目は最下位ビットのみ見ている<br />ちなみに1バイト目下位ビットが0かつ上位ビットが1のときエラー音が鳴る</td>
+<td>XX =&gt; インジケータのメモリ<!-- raw HTML omitted -->1バイト目は最下位ビットのみ見ている<!-- raw HTML omitted -->ちなみに1バイト目下位ビットが0かつ上位ビットが1のときエラー音が鳴る</td>
 </tr>
-
 <tr>
 <td>0x394</td>
 <td>NO CARE</td>
 <td>エレクトリック　パワーステアリング (EPS) 警告灯</td>
-<td>該当CAN IDの通信が1秒以内の間隔で発生している限り、警告灯が消灯する。<br />1秒以上通信を発生させなかったらEPS警告灯が表示され、ピーッ！と鳴る<br /><br />データは何でもいい</td>
+<td>該当CAN IDの通信が1秒以内の間隔で発生している限り、警告灯が消灯する。<!-- raw HTML omitted -->1秒以上通信を発生させなかったらEPS警告灯が表示され、ピーッ！と鳴る<!-- raw HTML omitted --><!-- raw HTML omitted -->データは何でもいい</td>
 </tr>
-
 <tr>
 <td>0x3B0</td>
 <td>00 00 00 XX 00 00 00 00</td>
 <td>車外気温</td>
-<td>XX =&gt; 気温<br />0x08 (-40℃) ～ 0x62 (50℃) <br />該当CAN IDの通信が10秒以内の間隔で発生しているとき、その通信の該当バイト部によって温度が表示される。<br />10秒以上通信を発生させなかったら「E」という文字が表示される</td>
+<td>XX =&gt; 気温<!-- raw HTML omitted -->0x08 (-40℃) ～ 0x62 (50℃) <!-- raw HTML omitted -->該当CAN IDの通信が10秒以内の間隔で発生しているとき、その通信の該当バイト部によって温度が表示される。<!-- raw HTML omitted -->10秒以上通信を発生させなかったら「E」という文字が表示される</td>
 </tr>
-
 <tr>
 <td>0x3B6</td>
 <td>NO CARE</td>
 <td>バッテリー残量</td>
 <td>該当CAN IDの通信が3秒以内の間隔で発生しているとき、バッテリーメモリが1になる</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 00 XX 00 00 00 00 00</td>
 <td>P ポジション要求表示灯</td>
-<td>0x08 (00001000) : 点灯&amp;ピーッ！と長く鳴る<br />0x80 (10000000) : 点灯&amp;ピッ！と短く鳴る<br /></td>
+<td>0x08 (00001000) : 点灯&amp;ピーッ！と長く鳴る<!-- raw HTML omitted -->0x80 (10000000) : 点灯&amp;ピッ！と短く鳴る<!-- raw HTML omitted --></td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 00 XX 00 00 00 00 00</td>
 <td>バッテリー残量</td>
-<td>00000XXX : バッテリーメモリ<br />0 ～ 7 (3ビット)の範囲でメモリが増減する</td>
+<td>00000XXX : バッテリーメモリ<!-- raw HTML omitted -->0 ～ 7 (3ビット)の範囲でメモリが増減する</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 00 00 XX 00 00 00 00 00</td>
 <td>READY インジケータ</td>
-<td>0x04 (00000100) : 点滅<br />0x10 (00010000) : 点灯</td>
+<td>0x04 (00000100) : 点滅<!-- raw HTML omitted -->0x10 (00010000) : 点灯</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 00 00 XX 00 00 00 00 00</td>
 <td>警告ブザー</td>
-<td>0x08 (00001000) : ピッと短く鳴る<br />一度鳴ったら該当ビットが0になるまで鳴らない<br />※恐らくREADY インジケータに関係あり<br />説明書「READY インジケータが点滅から点灯にかわり、ブザーが鳴れば、ハイブリッドシステムは正常に始動しています。」</td>
+<td>0x08 (00001000) : ピッと短く鳴る<!-- raw HTML omitted -->一度鳴ったら該当ビットが0になるまで鳴らない<!-- raw HTML omitted -->※恐らくREADY インジケータに関係あり<!-- raw HTML omitted -->説明書「READY インジケータが点滅から点灯にかわり、ブザーが鳴れば、ハイブリッドシステムは正常に始動しています。」</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 00 00 XX 00 00 00 00 00</td>
 <td>充電警告灯</td>
 <td>0x20 (00100000) : 点灯</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 00 00 00 XX 00 00 00</td>
 <td>ハイブリッドシステム異常警告灯</td>
-<td>0x10 (00010000) : 高速点滅<br />0x20 (00100000) : 低速点滅<br />取り扱い説明書には「警告灯の点灯に合わせて警告ブザーが鳴ります」とあるが、このビットだけでは鳴らない</td>
+<td>0x10 (00010000) : 高速点滅<!-- raw HTML omitted -->0x20 (00100000) : 低速点滅<!-- raw HTML omitted -->取り扱い説明書には「警告灯の点灯に合わせて警告ブザーが鳴ります」とあるが、このビットだけでは鳴らない</td>
 </tr>
-
 <tr>
 <td>0x3B7</td>
 <td>NO CARE</td>
-<td>ブレーキ警告灯<br />ABS&amp;ブレーキアシスト警告灯<br />スリップ表示灯</td>
+<td>ブレーキ警告灯<!-- raw HTML omitted -->ABS&amp;ブレーキアシスト警告灯<!-- raw HTML omitted -->スリップ表示灯</td>
 <td>該当CAN IDの通信が1秒以上途絶えると、警告灯が点灯する。</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 XX 00 00 00 00 00 00</td>
 <td>スリップ表示灯</td>
-<td>0x00 (00000000) : 消灯<br />0x02 (00000010) : 高速点滅<br />0x04 (00000100) : 低速点滅<br />0x07 (00000111) : 点灯</td>
+<td>0x00 (00000000) : 消灯<!-- raw HTML omitted -->0x02 (00000010) : 高速点滅<!-- raw HTML omitted -->0x04 (00000100) : 低速点滅<!-- raw HTML omitted -->0x07 (00000111) : 点灯</td>
 </tr>
-
 <tr>
 <td></td>
 <td>XX 00 00 00 00 00 00 00</td>
 <td>電子制御ブレーキ警告灯</td>
-<td>0x00 (00000000) : 消灯<br />0x02 (00000010) : 低速点滅<br />0x04 (00000100) : 高速点滅<br />0x07 (00000111) : 点灯<br />※一度表示が切り替わると通信が途絶えても状態が続く</td>
+<td>0x00 (00000000) : 消灯<!-- raw HTML omitted -->0x02 (00000010) : 低速点滅<!-- raw HTML omitted -->0x04 (00000100) : 高速点滅<!-- raw HTML omitted -->0x07 (00000111) : 点灯<!-- raw HTML omitted -->※一度表示が切り替わると通信が途絶えても状態が続く</td>
 </tr>
-
 <tr>
 <td></td>
 <td>XX 00 00 00 00 00 00 00</td>
 <td>ABS&amp;ブレーキアシスト警告灯</td>
-<td>0x00 (00000000) : 消灯<br />0x10 (00010000) : 高速点滅<br />0x18 (00011000) : 点灯</td>
+<td>0x00 (00000000) : 消灯<!-- raw HTML omitted -->0x10 (00010000) : 高速点滅<!-- raw HTML omitted -->0x18 (00011000) : 点灯</td>
 </tr>
-
 <tr>
 <td></td>
 <td>XX 00 00 00 00 00 00 00</td>
 <td>ブレーキ警告灯</td>
-<td>0x00 (00000000) : 消灯<br />0x40 (01000000) : 点灯</td>
+<td>0x00 (00000000) : 消灯<!-- raw HTML omitted -->0x40 (01000000) : 点灯</td>
 </tr>
-
 <tr>
 <td>0x3B9</td>
 <td>F0 00 00 00 00 00 00 00</td>
 <td>高水温警告灯</td>
 <td></td>
 </tr>
-
 <tr>
 <td>0x3BB</td>
 <td>40 00 00 00 00 00 00 00</td>
 <td>エレクトリック　パワーステアリング (EPS) 警告灯</td>
 <td>該当CAN IDの通信が1秒以上途絶えると、警告灯が点灯する</td>
 </tr>
-
 <tr>
 <td>0x3BC</td>
 <td>00 00 00 00 00 XX 00 00</td>
 <td>ECO MODE 表示灯</td>
 <td>0x01 (00000001) : 点灯</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 00 00 00 00 XX 00 00</td>
 <td>シフトポジション表示灯</td>
-<td>0x02 (00000010): B<br />0x08 (00001000) : D</td>
+<td>0x02 (00000010): B<!-- raw HTML omitted -->0x08 (00001000) : D</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 XX 00 00 00 00 00 00</td>
 <td>シフトポジション表示灯</td>
-<td>0x08 (00001000) : N<br />0x10 (00010000) : R ※ブザーも同時に鳴る<br />0x20 (00100000) : P</td>
+<td>0x08 (00001000) : N<!-- raw HTML omitted -->0x10 (00010000) : R ※ブザーも同時に鳴る<!-- raw HTML omitted -->0x20 (00100000) : P</td>
 </tr>
-
 <tr>
 <td>0x400 ~ 43F</td>
 <td></td>
 <td>謎の警告ブザー&amp;充電警告灯</td>
 <td></td>
 </tr>
-
 <tr>
 <td>0x421</td>
 <td>00 XX 00 00 00 00 00 00</td>
 <td>ハイブリッドシステム加熱警告灯</td>
-<td>0x01 (00000001) : 点灯とブザー <br />0x02 (00000010) : 点灯</td>
+<td>0x01 (00000001) : 点灯とブザー <!-- raw HTML omitted -->0x02 (00000010) : 点灯</td>
 </tr>
-
 <tr>
 <td></td>
 <td>00 XX 00 00 00 00 00 00</td>
-<td>駆動用電池残量低下警告灯<br />Pポジション要求表示灯</td>
-<td>0x04 (00000100) : 2つのアイコン点滅とブザー<br />0x08 (00001000) : 駆動用電池残量低下警告灯の点滅と「ピーッピーッ」とブザーが複数回多く鳴る<br />0x10 (00010000) : 駆動用電池残量低下警告灯の点滅と「ピーーーッ」とブザーが非常に長く鳴る<br />0x80 (10000000) : 「ピーーーッ」とブザーだけ非常に長く鳴る</td>
+<td>駆動用電池残量低下警告灯<!-- raw HTML omitted -->Pポジション要求表示灯</td>
+<td>0x04 (00000100) : 2つのアイコン点滅とブザー<!-- raw HTML omitted -->0x08 (00001000) : 駆動用電池残量低下警告灯の点滅と「ピーッピーッ」とブザーが複数回多く鳴る<!-- raw HTML omitted -->0x10 (00010000) : 駆動用電池残量低下警告灯の点滅と「ピーーーッ」とブザーが非常に長く鳴る<!-- raw HTML omitted -->0x80 (10000000) : 「ピーーーッ」とブザーだけ非常に長く鳴る</td>
 </tr>
-
 <tr>
 <td></td>
 <td>XX 00 00 00 00 00 00 00</td>
@@ -843,55 +697,43 @@ Enabling Logfile 'candump-2019-08-11_145103.log'
 </tr>
 </tbody>
 </table>
-
-<hr />
-
+<hr>
 <p>色々特定できて満足！</p>
-
 <h1 id="ps3のコントローラでスピードメーターを操作">PS3のコントローラでスピードメーターを操作</h1>
-
 <p>最後はグランドフィナーレとして、PS3のコントローラでスピードメーターを操作してみた。</p>
 
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//www.youtube.com/embed/5ZJSc0vtP5E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+  <iframe src="https://www.youtube.com/embed/5ZJSc0vtP5E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-
 <p>以下の順序で動かしている。</p>
-
-<ol>
-<li><p>起動時に各種警告灯を消去</p></li>
-
-<li><p>R2でスピードを変化</p></li>
-
-<li><p>十字キー 上下で外気温の変化</p></li>
-
-<li><p>十字キー 左右でHVインジケータの変化</p></li>
-
-<li><p>丸、バツ、四角、三角ボタンでシフトポジションの変化</p></li>
+<ol start="0">
+<li>
+<p>起動時に各種警告灯を消去</p>
+</li>
+<li>
+<p>R2でスピードを変化</p>
+</li>
+<li>
+<p>十字キー 上下で外気温の変化</p>
+</li>
+<li>
+<p>十字キー 左右でHVインジケータの変化</p>
+</li>
+<li>
+<p>丸、バツ、四角、三角ボタンでシフトポジションの変化</p>
+</li>
 </ol>
-
-<p><br/>
-ジョイスティックの動きに合わせてCAN通信を出すだけなので非常に簡単。<br />
-ソースコードは下においている。</p>
-
+<!-- raw HTML omitted -->
 <p><a href="https://github.com/shutingrz/aqua-meter-joy">aqua-meter-joy</a></p>
-
-<p><br/></p>
-
-<h1 id="まとめ">まとめ</h1>
-
+<!-- raw HTML omitted -->
 <ul>
 <li>ヤフオクからアクアのスピードメーターを買ってきた</li>
 <li>通信を解析した</li>
 <li>解析結果を使ってPS3コントローラで動かしてみた</li>
 </ul>
-
 <p>あとは診断プロトコルの解析をしてKWP2000であることを突き止めたけど、SecurityAccess突破できないしレスポンス仕様が全くKWP2000に準拠してないしで難航したのでここには記載していない。</p>
-
-<hr />
-
+<hr>
 <p>解析の息抜きにエンジンECUを買ってしまったので、次はエンジンECUに関する記事を書きたいです。</p>
 
         
@@ -992,6 +834,10 @@ Enabling Logfile 'candump-2019-08-11_145103.log'
             </li>
           
           
+            <li class="next">
+              <a href="https://www.shutingrz.com/post/remote-uac/" data-toggle="tooltip" data-placement="top" title="ラテラルムーブメントとそれを阻むUACに関する調査">Next Post &rarr;</a>
+            </li>
+          
         </ul>
       
 
@@ -1007,27 +853,6 @@ Enabling Logfile 'candump-2019-08-11_145103.log'
     
       
     
-      
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
-  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
-  <script>
-    window.addEventListener("load", function(){
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#000"
-        },
-        "button": {
-          "background": "#f1d600"
-        }
-      },
-      "content": {
-        "message": "本Webサイトのセキュリティ情報は、サイバー空間の安心・安全な環境を確保する目的で公開しています。ここで知り得た情報は決して悪用しないでください。",
-        "dismiss": "OK",
-        "href": "/pages/about-disclosure-security-information/"
-      }
-    })});
-  </script>
       
     
   
@@ -1075,7 +900,7 @@ Enabling Logfile 'candump-2019-08-11_145103.log'
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -1085,7 +910,7 @@ Enabling Logfile 'candump-2019-08-11_145103.log'
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

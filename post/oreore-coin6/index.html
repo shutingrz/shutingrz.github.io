@@ -11,17 +11,14 @@
   <meta property="og:title" content="自作仮想通貨入門(6) - ジェネシスブロックの作成と設定" />
   <meta name="twitter:title" content="自作仮想通貨入門(6) - ジェネシスブロックの作成と設定" />
   <meta name="description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨はブロックチェーンの原理を基にして運用されています。
 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、
 すなわちジェネシス（起源）ブロックを作成する必要があります。">
   <meta property="og:description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨はブロックチェーンの原理を基にして運用されています。
 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、
 すなわちジェネシス（起源）ブロックを作成する必要があります。">
   <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨はブロックチェーンの原理を基にして運用されています。
 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、
 すなわちジェネシス（起源）ブロックを作成する必要があります。">
@@ -96,7 +93,6 @@
 
 <meta property="og:title" content="自作仮想通貨入門(6) - ジェネシスブロックの作成と設定" />
 <meta property="og:description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨はブロックチェーンの原理を基にして運用されています。
 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、
 すなわちジェネシス（起源）ブロックを作成する必要があります。">
@@ -105,7 +101,6 @@
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="自作仮想通貨入門(6) - ジェネシスブロックの作成と設定" />
   <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。
-
 仮想通貨はブロックチェーンの原理を基にして運用されています。
 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、
 すなわちジェネシス（起源）ブロックを作成する必要があります。">
@@ -120,7 +115,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -302,191 +297,137 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>※この章では src/chainparams.cpp を変更します。</p>
-
-<p>仮想通貨はブロックチェーンの原理を基にして運用されています。<br />
-つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、<br />
+<p>仮想通貨はブロックチェーンの原理を基にして運用されています。<br>
+つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、<br>
 すなわちジェネシス（起源）ブロックを作成する必要があります。</p>
-
-<h1 id="ジェネシスブロック-genesis-の構造">ジェネシスブロック(genesis)の構造</h1>
-
-<p>ジェネシスブロックは以下の構造になっています。<br />
+<h1 id="ジェネシスブロックgenesisの構造">ジェネシスブロック(genesis)の構造</h1>
+<p>ジェネシスブロックは以下の構造になっています。<br>
 (括弧内はchainparams.cppでの変数名をあらわしています)</p>
-
-<h3 id="ブロック生成時刻-ntime">ブロック生成時刻(nTime)</h3>
-
-<p>ブロックを生成した時刻を記載<br />
-ジェネシスブロックの場合は起点としたい時刻を指定する<br />
+<h3 id="ブロック生成時刻ntime">ブロック生成時刻(nTime)</h3>
+<p>ブロックを生成した時刻を記載<br>
+ジェネシスブロックの場合は起点としたい時刻を指定する<br>
 (後述する、スクリプトに記載する時刻と乖離しないように)</p>
-
-<h3 id="採掘難易度-difficulty-nbits">採掘難易度/Difficulty(nBits)</h3>
-
-<p>※実装では整数ではなく、係数部・指数部の形で表現します。<br />
-※詳しくはbitcoinのページ参照。(<a href="https://bitcoin.org/en/developer-reference#target-nbits">https://bitcoin.org/en/developer-reference#target-nbits</a>)<br />
-ジェネシスブロックはその仮想通貨で定めた最小採掘難易度でマイニングします。<br />
-その最小難易度は同じくchainparams.cppにある consensus.powLimit で定められています。<br />
-Litecoin の powLimitは「&rdquo;00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff&rdquo;」を指定しており、<br />
-これを係数部・指数部のnBitsで表現すると「0x1d00ffff」となります。<br />
+<h3 id="採掘難易度difficultynbits">採掘難易度/Difficulty(nBits)</h3>
+<p>※実装では整数ではなく、係数部・指数部の形で表現します。<br>
+※詳しくはbitcoinのページ参照。(<a href="https://bitcoin.org/en/developer-reference#target-nbits">https://bitcoin.org/en/developer-reference#target-nbits</a>)<br>
+ジェネシスブロックはその仮想通貨で定めた最小採掘難易度でマイニングします。<br>
+その最小難易度は同じくchainparams.cppにある consensus.powLimit で定められています。<br>
+Litecoin の powLimitは「&ldquo;00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff&rdquo;」を指定しており、<br>
+これを係数部・指数部のnBitsで表現すると「0x1d00ffff」となります。<br>
 powLimitを変更しないなら、「0x1d00ffff」を指定してください。</p>
-
-<h3 id="ブロックバージョン-nversion">ブロックバージョン(nVersion)</h3>
-
-<p>ブロックのバージョン。ブロック構造が変わらない限り数値は変化しません。<br />
+<h3 id="ブロックバージョンnversion">ブロックバージョン(nVersion)</h3>
+<p>ブロックのバージョン。ブロック構造が変わらない限り数値は変化しません。<br>
 ジェネシスブロックは通常1を指定します。</p>
-
-<h3 id="前のブロックのハッシュ-hashprevblock">前のブロックのハッシュ(hashPrevBlock)</h3>
-
+<h3 id="前のブロックのハッシュhashprevblock">前のブロックのハッシュ(hashPrevBlock)</h3>
 <p>ジェネシスブロックは起源となるのでこれは存在しません。(nullがセットされる)</p>
-
 <h3 id="merkle-root-hashmerkleroot">Merkle Root (hashMerkleRoot)</h3>
-
-<p>トランザクションのハッシュ木（Merkle Tree）の頂点のハッシュ値。<br />
-ジェネシスブロックは一般的にトランザクションは1つだけなので、<br />
-結果的には自分で生成するトランザクションのハッシュ値になります。<br />
-  →「SHA256(SHA256(genesis_tx))」</p>
-
+<p>トランザクションのハッシュ木（Merkle Tree）の頂点のハッシュ値。<br>
+ジェネシスブロックは一般的にトランザクションは1つだけなので、<br>
+結果的には自分で生成するトランザクションのハッシュ値になります。<br>
+→「SHA256(SHA256(genesis_tx))」</p>
 <h3 id="nonce-nnonce">nonce (nNonce)</h3>
-
-<p>PoWを示すための値。<br />
+<p>PoWを示すための値。<br>
 この値を変えながらブロックヘッダのハッシュをnBitsよりも小さい値にします。</p>
-
 <h3 id="トランザクション-txnew">トランザクション (txNew)</h3>
-
 <p>ジェネシスブロックはトランザクションは1つのみ。</p>
-
 <ul>
-<li><p>トランザクションバージョン (nVersion)<br />
-トランザクションのバージョン。トランザクション構造が変わらない限り数値は変化しません。<br />
-ジェネシスブロックは通常1を指定。</p></li>
-
-<li><p>インプット (scriptSig)<br />
+<li>
+<p>トランザクションバージョン (nVersion)<br>
+トランザクションのバージョン。トランザクション構造が変わらない限り数値は変化しません。<br>
+ジェネシスブロックは通常1を指定。</p>
+</li>
+<li>
+<p>インプット (scriptSig)<br>
 これは最初のトランザクションであり、送金などのインプットはありません。
-こういったトランザクションのことをCoinBaseと呼びます。<br />
-参照: <a href="http://learnmeabitcoin.com/glossary/coinbase-transaction">http://learnmeabitcoin.com/glossary/coinbase-transaction</a></p></li>
-
-<li><p>トランザクション生成時刻を示すフィールド (pszTimestamp)<br />
-大体の仮想通貨は、その日のニュース記事をそのまま転載して、その日以前に仮想通貨が存在しなかったことを証明することが多いです。<br />
-（これによって開発者が採掘をしていないことを示したい？）</p></li>
-
-<li><p>ブロック作成報酬 (nValue)<br />
-src/validation.cpp の GetBlockSubsidy() で定める値にします。<br />
-この値はデフォルトで 50 なので、50 を指定してください。</p></li>
-
-<li><p>アウトプット  (scriptPubKey)</p>
-
+こういったトランザクションのことをCoinBaseと呼びます。<br>
+参照: <a href="http://learnmeabitcoin.com/glossary/coinbase-transaction">http://learnmeabitcoin.com/glossary/coinbase-transaction</a></p>
+</li>
+<li>
+<p>トランザクション生成時刻を示すフィールド (pszTimestamp)<br>
+大体の仮想通貨は、その日のニュース記事をそのまま転載して、その日以前に仮想通貨が存在しなかったことを証明することが多いです。<br>
+（これによって開発者が採掘をしていないことを示したい？）</p>
+</li>
+<li>
+<p>ブロック作成報酬 (nValue)<br>
+src/validation.cpp の GetBlockSubsidy() で定める値にします。<br>
+この値はデフォルトで 50 なので、50 を指定してください。</p>
+</li>
+<li>
+<p>アウトプット  (scriptPubKey)</p>
 <ul>
-<li>送信先アドレス (genesisOutputScript)<br />
-ジェネシスブロックでは適当に作成した秘密鍵から公開鍵を生成します。<br />
-この送信先アドレスは初期開発者が作成するものですが、一般的に開発者個人はこのアドレスを利用していないようです。<br />
+<li>送信先アドレス (genesisOutputScript)<br>
+ジェネシスブロックでは適当に作成した秘密鍵から公開鍵を生成します。<br>
+この送信先アドレスは初期開発者が作成するものですが、一般的に開発者個人はこのアドレスを利用していないようです。<br>
 (blockchain explorerでジェネシスブロックのscriptPubkeyを参照してみてください。)</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>以上の情報をもとに、ジェネシスブロックの作成に必要な変数を代入していきます。</p>
-
-<hr />
-
+<hr>
 <h1 id="ジェネシスブロック作成に必要なパラメータを決める">ジェネシスブロック作成に必要なパラメータを決める</h1>
-
 <h2 id="pubkeyの生成">PubKeyの生成</h2>
-
 <p>opensslコマンドを使って楕円曲線暗号(secp256k1)から秘密鍵とその証明書を生成します。</p>
-
 <pre><code>$ openssl ecparam -genkey -name secp256k1 -rand /dev/urandom -out private_key
 $ openssl ec -in private_key -pubout -outform DER|tail -c 65|xxd -p -c 65 &gt; pubkey.hex
 $ cat pubkey.hex
 </code></pre>
-
 <p>=&gt; 今回は「043aca3e996c24f8c2453d02532471107e75d219cd09c18a6d574e69338d79e3bbe288330f7b299032f44735162aec272713aacecceacf25855945fe5003309e94」が生成されました。</p>
-
 <h2 id="psztimestamp-の作成">pszTimestamp の作成</h2>
-
 <p>sciptSig の仕様上、20 - 100 byteの範囲で作成してください。</p>
-
 <pre><code>kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae
 </code></pre>
-
-<p>2018/07/11 の神戸新聞のニュースから引っ張ってきました。<br />
+<p>2018/07/11 の神戸新聞のニュースから引っ張ってきました。<br>
 「全国初、警察が仮想通貨５千円相当を差し押さえ」</p>
-
 <h2 id="ntime-の指定">nTime の指定</h2>
-
-<p>上のpszTimestampの記事の時間と大きくずれない適当なunixtimeを指定してください。<br />
+<p>上のpszTimestampの記事の時間と大きくずれない適当なunixtimeを指定してください。<br>
 今回は 2018/7/11 21:00:00 の「1531310400」にします。</p>
-
 <h2 id="nnonce">nNonce</h2>
-
-<p>ここでいうnonceは、PoWを満たすnonceのことではなく、PoWを満たすnonceを探すにあたって、どのnonceの値から始めるかをしめすものです。<br />
-ジェネシスブロックの採掘時、このnonceを基準として1ずつインクリメントされます。<br />
+<p>ここでいうnonceは、PoWを満たすnonceのことではなく、PoWを満たすnonceを探すにあたって、どのnonceの値から始めるかをしめすものです。<br>
+ジェネシスブロックの採掘時、このnonceを基準として1ずつインクリメントされます。<br>
 今回は適当に「634556435」にします。</p>
-
 <h2 id="nbits">nBits</h2>
-
-<p>採掘難易度をビット表記したものです。<br />
+<p>採掘難易度をビット表記したものです。<br>
 「0x1e0ffff0」にします。</p>
-
 <h1 id="ジェネシスブロックの作成">ジェネシスブロックの作成</h1>
-
 <p>今回は様々なアルゴリズムのブロックを生成できる「GenesisH0」を用いてジェネシスブロックを作成します。</p>
-
 <blockquote>
 <p><a href="https://github.com/lhartikk/GenesisH0">https://github.com/lhartikk/GenesisH0</a></p>
 </blockquote>
-
-<h2 id="mainnet-testnetのジェネシスブロック">Mainnet/Testnetのジェネシスブロック</h2>
-
+<h2 id="mainnettestnetのジェネシスブロック">Mainnet/Testnetのジェネシスブロック</h2>
 <p>-z に pszTimestamp、 -p に PubKey、 -t に nTime、 -n に nNonce、 -b に nBits を指定します。</p>
-
 <pre><code>python2.7 genesis.py -a scrypt -z &quot;kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae&quot; -p &quot;043aca3e996c24f8c2453d02532471107e75d219cd09c18a6d574e69338d79e3bbe288330f7b299032f44735162aec272713aacecceacf25855945fe5003309e94&quot; -t 1531310400 -n 634556435 -b 0x1e0ffff0
 </code></pre>
-
 <p>しばらく（スペックによりますが10分以内には）待つと、ジェネシスブロックとなるnonceが見つかります。</p>
-
 <pre><code>genesis hash found!
 nonce: 634696322
 genesis hash: 2f7c64e8e13a55a4f4fe11fd8cc0e5a59b8d59ade336501f17f8ef0c30b93f8c
 </code></pre>
-
 <p>Mainnet/TestnetのnNonceには 634696322 を指定すればいいとわかりますね。</p>
-
 <h2 id="regtestのジェネシスブロック">Regtestのジェネシスブロック</h2>
-
-<p>Regtestはちゃんとマイニングできるかテストするモードなので、採掘難易度を最小にしてジェネシスブロックを作成します。<br />
-採掘難易度を示すnBitsの値は「0x207fffff」にします。<br />
+<p>Regtestはちゃんとマイニングできるかテストするモードなので、採掘難易度を最小にしてジェネシスブロックを作成します。<br>
+採掘難易度を示すnBitsの値は「0x207fffff」にします。<br>
 また、Litecoinは探すnNonceを0からにしているので、こちらも0から始めるようにしましょう。</p>
-
 <pre><code>python2.7 genesis.py -a scrypt -z &quot;kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae&quot; -p &quot;043aca3e996c24f8c2453d02532471107e75d219cd09c18a6d574e69338d79e3bbe288330f7b299032f44735162aec272713aacecceacf25855945fe5003309e94&quot; -t 1531310400 -n 0 -b 0x207fffff
 </code></pre>
-
 <p>採掘難易度が最小なので、一回目の試行で見つかります。</p>
-
 <pre><code>genesis hash found!
 nonce: 1
 genesis hash: 967aaa62c5210edfca1dad7dcf37259f57472326515dbd4654c1705b5395c713
 </code></pre>
-
 <p>RegtestのnNonceは1でいいことがわかります。</p>
-
 <h1 id="ソースコードの変更作業">ソースコードの変更作業</h1>
-
-<p>ジェネシスブロックを作成しソースコードに記載する情報が集まったため、<br />
+<p>ジェネシスブロックを作成しソースコードに記載する情報が集まったため、<br>
 今までの情報を使って src/chainparams.cpp を変更します。</p>
-
 <h2 id="creategenesisblock">CreateGenesisBlock()</h2>
-
 <p>この関数はオーバーロードされており同名で2つの関数がありますが、pszTimestampが定数で定義されている方を書き換えます。</p>
-
 <pre><code>const char* pszTimestamp = &quot;[上で作ったpszTimestampの値]&quot;;
 const CScript genesisOutputScript = CScript() &lt;&lt; ParseHex(&quot;[Pubkeyの値]&quot;) &lt;&lt; OP_CHECKSIG;
 </code></pre>
-
-<h2 id="cmainparams-ctestnetparams-cregtestparams">CMainParams() /  CTestNetParams() / CRegTestParams()</h2>
-
+<h2 id="cmainparams---ctestnetparams--cregtestparams">CMainParams() /  CTestNetParams() / CRegTestParams()</h2>
 <p>上で決めた nTime、nNonce、nBits を入れていきます。</p>
-
 <pre><code>genesis = CreateGenesisBlock([nTime], [ジェネシスブロック作成時に見つけたnonce], [ジェネシスブロック作成時に指定したnBits], 1, 50 * COIN);
 </code></pre>
-
-<p>ジェネシスブロックに関する記載は以上で終了です。<br />
+<p>ジェネシスブロックに関する記載は以上で終了です。<br>
 chainparams.cpp は他にも色々変える必要があるので、次の章も引き続きやっていきます。</p>
 
         
@@ -653,7 +594,7 @@ chainparams.cpp は他にも色々変える必要があるので、次の章も�
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -663,7 +604,7 @@ chainparams.cpp は他にも色々変える必要があるので、次の章も�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

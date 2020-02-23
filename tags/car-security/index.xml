@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>car-security on Shooting!!!</title>
@@ -16,9 +16,8 @@
       <pubDate>Thu, 03 Oct 2019 04:34:00 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/aqua-meter-hack/</guid>
-      <description>&lt;p&gt;しゅーとです。&lt;br /&gt;
+      <description>&lt;p&gt;しゅーとです。&lt;br&gt;
 リアルECUシリーズ第二作目。&lt;/p&gt;
-
 &lt;p&gt;ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。&lt;/p&gt;</description>
     </item>
     
@@ -29,16 +28,12 @@
       
       <guid>https://www.shutingrz.com/post/summon-real-ecu/</guid>
       <description>&lt;p&gt;これまでシミュレーション環境でカーセキュリティの勉強をしていて、その成果は妄想CAN三部作ということで以下の記事にまとめている。&lt;/p&gt;
-
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training-first/&#34;&gt;シミュレーション環境でCAN通信を試す&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training2/&#34;&gt;ドア開錠を行うCAN通信を特定する&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training3/&#34;&gt;ECUの車速に関するCANメッセージを特定して騙す&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;p&gt;&lt;/br&gt;
-車をいじったこともないし持ってすらないのによくここまで続いたなと我ながら思うが、さすがにネタ切れ感もありモチベが保てない。&lt;/p&gt;
-
+&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;そこで実際に車で使われているECUを入手、基板を解析してCANポートのピンアサインを特定し、現実のCAN通信の雰囲気を知ることにした。&lt;/p&gt;</description>
     </item>
     
@@ -49,12 +44,9 @@
       
       <guid>https://www.shutingrz.com/post/can-training3/</guid>
       <description>&lt;p&gt;CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training2/&#34;&gt;前回&lt;/a&gt;はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。&lt;br /&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training2/&#34;&gt;前回&lt;/a&gt;はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。&lt;br&gt;
 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。&lt;/p&gt;
-
 &lt;p&gt;今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタのSavvyCANならではの機能を使って見つけてみる。&lt;/p&gt;
-
 &lt;p&gt;特定したあとは、実際の速度から別の速度に詐称できないかを試す。&lt;/p&gt;</description>
     </item>
     
@@ -65,9 +57,7 @@
       
       <guid>https://www.shutingrz.com/post/can-training2/</guid>
       <description>&lt;p&gt;今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training-first/&#34;&gt;前回&lt;/a&gt; はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。&lt;/p&gt;
-
 &lt;p&gt;今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。&lt;/p&gt;</description>
     </item>
     
@@ -78,7 +68,6 @@
       
       <guid>https://www.shutingrz.com/post/can-training-first/</guid>
       <description>&lt;p&gt;車がなくてもカーセキュリティの勉強がしたい！&lt;/p&gt;
-
 &lt;p&gt;ということでカーハッカーズハンドブックを読みつつICSimを使ってCAN通信を試してみる。&lt;/p&gt;</description>
     </item>
     

@@ -105,7 +105,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -286,85 +286,63 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>この章で自作仮想通貨入門は終わりです。<br />
+        <p>この章で自作仮想通貨入門は終わりです。<br>
 著作権表示をしてあなたの仮想通貨をアピールしましょう。</p>
-
-<hr />
-
+<hr>
 <h2 id="著作権表示の記載">著作権表示の記載</h2>
-
 <p>著作権表示は下記のファイルに記載します。</p>
-
 <pre><code>./COPYING
 ./doc/man/raccoin-cli.1
 ./doc/man/raccoin-qt.1
 ./doc/man/raccoin-tx.1
 ./doc/man/raccoind.1
 </code></pre>
-
 <p>例えばRaccoinなら以下のようにします。</p>
-
 <pre><code>Copyright (C) 2018 The Raccoin Core developers
 </code></pre>
-
-<p>記載箇所については&rdquo;Litecoin&rdquo;で検索して確認してください。<br />
+<p>記載箇所については&quot;Litecoin&quot;で検索して確認してください。<br>
 フォーク元(BitcoinとLitecoin)の著作権表示を残しつつ、自分の仮想通貨の著作権表示を追記する感じです。</p>
-
-<hr />
-
+<hr>
 <h1 id="追記-重要-cve-2018-17144-の対策">[追記] 重要: CVE-2018-17144 の対策</h1>
-
 <p>今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。
 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。</p>
-
-<p>この脆弱性を修正するため、&rdquo;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。</p>
-
+<p>この脆弱性を修正するため、&ldquo;src/validation.cpp&rdquo; の 3003 行目を以下のように変更してください。</p>
 <pre><code>-        if (!CheckTransaction(*tx, state, false))
 +        if (!CheckTransaction(*tx, state, true))
 </code></pre>
-
 <p>false を true にするだけです。</p>
-
-<hr />
-
+<hr>
 <h1 id="おわりに">おわりに</h1>
-
-<p>お疲れ様です！<br />
+<p>お疲れ様です！<br>
 ここまで終われば「自作仮想通貨入門(2) - Litecoinの準備」で行ったコンパイルをもう一度行うだけで、あなただけの仮想通貨ができあがります。</p>
-
 <p><a href="/post/oreore-coin2/">自作仮想通貨入門(2) - Litecoinの準備</a></p>
-
 <p>自作仮想通貨入門はここまでですが、本格的に仮想通貨を運用しようとなるとやることがいっぱいあります。</p>
-
 <h2 id="仮想通貨の新規公開のためにやるべきことリスト">仮想通貨の新規公開のためにやるべきことリスト</h2>
-
 <ul>
 <li>アイコンの作成</li>
 <li>readmeなどdocディレクトリ以下の整備</li>
 <li>シードリストの公開とソースコードへの記載
-
 <ul>
-<li>初期シーダの発見のためにはソースコードへのシーダ情報の記載が必要です。<br />
+<li>初期シーダの発見のためにはソースコードへのシーダ情報の記載が必要です。<br>
 またdnsseedも運用するとよいでしょう</li>
-</ul></li>
+</ul>
+</li>
 <li>採掘アルゴリズムの検討
-
 <ul>
 <li>ここで作成した仮想通貨はLitecoinがもとになっているので、採掘アルゴリズムはScryptになっています。</li>
-</ul></li>
+</ul>
+</li>
 <li>ソースコードの公開(Github等)</li>
 <li>ポータルサイトの開設・運営</li>
 <li>コミュニティサイトの開設・運営</li>
 <li>必要であれば開発者メンバーの引き入れ
-
 <ul>
 <li>複数人で開発する場合はビルド環境の整備（Gitianなど)もするとよいです。</li>
-</ul></li>
+</ul>
+</li>
 <li>ホワイトペーパーの作成と公開(新技術がないと相手にされませんが・・・。)</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>楽しい自作仮想通貨ライフを送ってください！</p>
 
         
@@ -531,7 +509,7 @@ Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆�
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -541,7 +519,7 @@ Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

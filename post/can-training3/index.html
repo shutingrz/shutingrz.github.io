@@ -11,26 +11,18 @@
   <meta property="og:title" content="ECUの車速に関するCANメッセージを特定して騙す" />
   <meta name="twitter:title" content="ECUの車速に関するCANメッセージを特定して騙す" />
   <meta name="description" content="CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。
 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。
-
 今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタのSavvyCANならではの機能を使って見つけてみる。
-
 特定したあとは、実際の速度から別の速度に詐称できないかを試す。">
   <meta property="og:description" content="CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。
 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。
-
 今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタのSavvyCANならではの機能を使って見つけてみる。
-
 特定したあとは、実際の速度から別の速度に詐称できないかを試す。">
   <meta name="twitter:description" content="CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。
 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。
-
 今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタ …">
   <meta name="author" content="しゅーと"/><script type="application/ld+json">
 {
@@ -103,12 +95,9 @@
 
 <meta property="og:title" content="ECUの車速に関するCANメッセージを特定して騙す" />
 <meta property="og:description" content="CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。
 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。
-
 今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタのSavvyCANならではの機能を使って見つけてみる。
-
 特定したあとは、実際の速度から別の速度に詐称できないかを試す。">
 <meta property="og:image" content="https://www.shutingrz.com/post/can-training3/0x244_analysis.png" />
 <meta property="og:url" content="https://www.shutingrz.com/post/can-training3/" />
@@ -116,10 +105,8 @@
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="ECUの車速に関するCANメッセージを特定して騙す" />
   <meta name="twitter:description" content="CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。
 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。
-
 今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタ …">
   <meta name="twitter:image" content="https://www.shutingrz.com/post/can-training3/0x244_analysis.png" />
   <meta name="twitter:card" content="summary" />
@@ -135,7 +122,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -317,68 +304,48 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。</p>
-
-<p><a href="/post/can-training2/">前回</a>はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。<br />
+<p><a href="/post/can-training2/">前回</a>はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。<br>
 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。</p>
-
 <p>今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタのSavvyCANならではの機能を使って見つけてみる。</p>
-
 <p>特定したあとは、実際の速度から別の速度に詐称できないかを試す。</p>
-
-<hr />
-
+<hr>
 <h3 id="環境">環境</h3>
-
 <p>Ubuntu 19.04 Desktop</p>
-
-<hr />
-
+<hr>
 <h2 id="なぜ車速">なぜ車速？</h2>
-
 <p><del>ICSimじゃこれくらいしかネタがない</del>　車速を出しているCAN IDを特定し偽装することで、致命的な攻撃を食らわせることができるので。</p>
-
 <p>例えば電動ルーフは基本的に停車あるいは低速状態のときしか作動しないが、車速を詐称することで高速道路を運転中に突然電動ルーフを開かせることも可能になる。</p>
-
 <p>その他ADAS（先進運転支援システム）のクルーズコントロールも車速を見ているので、良くないことが起こりそう。</p>
-
 <h2 id="車速に関するメッセージについて">車速に関するメッセージについて</h2>
-
 <p>そもそもCANバスに車速を直接示すメッセージは流れているのかという話。</p>
-
 <p>少なくともICSimにはメーター計があるので、何らかの形で速度を割り出すことができているということはわかる。</p>
-
-<p><img src="icsim_meter.gif" alt="icsim_meter" /></p>
-
+<p><img src="icsim_meter.gif" alt="icsim_meter"></p>
 <p>↑　ICSimのcontrolsを起動するとメーター計がブルブル震え始める</p>
-
-<p><br/></p>
-
-<p>インターネッツで調べたところ、現代の車ではCANバスに車速データが流れていることがわかった。<br />
+<!-- raw HTML omitted -->
+<p>インターネッツで調べたところ、現代の車ではCANバスに車速データが流れていることがわかった。<br>
 ABS(アンチロック・ブレーキシステム)のECUが以下の流れで車速データを流してくれるらしい。</p>
-
 <ol>
-<li><p>各車輪に取り付けられたABS用の車輪速センサーがタイヤの回転数をパルス信号に変換</p></li>
-
-<li><p>車速パルスをスキッドコントロールコンピュータ (ABSを取り持つECUの名称らしい)が受け取りABSに活かす</p></li>
-
-<li><p>せっかく車速データを持ってるのでメーターなどのECUのためにCANバスにデジタル変換された車速データを流す</p></li>
-
-<li><p>（メータや電動ルーフ、カーナビ、ADASはABSから受け取った車速データを使って様々な機能を実現）</p></li>
+<li>
+<p>各車輪に取り付けられたABS用の車輪速センサーがタイヤの回転数をパルス信号に変換</p>
+</li>
+<li>
+<p>車速パルスをスキッドコントロールコンピュータ (ABSを取り持つECUの名称らしい)が受け取りABSに活かす</p>
+</li>
+<li>
+<p>せっかく車速データを持ってるのでメーターなどのECUのためにCANバスにデジタル変換された車速データを流す</p>
+</li>
+<li>
+<p>（メータや電動ルーフ、カーナビ、ADASはABSから受け取った車速データを使って様々な機能を実現）</p>
+</li>
 </ol>
-
 <h1 id="車速を特定する">車速を特定する</h1>
-
 <p>CANバスに車速データが流れるであろうことはわかったので、仮定をもとに特定を行う。</p>
-
-<p>まず、車速の数値とデータフレームの数値が比例する場合、車速が小さい場合はデータフレームの値も小さくなるし、大きい場合はそのようになる。<br />
+<p>まず、車速の数値とデータフレームの数値が比例する場合、車速が小さい場合はデータフレームの値も小さくなるし、大きい場合はそのようになる。<br>
 つまりICSimのcontrolsにて上キーを押し車速を0mphから80mphくらいまで上げ、そのあとキーを離し0mphに戻るまでを記録することで、車速に関するCANIDのデータフレームの折れ線グラフは山なりになるはず。</p>
-
 <blockquote>
 <p>関係ないが、速度表示がマイルなのアメリカ感がある</p>
 </blockquote>
-
 <p>以上の仮定のもと、次の手順でCAN通信を取得する。</p>
-
 <ol>
 <li>SavvyCAN・ICSimを起動する</li>
 <li>CANモニタを開始する</li>
@@ -386,62 +353,38 @@ ABS(アンチロック・ブレーキシステム)のECUが以下の流れで車
 <li>CANモニタを停止する</li>
 <li>データのグラフを見る</li>
 </ol>
-
 <p>恒例の動画。</p>
-
-<p><img src="icsim_throttle.gif" alt="icsim_throttle" /></p>
-
-<p>記録後、各CAN IDごとのデータフレームのグラフを見る。<br />
+<p><img src="icsim_throttle.gif" alt="icsim_throttle"></p>
+<p>記録後、各CAN IDごとのデータフレームのグラフを見る。<br>
 RE ToolsのFrame Data Analysisウインドウで確認することが可能。</p>
-
 <blockquote>
 <p>Frame Data Analysisはデータ参照時にnull pointerアクセスでクラッシュすることがあるため、事前にFile-&gt;Save Log FileでCANデータを保存しておくことをオススメします</p>
 </blockquote>
-
 <p>ウインドウにある各CAN IDをポチポチと見たところ、ID 0x244 にて非常に特徴的なグラフを見ることができた。</p>
-
-<p><img src="0x244_analysis.png" alt="0x244_analysis" /></p>
-
+<p><img src="0x244_analysis.png" alt="0x244_analysis"></p>
 <p>右下の Bytes Graphは、データフレームの各バイトがそれぞれ時間ごとにどの数値を示したかを視覚的に確認するためのグラフになっている。</p>
-
 <p>その中でもData Byte 3のデータが山なりになっていることがすぐにわかる。</p>
-
 <p>他のCAN IDではこのようなわかりやすい山なりはなかったので、車速に関する情報は 0x244、特に Data Bytes 3ではないかと推測できる。</p>
-
 <h2 id="試す">試す</h2>
-
 <p>SavvyCANのPlayback機能を使ってリプレイ攻撃を試みる。</p>
-
-<ol>
+<ol start="0">
 <li>ICSimのcontrolsを終了しておく</li>
 <li>Send Frames -&gt; Playbackを選択し、Playbackウインドウを出す</li>
-<li>Load Captured Data を選択してキャプチャデータを取り込んでから、 右のID Fillteringリストから 0x244 のみを選択した状態にする<br /></li>
+<li>Load Captured Data を選択してキャプチャデータを取り込んでから、 右のID Fillteringリストから 0x244 のみを選択した状態にする</li>
 <li>画面上部の右から二番目にある再生ボタンを押す</li>
 </ol>
-
 <p>リプレイ時はキャプチャ時の間隔でCANメッセージを送信するほか、自分で間隔と送信レートを指定することも可能。</p>
-
 <p>これも動画でどうぞ。</p>
-
-<p><img src="playback.gif" alt="playback" /></p>
-
-<p><br/></p>
-
+<p><img src="playback.gif" alt="playback"></p>
+<!-- raw HTML omitted -->
 <p>0x244をリプレイしたときにICSimのメーターが動いたため、車速データは0x244に含まれることがわかる。</p>
-
-<hr />
-
+<hr>
 <h2 id="車速データの値を特定">車速データの値を特定</h2>
-
-<p>前項で車速データは0x244にあるとわかった。<br />
+<p>前項で車速データは0x244にあるとわかった。<br>
 もう自明だが車速を司る具体的なバイトを調べる。</p>
-
 <p>0x244 は 4バイト目、5バイト目の値が変化していることがわかっている。</p>
-
 <h3 id="data-byte-3">Data Byte 3</h3>
-
 <p>4バイト目である Byte3 のヒストグラムを確認する。</p>
-
 <pre><code>Data Byte 3
                         Changed bits: 0x3f  (00111111)
                         Range: 0x00 to 0x2F
@@ -455,92 +398,57 @@ RE ToolsのFrame Data Analysisウインドウで確認することが可能。</
                                 46/0x2e (00101110) -&gt; 28
                                 47/0x2f (00101111) -&gt; 9
 </code></pre>
-
 <p>車速は 0から80 の範囲で動かしたが、データ上は0x00から0x2Fを示すことがわかる。</p>
-
 <p>このことから恐らく 0x2F が 80mph付近だろうということでcansendを試す。</p>
-
 <pre><code>$ cansend vcan0 244#00.00.00.2F.00
 </code></pre>
-
-<p><img src="cansend.png" alt="cansend" /></p>
-
-<p>予想通りメータは80mph付近を指した。<br />
+<p><img src="cansend.png" alt="cansend"></p>
+<p>予想通りメータは80mph付近を指した。<br>
 新しい車速データを送らない限りはICSimのメータ計はその車速を指し続ける模様。</p>
-
 <h3 id="data-byte-4">Data Byte 4</h3>
-
-<p><img src="databyte4.png" alt="databyte4" /></p>
-
+<p><img src="databyte4.png" alt="databyte4"></p>
 <p>先程のByte3は山なりになっていることから車速を示すことがすぐにわかったものの、Byte4 は 0x00 から0xFF をまんべんなく移動しているため、ぱっと見で何も示しているかがよくわからない。</p>
-
 <p>そこでSavvyCANのFlow Viewウインドウを使って速度との関係性を調査する。</p>
-
-<p>Flow ViewウインドウではキャプチャしたCAN通信をプレイバックでき、時間軸と各データの流れを視覚的に見られる。<br />
+<p>Flow ViewウインドウではキャプチャしたCAN通信をプレイバックでき、時間軸と各データの流れを視覚的に見られる。<br>
 またプレイバック速度も変更できるので、大量のデータでも細かいところまで見られる。</p>
-
 <p>動画でどうぞ。画面中央のCurrent Valuesに注目。</p>
-
-<p><img src="flowview.gif" alt="flowview" /></p>
-
+<p><img src="flowview.gif" alt="flowview"></p>
 <p>Byte4が0xFFを超えて0x00に戻るとき、Byte3の値が1増加することが見て取れる。</p>
-
 <p>つまり、Byte4はByte3の下位バイトであり、車速の細かい値の部分を示すことがわかる。</p>
-
 <h1 id="車速を詐称してみる">車速を詐称してみる</h1>
-
 <p>車速は CANID 0x244 の Byte3, 4で管理していることがわかったので、ここに入れたい速度に対応した値を入れることで車速を詐称することができる。</p>
-
-<p>詐称には can-utils の cangen を使う。<br />
+<p>詐称には can-utils の cangen を使う。<br>
 cangenは指定した間隔で指定したデータ(あるいはランダムデータ)をCANバスに流し続けてくれる。</p>
-
 <p>送信時は本来の車速データよりも頻繁にデータを送り頑張って競り勝つようにする。</p>
-
 <pre><code>$ cangen vcan0 -g 1 -I 244 -D 0000002F00 -L 5
 </code></pre>
-
 <p>今回は Byte3 に 0x2F を指定しているので 80mph と詐称することになる。</p>
-
 <p>動画でどうぞ。</p>
-
-<p><img src="spoof.gif" alt="spoof" /></p>
-
-<p>controlsの0mphの車速メッセージに対抗するように80mphが指し示されている。<br />
+<p><img src="spoof.gif" alt="spoof"></p>
+<p>controlsの0mphの車速メッセージに対抗するように80mphが指し示されている。<br>
 しかしながら本来の車速メッセージも流れ続けているので時々0mphを指してしまうことも。</p>
-
 <p>これを防ぐには、本来のメッセージを出すECUが送信待ちになるような高い頻度でメッセージを出すか、バスオフ攻撃をECUに行いメッセージを出させないようにする必要がある。</p>
-
 <p>ただ前者はCANバスを専有してしまうことになるし、後者はABS ECUの場合ABS機能が停止することになり非常に危険（攻撃者にとっては一石二鳥ではあるが）。</p>
-
 <h1 id="まとめ">まとめ</h1>
-
 <p>SavvyCANの様々な機能を使うことで車速に関するメッセージの特定ができた。</p>
-
 <p>また、cangenを使って本来の車速メッセージに被せて詐称することもできた。（できたのか？）</p>
-
 <blockquote>
 <p>参考情報にSANSのカーハッキングに関するホワイトペーパーがあるが、そこに今回と同じようにメータを詐称している動画が貼られていた。</p>
-
 <ul>
 <li><a href="https://www.youtube.com/watch?v=QlpTx_LsW7M">https://www.youtube.com/watch?v=QlpTx_LsW7M</a></li>
 </ul>
-
 <p>この動画は今回の実験とは違い、本来の車速である0mphになることがなく非常にスムーズに車速を詐称できている。</p>
-
-<p>どうやってるんだろう・・・。<br />
+<p>どうやってるんだろう・・・。<br>
 （イグニッション電源が入ってなく本来の車速メッセージが流れていない可能性はある）</p>
 </blockquote>
-
 <p>シミュレーション環境(ICSim)でできることは一通りやった気がする。</p>
-
 <h1 id="参考">参考</h1>
-
 <ul>
-<li>ブリブリ鳴るのは故障じゃなくて、ABSのカラクリ<br />
+<li>ブリブリ鳴るのは故障じゃなくて、ABSのカラクリ<br>
 <a href="https://monoist.atmarkit.co.jp/mn/articles/1007/29/news102.html">https://monoist.atmarkit.co.jp/mn/articles/1007/29/news102.html</a></li>
-<li>スピードメーターを動かすのはABS システム<br />
+<li>スピードメーターを動かすのはABS システム<br>
 <a href="http://www.jaspa-oita.or.jp/jissen/2016/09/page1_1.html">http://www.jaspa-oita.or.jp/jissen/2016/09/page1_1.html</a></li>
-<li>Hacking the CAN Bus: Basic Manipulation of a Modern Automobile Through CAN Bus Reverse Engineering<br />
+<li>Hacking the CAN Bus: Basic Manipulation of a Modern Automobile Through CAN Bus Reverse Engineering<br>
 <a href="https://www.sans.org/reading-room/whitepapers/awareness/paper/37825">https://www.sans.org/reading-room/whitepapers/awareness/paper/37825</a></li>
 </ul>
 
@@ -702,7 +610,7 @@ cangenは指定した間隔で指定したデータ(あるいはランダムデ�
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -712,7 +620,7 @@ cangenは指定した間隔で指定したデータ(あるいはランダムデ�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

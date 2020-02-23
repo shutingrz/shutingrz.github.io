@@ -1,14 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shooting!!!</title>
     <link>https://www.shutingrz.com/</link>
     <description>Recent content on Shooting!!!</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 03 Oct 2019 04:34:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 24 Feb 2020 01:18:40 +0900</lastBuildDate>
     
 	<atom:link href="https://www.shutingrz.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ラテラルムーブメントとそれを阻むUACに関する調査</title>
+      <link>https://www.shutingrz.com/post/remote-uac/</link>
+      <pubDate>Mon, 24 Feb 2020 01:18:40 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/remote-uac/</guid>
+      <description>&lt;p&gt;ラテラルムーブメントを阻む、通称「リモートUAC」に関して調査しました。&lt;/p&gt;
+&lt;p&gt;結果はまあそうだよねという感じになってしまいましたが、ここにメモします。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>アクアのスピードメーターを解析してPS3のコントローラで動かす</title>
@@ -16,9 +26,8 @@
       <pubDate>Thu, 03 Oct 2019 04:34:00 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/aqua-meter-hack/</guid>
-      <description>&lt;p&gt;しゅーとです。&lt;br /&gt;
+      <description>&lt;p&gt;しゅーとです。&lt;br&gt;
 リアルECUシリーズ第二作目。&lt;/p&gt;
-
 &lt;p&gt;ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。&lt;/p&gt;</description>
     </item>
     
@@ -29,16 +38,12 @@
       
       <guid>https://www.shutingrz.com/post/summon-real-ecu/</guid>
       <description>&lt;p&gt;これまでシミュレーション環境でカーセキュリティの勉強をしていて、その成果は妄想CAN三部作ということで以下の記事にまとめている。&lt;/p&gt;
-
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training-first/&#34;&gt;シミュレーション環境でCAN通信を試す&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training2/&#34;&gt;ドア開錠を行うCAN通信を特定する&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training3/&#34;&gt;ECUの車速に関するCANメッセージを特定して騙す&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;p&gt;&lt;/br&gt;
-車をいじったこともないし持ってすらないのによくここまで続いたなと我ながら思うが、さすがにネタ切れ感もありモチベが保てない。&lt;/p&gt;
-
+&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;そこで実際に車で使われているECUを入手、基板を解析してCANポートのピンアサインを特定し、現実のCAN通信の雰囲気を知ることにした。&lt;/p&gt;</description>
     </item>
     
@@ -49,12 +54,9 @@
       
       <guid>https://www.shutingrz.com/post/can-training3/</guid>
       <description>&lt;p&gt;CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training2/&#34;&gt;前回&lt;/a&gt;はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。&lt;br /&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training2/&#34;&gt;前回&lt;/a&gt;はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。&lt;br&gt;
 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。&lt;/p&gt;
-
 &lt;p&gt;今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタのSavvyCANならではの機能を使って見つけてみる。&lt;/p&gt;
-
 &lt;p&gt;特定したあとは、実際の速度から別の速度に詐称できないかを試す。&lt;/p&gt;</description>
     </item>
     
@@ -65,9 +67,7 @@
       
       <guid>https://www.shutingrz.com/post/can-training2/</guid>
       <description>&lt;p&gt;今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://www.shutingrz.com/post/can-training-first/&#34;&gt;前回&lt;/a&gt; はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。&lt;/p&gt;
-
 &lt;p&gt;今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。&lt;/p&gt;</description>
     </item>
     
@@ -78,7 +78,6 @@
       
       <guid>https://www.shutingrz.com/post/can-training-first/</guid>
       <description>&lt;p&gt;車がなくてもカーセキュリティの勉強がしたい！&lt;/p&gt;
-
 &lt;p&gt;ということでカーハッカーズハンドブックを読みつつICSimを使ってCAN通信を試してみる。&lt;/p&gt;</description>
     </item>
     
@@ -89,10 +88,9 @@
       
       <guid>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</guid>
       <description>&lt;p&gt;しゅーとです。&lt;/p&gt;
-
-&lt;p&gt;引き続きペネトレーションテストの検証をしていきます。&lt;br /&gt;
-前回の記事はこちら。&lt;br /&gt;
-&lt;br/&gt;
+&lt;p&gt;引き続きペネトレーションテストの検証をしていきます。&lt;br&gt;
+前回の記事はこちら。&lt;br&gt;
+&lt;!-- raw HTML omitted --&gt;
 &lt;a href=&#34;https://www.shutingrz.com/post/ad_hack-ec_exploit/&#34;&gt;ペネトレ検証-ECサイトに侵入&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
@@ -103,8 +101,7 @@
       
       <guid>https://www.shutingrz.com/post/ad_hack-ec_exploit/</guid>
       <description>&lt;p&gt;しゅーとです。&lt;/p&gt;
-
-&lt;p&gt;家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。&lt;br /&gt;
+&lt;p&gt;家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。&lt;br&gt;
 また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残っているかも確認します。&lt;/p&gt;</description>
     </item>
     
@@ -114,8 +111,8 @@
       <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/hugo-notice-banner/</guid>
-      <description>&lt;p&gt;要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。&lt;br /&gt;
-記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。&lt;br /&gt;
+      <description>&lt;p&gt;要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。&lt;br&gt;
+記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。&lt;br&gt;
 ※この記事はハッキングには関係ありませんが、デモ用に表示が出るようにしています。&lt;/p&gt;</description>
     </item>
     
@@ -125,11 +122,11 @@
       <pubDate>Wed, 08 May 2019 00:42:34 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/pages/about-disclosure-security-information/</guid>
-      <description> 近頃サイバー犯罪による金銭的被害、社会的被害が急増しています。 これらのサイバー犯罪に対抗するため、セキュリティエンジニアは攻撃者が利用するツールや脆弱性情報などの最新動向を追う必要があります。
+      <description>近頃サイバー犯罪による金銭的被害、社会的被害が急増しています。 これらのサイバー犯罪に対抗するため、セキュリティエンジニアは攻撃者が利用するツールや脆弱性情報などの最新動向を追う必要があります。
 またリスクを明確にするために時には攻撃者目線でセキュリティを考える必要もあります。
 このような状況の中、セキュリティエンジニアの助けになればという思いで、実践的なセキュリティ情報を発信していくことにしました。
 私の情報発信によって知り得た内容はサイバー空間の安心・安全な環境を確保する目的にのみ利用し、決して悪用しないでください。
-脆弱性報告 発見した脆弱性は責任を持って所定のフローに則り関係機関に報告しています。
+ 脆弱性報告 発見した脆弱性は責任を持って所定のフローに則り関係機関に報告しています。
  IPA#82904051, IPA#10111686, IPA#68012566, IPA#77844009, IPA#84441609, IPA#34756201, IPA#18176100, IPA#05423502, IPA#33188048, IPA#77876658, IPA#53216722, IPA#37900716, IPA#16328910, IPA#60526262, IPA#63587560, IPA#58417930, IPA#39095082
  </description>
     </item>
@@ -144,7 +141,7 @@
 ただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。
 なお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方へのスペシャルとしてここでは公開しません😏
 このコンテンツがビットコインの理解の助けになれば幸いです。
-目次 全10章です。
+ 目次 全10章です。
 自作仮想通貨入門(1) - はじめに
 自作仮想通貨入門(2) - Litecoinの準備
 自作仮想通貨入門(3) - Litecoinを試してみよう
@@ -155,8 +152,8 @@
 自作仮想通貨入門(8) - アドレスのプレフィックス変更
 自作仮想通貨入門(9) - ブロックデータのマジックバイト変更
 自作仮想通貨入門(10) - 著作権表示の記載・おわりに
-重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
-この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&amp;rdquo;src/validation.cpp&amp;rdquo; の 3003 行目を以下のように変更してください。
+ 重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
+この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&amp;quot;src/validation.cpp&amp;rdquo; の 3003 行目を以下のように変更してください。
 - if (!CheckTransaction(*tx, state, false)) + if (!CheckTransaction(*tx, state, true))  false を true にするだけです。</description>
     </item>
     
@@ -166,7 +163,7 @@
       <pubDate>Mon, 29 Apr 2019 23:19:55 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin10/</guid>
-      <description>&lt;p&gt;この章で自作仮想通貨入門は終わりです。&lt;br /&gt;
+      <description>&lt;p&gt;この章で自作仮想通貨入門は終わりです。&lt;br&gt;
 著作権表示をしてあなたの仮想通貨をアピールしましょう。&lt;/p&gt;</description>
     </item>
     
@@ -177,7 +174,6 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin9/</guid>
       <description>&lt;p&gt;※この章では src/chainparams.cpp を変更します。&lt;/p&gt;
-
 &lt;p&gt;あまり話題にならないものの仮想通貨では極めて重要な、ブロックデータのマジックバイトを変更します。&lt;/p&gt;</description>
     </item>
     
@@ -188,7 +184,6 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin8/</guid>
       <description>&lt;p&gt;※この章では src/chainparams.cpp を変更します。&lt;/p&gt;
-
 &lt;p&gt;仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。&lt;/p&gt;</description>
     </item>
     
@@ -199,7 +194,6 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin7/</guid>
       <description>&lt;p&gt;※この章では src/chainparams.cpp を変更します。&lt;/p&gt;
-
 &lt;p&gt;ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。
 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。&lt;/p&gt;</description>
     </item>
@@ -211,9 +205,8 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin6/</guid>
       <description>&lt;p&gt;※この章では src/chainparams.cpp を変更します。&lt;/p&gt;
-
-&lt;p&gt;仮想通貨はブロックチェーンの原理を基にして運用されています。&lt;br /&gt;
-つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、&lt;br /&gt;
+&lt;p&gt;仮想通貨はブロックチェーンの原理を基にして運用されています。&lt;br&gt;
+つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、&lt;br&gt;
 すなわちジェネシス（起源）ブロックを作成する必要があります。&lt;/p&gt;</description>
     </item>
     
@@ -241,7 +234,7 @@
       <pubDate>Sun, 28 Apr 2019 22:05:53 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin3/</guid>
-      <description>&lt;p&gt;自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。&lt;br /&gt;
+      <description>&lt;p&gt;自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。&lt;br&gt;
 既にコマンドラインでマイニングや送金を行ったことがあるかたは、読み飛ばしてもかまいません。&lt;/p&gt;</description>
     </item>
     
@@ -251,7 +244,7 @@
       <pubDate>Sat, 27 Apr 2019 15:11:43 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin2/</guid>
-      <description>&lt;p&gt;自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。&lt;br /&gt;
+      <description>&lt;p&gt;自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。&lt;br&gt;
 今回は、フォークとリリースを容易に行えるように、gitを使って作業していきましょう。&lt;/p&gt;</description>
     </item>
     
@@ -261,7 +254,8 @@
       <pubDate>Sat, 27 Apr 2019 14:24:31 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin1/</guid>
-      <description>&lt;div class=&#34;box&#34; &gt;
+      <description>&lt;link rel=&#34;stylesheet&#34; href=&#34;https://www.shutingrz.com/css/hugo-easy-gallery.css&#34; /&gt;
+&lt;div class=&#34;box&#34; &gt;
   &lt;figure  itemprop=&#34;associatedMedia&#34; itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
     &lt;div class=&#34;img&#34;&gt;
       &lt;img itemprop=&#34;thumbnail&#34; src=&#34;./raccoin.png&#34; alt=&#34;自作仮想通貨「Raccoin」のアイコン&#34;/&gt;
@@ -273,10 +267,8 @@
   &lt;/figure&gt;
 &lt;/div&gt;
 
-
-&lt;hr /&gt;
-
-&lt;p&gt;皆さんは自作仮想通貨を作ったことはあるでしょうか？&lt;br /&gt;
+&lt;hr&gt;
+&lt;p&gt;皆さんは自作仮想通貨を作ったことはあるでしょうか？&lt;br&gt;
 イーサリアムのトークンやCounterPartyもいいですが、やはり仮想通貨の思想を深く知りたいなら、好きな仮想通貨のソースコードをフォークして自作仮想通貨を作ってみるべきです。&lt;/p&gt;</description>
     </item>
     
@@ -301,13 +293,13 @@
 趣味が高じて今はリバースエンジニアリングやペンテストをしています。
 Keywords:
 ネットワークフォレンジック(IPS/FW/Sandbox) / 脆弱性検証 / Exploiting /DNS /仮想通貨 /IoTセキュリティ / リバースエンジニアリング
-PGP Fingerprint: 306E71FA574F7618B9CCE6C118F4C438B4CD4B50
-Works Presentations  Analyze Automotive ECU (Slide) (IoTSecJP version.6.0)
- DNSトンネリングの手法 (Slide) (ssmjp 2018&amp;frasl;05)
- JC3が教える！ Gozi/DreamBot 判別法 (Slide) (非公開勉強会)
- KnotResolverへの毒入れ~世にも珍しいKashpureff型攻撃~ (Slide) (DNS温泉6)
-  Tools  prefix2as  IP アドレスと AS 番号を相互変換する Web API システム  cuckoo_malware_downloader  Cuckoo ユーティリティ。
-指定されたURLからファイルを取得し、Cuckoo REST APIに送信する Web アプリケーション   以前のブログ 以前ははてなブログに記事を投稿していました。 時間があればこちらもご覧ください。</description>
+PGP Fingerprint:	306E71FA574F7618B9CCE6C118F4C438B4CD4B50
+ Works Presentations   Analyze Automotive ECU (Slide) (IoTSecJP version.6.0)
+  DNSトンネリングの手法 (Slide) (ssmjp 2018/05)
+  JC3が教える！ Gozi/DreamBot 判別法 (Slide) (非公開勉強会)
+  KnotResolverへの毒入れ~世にも珍しいKashpureff型攻撃~ (Slide) (DNS温泉6)
+  Tools  prefix2as  IP アドレスと AS 番号を相互変換する Web API システム   cuckoo_malware_downloader  Cuckoo ユーティリティ。
+指定されたURLからファイルを取得し、Cuckoo REST APIに送信する Web アプリケーション    以前のブログ 以前ははてなブログに記事を投稿していました。 時間があればこちらもご覧ください。</description>
     </item>
     
   </channel>

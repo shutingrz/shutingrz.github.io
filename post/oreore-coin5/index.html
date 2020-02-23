@@ -100,7 +100,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -282,17 +282,13 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>この章からいよいよLitecoinのソースコードに修正を加えていきます。</p>
-
-<p>この章ではソースコードおよび関連ドキュメントに含まれるLitecoin関連の文字列を自作仮想通貨の通貨名に変更します。<br />
-この時点でLitecoinのどの名称を自分の仮想通貨の名称に変えるかを決めておきましょう。<br />
-また、待ち受けるサーバのポート番号についてもこの章で変更するので、ポート番号についても決めていきます。<br />
-ノード待受ポート番号については有名どころの仮想通貨およびその他サーバと被らないように設定しましょう。<br />
+<p>この章ではソースコードおよび関連ドキュメントに含まれるLitecoin関連の文字列を自作仮想通貨の通貨名に変更します。<br>
+この時点でLitecoinのどの名称を自分の仮想通貨の名称に変えるかを決めておきましょう。<br>
+また、待ち受けるサーバのポート番号についてもこの章で変更するので、ポート番号についても決めていきます。<br>
+ノード待受ポート番号については有名どころの仮想通貨およびその他サーバと被らないように設定しましょう。<br>
 RPC接続の待受ポート番号は一般的に自分自身で使うためものでありconfで変えられるので、最悪他の仮想通貨と被っても大丈夫です。</p>
-
 <p>下記にLitecoinとRaccoinの比較表を記載しているので、Raccoinの表記を自分の仮想通貨の表記に置き換えて作業をしてください。</p>
-
 <h2 id="litecoinとraccoinの名称比較表">LitecoinとRaccoinの名称比較表</h2>
-
 <table>
 <thead>
 <tr>
@@ -301,44 +297,37 @@ RPC接続の待受ポート番号は一般的に自分自身で使うためも�
 <th>Raccoin</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>正式名称</td>
 <td>Litecoin</td>
 <td>Raccoin</td>
 </tr>
-
 <tr>
 <td>大文字名称</td>
 <td>LITECOIN</td>
 <td>RACCOIN</td>
 </tr>
-
 <tr>
 <td>大文字略称</td>
 <td>LTC</td>
 <td>XRI</td>
 </tr>
-
 <tr>
 <td>小文字名称</td>
 <td>litecoin</td>
 <td>raccoin</td>
 </tr>
-
 <tr>
 <td>小文字略称</td>
 <td>ltc</td>
 <td>xri</td>
 </tr>
-
 <tr>
 <td>1000分の1コイン</td>
 <td>lites</td>
 <td>mXRI</td>
 </tr>
-
 <tr>
 <td>100万分の1コイン</td>
 <td>photon</td>
@@ -346,9 +335,7 @@ RPC接続の待受ポート番号は一般的に自分自身で使うためも�
 </tr>
 </tbody>
 </table>
-
 <h2 id="litecoinとraccoinのp2p待受ポート番号比較表">LitecoinとRaccoinのP2P待受ポート番号比較表</h2>
-
 <table>
 <thead>
 <tr>
@@ -357,20 +344,17 @@ RPC接続の待受ポート番号は一般的に自分自身で使うためも�
 <th>Raccoin</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Mainnet</td>
 <td>9333/tcp</td>
 <td>8883/tcp</td>
 </tr>
-
 <tr>
 <td>Testnet</td>
 <td>19335/tcp</td>
 <td>19883/tcp</td>
 </tr>
-
 <tr>
 <td>Regtest</td>
 <td>19444/tcp</td>
@@ -378,9 +362,7 @@ RPC接続の待受ポート番号は一般的に自分自身で使うためも�
 </tr>
 </tbody>
 </table>
-
 <h2 id="litecoinとraccinのrpcポート番号比較表">LitecoinとRaccinのRPCポート番号比較表</h2>
-
 <table>
 <thead>
 <tr>
@@ -389,20 +371,17 @@ RPC接続の待受ポート番号は一般的に自分自身で使うためも�
 <th>Raccoin</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Mainnet</td>
 <td>9332/tcp</td>
 <td>8882/tcp</td>
 </tr>
-
 <tr>
 <td>Testnet</td>
 <td>19332/tcp</td>
 <td>19880/tcp</td>
 </tr>
-
 <tr>
 <td>Regtest</td>
 <td>19443/tcp</td>
@@ -410,29 +389,19 @@ RPC接続の待受ポート番号は一般的に自分自身で使うためも�
 </tr>
 </tbody>
 </table>
-
-<hr />
-
+<hr>
 <h1 id="文字列置換">文字列置換</h1>
-
 <p>実際にソースコードを修正していきます。
 git cloneを使ってLitecoinをクローンしたため、単純にgrepを用いたファイル検索・置換を行うと.gitディレクトリ内の書き換えも発生してしまいます。
 これを防ぐため、基本的にgitのls-filesサブコマンドを用いて置換を行っていきます。</p>
-
 <h2 id="正式名称の書き換え">正式名称の書き換え</h2>
-
 <pre><code>$ git ls-files -z | xargs -0 sed -i '' -e 's/Litecoin/Raccoin/g'
 </code></pre>
-
 <h2 id="大文字略称の書き換え">大文字略称の書き換え</h2>
-
 <pre><code>$ git ls-files -z | xargs -0 sed -i '' -e 's/LITECOIN/RACCOIN/g'
 </code></pre>
-
 <h2 id="小文字略称の書き換え">小文字略称の書き換え</h2>
-
 <p>gitコマンドではなく、ファイルを指定して置換を行います。</p>
-
 <pre><code>$ cat &lt;&lt;EOF|tr -d ''|tr '\n' '\0'| xargs -0 sed -i '' -e 's/ltc/xri/g'
 ./contrib/gitian-build.sh
 ./doc/release-process.md
@@ -441,14 +410,10 @@ git cloneを使ってLitecoinをクローンしたため、単純にgrepを用�
 ./test/functional/wallet_bumpfee.py
 EOF
 </code></pre>
-
-<hr />
-
-<h3 id="コラム-小文字略称の罠">コラム:小文字略称の罠</h3>
-
+<hr>
+<h3 id="コラム小文字略称の罠">コラム:小文字略称の罠</h3>
 <p>小文字略称で単純な文字列検索・置換をすると意図しない置換が行われます。
 具体的には下記ファイルで意図しない置換が行われることを確認しました。</p>
-
 <pre><code>./contrib/gitian-keys/petertodd-key.pgp
 ./src/leveldb/build_detect_platform
 ./src/test/data/base58_keys_valid.json
@@ -456,27 +421,19 @@ EOF
 ./test/util/data/txcreateoutpubkey2.json
 ./test/util/data/txcreateoutpubkey2.json
 </code></pre>
-
 <p>petertodd-key.pgpファイルに至っては大変な置換が起きます・・・。</p>
-
 <pre><code>-emJqiaQez9pd/5BYtOSG8vLZpAxXfnOgDH/YK6u9WdoX7/RgTAltcoGazmyJHZHj 
 +emJqiaQez9pd/5BYtOSG8vLZpAxXfnOgDH/YK6u9WdoX7/RgTAxrioGazmyJHZHj
 </code></pre>
-
-<hr />
-
+<hr>
 <h2 id="通貨単位の書き換え">通貨単位の書き換え</h2>
-
 <p>Litecoinの基本通貨単位「LTC」に関しては単純な文字列置換で既に XRI に変更していますが、小数点以下の通貨も名称がつけられているので変更します。</p>
-
 <pre><code>$ sed -i '' -e 's/lites/mXRI/g' ./src/qt/bitcoinunits.cpp
 $ sed -i '' -e 's/Lites/mXRI/g' ./src/qt/bitcoinunits.cpp
 $ sed -i '' -e 's/photons/uXRI/g' ./src/qt/bitcoinunits.cpp
 $ sed -i '' -e 's/Photons/uXRI/g' ./src/qt/bitcoinunits.cpp
 </code></pre>
-
 <h2 id="ポート番号の書き換え">ポート番号の書き換え</h2>
-
 <pre><code>$ git ls-files | grep -v &quot;doc/release-notes/release-notes-0.15.0.md&quot; | tr '\n' '\0'| xargs -0 sed -i '' -e 's/9333/8883/g'
 $ git ls-files | grep -v &quot;src/qt/res/src/network_disabled.svg&quot; | tr '\n' '\0' | xargs -0 sed -i '' -e 's/19335/19883/g'
 $ git ls-files -z | xargs -0 sed -i '' -e 's/19444/20888/g'
@@ -485,14 +442,10 @@ $ git ls-files -z | xargs -0 sed -i '' -e 's/9332/8882/g'
 $ git ls-files -z | xargs -0 sed -i '' -e 's/19332/19880/g'
 $ git ls-files -z | xargs -0 sed -i '' -e 's/19443/20887/g'
 </code></pre>
-
 <p>「9333」と「19335」は 特定のファイルで意図しない部分で偶然一致してしまうので、該当ファイルを除外して置き換えています。</p>
-
 <h2 id="ファイル名の変更">ファイル名の変更</h2>
-
 <p>litecoin がファイル名に含まれるものは、manのファイル名とGUIの起動時のスプラッシュ画像です。
 renameコマンドはOSやバージョンによって全く挙動が異なるため、念のためmvコマンドで変更します。</p>
-
 <pre><code>$ cd ./doc/man/
 $ mv litecoin-cli.1 raccoin-cli.1
 $ mv litecoin-qt.1 raccoin-qt.1
@@ -501,59 +454,56 @@ $ mv litecoind.1 raccoind.1
 $ cd ../../
 $ mv ./src/qt/res/icons/litecoin_splash.png ./src/qt/res/icons/raccoin_splash.png
 </code></pre>
-
-<hr />
-
+<hr>
 <h2 id="誤った名称変更の再修正">誤った名称変更の再修正</h2>
-
 <p>単純な文字列置換では本来変更すべきではない箇所まで変更してしまいます。
 例として、下記のようなLitecoinの開発チームが開設したコミュニティやサービスがあります。</p>
-
 <ul>
-<li><p>litecoin.org<br />
-ブランドサイト</p></li>
-
-<li><p>www.litecoinpool.org<br />
-採掘プール</p></li>
-
-<li><p>litecoin.info<br />
-Wiki</p></li>
-
-<li><p><a href="https://travis-ci.org/litecoin-project/">https://travis-ci.org/litecoin-project/</a><br />
-ソースコードのテストサービス</p></li>
-
-<li><p><a href="https://github.com/litecoin-project/">https://github.com/litecoin-project/</a><br />
-git@github.com:litecoin-project/litecoin.git<br />
-Litecoinのgithub</p></li>
-
-<li><p><a href="https://groups.google.com/forum/#!forum/litecoin-dev">https://groups.google.com/forum/#!forum/litecoin-dev</a><br />
-Googleグループ</p></li>
-
-<li><p><a href="http://webchat.freenode.net?channels=litecoin">http://webchat.freenode.net?channels=litecoin</a><br />
-IRCチャンネル</p></li>
-
-<li><p><a href="https://github.com/pooler/litecoin-seeder">https://github.com/pooler/litecoin-seeder</a><br />
-DNSSeed のリスト</p></li>
+<li>
+<p>litecoin.org<br>
+ブランドサイト</p>
+</li>
+<li>
+<p><a href="http://www.litecoinpool.org">www.litecoinpool.org</a><br>
+採掘プール</p>
+</li>
+<li>
+<p>litecoin.info<br>
+Wiki</p>
+</li>
+<li>
+<p><a href="https://travis-ci.org/litecoin-project/">https://travis-ci.org/litecoin-project/</a><br>
+ソースコードのテストサービス</p>
+</li>
+<li>
+<p><a href="https://github.com/litecoin-project/">https://github.com/litecoin-project/</a><br>
+<a href="mailto:git@github.com">git@github.com</a>:litecoin-project/litecoin.git<br>
+Litecoinのgithub</p>
+</li>
+<li>
+<p><a href="https://groups.google.com/forum/#!forum/litecoin-dev">https://groups.google.com/forum/#!forum/litecoin-dev</a><br>
+Googleグループ</p>
+</li>
+<li>
+<p><a href="http://webchat.freenode.net?channels=litecoin">http://webchat.freenode.net?channels=litecoin</a><br>
+IRCチャンネル</p>
+</li>
+<li>
+<p><a href="https://github.com/pooler/litecoin-seeder">https://github.com/pooler/litecoin-seeder</a><br>
+DNSSeed のリスト</p>
+</li>
 </ul>
-
 <p>また、以下の著作権表示も該当します。</p>
-
 <pre><code>Copyright (C) 2011-2018 The Litecoin Core developers
 </code></pre>
-
 <p>これらのうち、コミュニティやサービスがリンク切れを起こすものに関しては大きな問題にはならないこと、またこの段階で様々なコミュニティを開設するのは自作仮想通貨を作るうえでは完全に蛇足であることから、ここでの修正はしません。
 ただし、著作権表示については誤った表示のままだとソースコードのパクリと勘違いされるため、正しい記載に修正する必要があります。
 以下のコマンドを実行し、著作権表示を修正します。</p>
-
 <h3 id="著作権表示の修正">著作権表示の修正</h3>
-
 <pre><code>$ git ls-files -z | xargs -0 sed -i '' -e 's/The Raccoin Core developers/The Litecoin Core developers/g'
 </code></pre>
-
-<hr />
-
+<hr>
 <p>ここまででソースコードの単純な置換は終了です。</p>
-
 <p>次の章からは置換だけでは終わらない、ビットコインのよりディープな部分を解説しながら変更していきます。</p>
 
         
@@ -720,7 +670,7 @@ DNSSeed のリスト</p></li>
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -730,7 +680,7 @@ DNSSeed のリスト</p></li>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">

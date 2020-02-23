@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Shooting!!!</title>
@@ -16,11 +16,11 @@
       <pubDate>Wed, 08 May 2019 00:42:34 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/pages/about-disclosure-security-information/</guid>
-      <description> 近頃サイバー犯罪による金銭的被害、社会的被害が急増しています。 これらのサイバー犯罪に対抗するため、セキュリティエンジニアは攻撃者が利用するツールや脆弱性情報などの最新動向を追う必要があります。
+      <description>近頃サイバー犯罪による金銭的被害、社会的被害が急増しています。 これらのサイバー犯罪に対抗するため、セキュリティエンジニアは攻撃者が利用するツールや脆弱性情報などの最新動向を追う必要があります。
 またリスクを明確にするために時には攻撃者目線でセキュリティを考える必要もあります。
 このような状況の中、セキュリティエンジニアの助けになればという思いで、実践的なセキュリティ情報を発信していくことにしました。
 私の情報発信によって知り得た内容はサイバー空間の安心・安全な環境を確保する目的にのみ利用し、決して悪用しないでください。
-脆弱性報告 発見した脆弱性は責任を持って所定のフローに則り関係機関に報告しています。
+ 脆弱性報告 発見した脆弱性は責任を持って所定のフローに則り関係機関に報告しています。
  IPA#82904051, IPA#10111686, IPA#68012566, IPA#77844009, IPA#84441609, IPA#34756201, IPA#18176100, IPA#05423502, IPA#33188048, IPA#77876658, IPA#53216722, IPA#37900716, IPA#16328910, IPA#60526262, IPA#63587560, IPA#58417930, IPA#39095082
  </description>
     </item>
@@ -35,7 +35,7 @@
 ただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。
 なお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方へのスペシャルとしてここでは公開しません😏
 このコンテンツがビットコインの理解の助けになれば幸いです。
-目次 全10章です。
+ 目次 全10章です。
 自作仮想通貨入門(1) - はじめに
 自作仮想通貨入門(2) - Litecoinの準備
 自作仮想通貨入門(3) - Litecoinを試してみよう
@@ -46,8 +46,8 @@
 自作仮想通貨入門(8) - アドレスのプレフィックス変更
 自作仮想通貨入門(9) - ブロックデータのマジックバイト変更
 自作仮想通貨入門(10) - 著作権表示の記載・おわりに
-重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
-この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&amp;rdquo;src/validation.cpp&amp;rdquo; の 3003 行目を以下のように変更してください。
+ 重要: CVE-2018-17144 の対策 今回、自作仮想通貨のもととして利用するソースコードは Litecoin 0.16 です。 Litecoin 0.16 のもとである BitcoinCore 0.16 には CVE-2018-17144 の脆弱性が存在し、このまま利用すると通貨が不正増殖される恐れがあります。
+この脆弱性を修正するため、Litecoin 0.16 をダウンロードしたあとに&amp;quot;src/validation.cpp&amp;rdquo; の 3003 行目を以下のように変更してください。
 - if (!CheckTransaction(*tx, state, false)) + if (!CheckTransaction(*tx, state, true))  false を true にするだけです。</description>
     </item>
     
@@ -62,13 +62,13 @@
 趣味が高じて今はリバースエンジニアリングやペンテストをしています。
 Keywords:
 ネットワークフォレンジック(IPS/FW/Sandbox) / 脆弱性検証 / Exploiting /DNS /仮想通貨 /IoTセキュリティ / リバースエンジニアリング
-PGP Fingerprint: 306E71FA574F7618B9CCE6C118F4C438B4CD4B50
-Works Presentations  Analyze Automotive ECU (Slide) (IoTSecJP version.6.0)
- DNSトンネリングの手法 (Slide) (ssmjp 2018&amp;frasl;05)
- JC3が教える！ Gozi/DreamBot 判別法 (Slide) (非公開勉強会)
- KnotResolverへの毒入れ~世にも珍しいKashpureff型攻撃~ (Slide) (DNS温泉6)
-  Tools  prefix2as  IP アドレスと AS 番号を相互変換する Web API システム  cuckoo_malware_downloader  Cuckoo ユーティリティ。
-指定されたURLからファイルを取得し、Cuckoo REST APIに送信する Web アプリケーション   以前のブログ 以前ははてなブログに記事を投稿していました。 時間があればこちらもご覧ください。</description>
+PGP Fingerprint:	306E71FA574F7618B9CCE6C118F4C438B4CD4B50
+ Works Presentations   Analyze Automotive ECU (Slide) (IoTSecJP version.6.0)
+  DNSトンネリングの手法 (Slide) (ssmjp 2018/05)
+  JC3が教える！ Gozi/DreamBot 判別法 (Slide) (非公開勉強会)
+  KnotResolverへの毒入れ~世にも珍しいKashpureff型攻撃~ (Slide) (DNS温泉6)
+  Tools  prefix2as  IP アドレスと AS 番号を相互変換する Web API システム   cuckoo_malware_downloader  Cuckoo ユーティリティ。
+指定されたURLからファイルを取得し、Cuckoo REST APIに送信する Web アプリケーション    以前のブログ 以前ははてなブログに記事を投稿していました。 時間があればこちらもご覧ください。</description>
     </item>
     
   </channel>

@@ -11,19 +11,13 @@
   <meta property="og:title" content="ドア開錠を行うCAN通信を特定する" />
   <meta name="twitter:title" content="ドア開錠を行うCAN通信を特定する" />
   <meta name="description" content="今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回 はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。
-
 今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。">
   <meta property="og:description" content="今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回 はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。
-
 今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。">
   <meta name="twitter:description" content="今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回 はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。
-
 今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。">
   <meta name="author" content="しゅーと"/><script type="application/ld+json">
 {
@@ -96,9 +90,7 @@
 
 <meta property="og:title" content="ドア開錠を行うCAN通信を特定する" />
 <meta property="og:description" content="今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回 はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。
-
 今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。">
 <meta property="og:image" content="https://www.shutingrz.com/post/can-training2/savvycan.png" />
 <meta property="og:url" content="https://www.shutingrz.com/post/can-training2/" />
@@ -106,9 +98,7 @@
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="ドア開錠を行うCAN通信を特定する" />
   <meta name="twitter:description" content="今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。
-
 前回 はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。
-
 今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。">
   <meta name="twitter:image" content="https://www.shutingrz.com/post/can-training2/savvycan.png" />
   <meta name="twitter:card" content="summary" />
@@ -124,7 +114,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.63.2" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -306,41 +296,26 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。</p>
-
 <p><a href="/post/can-training-first/">前回</a> はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。</p>
-
 <p>今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。</p>
-
-<hr />
-
+<hr>
 <h3 id="環境">環境</h3>
-
 <p>Ubuntu 18.04 Desktop</p>
-
-<hr />
-
+<hr>
 <p>CAN通信をモニターしてフィルタするソフトウェアはいくつか存在する。</p>
-
 <p>が、色々試していくうちに現時点においては<strong>SavvyCAN</strong>がOSSの中で最高のCANモニターだと思ったのでSavvyCANを使ってドア解錠のメッセージを特定していく。</p>
-
 <blockquote>
-<p>※カーハッカーズハンドブックではSavvyCANは巻末付録で紹介されているが、内容が古く「SocketCANには対応していない」旨のコメントがある。<br />
+<p>※カーハッカーズハンドブックではSavvyCANは巻末付録で紹介されているが、内容が古く「SocketCANには対応していない」旨のコメントがある。<br>
 　現在はSocketCANに対応しているし何ならNetwork経由でもモニタできるようになっているっぽいのでイチオシ。</p>
 </blockquote>
-
 <h1 id="savvycan-のインストール">SavvyCAN のインストール</h1>
-
 <h3 id="qt5のインストール">Qt5のインストール</h3>
-
 <pre><code>$ wget https://download.qt.io/official_releases/qt/5.12/5.12.4/qt-opensource-linux-x64-5.12.4.run
 $ chmod a+x ./qt-opensource-linux-x64-5.12.4.run 
 $ sudo ./qt-opensource-linux-x64-5.12.4.run 
 </code></pre>
-
 <h3 id="qtライブラリのインストール">qtライブラリのインストール</h3>
-
 <p>qtserialbusは Ubuntu 18.04 では aptの公式リポジトリに含まれないので自分でビルドする。</p>
-
 <pre><code>$ sudo apt install qtdeclarative5-dev qttools5-dev g++
 $ git clone https://github.com/qt/qtserialbus
 $ cd qtserialbus
@@ -348,56 +323,36 @@ $ /opt/Qt5.12.4/5.12.4/gcc_64/bin/qmake .
 $ make
 $ sudo make install
 </code></pre>
-
 <h3 id="savvycanのビルド">SavvyCANのビルド</h3>
-
 <pre><code>$ git clone https://github.com/collin80/SavvyCAN
 $ cd SavvyCAN
 $ /opt/Qt5.12.4/5.12.4/gcc_64/bin/qmake CONFIG+=debug
 $ make
 </code></pre>
-
 <h3 id="起動">起動</h3>
-
 <pre><code>./SavvyCAN
 </code></pre>
-
 <h3 id="vcan0に接続">vcan0に接続</h3>
-
 <p>Connection Settings -&gt; Add New Device Connection で新規接続。</p>
-
 <ul>
 <li>Connection Type: QT SerialBus Devices</li>
 <li>SerialBus Device Type: socketcan</li>
 <li>Port: vcan0</li>
 </ul>
-
-<p><img src="add_device.png" alt="add_device" /></p>
-
+<p><img src="add_device.png" alt="add_device"></p>
 <p>ICSimを起動しておくと、接続後に大量のCANデータが流れることを確認できる。</p>
-
 <h1 id="savvycanを使ってドア開錠通信を特定">SavvyCANを使ってドア開錠通信を特定</h1>
-
 <p>まず前提として、CAN通信の話。</p>
-
-<p>リアルタイムに情報が必要となるエンジン・ステアリング・車軸センサー周りのECUは、常に自らの情報を定期的にCANバスを垂れ流しているものだという。<br />
+<p>リアルタイムに情報が必要となるエンジン・ステアリング・車軸センサー周りのECUは、常に自らの情報を定期的にCANバスを垂れ流しているものだという。<br>
 その結果、CANバスには常に情報が溢れているとのこと。</p>
-
-<p>ただ今回はドアの開錠を行う操作を見つけ出す。<br />
+<p>ただ今回はドアの開錠を行う操作を見つけ出す。<br>
 これは「トリガー」を発生させることになるので、CANメッセージの中でそのCAN IDは非常に少ない（トリガーごとに1個あるいは数個）ことが予想される。</p>
-
 <p>つまりドア開錠操作を発生させたときに初めて出現するCAN IDを見つけ出す。</p>
-
 <p>SavvyCANではデータが流れる順に表示される標準モード以外に、「Overwrite Mode」という、各CAN IDごとの最新データが表示されるモードが存在する。</p>
-
 <p>表示には統計情報としてCntカラムがあり、そしてクリックでソートできるので、ドア開錠を発生させたときに初めてカラムが追加されCntが非常に少ないようなCAN IDがドア開錠メッセージであることが推測できる。</p>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h2 id="canバスをキャプチャしそれっぽいものを探す">CANバスをキャプチャしそれっぽいものを探す</h2>
-
 <p>ということでやってみた。手順は以下。</p>
-
 <ol>
 <li>SavvyCANをOverWrite Modeにしておく。</li>
 <li>キャプチャを開始する。</li>
@@ -405,36 +360,21 @@ $ make
 <li>ICSimのコントローラーで左フロントドアを開錠する。</li>
 <li>開錠操作後に初めて追加されてCntが非常に少ないCAN IDを探す。</li>
 </ol>
-
 <p>動画でどうぞ。</p>
-
-<p><img src="detect_doorlock.gif" alt="detect_doorlock" /></p>
-
-<p><br/></p>
-
+<p><img src="detect_doorlock.gif" alt="detect_doorlock"></p>
+<!-- raw HTML omitted -->
 <p>すぐにわかる。ドア開錠メッセージのCAN IDは0x19Bっぽい。データは「00 00 0E 00 00 00」。</p>
-
 <h2 id="ドアが開錠するか試す">ドアが開錠するか試す</h2>
-
 <p>実際に試してみる。</p>
-
 <p>SavvyCANのPlayback機能を使って通信を送ることもできるが、今回送るメッセージは１つだけなのでcansendの方がわかりやすい。</p>
-
 <pre><code>$ cansend vcan0 19B#00.00.0E.00.00.00
 </code></pre>
-
 <p>動画でどうぞ（スマホは見づらいかも）</p>
-
-<p><img src="send_doorlock.gif" alt="send_doorlock" /></p>
-
+<p><img src="send_doorlock.gif" alt="send_doorlock"></p>
 <p>見事に開いた！SavvyCANいいっすね＾～</p>
-
 <h1 id="全てのドア開錠通信を調べる">全てのドア開錠通信を調べる</h1>
-
 <p>ICSimは全てで4つのドアがある。全てのパターンを試したところ、全てCAN IDは 0x19Bだった。</p>
-
 <p>データは以下の対応だった。</p>
-
 <table>
 <thead>
 <tr>
@@ -444,7 +384,6 @@ $ make
 <th>2進数</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>全て閉じている</td>
@@ -452,21 +391,18 @@ $ make
 <td>0E</td>
 <td>0000 1110</td>
 </tr>
-
 <tr>
 <td>上列操作後の状態</td>
 <td>右フロントドア開錠</td>
 <td>0C</td>
 <td>0000 1100</td>
 </tr>
-
 <tr>
 <td>上列操作後の状態</td>
 <td>左リアドア開錠</td>
 <td>08</td>
 <td>0000 1000</td>
 </tr>
-
 <tr>
 <td>上列操作後の状態</td>
 <td>右リアドア開錠(-&gt;全て開いた)</td>
@@ -475,49 +411,32 @@ $ make
 </tr>
 </tbody>
 </table>
-
-<p>表の2進数を見れば一目瞭然。ドアの状態はドアごとにビットで管理されてるようだ。<br />
+<p>表の2進数を見れば一目瞭然。ドアの状態はドアごとにビットで管理されてるようだ。<br>
 ちなみにドアを順次閉じていき、全て閉めたところのCANメッセージは 0F (0000 1111)だった。</p>
-
 <p>特定のドアを開けたい場合は、そのドアに対応したビットを0にして、 CAN IDが 0x19B なメッセージを送れば良さそう。</p>
-
 <h1 id="まとめ">まとめ</h1>
-
 <p>SavvyCANを使ってICSimのCAN通信からドアを開錠するCAN IDを探して再現することができた。</p>
-
 <p>ただこれがドアを開け閉めさせるトリガーとなる通信なのか、それともコントローラ内部でドアを開け閉めしたあと、今のドア状態をみんなに伝えますという意味の通信なのか、どちらかよくわからない。</p>
-
-<p>もし後者ならば、仮に攻撃者が詐称したとしても運転席のメーターパネルが「ドア開いてますよ」とピーピーなるだけで肝心のドアロックは開かないのでは🤔<br />
+<p>もし後者ならば、仮に攻撃者が詐称したとしても運転席のメーターパネルが「ドア開いてますよ」とピーピーなるだけで肝心のドアロックは開かないのでは🤔<br>
 (実車はどうなってるのか・・・試したいけど車がない😭)</p>
-
-<p><br/></p>
-
-<p>それと、今回はICSimがコントローラーによる操作のときだけ該当通信を発生させていたおかげでCntが極小となり統計解析で見つけやすかったが、全体のドアの状態を送る形式なら原理上定期的にCANメッセージを発生させていてもいいはずなので、もしそうだったら見つけるのは大変だったかも。<br />
+<!-- raw HTML omitted -->
+<p>それと、今回はICSimがコントローラーによる操作のときだけ該当通信を発生させていたおかげでCntが極小となり統計解析で見つけやすかったが、全体のドアの状態を送る形式なら原理上定期的にCANメッセージを発生させていてもいいはずなので、もしそうだったら見つけるのは大変だったかも。<br>
 (実車はどうなってるのか・・・試したいけど車がない😭)</p>
-
-<p><br/></p>
-
+<!-- raw HTML omitted -->
 <h3 id="savvycanについて">SavvyCANについて</h3>
-
 <p>実際に色々使ってみるとわかりますが、SavvyCANは高機能であるものの、色んなグラフを見るとき特定のデータでnull pointerにアクセスしてクラッシュすることが割とよくあります。</p>
-
 <p>ただ原因はわりと単純だったりするし、しかも開発者のcollin氏もすぐに直してくれるので、バグに気付いたらぜひ<a href="https://github.com/collin80/SavvyCAN">Github</a>にPRやissueを投げてもらえると非常に助かります。</p>
-
 <p>自分も使って初日で2箇所もクラッシュにハマりましたが、原因を特定して<a href="https://github.com/collin80/SavvyCAN/issues/203">Issueを投げたり</a>、<a href="https://github.com/collin80/SavvyCAN/pull/204">PRを送ったり</a>したら1日もせずに修正を取り込んでくれました。</p>
-
 <h3 id="参考">参考</h3>
-
 <ul>
-<li>カーハッカーズハンドブック<br />
-<a href="https://www.amazon.co.jp/dp/4873118239">https://www.amazon.co.jp/dp/4873118239</a><br /></li>
-<li>はじめてのCAN/CAN FD<br />
+<li>カーハッカーズハンドブック<br>
+<a href="https://www.amazon.co.jp/dp/4873118239">https://www.amazon.co.jp/dp/4873118239</a></li>
+<li>はじめてのCAN/CAN FD<br>
 <a href="https://www.vector.com/jp/ja/know-how/beginners/beginners-cancan-fd-jp/">https://www.vector.com/jp/ja/know-how/beginners/beginners-cancan-fd-jp/</a></li>
-<li>SavvyCAN<br />
+<li>SavvyCAN<br>
 <a href="https://www.savvycan.com/">https://www.savvycan.com/</a></li>
 </ul>
-
-<hr />
-
+<hr>
 <p>次回は何をしよう・・・車が欲しい・・・・。</p>
 
         
@@ -676,7 +595,7 @@ $ make
 
           &nbsp;&bull;&nbsp;&copy;
           
-            2019
+            2020
           
 
           
@@ -686,7 +605,7 @@ $ make
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">
