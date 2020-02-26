@@ -66,7 +66,7 @@
   "headline": "ラテラルムーブメントとそれを阻むUACに関する調査",
   "description" : "ラテラルムーブメントを阻む、通称「リモートUAC」に関して調査しました。\n結果はまあそうだよねという感じになってしまいましたが、ここにメモします。\n",
   "inLanguage" : "en",
-  "wordCount":  202 ,
+  "wordCount":  206 ,
   "datePublished" : "2020-02-24T01:18:40",
   "dateModified" : "2020-02-24T01:18:40",
   "image" : "https:\/\/www.shutingrz.com\/",
@@ -336,7 +336,7 @@ if (!doNotTrack) {
 <p>ローカル管理者であるビルトインではないローカルユーザは、リモートUACが有効だと管理共有・リモート実行はできない。</p>
 </li>
 <li>
-<p>ローカル管理者であるビルトインなローカルユーザは、リモートUACが有効でも管理共有・リモート実行は<strong>できる</strong>。</p>
+<p>ローカル管理者であるビルトイン Administrator は、リモートUACが有効でも管理共有・リモート実行は<strong>できる</strong>。</p>
 </li>
 <li>
 <p>ローカル管理者であるドメインユーザは、リモートUACが有効でも管理共有・リモート実行は<strong>できる</strong>。</p>
@@ -372,7 +372,7 @@ if (!doNotTrack) {
 <td><strong>Accessible</strong></td>
 </tr>
 <tr>
-<td>ローカルユーザ (<strong>Built-in</strong> Administrators)</td>
+<td><strong>ビルトイン</strong> Administrator (Local Administrators)</td>
 <td><strong>Accessible</strong></td>
 <td><strong>Accessible</strong></td>
 </tr>
@@ -395,9 +395,9 @@ if (!doNotTrack) {
 <li>LocalAccountTokenFilterPolicy が 1</li>
 <li>EnableLUA が 0 (→UACそのものが無効)</li>
 </ul>
-<p>※4: 普通ならマシンがドメインに参加した時点で Domain Admins グループが Local Administrators に追加されるが、明示的にそれらを削除した場合。</p>
+<p>※4: 普通ならマシンがドメインに参加した時点で Domain Admins グループが Local Administrators に追加されるが、明示的にそれを削除した場合。</p>
 <h1 id="まとめ">まとめ</h1>
-<p>リモートUACはビルトインではない&quot;&ldquo;ローカルユーザ&quot;&ldquo;に対して攻撃を無効化できるだけで、ビルトインなローカルユーザ、そしてドメインユーザがローカル管理者であった場合は、リモートUACの効果がないことがわかります。</p>
+<p>リモートUACはビルトインではない&quot;ローカルユーザ&quot;に対して攻撃を無効化できるだけで、ビルトイン Administrator、そしてドメインユーザがローカル管理者であった場合は、リモートUACの効果がないことがわかります。</p>
 <p>よってセットアップ用に1つのドメインユーザが全端末のローカル管理者に設定されていた場合、そのユーザの認証情報を手に入れることができたらリモートUACがあってもラテラルムーブメントは可能です。</p>
 <!-- raw HTML omitted -->
 <p>なお Domain Adminsであれば無条件に管理共有・リモート実行が可能という話があるのは、マシンがドメインに参加したときにローカル Administrators に Domain Admins が追加されているからでしょう。<br>
