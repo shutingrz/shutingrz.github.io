@@ -311,7 +311,7 @@ if (!doNotTrack) {
         <p>しゅーとです。</p>
 <p>コインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変更されたこと、またそれによって第三者によるメールの不正取得が行われたと発表しました。</p>
 <p>プレスリリース(第一報)は以下です。</p>
-<p><a href="./https://corporate.coincheck.com/2020/06/02/97.html">当社利用のドメイン登録サービスにおける不正アクセスについて（第一報）</a></p>
+<p><a href="https://corporate.coincheck.com/2020/06/02/97.html">当社利用のドメイン登録サービスにおける不正アクセスについて（第一報）</a></p>
 <p>攻撃を受けた時刻が 5/31 0:05 で、検知時刻が 6/1 12:00 と攻撃に気付くまでの時間は1日であり、また対応完了まで2日足らずとのことで、検知・対応は非常に迅速だったと思います。</p>
 <p>今後第二報で詳細な内容が発表されると思いますが、プレスリリースから攻撃者がどのようにメールの不正取得を行ったのか、インターネット上の情報を用いて調査してみました。</p>
 <blockquote>
@@ -368,7 +368,7 @@ if (!doNotTrack) {
 <pre><code>Updated Date: 2020-06-01T20:52:53Z
 </code></pre>
 <h2 id="登録情報が侵害されたときの情報">登録情報が侵害されたときの情報</h2>
-<p><a href="./https://whoisrequest.com/history/">Domain history checker</a>を用いることで、coincheck.comの過去のwhois情報を取得することが出来ました。</p>
+<p><a href="https://whoisrequest.com/history/">Domain history checker</a>を用いることで、coincheck.comの過去のwhois情報を取得することが出来ました。</p>
 <p><img src="./whois_history.png" alt="whois_history"></p>
 <p>細かい時刻はわかりませんが、<strong>5/31 にネームサーバが変更されています</strong>。</p>
 <p>具体的にはAWSのネームサーバが削除され、代わりに正しいネームサーバの名前に似せた不正なネームサーバが登録されていることがわかります。</p>
@@ -487,7 +487,7 @@ coincheck.com.          86400   IN      MX      5 alt2.aspmx.l.google.com.
 <p>ただこの結果だけで、MXが侵害されていないと考えてはいけません。<br>
 侵害発生時は偽のMXレコードになっていた可能性があり、現在の偽応答は既に攻撃者によって正しいMXレコードであるかのように隠蔽されているかもしれないためです。</p>
 <p>ここで、過去の coincheck.com のDNSレコードを調べることにします。</p>
-<p><a href="./https://securitytrails.com/">SecurityTrails</a>という過去のDNSレコードを検索できるサービスで検索したところ、以下の奇妙なMXレコードが存在していることがわかりました。</p>
+<p><a href="https://securitytrails.com/">SecurityTrails</a>という過去のDNSレコードを検索できるサービスで検索したところ、以下の奇妙なMXレコードが存在していることがわかりました。</p>
 <ul>
 <li>mail.coincheck[.]com</li>
 </ul>
