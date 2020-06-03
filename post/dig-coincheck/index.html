@@ -77,9 +77,9 @@
   "headline": "コインチェックのドメインハイジャックの手法を調査した",
   "description" : "しゅーとです。\nコインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変更されたこと、またそれによって第三者によるメールの不正取得が行われたと発表しました。\nプレスリリース(第一報)は以下です。\n当社利用のドメイン登録サービスにおける不正アクセスについて（第一報）\n攻撃を受けた時刻が 5\/31 0:05 で、検知時刻が 6\/1 12:00 と攻撃に気付くまでの時間は1日であり、また対応完了まで2日足らずとのことで、検知・対応は非常に迅速だったと思います。\n今後第二報で詳細な内容が発表されると思いますが、プレスリリースから攻撃者がどのようにメールの不正取得を行ったのか、インターネット上の情報を用いて調査してみました。\n",
   "inLanguage" : "en",
-  "wordCount":  572 ,
-  "datePublished" : "2020-06-03T14:59:10",
-  "dateModified" : "2020-06-03T14:59:10",
+  "wordCount":  587 ,
+  "datePublished" : "2020-06-04T05:30:00",
+  "dateModified" : "2020-06-04T05:30:00",
   "image" : "https:\/\/www.shutingrz.com\/",
   "keywords" : [ "DNS, intelligence" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/dig-coincheck\/",
@@ -127,7 +127,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shooting!!!" />
 
-  <meta name="generator" content="Hugo 0.63.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -283,7 +283,7 @@ if (!doNotTrack) {
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on June 3, 2020
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 4, 2020
   
   
   
@@ -537,7 +537,18 @@ RCPT TOコマンドの動作から、宛先メールアドレスがcoincheck.com
 <p>　<!-- raw HTML omitted --></p>
 <ol>
 <li>
-<p>coincheck.comを管理している「お名前.com」のアカウント情報を取得？</p>
+<p><del>coincheck.comを管理している「お名前.com」のアカウント情報を取得？</del></p>
+<p><strong>(2020/06/04 05:30 追記)</strong><br>
+6月3日、お名前.com が以下のようなリリースを出しました。(一部引用)</p>
+<blockquote>
+<p><em>お名前.comをご利用のお客様の管理画面が不正にアクセスされ、ご登録いただいている情報が書き換えられるという事案が発生しました。</em></p>
+<p><em>これについて調査を行ったところ、悪意のある第三者が、当該お客様のIDと、「お名前.com Navi」における通信を改ざんできる不具合(※)を利用して、お客様のお名前.com会員情報(メールアドレス)を書き換えたことが判明しました。</em></p>
+<p><a href="https://www.onamae.com/news/domain/20200603_1/">お名前.com Naviで発生した事象につきまして</a></p>
+</blockquote>
+<p>どの顧客で発生したか明言はされていませんが、状況からコインチェックも含まれる可能性が高いです。<br>
+そのため、本脆弱性が起因となり、結果的にネームサーバが変更されたと考えられます。<br>
+<strong>(追記終わり)</strong><br>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 </li>
 <li>
 <p>正規のネームサーバに似せた不正なドメイン名を取得する</p>
@@ -546,10 +557,11 @@ RCPT TOコマンドの動作から、宛先メールアドレスがcoincheck.com
 <p>不正なドメイン名に紐付けたホストにてDNSサーバを設定・起動する</p>
 </li>
 <li>
-<p>お名前.comの設定画面にて、coincheck.comのネームサーバを偽ネームサーバに変更する</p>
-<p>この時点でドメインハイジャックに成功。
+<p>お名前.comの設定画面で coincheck.com のネームサーバを偽ネームサーバに変更する</p>
+<p>この時点でドメインハイジャックに成功。<br>
 この状態でコインチェック利用者がコインチェックにメールを送信するとき、<br>
 以下のステップで攻撃者にメールが送信される*。</p>
+<p>　</p>
 </li>
 <li>
 <p>利用者がメールを送信する<br>
@@ -559,7 +571,7 @@ MTAがコインチェックのメールサーバをキャッシュサーバに�
 <p>MTAが利用しているキャッシュサーバが名前解決をする</p>
 </li>
 <li>
-<p>不正なドメイン名に委任されているため、攻撃者の用意した偽ネームサーバが応答をする</p>
+<p>不正なドメイン名に委任されているため、攻撃者の用意した偽ネームサーバが応答する</p>
 </li>
 <li>
 <p>偽ネームサーバが、攻撃者が用意した偽メールサーバの情報を応答する</p>
@@ -791,7 +803,7 @@ MTAがコインチェックのメールサーバをキャッシュサーバに�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.63.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.68.3</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
 	<p class="credits theme-by text-muted">
