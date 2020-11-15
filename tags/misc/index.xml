@@ -5,6 +5,8 @@
     <link>https://www.shutingrz.com/tags/misc/</link>
     <description>Recent content in misc on Shooting!!!</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright>
     <lastBuildDate>Sat, 27 Apr 2019 02:37:37 +0900</lastBuildDate>
     
 	<atom:link href="https://www.shutingrz.com/tags/misc/index.xml" rel="self" type="application/rss+xml" />
@@ -16,8 +18,7 @@
       <pubDate>Sat, 27 Apr 2019 02:37:37 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/first-article/</guid>
-      <description>今までのポートフォリオサイトが適当すぎたのと、ブログははてなブログを使ってたので
-ポートフォリオ兼ブログとしてリニューアルしました。</description>
+      <description>今までのポートフォリオサイトが適当すぎたのと、ブログははてなブログを使ってたので ポートフォリオ兼ブログとしてリニューアルしました。</description>
     </item>
     
   </channel>
