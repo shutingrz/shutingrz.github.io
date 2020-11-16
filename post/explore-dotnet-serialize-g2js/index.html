@@ -59,7 +59,7 @@
   "headline": "GadgetToJScript を利用した Office VBA のAMSI バイパスと原理",
   "description" : "しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マ",
   "inLanguage" : "en",
-  "wordCount":  9947 ,
+  "wordCount":  9944 ,
   "datePublished" : "2020-11-16T18:41:10",
   "dateModified" : "2020-11-16T18:41:10",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -605,7 +605,7 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
 </code></pre></div><p>ただし生成したスクリプトをそのまま動かすと Windows Defender によって検知されます。そこで独自にカスタマイズした難読化ツールで難読化し、実行してみます。</p>
 <blockquote>
-<p>難読化ツールの詳細については詳細を控えます。</p>
+<p>難読化ツールについては詳細を控えます。</p>
 </blockquote>
 <p><img src="images/g2js_com_evation.png" alt="g2js_com_evation"></p>
 <p>マクロを有効にすると、.NET プログラムが実行され、親プロセスが explorer.exe であるメモ帳が起動しました。Office プロセスのメモリ上に .NET プログラムが読み込まれていることが確認できます。</p>
