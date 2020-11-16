@@ -541,9 +541,7 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <h4 id="なぜ-foregroundbrush-">なぜ ForegroundBrush ？</h4>
 <p>TextFormattingRunProperties を使ったデシリアライズは、なぜ ForegroundBrush を利用するのでしょうか？他のプロパティではダメなのでしょうか？この疑問を解決する記述がどこにも見当たらなかったため、私は TextFormattingRunProperties の実装を確認することにしました。</p>
 <p>WinDbg でコンパイルした実行ファイルをデバッグすると、TextFormattingRunProperties は <code>Microsoft.PowerShell.Editor.dll</code> で実装されていることがわかります。次に dll のファイルパスを調べたところ、私の環境では以下に位置していました。</p>
-<ul>
-<li>&ldquo;C:\Windows\Microsoft.NET\assembly\GAC_MSIL\Microsoft.PowerShell.Editor\v4.0_3.0.0.0__31bf3856ad364e35\Microsoft.PowerShell.Editor.dll&rdquo;</li>
-</ul>
+<p><code>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\Microsoft.PowerShell.Editor\v4.0_3.0.0.0__31bf3856ad364e35\Microsoft.PowerShell.Editor.dll</code></p>
 <p>これを dnSpy でデコンパイルし、該当箇所を探します。</p>
 <p><img src="images/dec_TextFormattingRunProperties.png" alt="dec_TextFormattingRunProperties"></p>
 <p>コンストラクタを見れば一目瞭然でした。コンストラクタのプロパティの初期化が ForegroundBrush から始まっています。コンストラクタ実行時に真っ先に ForegroundBrush のデシアライズが行われますが、そこで xaml で仕込んだ <code>Process.Start</code> が実行されます。当然 Brush クラスの正しいオブジェクトではないので例外が発生しますが、例外発生前に Process.Start は実行されているので問題ありません。</p>
