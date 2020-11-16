@@ -59,7 +59,7 @@
   "headline": "GadgetToJScript を利用した Office VBA のAMSI バイパスと原理",
   "description" : "しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マ",
   "inLanguage" : "en",
-  "wordCount":  9943 ,
+  "wordCount":  9945 ,
   "datePublished" : "2020-11-16T18:41:10",
   "dateModified" : "2020-11-16T18:41:10",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -257,7 +257,7 @@ CreateObject(&quot;WScript.Shell&quot;).Exec &quot;notepad.exe&quot;
 <p><img src="images/wshshell_powershell.png" alt="wshshell_powershell"></p>
 <p><img src="images/net_from_ps_from_wsh.png" alt="net_from_ps_from_wsh"></p>
 <p>この方法であれば、PowerShell 側で検知回避をすることで何の障害もなく .NET プログラムを読み込み可能です。</p>
-<p>Emotet ドロッパーをはじめとした Office マクロを悪用したマルウェアは、だいたいこの手法を使ってマルウェアをダウンロードし実行しています。（コードを難読化しているくらいです）</p>
+<p>Emotet ダウンローダーをはじめとした Office マクロを悪用したマルウェアは、だいたいこの手法を使ってマルウェアをダウンロードし実行しています。（コードを難読化しているくらいです）</p>
 <p>じゃあそれ使えば解決ではないか、という声が聞こえてきそうです。はい。現時点の世界のセキュリティ対策の主流ではこれでいけます。ただ PowerShell プロセスの生成を行っているので次世代の EDR 製品にはかなりの確率で検知されます。</p>
 <h3 id="wmi-経由">WMI 経由</h3>
 <p>オブジェクトを生成して利用するほかに、既にコンピュータで生成されている WMI の Win32_Process オブジェクトを呼び出してプログラムを実行する方法があります。</p>
