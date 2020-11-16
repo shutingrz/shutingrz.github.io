@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright>
-    <lastBuildDate>Thu, 04 Jun 2020 20:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2020 18:41:10 +0900</lastBuildDate>
     
 	<atom:link href="https://www.shutingrz.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GadgetToJScript を利用した Office VBA のAMSI バイパスと原理</title>
+      <link>https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/</link>
+      <pubDate>Mon, 16 Nov 2020 18:41:10 +0900</pubDate>
+      
+      <guid>https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/</guid>
+      <description>しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マ</description>
+    </item>
     
     <item>
       <title>コインチェックのドメインハイジャックの手法を調査した</title>
