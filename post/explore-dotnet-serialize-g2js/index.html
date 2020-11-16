@@ -59,7 +59,7 @@
   "headline": "GadgetToJScript を利用した Office VBA のAMSI バイパスと原理",
   "description" : "しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マ",
   "inLanguage" : "en",
-  "wordCount":  9945 ,
+  "wordCount":  9939 ,
   "datePublished" : "2020-11-16T18:41:10",
   "dateModified" : "2020-11-16T18:41:10",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -636,11 +636,10 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </li>
 </ul>
 <p>これらのメソッド呼び出しは PowerShell のように簡単に難読化できるものではありません。そのため、文字列や変数名のみの簡易的な難読化であれば、以下のようにメソッド名が残ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Set</span> <span class="n">pmfrxyltsrzjjj</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="n">fnokbgwzdbqa</span><span class="p">(</span><span class="s">&#34;4c45570d744a4d474c54500d62405760575b&#34;</span><span class="p">))</span>
-<span class="n">pmfrxyltsrzjjj</span><span class="p">.</span><span class="n">ManifestText</span> <span class="o">=</span> <span class="n">djsktksnmbak</span>
+<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="n">pmfrxyltsrzjjj</span><span class="p">.</span><span class="n">ManifestText</span> <span class="o">=</span> <span class="n">djsktksnmbak</span>
 <span class="n">lzadypxlktswisq</span><span class="p">.</span><span class="n">WriteByte</span> <span class="n">i</span>
 <span class="k">Set</span> <span class="n">gmjxujigkjmudfmhkfzb</span> <span class="o">=</span> <span class="n">xaobbncueaofydar</span><span class="p">.</span><span class="n">Deserialize_2</span><span class="p">(</span><span class="n">lzadypxlktswisq</span><span class="p">)</span>
-</code></pre></div><p>単体で利用した場合にはともかく、1つのVBA内でこれら4つが同時に利用されるパターンは .NET プログラムのデシアライズを意図していると判断できるため、検知に有用と考えます。</p>
+</code></pre></div><p>単体で利用した場合にはともかく、1つの VBA 内でこれら 3 つが同時に利用されるパターンは .NET プログラムのデシアライズを意図していると判断できるため、検知に有用と考えます。</p>
 <p>また、Microsoft がこれらのメソッド名について AMSI トリガーを実装してしまえば、攻撃者側が以下のリフレクション手法を使っても動的解析で検知できる可能性が高いと考えられます。</p>
 <h3 id="リフレクションによる難読化について">リフレクションによる難読化について</h3>
 <p>VBA にも貧弱ながらリフレクションが存在し、より高度な難読化が可能です。 <a href="https://docs.microsoft.com/ja-jp/office/vba/language/reference/user-interface-help/callbyname-function">CallByName</a> です。例えば <code>fmt_1.Deserialize_2(stm_1)</code> についてはリフレクションを用いることで以下のように記載可能です。</p>
