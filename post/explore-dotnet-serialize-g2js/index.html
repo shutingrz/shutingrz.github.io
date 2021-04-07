@@ -59,7 +59,7 @@
   "headline": "GadgetToJScript を利用した Office VBA のAMSI バイパスと原理",
   "description" : "しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マ",
   "inLanguage" : "en",
-  "wordCount":  9974 ,
+  "wordCount":  9973 ,
   "datePublished" : "2020-11-16T18:41:10",
   "dateModified" : "2020-11-16T18:41:10",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -609,7 +609,7 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </blockquote>
 <p><img src="images/g2js_com_evation.png" alt="g2js_com_evation"></p>
 <p>マクロを有効にすると、.NET プログラムが実行され、親プロセスが explorer.exe であるメモ帳が起動しました。Office プロセスのメモリ上に .NET プログラムが読み込まれていることが確認できます。</p>
-<p>以上のように Windows Defender および クラウド保護を有効にした状態、かつ Exploit Protection による子プロセス不許可が有効な状態であっても、全てをバイパスして子プロセスを生成することが可能です。</p>
+<p>以上のように Windows Defender および クラウド保護を有効にした状態、かつ Exploit Protection による子プロセス不許可が有効な状態であっても、全てをバイパスしてプロセスを生成することが可能です。</p>
 <h1 id="対策">対策</h1>
 <p>G2JS のデシリアライズ手法を用いて .NET プログラムを読み込むことで、Office プロセス内で VBA の領域を離れて侵害が可能であることを実証しました。</p>
 <p>この手法はあくまで VBA の仕様内で実現されるため、<strong>マクロを無効にする以外の有効な防止策はありません</strong>。</p>
