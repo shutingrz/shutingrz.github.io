@@ -59,9 +59,9 @@
   "headline": "検知回避の手法 - 実行ファイル",
   "description" : "しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blu",
   "inLanguage" : "en",
-  "wordCount":  12893 ,
-  "datePublished" : "2021-04-08T00:00:02",
-  "dateModified" : "2021-04-08T00:00:02",
+  "wordCount":  12719 ,
+  "datePublished" : "2021-04-08T00:00:04",
+  "dateModified" : "2021-04-08T00:00:04",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
   "keywords" : [ "pentest, bypass" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/avoid-detection-dotnet\/",
@@ -563,16 +563,13 @@ ret
 <p>ConfuserEx で難読化。難読化設定はrenameだけで問題ありません。</p>
 <p><img src="images/donutest_file_notdetect.png" alt="donutest_file_notdetect"></p>
 <p>検知しなくなりました。バイナリを例外フォルダから移動してもよさそうですが・・・？</p>
-<h3 id="クラウド提供の保護の検知回避">「クラウド提供の保護」の検知回避</h3>
+<h2 id="クラウド提供の保護の検知回避">「クラウド提供の保護」の検知回避</h2>
 <p>次に「クラウド提供の保護」と「サンプルの自動送信」を有効にしてファイルを移動し、実行してみましょう。</p>
 <p><img src="images/donuttest_cloud_detect.png" alt="donuttest_cloud_detect"></p>
 <p>検知されてしまいました。「クラウド保護」はプログラム実行時にキックされ、実行前にファイルをMicrosoftのクラウドに送信し、マルウェアスキャンが行われます。クラウド上のスキャンエンジンで問題ないと判断された場合はそのまま実行されますが、このように検知された場合は「指定されたプログラムは実行できません。」というエラーが発生します。それと同時にWindows Defenderによる通知がなされます。</p>
 <p>さらにクラウド保護で検知されたファイルはエンジンでシグネチャが作成され、<strong>ファイルに含まれていた文字列、つまりシェルコードなども次回から文字列単体で検知するようになります</strong>。いったん検知された場合は、しばらくの間、問答無用で検知されるようになります（一定期間たてば単なる文字列は検知対象外に戻る模様）。</p>
 <p>よって、<strong>「クラウド保護」および「ファイル送信」の検知テストは基本的に検知テスト用バイナリで行うべき</strong>で、本番で使うリソースは大事にとっておいた方がいいです。</p>
 <p>注意点を書いたところで、検知回避を試してみましょう。上のとおり、今までのシェルコードは検知されてしまうので、Base64シェルコードの部分は検知回避ができることを確認するまでは適当なBase64文字列にしておけばいいです。</p>
-<blockquote>
-<p>ネタバレですが2020/10現在Donutシェルコードは検知されないのでBase64シェルコード自体の検知テストは不要です。</p>
-</blockquote>
 <p>さて、クラウド保護はクラウド上にエンジンがある関係上ブラックボックスであり、検知回避するためには少し泥臭いことをする必要があります。まずコードを全面的にコメントアウトしてから少しずつコメントインしてクラウドスキャンを行い、検知箇所を特定する作業です。</p>
 <p>というわけで思い切って大部分をコメントアウトしました。実際に使われているコードだけを抜き出すと以下になります。</p>
 <p><img src="images/confuser_cloud_detect.png" alt="confuser_cloud_detect"></p>
@@ -584,15 +581,15 @@ ret
 <p>このDllImportの参照は、P/Invokeと呼ばれる参照方法です。D/InvokeやネイティブAPIなど別の呼び出しを使う方法もあります（詳細は割愛）。</p>
 </blockquote>
 <p>ではこれ以上どうすればいいでしょうか。どうしようもない？いいえ、まだ減らすポイントがあります。ConfuserExです。</p>
-<h4 id="confuserexの罠">ConfuserExの罠</h4>
+<h3 id="confuserexの罠">ConfuserExの罠</h3>
 <p>ConfuserEx は既存コードの特徴の痕跡を手っ取り早く消し去るのに有用ですが、継続した利用には注意が必要です。</p>
 <p>というのも攻撃者やRed TeamerがConfuserExを利用したバイナリで侵害を行いそれをアンチウイルスソフトに検知された場合、Windows Defenderの学習によって今後クラウド保護機能でConfuserExを利用したバイナリが検知されるようになるからです。私が検証した限り、上記の単純なAPI定義コード2つ + ConfuserEx 1.4.1 の組み合わせは、クラウド保護では「Trojan:Win32/Wacatac.C!ml」として検知します。</p>
 <p>ConfuserExを通さずに検知テストしてみてください。そう、このコードは<strong>ConfuserEx を使わなければクラウド保護では検知しなくなるのです。</strong></p>
 <p>このことからConfuserExは銀の弾丸ではないとわかります。アンチウイルスソフトといたちごっこを続けるのもいいですが、可能ならConfuserExを使わずに自分でオリジナルのカスタムローダを作成して利用するのが望ましいでしょう。ローダさえ検知回避できればそこから先、AMSIバイパスをすればいいだけですから。</p>
-<h4 id="confuserexを使わずdonuttestの痕跡を削除する">ConfuserExを使わずDonutTestの痕跡を削除する</h4>
+<h3 id="confuserexを使わずdonuttestの痕跡を削除する">ConfuserExを使わずDonutTestの痕跡を削除する</h3>
 <p>基本に立ち返ってコード上からDonutTestの痕跡を削除しましょう。記事の途中で行ったアセンブリ情報の変更のほか、基本的にはメソッド名やクラス名などの名前情報の変更が必要です。.NET プログラムはコンパイルでCILに変換されたあとでもこれらの名前情報は残ります。よってリネームを行って完全に痕跡を削除します。</p>
 <p>これでだいたいクラウド保護の検知は回避できます。ただダメ押しでもうひとつ工夫してみましょう。</p>
-<h4 id="シェルコードを暗号化する">シェルコードを暗号化する</h4>
+<h3 id="シェルコードを暗号化する">シェルコードを暗号化する</h3>
 <p>今回はシェルコードを事前にXORで暗号化することにしました。シェルコードをXORで暗号化するテクニックは簡単な割にファイル検知エンジンにはとても有効なので覚えておくと良いでしょう。これなら万が一検知されても鍵を変更すればシェルコードを使いまわせるようになります。</p>
 <div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$key</span> <span class="p">=</span> <span class="n">0x64</span>
 <span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$filename</span> <span class="p">=</span> <span class="s2">&#34;loader.bin&#34;</span>
@@ -604,7 +601,9 @@ ret
 <p><img src="images/donuttest_cloud_notdetect.png" alt="donuttest_cloud_notdetect"></p>
 <p><strong>実行できました！</strong></p>
 <p>クラウド保護を含んだWindows Defenderを全て検知回避してGruntをアクティベーションできました。</p>
-<h3 id="検知">検知</h3>
+<h1 id="まとめ">まとめ</h1>
+<p>今回はCovenant Stagerの実行ファイルを例にしてWindows Defenderのファイル検知回避および 簡単なAMSIバイパスについて説明しました。</p>
+<h3 id="検知について">検知について</h3>
 <p>今回は実行ファイルであるローダからメモ帳のプロセスにCreateRemoteThreadを使って .NET プログラムをインジェクションしました。<br>
 CreateRemoteThread は通常のアプリケーションではめったに使われないので、ふるまい検知の点でみると非常に目立ち、EDR製品に検知される可能性が高いです。</p>
 <p>また、メモ帳のプロセスでStagerを動作させるのも不審です。理由はシンプルで、Stagerは .NET アセンブリであり、アンマネージドコードのプログラムであるメモ帳が途中でCLRを読み込むのは滅多にないことだからです。&ldquo;CLR Injection&quot;は、SysmonやETWを利用して検出可能であることをDonutの製作者であるTheWover氏が指摘しています。</p>
@@ -613,14 +612,11 @@ CreateRemoteThread は通常のアプリケーションではめったに使わ�
 <p><a href="https://thewover.github.io/Introducing-Donut/">https://thewover.github.io/Introducing-Donut/</a></p>
 </blockquote>
 <p>興味のある方は引用元のリンクを確認してください。</p>
-<h1 id="まとめ">まとめ</h1>
-<p>今回はCovenant Stagerの実行ファイルを例にしてWindows Defenderのファイル検知回避および 簡単なAMSIバイパスについて学びました。</p>
-<h4 id="heading"></h4>
+<h3 id="その他">その他</h3>
 <p>巷のペネトレーションテストに関する書籍では、基本的なペネトレーションテストツールの使い方が記載されていても、アンチウイルスソフト検知回避を行う手法をちゃんと書いてくれることは多くありません。<br>
 その理由は、一般的な攻撃手法と異なり、OSやアンチウイルスソフトの更新で回避できなくなることがあるためだと考えられます。<br>
 当然ながら検知回避手法もアンチウイルスソフトの進化に合わせて洗練されていきますが、変化が速いのでまとまった記事になることが少ないです。</p>
 <p>私自身、研究のために色々なWebサイトを回り2020年時点で使えるとされる手法を学びましたが、結構大変だったので後進のためにここに残しておきました。</p>
-<p>実際のRed Teamingではinitial accessで実行ファイルをターゲット環境に置いて実行させることは基本的にないようです。ただどの手法であってもアンチウイルスのファイル検知回避の考え方は共通なので、覚えておいて損はないと思います。</p>
 
                     </div>
                     
