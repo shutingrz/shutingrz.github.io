@@ -59,7 +59,7 @@
   "headline": "検知回避の手法 - 実行ファイル",
   "description" : "しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blu",
   "inLanguage" : "en",
-  "wordCount":  13039 ,
+  "wordCount":  12893 ,
   "datePublished" : "2021-04-08T00:00:01",
   "dateModified" : "2021-04-08T00:00:01",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -200,7 +200,7 @@
                                     <i class="far fa-star"></i>
                                     Apr 8, 2021
                                     <i class="far fa-clock clock"></i>
-                                    27 min read
+                                    26 min read
                                 </span>					
                             </div>
                         </div>			
@@ -530,13 +530,10 @@ ret
 <h2 id="ローダ">ローダ</h2>
 <p>次にローダを書きます。Donutには .NET 製のローダであるDonutTestが同梱されています。</p>
 <blockquote>
-<p>本来なら.NET製ではなくアンマネージドコードでローダを書くのがいいのですが、記事が長くなるので今回は割愛します。</p>
+<p>本来なら.NET製ではなくアンマネージドコードでローダを書く方がいいのですが、記事が長くなるので今回は割愛します。</p>
 </blockquote>
 <p>ローダは仕組み上コンパイルしたら間違いなく検知されそうなコードなので、まずはDonutフォルダをアンチウイルスソフトの例外に入れておきましょう。</p>
 <p>DonutTest はコード内にBaset64エンコード化されたシェルコードを記載することで、その変数をデコードして、コマンドライン引数で指定したプロセスのメモリ上にPEインジェクションします。インジェクション後、CreateRemoteThread() を使って該当のルーチンを呼び出します。</p>
-<blockquote>
-<p>今回はローカルプロセスで呼び出してもいいのですが(CreateThread)、サンプルコードをもとに進めます。</p>
-</blockquote>
 <p><img src="images/donuttest.png" alt="donuttest"></p>
 <p>Donut で出力したシェルコードは、デフォルトではx86/x64両対応のコードになります。よってx64変数、x86変数で同じシェルコードを利用します。</p>
 <p>まずはシェルコードをBase64エンコードします。PowerShellでエンコード化する場合は以下。クリップボードにコピーされます。</p>
@@ -607,9 +604,6 @@ ret
 <p><img src="images/donuttest_cloud_notdetect.png" alt="donuttest_cloud_notdetect"></p>
 <p><strong>実行できました！</strong></p>
 <p>クラウド保護を含んだWindows Defenderを全て検知回避してGruntをアクティベーションできました。</p>
-<blockquote>
-<p>今回はXORの鍵は1バイト固定でしたが、クラウド保護の検知エンジンを考えるなら、バイナリを生成するたびに鍵をランダムに差し替えられるような仕組みを考えた方が良いです。(自動化の観点)</p>
-</blockquote>
 <h3 id="検知">検知</h3>
 <p>今回は実行ファイルであるローダからメモ帳のプロセスにCreateRemoteThreadを使って .NET プログラムをインジェクションしました。<br>
 CreateRemoteThread は通常のアプリケーションではめったに使われないので、ふるまい検知の点でみると非常に目立ち、EDR製品に検知される可能性が高いです。</p>
