@@ -59,9 +59,9 @@
   "headline": "検知回避の手法 - 実行ファイル",
   "description" : "しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blu",
   "inLanguage" : "en",
-  "wordCount":  13121 ,
-  "datePublished" : "2021-04-08T00:00:00",
-  "dateModified" : "2021-04-08T00:00:00",
+  "wordCount":  13039 ,
+  "datePublished" : "2021-04-08T00:00:01",
+  "dateModified" : "2021-04-08T00:00:01",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
   "keywords" : [ "pentest, bypass" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/avoid-detection-dotnet\/",
@@ -234,12 +234,8 @@
                     <div class="article-post">
                         <p>しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。</p>
 <p>ペネトレーションテストに携わりたい方だけではなく、Blue Teamの方もアンチウイルスソフト単体の限界を知る意味で有用と思います。</p>
-<p>.NETプログラムの例として、セットアップが簡単なC2フレームワークである、<a href="https://github.com/cobbr/Covenant">Covenant</a> の検知回避をゴールに説明していきます。</p>
-<blockquote>
-<p>この記事はあくまで検知回避の1つの手法であり、他にも様々な手法があることを留意してください。</p>
-</blockquote>
-<hr>
-<p>Covenant はOSSのC2フレームワークです。エージェントであるCovenant Gruntは.NETプログラムですが、OSSであるためにアンチウイルスベンダーに検証・解析されシグネチャが作成されています。</p>
+<p>.NETプログラムの例として、セットアップが簡単なC2フレームワークである、<a href="https://github.com/cobbr/Covenant">Covenant</a> の検知回避をゴールに説明します。</p>
+<p>エージェントであるCovenant Gruntは.NETプログラムですが、OSSであるためにアンチウイルスベンダーに検証・解析されシグネチャが作成されています。</p>
 <p>またCovenantはStagerとして様々なLauncherが用意されており、その中に実行ファイルであるBinary Launcherが存在します。ただこのバイナリは必ずアンチウイルスソフトによって検知されます。</p>
 <p><img src="images/raw_binary_def.png" alt="raw_binary_def"></p>
 <blockquote>
@@ -250,8 +246,8 @@
 <p>今回は、実行ファイルの検知回避、AMSIバイパスに関してです。</p>
 <h3 id="留意事項">留意事項</h3>
 <ul>
-<li>本記事はエージェントの確立までの検知回避にのみフォーカスを当てて解説をしています。アンチウイルスソフトの検知回避が目的であり、EDRの検知回避は範囲外です。</li>
-<li>未加工のStagerをダウンロードする関係上、一時的にDownloadフォルダをWindows Defenderの例外フォルダに設定してください。検知テストはファイルを別フォルダに移動するなどして行うと楽です。</li>
+<li>本記事はエージェントの確立までのアンチウイルスソフトの検知回避にのみフォーカスを当てて解説をしています。EDRの検知回避は範囲外です。</li>
+<li>未加工のStagerをダウンロードする関係上、DownloadフォルダをWindows Defenderの例外フォルダに設定してください。検知テストはファイルを別フォルダに移動するなどして行うと楽です。</li>
 <li><strong>最初のほうはWindows Defenderの「クラウド提供の保護」および「サンプルの自動送信」をオフにしてください</strong>。この機能は一度検知されてしまうと、本機能をオフにしてもリアルタイムスキャンで同じバイナリを検知するようになってしまいます。後半ではこれらをオンにしたうえで検知回避をします。</li>
 </ul>
 <h2 id="オリジナルバイナリの検知内容の確認">オリジナルバイナリの検知内容の確認</h2>
