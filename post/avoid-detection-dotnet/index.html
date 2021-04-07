@@ -59,9 +59,9 @@
   "headline": "検知回避の手法 - 実行ファイル",
   "description" : "しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blu",
   "inLanguage" : "en",
-  "wordCount":  12719 ,
-  "datePublished" : "2021-04-08T00:00:04",
-  "dateModified" : "2021-04-08T00:00:04",
+  "wordCount":  12647 ,
+  "datePublished" : "2021-04-08T00:00:05",
+  "dateModified" : "2021-04-08T00:00:05",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
   "keywords" : [ "pentest, bypass" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/avoid-detection-dotnet\/",
@@ -242,8 +242,7 @@
 <p>Stagerは少し処理するだけで簡単に検知されなくなるよ、という意見が複数のブログで散見されますが、現在のWindows Defenderのファイル検知は難読化ツールを通すだけではクラウド保護によって検知されます。アンチウイルスや検知回避はいたちごっこが激しく、すぐに陳腐化してしまうのです。そう、あなたが見ているこの記事も。</p>
 </blockquote>
 <p>せっかくRed TeamingでCovenantを使うとしても、Windows Defenderがオフの環境でないと使えませんと顧客に説明するのは嫌ですよね？</p>
-<p>ということで、Covenantを例としていくつか存在する古今の検知回避手法を紹介しつつ、2020年現在のRed Teamingで用いられている、安全にエージェントを活動させる手法を紹介します。</p>
-<p>今回は、実行ファイルの検知回避、AMSIバイパスに関してです。</p>
+<p>これを読めば、少なくとも顧客にWindows Defenderをオフにしてもらわなくても済むようになります。</p>
 <h3 id="留意事項">留意事項</h3>
 <ul>
 <li>本記事はエージェントの確立までのアンチウイルスソフトの検知回避にのみフォーカスを当てて解説をしています。EDRの検知回避は範囲外です。</li>
@@ -267,7 +266,7 @@
 </blockquote>
 <p>hexからわかるとおり、バイナリに含まれる文字列で検知されていそうです。Covenantは .NET 製であるため、逆コンパイルが可能です。逆コンパイラであるdnSpyで見ると、いかにも検知されそうなものがたくさんバイナリに含まれていることがわかります。</p>
 <p><img src="images/dnSpy_raw.png" alt="dnSpy_raw"></p>
-<h3 id="confuserexでstageを難読化">ConfuserExでStageを難読化？</h3>
+<h3 id="confuserexでstagerを難読化">ConfuserExでStagerを難読化？</h3>
 <p>GruntのImplantおよびLauncherの画面でStagerのコードを律儀に変えてもいいですが、手動のリネームで検知回避をしようとすると最初からなかなかの労力がかかります。</p>
 <p>そういうときに、難読化ツールの <a href="https://github.com/mkaring/ConfuserEx">ConfuserEx</a> を用いて.NET バイナリを難読化するのが選択肢に入ります。（使い方は割愛。）</p>
 <blockquote>
