@@ -59,7 +59,7 @@
   "headline": "フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ",
   "description" : "しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞い",
   "inLanguage" : "en",
-  "wordCount":  14517 ,
+  "wordCount":  14546 ,
   "datePublished" : "2022-03-07T03:00:00",
   "dateModified" : "2022-03-07T03:00:00",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -213,7 +213,7 @@
                                     <i class="far fa-star"></i>
                                     Mar 7, 2022
                                     <i class="far fa-clock clock"></i>
-                                    29 min read
+                                    30 min read
                                 </span>					
                             </div>
                         </div>			
@@ -292,6 +292,7 @@
                         <p>しゅーと(<a href="https://twitter.com/shutingrz">@shutingrz</a>)です。久しぶりの投稿です。</p>
 <p>皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？フォールトインジェクションはハードウェアセキュリティ分野におけるサイドチャネル攻撃手法のひとつです。今までこの攻撃を試すには高価な機材が必要でハードルが高いものでした。しかし2020年に<strong>nRF52</strong>という世界中で使われるマイコンにおいてフォールトインジェクションが可能な脆弱性が発見され、誰でも容易に検証ができるようになりました。nRF52は1000円ちょっとで入手でき、攻撃のために特殊な機材を必要としません。</p>
 <p>そこで皆さんにフォールトインジェクションという面白い攻撃手法を共有するために、攻撃成功までの道筋を教育資料として使えるように作成しました。頑張って書いたのでぜひ読んでください。</p>
+<p><strong>※検証は自分自身が所有する機器に対してのみ行ってください。</strong></p>
 <h1 id="voltage-fault-injectionとは">Voltage Fault Injectionとは</h1>
 <p>Voltage Fault Injectionとは、動作している機器の特定のタイミングでCPU電圧を変化させることで機器に誤動作（グリッチ）を引き起こさせる手法です。Voltage Glitch(電圧グリッチ)とも呼ばれます。フォールトインジェクションには今回行う電圧グリッチのほかにクロック、電磁などの非侵襲型、レーザー、ニードルなどの侵襲型があります。</p>
 <p>CPUがグリッチされると、命令がスキップされて本来到達し得ないコードに到達し実行される可能性があります。下記はif文の命令のタイミングで電圧グリッチを行った場合の処理の流れです。</p>
@@ -360,8 +361,8 @@
 <h1 id="正常系の確認">正常系の確認</h1>
 <p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
 <div class="accordion">
-  <input id="id-539841276" class="toggle" type="checkbox">
-  <label class="title" for="id-539841276">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-749861352" class="toggle" type="checkbox">
+  <label class="title" for="id-749861352">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
 <p>今回は次のコードを用いました。</p>
@@ -661,8 +662,8 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="accordion">
-  <input id="id-285974163" class="toggle" type="checkbox">
-  <label class="title" for="id-285974163">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-694532817" class="toggle" type="checkbox">
+  <label class="title" for="id-694532817">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
 <p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
