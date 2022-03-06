@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.68.3" />
+	<meta name="generator" content="Hugo 0.94.0-DEV" />
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -80,29 +80,42 @@
 
 <meta property="og:title" content="コインチェックのドメインハイジャックの手法を調査した" />
 <meta property="og:description" content="しゅーとです。 コインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変">
-<meta property="og:image" content="https://www.shutingrz.com/post/dig-coincheck/coincheck-image/logo.png" />
+
+
+
+
+<meta property="og:image" content="https://www.shutingrz.com/post/dig-coincheck/cover.png" />
+
 <meta property="og:url" content="https://www.shutingrz.com/post/dig-coincheck/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="コインチェックのドメインハイジャックの手法を調査した" />
   <meta name="twitter:description" content="しゅーとです。 コインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変">
-  <meta name="twitter:image" content="https://www.shutingrz.com/post/dig-coincheck/coincheck-image/logo.png" />
+
+
+
+  <meta name="twitter:image" content="https://www.shutingrz.com/post/dig-coincheck/cover.png" />
+
   <meta name="twitter:card" content="summary" /> 
-	
 
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-	<link href="/css/medium.css" rel="stylesheet">
-	<link href="/css/additional.css" rel="stylesheet">
+
+	
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
+
+	
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.569f3996ca35a233f4c0bd5be50243eac6dc4238f8a2cc79fc5231c99323b016.css" integrity="sha256-Vp85lso1ojP0wL1b5QJD6sbcQjj4osx5/FIxyZMjsBY=">
 
 	
 	
+	<link rel="stylesheet" href="/css/additional.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
@@ -206,32 +219,21 @@
                         </div>			
                         	
                         
-                              
+                                                
                         
                         <h1 class="posttitle">コインチェックのドメインハイジャックの手法を調査した</h1> 
-                        
-                        <div class="after-post-tags">
-                            <ul class="tags">
-                            
-                            <li>
-                            <a href="/tags/dns">DNS</a>
-                            </li>
-                            
-                            <li>
-                            <a href="/tags/intelligence">intelligence</a>
-                            </li>
-                            
-                            </ul>
-                        </div>
                     </div>
 
                     
-                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/dig-coincheck/coincheck-image/logo.png" alt="thumbnail for this post">
+                    
+                    
+                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/dig-coincheck/cover.png" alt="thumbnail for this post">
                     
                     
 
                     
                     <div class="article-post">
+                        
                         <p>しゅーとです。</p>
 <p>コインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変更されたこと、またそれによって第三者によるメールの不正取得が行われたと発表しました。</p>
 <p>プレスリリース(第一報)は以下です。</p>
@@ -255,7 +257,7 @@
 <h1 id="不正調査開始">不正調査開始</h1>
 <h2 id="whoisの確認">whoisの確認</h2>
 <p>プレスリリースで、ドメイン登録情報が変更されたと記載があります。whoisにはネームサーバの情報が記載されているため、whois情報を調べます。</p>
-<pre><code>$ whois coincheck.com
+<pre tabindex="0"><code>$ whois coincheck.com
    Domain Name: COINCHECK.COM
    Registry Domain ID: 80933535_DOMAIN_COM-VRSN
    Registrar WHOIS Server: whois.discount-domain.com
@@ -297,10 +299,10 @@
 <p>2020年6月1日20時52分頃にドメイン登録情報の修正を実施しており、現時点でお客様の資産に影響はございません。</p>
 </blockquote>
 <p>また、上記のwhoisを確認すると、Updated Dateから確かにその時間であるとわかります。</p>
-<pre><code>Updated Date: 2020-06-01T20:52:53Z
+<pre tabindex="0"><code>Updated Date: 2020-06-01T20:52:53Z
 </code></pre><h2 id="登録情報が侵害されたときの情報">登録情報が侵害されたときの情報</h2>
 <p><a href="https://whoisrequest.com/history/">Domain history checker</a>を用いることで、coincheck.comの過去のwhois情報を取得することが出来ました。</p>
-<p><img src="./whois_history.png" alt="whois_history"></p>
+<p><img src="./whois_history.png" alt="whois_history" loading="lazy" /></p>
 <p>細かい時刻はわかりませんが、<strong>5/31 にネームサーバが変更されています</strong>。</p>
 <p>具体的にはAWSのネームサーバが削除され、代わりに正しいネームサーバの名前に似せた不正なネームサーバが登録されていることがわかります。</p>
 <ul>
@@ -312,7 +314,7 @@
 <h3 id="レコード情報の取得">レコード情報の取得</h3>
 <p>過去のwhois情報から判明した、2つの偽ネームサーバに対してANYクエリを送信し、coincheck.comのレコード情報を取得しました。</p>
 <p>下記は 偽ネームサーバ「awsdns-061」から取得した coincheck.com の偽レコード情報です。</p>
-<pre><code>;; QUESTION SECTION:
+<pre tabindex="0"><code>;; QUESTION SECTION:
 ;coincheck.com.                 IN      ANY
 
 ;; ANSWER SECTION:
@@ -326,18 +328,17 @@ coincheck.com.          60      IN      MX      10 aspmx3.googlemail.com.
 coincheck.com.          60      IN      MX      5 alt2.aspmx.l.google.com.
 coincheck.com.          60      IN      MX      1 aspmx.l.google.com.
 coincheck.com.          60      IN      MX      5 alt1.aspmx.l.google.com.
-coincheck.com.          300     IN      TXT     &quot;facebook-domain-verification=la8geuy2tp70oh91bzf9qv80norcko&quot;
-coincheck.com.          300     IN      TXT     &quot;atlassian-domain-verification=tTCWNrSNtNaqGqVPgZWhLMryhgrJD+iSmpgHI61+3D1Qv/zqWlrXgHJRWYymh+KT&quot;
-coincheck.com.          300     IN      TXT     &quot;google-site-verification=9Vdf1PUnTUg7DQpW_amjVI_CLQAzBs4KpH58W1EBgew&quot;
-coincheck.com.          300     IN      TXT     &quot;v=spf1 +include:servers.mcsv.net +include:amazonses.com +include:_spf.google.com ~all&quot;
-coincheck.com.          300     IN      TXT     &quot;apple-domain-verification=HYRwkB7d1bV30n6U&quot;
-coincheck.com.          300     IN      TXT     &quot;MS=ms23516971&quot;
+coincheck.com.          300     IN      TXT     &#34;facebook-domain-verification=la8geuy2tp70oh91bzf9qv80norcko&#34;
+coincheck.com.          300     IN      TXT     &#34;atlassian-domain-verification=tTCWNrSNtNaqGqVPgZWhLMryhgrJD+iSmpgHI61+3D1Qv/zqWlrXgHJRWYymh+KT&#34;
+coincheck.com.          300     IN      TXT     &#34;google-site-verification=9Vdf1PUnTUg7DQpW_amjVI_CLQAzBs4KpH58W1EBgew&#34;
+coincheck.com.          300     IN      TXT     &#34;v=spf1 +include:servers.mcsv.net +include:amazonses.com +include:_spf.google.com ~all&#34;
+coincheck.com.          300     IN      TXT     &#34;apple-domain-verification=HYRwkB7d1bV30n6U&#34;
+coincheck.com.          300     IN      TXT     &#34;MS=ms23516971&#34;
 
 ;; Query time: 252 msec
 ;; SERVER: 82.221.139[.]210#53(82.221.139[.]210)
 ;; WHEN: Wed Jun 03 00:37:47 JST 2020
 ;; MSG SIZE  rcvd: 800
-
 </code></pre><p>基本的には現在正規のネームサーバが返すレコードと同じようにも見受けられますが、NSレコードが偽ネームサーバのドメイン名になっています。</p>
 <p>またNSレコードを見ると、awsdns-061、awsdns-056 の他に、 awsdns-<strong>0</strong>17[.]net. というドメイン名も存在することがわかります。</p>
 <blockquote>
@@ -367,7 +368,7 @@ coincheck.com.          300     IN      TXT     &quot;MS=ms23516971&quot;
 <p>偽ネームサーバである３ホストはいずれも今年の 5/29 にドメイン名を登録しています。<br>
 coincheck.comの正しいネームサーバに似せていることからも、攻撃者が今回の侵害のために登録した可能性が高いです。</p>
 <h4 id="awsdns-056">awsdns-056</h4>
-<pre><code>    Domain name:
+<pre tabindex="0"><code>    Domain name:
         awsdns-056[.]co.uk
 (snip)
     Relevant dates:
@@ -380,7 +381,7 @@ coincheck.comの正しいネームサーバに似せていることからも、�
         now2.dns.com
     WHOIS lookup made at 18:53:24 02-Jun-2020
 </code></pre><h4 id="awsdns-061">awsdns-061</h4>
-<pre><code>Domain Name: AWSDNS-061[.]ORG
+<pre tabindex="0"><code>Domain Name: AWSDNS-061[.]ORG
 (snip)
 Updated Date: 2020-05-29T14:19:13Z
 Creation Date: 2020-05-29T14:19:13Z
@@ -390,7 +391,7 @@ Name Server: DNS2.SMOOTHDNS.COM
 (snip)
 &gt;&gt;&gt; Last update of WHOIS database: 2020-06-02T17:51:13Z &lt;&lt;&lt;
 </code></pre><h4 id="awsdns-017">awsdns-017</h4>
-<pre><code>Updated Date: 2020-05-29T00:00:00Z
+<pre tabindex="0"><code>Updated Date: 2020-05-29T00:00:00Z
 Creation Date: 2020-05-29T19:40:25Z
 Registrar Registration Expiration Date: 2021-05-29T00:00:00Z
 (snip)
@@ -400,10 +401,10 @@ Name Server: now2.dns.com
 &gt;&gt;&gt; Last update of WHOIS database: 2020-05-29T00:00:00Z &lt;&lt;&lt;
 </code></pre><h2 id="メールの不正取得とmxレコードの調査">メールの不正取得とMXレコードの調査</h2>
 <p>プレスリリースでは以下の文言があります。</p>
-<pre><code>本事象により、2020年5月31日～6月1日の期間にお客様からお問い合わせを頂いた一部のメールを第三者が不正に取得できる状態になっていたことが判明いたしました。
+<pre tabindex="0"><code>本事象により、2020年5月31日～6月1日の期間にお客様からお問い合わせを頂いた一部のメールを第三者が不正に取得できる状態になっていたことが判明いたしました。
 </code></pre><p>上記から、MXレコードが別ホストに向けられている可能性を考えます。</p>
 <p>現在の正しいMXレコードは以下です。</p>
-<pre><code>coincheck.com.          86400   IN      MX      1 aspmx.l.google.com.
+<pre tabindex="0"><code>coincheck.com.          86400   IN      MX      1 aspmx.l.google.com.
 coincheck.com.          86400   IN      MX      10 aspmx2.googlemail.com.
 coincheck.com.          86400   IN      MX      10 aspmx3.googlemail.com.
 coincheck.com.          86400   IN      MX      5 alt1.aspmx.l.google.com.
@@ -416,13 +417,13 @@ coincheck.com.          86400   IN      MX      5 alt2.aspmx.l.google.com.
 <ul>
 <li>mail.coincheck[.]com</li>
 </ul>
-<p><img src="./mx_history.png" alt="mx_history"></p>
+<p><img src="./mx_history.png" alt="mx_history" loading="lazy" /></p>
 <p>名前が存在する期間も 5/30 - 31 と、侵害された期間と一致しています。</p>
 <p>コインチェックは過去のDNSレコードを見る限り G Suiteのメールサービスを使っているため、5/30 に突然 G Suite ではない MXレコードが設定されるのは非常に怪しいです。</p>
 <p>これは攻撃者が不正なネームサーバに設定したMXレコードと考えるのが自然でしょう。</p>
 <h2 id="偽メールサーバの調査">偽メールサーバの調査</h2>
 <p>このホストに関する情報を調べます。偽ネームサーバに対してmail.coincheck[.]comのAレコードを問い合わせました。</p>
-<pre><code>;; QUESTION SECTION:
+<pre tabindex="0"><code>;; QUESTION SECTION:
 ;mail.coincheck[.]com.            IN      A
 
 ;; ANSWER SECTION:
@@ -443,21 +444,21 @@ coincheck.com.          360000  IN      NS      ns-1515.awsdns-061[.]org.
 <p>このホストは Choopa LLC の子会社 Vultr というホスティング会社のVPSで、whois の結果から東京リージョンのマシンと思われます。</p>
 </blockquote>
 <p>なお現在も偽メールサーバは待ち受けていました。</p>
-<pre><code>$ telnet 45.77.24[.]250 25
+<pre tabindex="0"><code>$ telnet 45.77.24[.]250 25
 Trying 45.77.24[.]250...
 Connected to 45.77.24[.]250.
-Escape character is '^]'.
-</code></pre><!-- raw HTML omitted -->
+Escape character is &#39;^]&#39;.
+</code></pre></br>
 <p>SMTPリクエストを送ってみます。</p>
-<!-- raw HTML omitted -->
-<p><img src="./smtp.png" alt="smtp"></p>
+</br>
+<p><img src="./smtp.png" alt="smtp" loading="lazy" /></p>
 <p>自身をcoincheck.comと偽っているようです。<br>
 RCPT TOコマンドの動作から、宛先メールアドレスがcoincheck.comのときにのみ受信するようにしているみたいです。<br>
 受信したメールを本来のcoincheck.comのメールサーバに転送しているかはここからは判断できませんでした。</p>
 <h1 id="調査結果">調査結果</h1>
 <p>これまでの調査から、あくまで<strong>推測ではあるものの</strong>、<br>
 攻撃者は以下のステップでメールの不正取得を行ったと考えます。</p>
-<p>　<!-- raw HTML omitted --></p>
+<p>　</br></p>
 <ol>
 <li>
 <p>「お名前.com Navi」の脆弱性を利用し、coincheck.comを管理している「お名前.com」のアカウントを奪取</p>
@@ -495,7 +496,7 @@ MTAがコインチェックのメールサーバをキャッシュサーバに�
 <p>偽メールサーバが利用者からコインチェックへのメールを受信する</p>
 </li>
 </ol>
-<p>　<!-- raw HTML omitted --></p>
+<p>　</br></p>
 <p>* 不正なネームサーバに誘導される条件として、利用者が使用しているDNSキャッシュサーバがcoincheck.comのキャッシュを持っていないこと</p>
 <blockquote>
 <p>現在の正しいNSレコードのTTLは 172800 、つまり48時間に設定されていますが、当時も同様のTTLであった場合、ドメイン登録情報が改変されて修正されるまでに40時間ほど経過しているため、多くのキャッシュサーバは正しいネームサーバのキャッシュが切れ、偽ネームサーバに誘導された可能性があります。</p>
@@ -505,13 +506,13 @@ MTAがコインチェックのメールサーバをキャッシュサーバに�
 <p>今回はDNSのネームサーバを偽ホストに不正に変更されることでドメインハイジャックが成功し、メールの不正取得が行われました。</p>
 <p>6/1 20:52 にドメイン登録情報が修正されたことで問題から復旧したと考えたいところですが、場合によってはキャッシュサーバによるキャッシュによる影響が今後も続く可能性があります。</p>
 <p>時系列にしてみましょう。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p></br></br></p>
 <ol>
 <li>
 <p>05/31 00:05 ドメイン登録情報が不正なネームサーバに書き換えられる</p>
 <p>～この期間にキャッシュがない状態で名前解決した場合、不正応答をキャッシュする～<br>
 (6/3時点で、偽ネームサーバが返すNSレコードのTTLは360000-&gt;100時間)</p>
-<p>　<!-- raw HTML omitted --></p>
+<p>　</br></p>
 </li>
 <li>
 <p>06/01 20:52 ドメイン登録情報が正しいネームサーバに修正される</p>
@@ -523,7 +524,7 @@ MTAがコインチェックのメールサーバをキャッシュサーバに�
 <p>06/06 00:52 不正なキャッシュがクリアされる最遅の時間( 2. の直前から100時間経過)</p>
 </li>
 </ol>
-<p>　<!-- raw HTML omitted --></p>
+<p>　</br></p>
 <p>このように、偽ネームサーバが応答したNSのTTLが360000の場合、<strong>最大で 4. の 6/6 まで攻撃の影響が続いている可能性があります。</strong></p>
 <p>コインチェックが全世界のキャッシュサーバのキャッシュをクリアすることは原理上不可能であるため、心配な利用者は coincheck.com の NS が攻撃者の用意した<strong>以下のドメイン名ではないこと</strong>を確認した方がいいと思います。</p>
 <ul>
@@ -657,13 +658,13 @@ MTAがコインチェックのメールサーバをキャッシュサーバに�
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<script src="/js/mediumish.js"></script>
 
+<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -676,6 +677,5 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     </body>
 </html>
