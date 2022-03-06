@@ -7,14 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright>
-    <lastBuildDate>Wed, 08 May 2019 02:43:52 +0900</lastBuildDate><atom:link href="https://www.shutingrz.com/tags/develop/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 May 2019 02:43:52 +0900</lastBuildDate>
+    
+	<atom:link href="https://www.shutingrz.com/tags/develop/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>記事に特定のタグがあったら「悪用禁止」と表示されるようにしてみた</title>
       <link>https://www.shutingrz.com/post/hugo-notice-banner/</link>
       <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/hugo-notice-banner/</guid>
-      <description>要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacki</description>
+      <description>&lt;p&gt;要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。&lt;br&gt;
+記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。&lt;br&gt;
+※この記事はハッキングには関係ありませんが、デモ用に表示が出るようにしています。&lt;/p&gt;</description>
     </item>
     
   </channel>

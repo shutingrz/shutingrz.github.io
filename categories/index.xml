@@ -6,6 +6,10 @@
     <description>Recent content in Categories on Shooting!!!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright><atom:link href="https://www.shutingrz.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright>
+    
+	<atom:link href="https://www.shutingrz.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
   </channel>
 </rss>

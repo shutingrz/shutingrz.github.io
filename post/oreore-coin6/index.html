@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.94.0-DEV" />
+	<meta name="generator" content="Hugo 0.68.3" />
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -57,9 +57,9 @@
     "name" : ""
   },
   "headline": "自作仮想通貨入門(6) - ジェネシスブロックの作成と設定",
-  "description" : "※この章では src\/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチ",
+  "description" : "※この章では src\/chainparams.cpp を変更します。\n仮想通貨はブロックチェーンの原理を基にして運用されています。\nつまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、\nすなわちジェネシス（起源）ブロックを作成する必要があります。\n",
   "inLanguage" : "en",
-  "wordCount":  2991 ,
+  "wordCount":  2995 ,
   "datePublished" : "2019-04-28T23:47:48",
   "dateModified" : "2019-04-28T23:47:48",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -79,43 +79,36 @@
 </script>
 
 <meta property="og:title" content="自作仮想通貨入門(6) - ジェネシスブロックの作成と設定" />
-<meta property="og:description" content="※この章では src/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチ">
-
-
-
-
- 
-<meta property="og:image" content="https://www.shutingrz.com/cover.png" />
+<meta property="og:description" content="※この章では src/chainparams.cpp を変更します。
+仮想通貨はブロックチェーンの原理を基にして運用されています。
+つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、
+すなわちジェネシス（起源）ブロックを作成する必要があります。">
+<meta property="og:image" content="https://www.shutingrz.com/img/favicon.ico" />
 <meta property="og:url" content="https://www.shutingrz.com/post/oreore-coin6/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="自作仮想通貨入門(6) - ジェネシスブロックの作成と設定" />
-  <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチ">
-
-
-
-   
-  <meta name="twitter:image" content="https://www.shutingrz.com/cover.png" />
+  <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。
+仮想通貨はブロックチェーンの原理を基にして運用されています。
+つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、
+すなわちジェネシス（起源）ブロックを作成する必要があります。">
+  <meta name="twitter:image" content="https://www.shutingrz.com/img/favicon.ico" />
   <meta name="twitter:card" content="summary" /> 
+	
 
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-
-	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
-
-	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.569f3996ca35a233f4c0bd5be50243eac6dc4238f8a2cc79fc5231c99323b016.css" integrity="sha256-Vp85lso1ojP0wL1b5QJD6sbcQjj4osx5/FIxyZMjsBY=">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
 
 	
 	
-	<link rel="stylesheet" href="/css/additional.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
-	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
@@ -219,19 +212,30 @@
                         </div>			
                         	
                         
-                                                
+                              
                         
                         <h1 class="posttitle">自作仮想通貨入門(6) - ジェネシスブロックの作成と設定</h1> 
+                        
+                        <div class="after-post-tags">
+                            <ul class="tags">
+                            
+                            <li>
+                            <a href="/tags/%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8">仮想通貨</a>
+                            </li>
+                            
+                            <li>
+                            <a href="/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80">自作仮想通貨入門</a>
+                            </li>
+                            
+                            </ul>
+                        </div>
                     </div>
 
-                    
-                    
                     
                     
 
                     
                     <div class="article-post">
-                        
                         <p>※この章では src/chainparams.cpp を変更します。</p>
 <p>仮想通貨はブロックチェーンの原理を基にして運用されています。<br>
 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、<br>
@@ -303,13 +307,13 @@ src/validation.cpp の GetBlockSubsidy() で定める値にします。<br>
 <h1 id="ジェネシスブロック作成に必要なパラメータを決める">ジェネシスブロック作成に必要なパラメータを決める</h1>
 <h2 id="pubkeyの生成">PubKeyの生成</h2>
 <p>opensslコマンドを使って楕円曲線暗号(secp256k1)から秘密鍵とその証明書を生成します。</p>
-<pre tabindex="0"><code>$ openssl ecparam -genkey -name secp256k1 -rand /dev/urandom -out private_key
+<pre><code>$ openssl ecparam -genkey -name secp256k1 -rand /dev/urandom -out private_key
 $ openssl ec -in private_key -pubout -outform DER|tail -c 65|xxd -p -c 65 &gt; pubkey.hex
 $ cat pubkey.hex
 </code></pre><p>=&gt; 今回は「043aca3e996c24f8c2453d02532471107e75d219cd09c18a6d574e69338d79e3bbe288330f7b299032f44735162aec272713aacecceacf25855945fe5003309e94」が生成されました。</p>
 <h2 id="psztimestamp-の作成">pszTimestamp の作成</h2>
 <p>sciptSig の仕様上、20 - 100 byteの範囲で作成してください。</p>
-<pre tabindex="0"><code>kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae
+<pre><code>kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae
 </code></pre><p>2018/07/11 の神戸新聞のニュースから引っ張ってきました。<br>
 「全国初、警察が仮想通貨５千円相当を差し押さえ」</p>
 <h2 id="ntime-の指定">nTime の指定</h2>
@@ -329,9 +333,9 @@ $ cat pubkey.hex
 </blockquote>
 <h2 id="mainnettestnetのジェネシスブロック">Mainnet/Testnetのジェネシスブロック</h2>
 <p>-z に pszTimestamp、 -p に PubKey、 -t に nTime、 -n に nNonce、 -b に nBits を指定します。</p>
-<pre tabindex="0"><code>python2.7 genesis.py -a scrypt -z &#34;kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae&#34; -p &#34;043aca3e996c24f8c2453d02532471107e75d219cd09c18a6d574e69338d79e3bbe288330f7b299032f44735162aec272713aacecceacf25855945fe5003309e94&#34; -t 1531310400 -n 634556435 -b 0x1e0ffff0
+<pre><code>python2.7 genesis.py -a scrypt -z &quot;kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae&quot; -p &quot;043aca3e996c24f8c2453d02532471107e75d219cd09c18a6d574e69338d79e3bbe288330f7b299032f44735162aec272713aacecceacf25855945fe5003309e94&quot; -t 1531310400 -n 634556435 -b 0x1e0ffff0
 </code></pre><p>しばらく（スペックによりますが10分以内には）待つと、ジェネシスブロックとなるnonceが見つかります。</p>
-<pre tabindex="0"><code>genesis hash found!
+<pre><code>genesis hash found!
 nonce: 634696322
 genesis hash: 2f7c64e8e13a55a4f4fe11fd8cc0e5a59b8d59ade336501f17f8ef0c30b93f8c
 </code></pre><p>Mainnet/TestnetのnNonceには 634696322 を指定すればいいとわかりますね。</p>
@@ -339,9 +343,9 @@ genesis hash: 2f7c64e8e13a55a4f4fe11fd8cc0e5a59b8d59ade336501f17f8ef0c30b93f8c
 <p>Regtestはちゃんとマイニングできるかテストするモードなので、採掘難易度を最小にしてジェネシスブロックを作成します。<br>
 採掘難易度を示すnBitsの値は「0x207fffff」にします。<br>
 また、Litecoinは探すnNonceを0からにしているので、こちらも0から始めるようにしましょう。</p>
-<pre tabindex="0"><code>python2.7 genesis.py -a scrypt -z &#34;kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae&#34; -p &#34;043aca3e996c24f8c2453d02532471107e75d219cd09c18a6d574e69338d79e3bbe288330f7b299032f44735162aec272713aacecceacf25855945fe5003309e94&#34; -t 1531310400 -n 0 -b 0x207fffff
+<pre><code>python2.7 genesis.py -a scrypt -z &quot;kobe-np 11/Jul/2018 Zenkoku hatsu, keisatsu ga kasou tsuka 5000 yen soutou wo sashi osae&quot; -p &quot;043aca3e996c24f8c2453d02532471107e75d219cd09c18a6d574e69338d79e3bbe288330f7b299032f44735162aec272713aacecceacf25855945fe5003309e94&quot; -t 1531310400 -n 0 -b 0x207fffff
 </code></pre><p>採掘難易度が最小なので、一回目の試行で見つかります。</p>
-<pre tabindex="0"><code>genesis hash found!
+<pre><code>genesis hash found!
 nonce: 1
 genesis hash: 967aaa62c5210edfca1dad7dcf37259f57472326515dbd4654c1705b5395c713
 </code></pre><p>RegtestのnNonceは1でいいことがわかります。</p>
@@ -350,14 +354,13 @@ genesis hash: 967aaa62c5210edfca1dad7dcf37259f57472326515dbd4654c1705b5395c713
 今までの情報を使って src/chainparams.cpp を変更します。</p>
 <h2 id="creategenesisblock">CreateGenesisBlock()</h2>
 <p>この関数はオーバーロードされており同名で2つの関数がありますが、pszTimestampが定数で定義されている方を書き換えます。</p>
-<pre tabindex="0"><code>const char* pszTimestamp = &#34;[上で作ったpszTimestampの値]&#34;;
-const CScript genesisOutputScript = CScript() &lt;&lt; ParseHex(&#34;[Pubkeyの値]&#34;) &lt;&lt; OP_CHECKSIG;
+<pre><code>const char* pszTimestamp = &quot;[上で作ったpszTimestampの値]&quot;;
+const CScript genesisOutputScript = CScript() &lt;&lt; ParseHex(&quot;[Pubkeyの値]&quot;) &lt;&lt; OP_CHECKSIG;
 </code></pre><h2 id="cmainparams---ctestnetparams--cregtestparams">CMainParams() /  CTestNetParams() / CRegTestParams()</h2>
 <p>上で決めた nTime、nNonce、nBits を入れていきます。</p>
-<pre tabindex="0"><code>genesis = CreateGenesisBlock([nTime], [ジェネシスブロック作成時に見つけたnonce], [ジェネシスブロック作成時に指定したnBits], 1, 50 * COIN);
+<pre><code>genesis = CreateGenesisBlock([nTime], [ジェネシスブロック作成時に見つけたnonce], [ジェネシスブロック作成時に指定したnBits], 1, 50 * COIN);
 </code></pre><p>ジェネシスブロックに関する記載は以上で終了です。<br>
 chainparams.cpp は他にも色々変える必要があるので、次の章も引き続きやっていきます。</p>
-
                     </div>
                     
                     
@@ -454,13 +457,13 @@ chainparams.cpp は他にも色々変える必要があるので、次の章も�
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<script src="/js/mediumish.js"></script>
 
-<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -473,5 +476,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
+
     </body>
 </html>

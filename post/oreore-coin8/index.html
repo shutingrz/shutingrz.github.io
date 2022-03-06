@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.94.0-DEV" />
+	<meta name="generator" content="Hugo 0.68.3" />
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -57,7 +57,7 @@
     "name" : ""
   },
   "headline": "自作仮想通貨入門(8) - アドレスのプレフィックス変更",
-  "description" : "※この章では src\/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組み",
+  "description" : "※この章では src\/chainparams.cpp を変更します。\n仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。\n",
   "inLanguage" : "en",
   "wordCount":  2464 ,
   "datePublished" : "2019-04-29T00:45:29",
@@ -79,43 +79,32 @@
 </script>
 
 <meta property="og:title" content="自作仮想通貨入門(8) - アドレスのプレフィックス変更" />
-<meta property="og:description" content="※この章では src/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組み">
-
-
-
-
- 
-<meta property="og:image" content="https://www.shutingrz.com/cover.png" />
+<meta property="og:description" content="※この章では src/chainparams.cpp を変更します。
+仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。">
+<meta property="og:image" content="https://www.shutingrz.com/img/favicon.ico" />
 <meta property="og:url" content="https://www.shutingrz.com/post/oreore-coin8/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="自作仮想通貨入門(8) - アドレスのプレフィックス変更" />
-  <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組み">
-
-
-
-   
-  <meta name="twitter:image" content="https://www.shutingrz.com/cover.png" />
+  <meta name="twitter:description" content="※この章では src/chainparams.cpp を変更します。
+仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。">
+  <meta name="twitter:image" content="https://www.shutingrz.com/img/favicon.ico" />
   <meta name="twitter:card" content="summary" /> 
+	
 
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-
-	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
-
-	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.569f3996ca35a233f4c0bd5be50243eac6dc4238f8a2cc79fc5231c99323b016.css" integrity="sha256-Vp85lso1ojP0wL1b5QJD6sbcQjj4osx5/FIxyZMjsBY=">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
 
 	
 	
-	<link rel="stylesheet" href="/css/additional.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
-	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
@@ -219,19 +208,30 @@
                         </div>			
                         	
                         
-                                                
+                              
                         
                         <h1 class="posttitle">自作仮想通貨入門(8) - アドレスのプレフィックス変更</h1> 
+                        
+                        <div class="after-post-tags">
+                            <ul class="tags">
+                            
+                            <li>
+                            <a href="/tags/%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8">仮想通貨</a>
+                            </li>
+                            
+                            <li>
+                            <a href="/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80">自作仮想通貨入門</a>
+                            </li>
+                            
+                            </ul>
+                        </div>
                     </div>
 
-                    
-                    
                     
                     
 
                     
                     <div class="article-post">
-                        
                         <p>※この章では src/chainparams.cpp を変更します。</p>
 <p>仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。</p>
 <h2 id="プレフィックスの仕組みについて">プレフィックスの仕組みについて</h2>
@@ -246,7 +246,7 @@ bitcoinでは各種管理情報(ウォレットの秘密鍵や公開鍵など)�
 <p>初期のbitcoinはビットコインアドレス(P2PKHアドレス)を生成するとき、 アドレスが必ず&quot;1&quot;から始まっていました。<br>
 なお、今回の仮想通貨の基となるLitecoinはP2PKHアドレスが必ず&quot;L&quot;で始まります。<br>
 これは下記コードで指定することで実現しています。</p>
-<pre tabindex="0"><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,48);
+<pre><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,48);
 </code></pre><p>上記のURLを確認すると、48を指定すれば1文字目が必ず&quot;L&quot;で始まることがわかります。</p>
 <h2 id="アドレスプレフィックスを決めるpubkey_address">アドレスプレフィックスを決める(PUBKEY_ADDRESS)</h2>
 <p>今回作成する仮想通貨名称はRaccoinで、接頭辞がRなのでアドレスもRから始まるように変更します。<br>
@@ -301,36 +301,36 @@ Litecoin の Segwit 用のアドレスプレフィックスは3文字で、&ldqu
 </ul>
 <h1 id="ソースコードの変更作業">ソースコードの変更作業</h1>
 <h2 id="cmainparams">CMainParams()</h2>
-<pre tabindex="0"><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,60);
+<pre><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,60);
 base58Prefixes[SCRIPT_ADDRESS] = std::vector&lt;unsigned char&gt;(1,5);
 base58Prefixes[SCRIPT_ADDRESS2] = std::vector&lt;unsigned char&gt;(1,63);  
 base58Prefixes[SECRET_KEY] =     std::vector&lt;unsigned char&gt;(1,188);
 
-bech32_hrp = &#34;xri&#34;;
+bech32_hrp = &quot;xri&quot;;
 </code></pre><ul>
 <li>アドレスは「R」 から始まるようにしました。</li>
 <li>マルチシグアドレスは「S」から始まるようにしました。</li>
 <li>SECRET_KEY は PUBKEY_ADDRESS + 128 にするようなので、今回は 188 にしました。</li>
 </ul>
 <h2 id="ctestnetparams">CTestNetParams()</h2>
-<pre tabindex="0"><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,122);
+<pre><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,122);
 base58Prefixes[SCRIPT_ADDRESS] = std::vector&lt;unsigned char&gt;(1,196);
 base58Prefixes[SCRIPT_ADDRESS2] = std::vector&lt;unsigned char&gt;(1,125);  
 base58Prefixes[SECRET_KEY] =     std::vector&lt;unsigned char&gt;(1,254);
 
-bech32_hrp = &#34;txri&#34;;
+bech32_hrp = &quot;txri&quot;;
 </code></pre><ul>
 <li>アドレスは「r」 から始まるようにしました。</li>
 <li>マルチシグアドレスは「s」から始まるようにしました。</li>
 <li>SECRET_KEY は PUBKEY_ADDRESS + 128 にするようですが、それだと255を超えてしまうので254にしました。</li>
 </ul>
 <h2 id="cregtestparams">CRegTestParams()</h2>
-<pre tabindex="0"><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,122);
+<pre><code>base58Prefixes[PUBKEY_ADDRESS] = std::vector&lt;unsigned char&gt;(1,122);
 base58Prefixes[SCRIPT_ADDRESS] = std::vector&lt;unsigned char&gt;(1,196);
 base58Prefixes[SCRIPT_ADDRESS2] = std::vector&lt;unsigned char&gt;(1,125);  
 base58Prefixes[SECRET_KEY] =     std::vector&lt;unsigned char&gt;(1,254);
 
-bech32_hrp = &#34;rxri&#34;;
+bech32_hrp = &quot;rxri&quot;;
 </code></pre><ul>
 <li>アドレスは「r」 から始まるようにしました。</li>
 <li>マルチシグアドレスは「s」から始まるようにしました。</li>
@@ -339,7 +339,6 @@ bech32_hrp = &#34;rxri&#34;;
 <hr>
 <p>本章ではアドレスのプレフィックスの説明と変更をしました。<br>
 次の章でやっとchainparams.cppの変更は終わりで、もうすぐで完成です。</p>
-
                     </div>
                     
                     
@@ -436,13 +435,13 @@ bech32_hrp = &#34;rxri&#34;;
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<script src="/js/mediumish.js"></script>
 
-<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -455,5 +454,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
+
     </body>
 </html>
