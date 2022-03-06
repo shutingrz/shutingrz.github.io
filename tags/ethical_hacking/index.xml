@@ -7,19 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright>
-    <lastBuildDate>Mon, 24 Feb 2020 01:18:40 +0900</lastBuildDate>
-    
-	<atom:link href="https://www.shutingrz.com/tags/ethical_hacking/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 24 Feb 2020 01:18:40 +0900</lastBuildDate><atom:link href="https://www.shutingrz.com/tags/ethical_hacking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ラテラルムーブメントとそれを阻むUACに関する調査</title>
       <link>https://www.shutingrz.com/post/ad_remote-uac/</link>
       <pubDate>Mon, 24 Feb 2020 01:18:40 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/ad_remote-uac/</guid>
-      <description>&lt;p&gt;ラテラルムーブメントを阻む、通称「リモートUAC」に関して調査しました。&lt;/p&gt;
-&lt;p&gt;結果はまあそうだよねという感じになってしまいましたが、ここにメモします。&lt;/p&gt;</description>
+      <description>ラテラルムーブメントを阻む、通称「リモートUAC」に関して調査しました。 結果はまあそうだよねという感じになってしまいましたが、ここにメモしま</description>
     </item>
     
     <item>
@@ -28,9 +23,7 @@
       <pubDate>Thu, 03 Oct 2019 04:34:00 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/aqua-meter-hack/</guid>
-      <description>&lt;p&gt;しゅーとです。&lt;br&gt;
-リアルECUシリーズ第二作目。&lt;/p&gt;
-&lt;p&gt;ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。&lt;/p&gt;</description>
+      <description>しゅーとです。 リアルECUシリーズ第二作目。 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。 要約 スピードメーター</description>
     </item>
     
     <item>
@@ -39,11 +32,7 @@
       <pubDate>Mon, 13 May 2019 03:15:21 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</guid>
-      <description>&lt;p&gt;しゅーとです。&lt;/p&gt;
-&lt;p&gt;引き続きペネトレーションテストの検証をしていきます。&lt;br&gt;
-前回の記事はこちら。&lt;br&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;a href=&#34;https://www.shutingrz.com/post/ad_hack-ec_exploit/&#34;&gt;ペネトレ検証-ECサイトに侵入&lt;/a&gt;&lt;/p&gt;</description>
+      <description>しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱</description>
     </item>
     
     <item>
@@ -52,9 +41,7 @@
       <pubDate>Sat, 11 May 2019 07:01:20 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/ad_hack-ec_exploit/</guid>
-      <description>&lt;p&gt;しゅーとです。&lt;/p&gt;
-&lt;p&gt;家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。&lt;br&gt;
-また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残っているかも確認します。&lt;/p&gt;</description>
+      <description>しゅーとです。 家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。 また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残</description>
     </item>
     
     <item>
@@ -63,9 +50,7 @@
       <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/hugo-notice-banner/</guid>
-      <description>&lt;p&gt;要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。&lt;br&gt;
-記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。&lt;br&gt;
-※この記事はハッキングには関係ありませんが、デモ用に表示が出るようにしています。&lt;/p&gt;</description>
+      <description>要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacki</description>
     </item>
     
   </channel>

