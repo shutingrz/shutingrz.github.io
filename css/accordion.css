@@ -52,6 +52,13 @@
     overflow: hidden;
 }
 
+.acc-desc {
+    font-size: smaller;
+    font-weight: normal;
+    color: #999;
+    content: "（クリックで開閉）";
+  }
+
 .toggle:checked + .title + .content {
     visibility: visible;
     height: auto;
