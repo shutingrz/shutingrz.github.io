@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ja-JP"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.94.0-DEV" />
+	
+	<link rel="icon" href="/img/favicon.ico">
+	
+	<title>フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ | Shooting!!!</title>
+	
+	
+	<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Shooting!!!",
+    
+    "url": "https:\/\/www.shutingrz.com\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/www.shutingrz.com\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/www.shutingrz.com\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/www.shutingrz.com\/post\/voltage-fault-injection-nrf52\/",
+          "name": "フォールトインジェクションとは？電圧グリッチでn rf52のプロテクションを破って学ぶ"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ",
+  "description" : "しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞い",
+  "inLanguage" : "en",
+  "wordCount":  14499 ,
+  "datePublished" : "2022-03-07T03:00:00",
+  "dateModified" : "2022-03-07T03:00:00",
+  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "keywords" : [ "pentest, hardware-security" ],
+  "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/voltage-fault-injection-nrf52\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/www.shutingrz.com\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ" />
+<meta property="og:description" content="しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞い">
+
+
+
+
+<meta property="og:image" content="https://www.shutingrz.com/post/voltage-fault-injection-nrf52/cover.jpg" />
+
+<meta property="og:url" content="https://www.shutingrz.com/post/voltage-fault-injection-nrf52/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Shooting!!!" />
+  <meta name="twitter:title" content="フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ" />
+  <meta name="twitter:description" content="しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞い">
+
+
+
+  <meta name="twitter:image" content="https://www.shutingrz.com/post/voltage-fault-injection-nrf52/cover.jpg" />
+
+  <meta name="twitter:card" content="summary" /> 
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+
+	
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
+
+	
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.569f3996ca35a233f4c0bd5be50243eac6dc4238f8a2cc79fc5231c99323b016.css" integrity="sha256-Vp85lso1ojP0wL1b5QJD6sbcQjj4osx5/FIxyZMjsBY=">
+
+	
+	
+	<link rel="stylesheet" href="/css/additional.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://www.shutingrz.com//">
+
+            
+            <img src="/img/favicon.ico" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/post/">Blog</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/pages/about/">About</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://twitter.com/shutingrz">Twitter</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle"><a href="/post/">Shooting!!!</a></h1>
+    <p class="lead">
+         Big Brother is watching you
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=%e3%83%95%e3%82%a9%e3%83%bc%e3%83%ab%e3%83%88%e3%82%a4%e3%83%b3%e3%82%b8%e3%82%a7%e3%82%af%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%a8%e3%81%af%ef%bc%9f%e9%9b%bb%e5%9c%a7%e3%82%b0%e3%83%aa%e3%83%83%e3%83%81%e3%81%a7nRF52%e3%81%ae%e3%83%97%e3%83%ad%e3%83%86%e3%82%af%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%e7%a0%b4%e3%81%a3%e3%81%a6%e5%ad%a6%e3%81%b6&url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fvoltage-fault-injection-nrf52%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2fwww.shutingrz.com%2fpost%2fvoltage-fault-injection-nrf52%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fvoltage-fault-injection-nrf52%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
+
+    
+</div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/img/prof.png" alt="しゅーと (@shutingrz)">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">しゅーと (@shutingrz)</a><br>
+                                <span class="author-description">
+                                    Security researcher<br>
+                                    <i class="far fa-star"></i>
+                                    Mar 7, 2022
+                                    <i class="far fa-clock clock"></i>
+                                    29 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                                                
+                        
+                        <h1 class="posttitle">フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ</h1> 
+                    </div>
+
+                    
+                    
+                    
+                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/voltage-fault-injection-nrf52/cover.jpg" alt="thumbnail for this post">
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        <div class="page-toc">
+    <details>
+      <summary>目次</summary>
+      <nav id="TableOfContents">
+  <ol>
+    <li><a href="#voltage-fault-injectionとは">Voltage Fault Injectionとは</a>
+      <ol>
+        <li><a href="#approtectバイパスとは">APPROTECTバイパスとは</a></li>
+        <li><a href="#攻撃の脅威">攻撃の脅威</a></li>
+        <li><a href="#approtectバイパスの攻撃手法">APPROTECTバイパスの攻撃手法</a></li>
+      </ol>
+    </li>
+    <li><a href="#検証環境">検証環境</a>
+      <ol>
+        <li></li>
+      </ol>
+    </li>
+    <li><a href="#正常系の確認">正常系の確認</a>
+      <ol>
+        <li><a href="#swdを試す">SWDを試す</a></li>
+        <li><a href="#openocdでのswdデバッグ">OpenOCDでのSWDデバッグ</a></li>
+      </ol>
+    </li>
+    <li><a href="#グリッチャーの設計">グリッチャーの設計</a>
+      <ol>
+        <li><a href="#ターゲットのリセットの方法">「ターゲットのリセット」の方法</a></li>
+        <li><a href="#一定時間のスリープの方法">「一定時間のスリープ」の方法</a></li>
+        <li><a href="#cpu電圧をgndに落とす戻す方法">「CPU電圧をGNDに落とす/戻す」方法</a></li>
+        <li><a href="#デバッグ可能か確認する方法">「デバッグ可能か」確認する方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#グリッチ回路の作成">グリッチ回路の作成</a>
+      <ol>
+        <li><a href="#前準備dec4への配線">前準備:DEC4への配線</a></li>
+        <li><a href="#グリッチ回路の作成-1">グリッチ回路の作成</a></li>
+      </ol>
+    </li>
+    <li><a href="#グリッチャーのファームウェア作成">グリッチャーのファームウェア作成</a>
+      <ol>
+        <li><a href="#実装ターゲットのリセット">実装:「ターゲットのリセット」</a></li>
+        <li><a href="#実装一定時間のスリープとcpu電圧をgndに落とす戻す">実装:「一定時間のスリープ」と「CPU電圧をGNDに落とす/戻す」</a></li>
+        <li><a href="#実装デバッグ可能か">実装:「デバッグ可能か」</a></li>
+      </ol>
+    </li>
+    <li><a href="#グリッチの実践">グリッチの実践</a>
+      <ol>
+        <li><a href="#バイパスした状態でファームウェア抽出">バイパスした状態でファームウェア抽出</a></li>
+      </ol>
+    </li>
+    <li><a href="#対策">対策</a></li>
+    <li><a href="#さいごに">さいごに</a></li>
+    <li><a href="#参考文献">参考文献</a></li>
+  </ol>
+</nav>
+    </details>
+</div>
+                        <p>しゅーと(<a href="https://twitter.com/shutingrz">@shutingrz</a>)です。久しぶりの投稿です。</p>
+<p>皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？フォールトインジェクションはハードウェアセキュリティ分野におけるサイドチャネル攻撃手法のひとつです。今までこの攻撃を試すには高価な機材が必要でハードルが高いものでした。しかし2020年に<strong>nRF52</strong>という世界中で使われるマイコンにおいてフォールトインジェクションが可能な脆弱性が発見され、誰でも容易に検証ができるようになりました。nRF52は1000円ちょっとで入手でき、攻撃のために特殊な機材を必要としません。</p>
+<p>そこで皆さんにフォールトインジェクションという面白い攻撃手法を共有するために、攻撃成功までの道筋を教育資料として使えるように作成しました。頑張って書いたのでぜひ読んでください。</p>
+<h1 id="voltage-fault-injectionとは">Voltage Fault Injectionとは</h1>
+<p>Voltage Fault Injectionとは、動作している機器の特定のタイミングでCPU電圧を変化させることで機器に誤動作（グリッチ）を引き起こさせる手法です。Voltage Glitch(電圧グリッチ)とも呼ばれます。フォールトインジェクションには今回行う電圧グリッチのほかにクロック、電磁などの非侵襲型、レーザー、ニードルなどの侵襲型があります。</p>
+<p>CPUがグリッチされると、命令がスキップされて本来到達し得ないコードに到達し実行される可能性があります。下記はif文の命令のタイミングで電圧グリッチを行った場合の処理の流れです。</p>
+<p><img src="./img/glitch_flow.png" alt="" loading="lazy" /></p>
+<p>フォールトインジェクションが成功すると、ifの条件分岐をスキップして、条件を満たしていないのに<code>open_debug_port();</code>が実行されます。そう、こんなミラクルが実際に起こってしまうのがフォールトインジェクションなのです。</p>
+<p>電圧グリッチにはグリッチャーと呼ばれる、特定タイミングで単一パルス(矩形波)を発生させる機器が必要です。パルスと言ってもグリッチャー単体でターゲットに攻撃するわけではなく、パルスは電圧を増減させるためのMOSFETなどの素子に送信されます。パルス電圧の特性にあまりこだわる必要はないので、一般的なFPGAやGPIOをもつマイコンでOKです。</p>
+<p>フォールトインジェクションの概要や理論をもっと詳しく知りたい方は、<a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a>にある日本語資料を読むと良いでしょう。</p>
+<h2 id="approtectバイパスとは">APPROTECTバイパスとは</h2>
+<p>nRF52シリーズは、Nordic Semiconductor社が販売しているBLE機能を有するArm Cortex-Mマイコンです。その機能から世界中のIoT機器で幅広く使用されているのですが、2020年6月にセキュリティ上の問題が話題になりました。その問題とは、電圧グリッチによるAPPROTECTバイパスです。次のLimitedResultsのブログ記事によって詳細が明らかになりました(以降、<strong>参考記事</strong>と呼びます)。</p>
+<p><a href="https://limitedresults.com/2020/06/nrf52-debug-resurrection-approtect-bypass/">nRF52 Debug Resurrection (APPROTECT Bypass) Part 1</a></p>
+<p>APPROTECTとはアクセスポートプロテクションの略で、いわゆるオンチップデバッグ(On Chip Debug / OCD)のロック機能です。nRF52にはArm Cortex-Mが使われているので、デバッグインターフェースにはSWDが使われます。SWDは動作中の機器のデバッグを行えるほか、フラッシュ内のデータを取得することが可能です。昔の製品はファームウェアのデータはいくらでも取得できたのですが、知的財産の保護や、ファームウェア解析による攻撃の糸口を塞ぐという目的でプロテクションが行われるようになってきました。今回、このプロテクションが破られたのです。</p>
+<p>最近ではApple社の落とし物トラッカーであるAirTagがnRF52を使っていたため、これを用いてデバッグ機能が有効化され、ハッカーのおもちゃになりました。この件は日本でも話題になったので知っている方も多いと思います。</p>
+<p><a href="https://pc.watch.impress.co.jp/docs/news/1323993.html">AirTagのハッキングに成功。知らないAirTagのスキャン時は注意</a></p>
+<blockquote>
+<p>基板上の同コントローラはロックダウンされており、消去や書き込みは可能なものの、ファームウェアを読み出せなかったという。<strong>一方で同種のnRF52840コントローラでは、電圧変化によるフォールトインジェクションを利用してデバッグ機能を再度有効化できた例がすでに存在しており</strong>、同氏はこの手法を活用してデバッグ機能を有効化し、ファームウェアの読み出しに成功した。</p>
+</blockquote>
+<p>本記事での攻撃対象はAirTagではなくnRF52840のリファレンスボードであるnRF52840 Dongleに対するものですが、原理は全く一緒です。これをマスターすればAirTagに対しても成功させることは可能です。</p>
+<p>メーカー技術者の方もこれを検証してもらえれば、ファームウェア上に鍵などの機密情報をハードコーディングすることが危険ということがわかるはずです。
+増減させるためのMOSFETなどの素子に送信されます。パルス電圧の特性にあまりこだわる必要はないので、一般的なFPGAやGPIOをもつマイコンでOKです。</p>
+<h2 id="攻撃の脅威">攻撃の脅威</h2>
+<p>攻撃者は攻撃対象機器でデバッグ機能が有効になっているかを高い優先度で調査します。デバッグ機能が有効だと、ファームウェアに含まれる秘密情報の窃取や、ファームウェアの抽出、脆弱性の効率的な調査を行うためのブレークポイント設置、ステップ実行ができるためです。逆にファームウェアが取得できず、デバッグができない場合、攻撃者は完全なブラックボックス調査をすることになります。そのためデバッグを強制的に有効にできるAPPROTECTバイパスは攻撃者にとって有益な攻撃手段なのです。</p>
+<p>nRF52はそもそもAPPROTECTが有効でも初期化を行うことでAPPROTECTを無効にできます。ただし同時にフラッシュ内のデータが消去されるので、ファームウェアが抽出できない状況では文鎮になります。逆にこの仕様を逆手にとることで、APPROTECTバイパスでデバッグを有効にしたあとにファームウェアを抽出し、初期化して抽出したファームウェアをフラッシュに書き込むことでデバッグ可能な機器に早変わりするのです。</p>
+<h2 id="approtectバイパスの攻撃手法">APPROTECTバイパスの攻撃手法</h2>
+<p>今回のAPPROTECTバイパスは電圧を加圧するのではなく、CPU電圧を一定時間GNDに落とすことで命令をスキップさせます。何度も書いていますが、攻撃で一番重要なのはタイミングです。</p>
+<p>nRF52ではメモリ領域にUICRと呼ばれるユーザが利用できるコンフィグ領域が存在します。UICRには色々なパラメータを保存されていますが、そこにはAPPROCTECTを有効にするフラグ領域もあります。下はnRF52840のデータシートに記載されているAPPROTECTレジスタの仕様です。</p>
+<p><img src="./img/approtect.png" alt="UICR_APPROTECT" loading="lazy" /></p>
+<p>起動時にメモリコントローラーがCPUコアにAPPROTECTのフラグを含むUICR情報を転送しますが、この転送するタイミングを見計らって電圧グリッチさせます。うまくいくと、<strong>UICRでAPPROTECTフラグ領域がオンなのにCPUのプロテクションがオフになっている</strong>という奇妙な状態が発生します。</p>
+<p>今回は参考記事によってどのタイミングで転送が行われているかが明らかになっています。
+下の波形画像は参考記事からの引用で、メモリコントローラーの転送タイミング付近です。電圧降下の直前、赤枠で囲った部分が電圧グリッチを行うべき箇所です。</p>
+<p><img src="./img/Identification-1.png" alt="" loading="lazy" /></p>
+<p>このタイミングでグリッチを行うことで、一定の確率でプロテクションをバイパス可能です。それではこの情報をもとに、ターゲットを入手して攻撃を試行します。</p>
+<h1 id="検証環境">検証環境</h1>
+<p>今回の電圧グリッチを行うためには、以下の物品が必要です。</p>
+<ul>
+<li>nRF52搭載のターゲット</li>
+<li>グリッチャーボード</li>
+<li>MOSFET</li>
+<li>デバッガ</li>
+<li>オシロスコープ</li>
+<li>はんだごてセット</li>
+</ul>
+<h3 id="nrf52搭載のターゲット">nRF52搭載のターゲット</h3>
+<p><img src="./img/nrf52840-page.png" alt="" loading="lazy" /></p>
+<p>まずは攻撃対象のnRF52シリーズを搭載しているデバイスの選定です。</p>
+<p>参考記事でのターゲットであるnRF52840-DKは高くて手が出せなかったので(1つ6000円)、検証には<a href="https://www.nordicsemi.com/Products/Development-hardware/nrf52840-dongle">nRF52840 Dongle</a>を用いることにしました。Mouserで1180円です。</p>
+<h3 id="グリッチャーボード">グリッチャーボード</h3>
+<p><img src="./img/esp32_devkitc.jpg" alt="" loading="lazy" /></p>
+<p>特定のタイミングでMOSFETにパルスを発生させるものです。</p>
+<p>グリッチはターゲットの特定処理をスキップさせるため、その特定処理を行っているタイミングをナノ秒〜マイクロ秒で合わせないといけません。このように非常に繊細な処理が必要とされるためグリッチャーにはしばしばFPGAが利用されますが、ターゲットへの攻撃タイミングがシビアではない場合は速度が遅い一般的なマイコン(STM32, Arduino等)を使っても問題ありません。</p>
+<p>今回は<a href="https://akizukidenshi.com/catalog/g/gM-11819/">ESP32-DevKitC</a>を使いました。クロック周波数が240MHzとスペックが良いのに秋月で1480円なのでコスパ最強です。今回私が用意したファームウェアでグリッチを試したい方はこちらを利用してください。</p>
+<h3 id="mosfet">MOSFET</h3>
+<p><img src="./img/xy-mos_struct.png" alt="" loading="lazy" /></p>
+<p>CPU電圧をGNDに落とすためのパーツです。MOSFET単体と抵抗を使って構成してもいいのですが、@jptomoya氏からXY-MOSというドライバーモジュールを教えてもらいました。Amazonで<a href="amazon.co.jp/gp/product/B07BVKL4VW">5個セット600円弱で購入できます</a>し、AliExpressでも売っています。回路構成としてはMOSFETが並列で設置されており、Signalがゲート、GNDがソース、OUT-がドレインに接続されています。Signal、GNDは大きいスルーホールと小さいものがありますが、電気的につながっておりどちらの穴を使ってもかまいません。写真右の青いものはターミナルブロックで、ジャンパワイヤなどをグサっと刺せるようになっています。</p>
+<h3 id="デバッガ">デバッガ</h3>
+<p><img src="./img/jlink_photo.jpg" alt="" loading="lazy" /></p>
+<p>nRF52にSWD接続するためのデバッガです。OpenOCDが対応している機材であればなんでも構いません。安いものだとFT232Hなどがあげられます。私は<a href="https://www.embitek.co.jp/product/jlink-edu.html">J-Link EDU</a>を使いました（商用利用時などライセンスに注意）。</p>
+<h3 id="オシロスコープ">オシロスコープ</h3>
+<p>今回は5us程度の速度をキャプチャできれば良く精度が重要視されないので、トリガーが設定できるものなら何でもいいです。やってないので保証はできませんが、以下のスペックがあればいいと思っています。</p>
+<ul>
+<li>10mV/div</li>
+<li>5us/div</li>
+<li>1ch</li>
+<li>トリガ機能(Rising)</li>
+</ul>
+<p>私はRigol DS1054Zを使っています。</p>
+<h1 id="正常系の確認">正常系の確認</h1>
+<p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
+<div class="accordion">
+  <input id="id-239415876" class="toggle" type="checkbox">
+  <label class="title" for="id-239415876">正常系の確認</label>
+  <div class="content">
+<p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
+<p>今回は次のコードを用いました。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define LED_RED PIN_SERIAL_RX
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello, world!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>起動直後にシリアルに&quot;hello, world!&ldquo;を出力し、そのあと1秒ごとにLチカするコードです。書き込んだ後にLチカすることを確認します。</p>
+<h2 id="swdを試す">SWDを試す</h2>
+<p>はんだ付けが必要です。</p>
+<p>Dongleのデータシートを確認し、SWDIO、SWDCLK、GND、VDD OUT、VBUSをケーブルに接続します。次の画像は基板とはんだ付けポイントをマッピングした図です。</p>
+<p><img src="./img/swd_pin.png" alt="はんだ付け対象のピン" loading="lazy" /></p>
+<p>SWDIO、SWDCLKはランドが複数あります。USB端子側を使ってもいいですが、ここに結線するとUSB接続時に干渉する恐れがあります。そのため基板裏のSWDコネクタ用ランドを使うといいでしょう。</p>
+<blockquote>
+<p>VDD OUTの補足: VDD OUTは初期状態の回路では3.3Vの<strong>出力</strong>として用いることになっています。しかし、Dongleでは電源入力にUSB電源であるVBUSの5V入力のほかに、VDD OUTを3.3Vの電源入力として使えます。後述するグリッチのためにVDD OUTを使うため、あわせて結線しておいてください。参考URLによれば、VDD OUTを3.3Vの電源入力として利用するときは基板裏のSB1をショートさせ、SB2のパターンをカットする必要があります。ただ実際試してみたところSB1、SB2を変更せずとも電源入力として使えました（自己責任でどうぞ）。</p>
+<p>参考: <a href="https://infocenter.nordicsemi.com/index.jsp?topic=%2Fug_nrf52840_dongle%2FUG%2Fnrf52840_Dongle%2Fhw_power_ext_reg_source.html">External regulated source</a></p>
+</blockquote>
+<p>J-Linkに結線した場合はこんな感じになります。J-Linkは5Vを供給できるので、J-Linkの5V出力をVBUSに接続して駆動させています。</p>
+<p><img src="./img/nrf52_j-link.jpg" alt="" loading="lazy" /></p>
+<h2 id="openocdでのswdデバッグ">OpenOCDでのSWDデバッグ</h2>
+<p>次に、OpenOCDでSWDを用いたデバッグをします。まずはOpenOCDのインストールから。</p>
+<blockquote>
+<p><strong>Ubuntu 20.04で用意されているaptパッケージのバージョンではnRF52840に対応していません</strong>。他ディストリビューションのパッケージも古いようなので、Ubuntu以外を使っている人もGitHubにあるOpenOCDの最新ソースツリーからコンパイルして使ってください。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ sudo apt install libusb-1.0-0-dev make libtool pkg-config porg
+</span></span><span class="line"><span class="cl">$ git clone https://github.com/openocd-org/openocd -b v0.11.0
+</span></span><span class="line"><span class="cl">$ ./bootstrap
+</span></span><span class="line"><span class="cl">$ ./configure
+</span></span><span class="line"><span class="cl">$ make
+</span></span><span class="line"><span class="cl">$ sudo porg -lp &#34;openocd-0.11.0&#34; &#34;make install&#34;
+</span></span><span class="line"><span class="cl">$ sudo cp /usr/local/share/openocd/contrib/60-openocd.rules /etc/udev/rules.d/
+</span></span><span class="line"><span class="cl">$ sudo useradd -G plugdev $(whoami)
+</span></span></code></pre></div><p>OpenOCDのインストール後、Dongleに電源を供給し、SWD接続します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ openocd -f interface/jlink.cfg -c &#34;transport select swd&#34; -f target/nrf52.cfg
+</span></span><span class="line"><span class="cl">Open On-Chip Debugger 0.11.0-dirty (2021-11-19-18:00)
+</span></span><span class="line"><span class="cl">Licensed under GNU GPL v2
+</span></span><span class="line"><span class="cl">For bug reports, read
+</span></span><span class="line"><span class="cl">	http://openocd.org/doc/doxygen/bugs.html
+</span></span><span class="line"><span class="cl">swd
+</span></span><span class="line"><span class="cl">Info : Listening on port 6666 for tcl connections
+</span></span><span class="line"><span class="cl">Info : Listening on port 4444 for telnet connections
+</span></span><span class="line"><span class="cl">Info : J-Link V11 compiled Nov 16 2021 11:59:06
+</span></span><span class="line"><span class="cl">Info : Hardware version: 11.00
+</span></span><span class="line"><span class="cl">Info : VTarget = 1.825 V
+</span></span><span class="line"><span class="cl">Info : clock speed 1000 kHz
+</span></span><span class="line"><span class="cl">Info : SWD DPIDR 0x2ba01477
+</span></span><span class="line"><span class="cl">Info : nrf52.cpu: hardware has 6 breakpoints, 4 watchpoints
+</span></span><span class="line"><span class="cl">Info : starting gdb server for nrf52.cpu on 3333
+</span></span><span class="line"><span class="cl">Info : Listening on port 3333 for gdb connections
+</span></span></code></pre></div><h3 id="ファームウェアダンプ">ファームウェアダンプ</h3>
+<p>この時点でのDongleはAPPROTECT=デバッグロックがかかっていないため、ブレークポイントの設定、レジスタ操作、メモリ操作が可能です。これを利用して先ほど書き込んだサンプルプログラムのファームウェアをダンプしてみます。</p>
+<p>nRF52840のデータシートにはメモリマップが記載されています。メモリマップから、フラッシュ領域は0x0 ~ 0x00800000であることがわかります。</p>
+<p><img src="./img/nrf52840_memory_map.png" alt="" loading="lazy" /></p>
+<p>OpenOCDのコンソールに接続し、当該領域をdump_imageコマンドでダンプします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ telnet localhost 4444
+</span></span><span class="line"><span class="cl">Trying 127.0.0.1...
+</span></span><span class="line"><span class="cl">Connected to localhost.
+</span></span><span class="line"><span class="cl">Escape character is &#39;^]&#39;.
+</span></span><span class="line"><span class="cl">Open On-Chip Debugger
+</span></span><span class="line"><span class="cl">&gt; halt; dump_image flashdump.bin 0x0 0x800000
+</span></span><span class="line"><span class="cl">dumped 8388608 bytes in 140.669281s (58.236 KiB/s)
+</span></span></code></pre></div><p>ダンプしたファイルを確認すると、<code>hello, world</code>という文字列も見つけられ、確かにダンプしたファームウェアであることがわかります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ hexdump -C flashdump.bin
+</span></span><span class="line"><span class="cl">00000000  00 00 01 20 f5 02 00 00  1d 03 00 00 1f 03 00 00  |... ............|
+</span></span><span class="line"><span class="cl">00000010  21 03 00 00 23 03 00 00  25 03 00 00 00 00 00 00  |!...#...%.......|
+</span></span><span class="line"><span class="cl">00000020  00 00 00 00 00 00 00 00  00 00 00 00 27 03 00 00  |............&#39;...|
+</span></span><span class="line"><span class="cl">00000030  29 03 00 00 00 00 00 00  2b 03 00 00 2d 03 00 00  |).......+...-...|
+</span></span><span class="line"><span class="cl">00000040  2f 03 00 00 2f 03 00 00  2f 03 00 00 2f 03 00 00  |/.../.../.../...|
+</span></span><span class="line"><span class="cl">*
+</span></span><span class="line"><span class="cl">00000080  2f 03 00 00 b9 05 00 00  2f 03 00 00 2f 03 00 00  |/......./.../...|
+</span></span><span class="line"><span class="cl">00000090  2f 03 00 00 2f 03 00 00  2f 03 00 00 2f 03 00 00  |/.../.../.../...|
+</span></span><span class="line"><span class="cl">(..snip..)
+</span></span><span class="line"><span class="cl">00001120  9e 46 70 47 68 65 6c 6c  6f 2c 20 77 6f 72 6c 64  |.FpGhello, world|
+</span></span></code></pre></div><h3 id="approtectレジスタの確認">APPROTECTレジスタの確認</h3>
+<p>APPROTECTレジスタは0x10001208に存在します。
+データシートには当該アドレスの下位8ビットが0xFFのとき無効、0x00のとき有効と記載があります。</p>
+<p><img src="./img/approtect.png" alt="APPROTECTのデータシート" loading="lazy" /></p>
+<p><code>mdw</code>で確認します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; flash banks
+</span></span><span class="line"><span class="cl">#0 : nrf52.flash (nrf5) at 0x00000000, size 0x00000000, buswidth 1, chipwidth 1
+</span></span><span class="line"><span class="cl">#1 : nrf52.uicr (nrf5) at 0x10001000, size 0x00000000, buswidth 1, chipwidth 1
+</span></span><span class="line"><span class="cl">&gt; mdw 0x10001208 1
+</span></span><span class="line"><span class="cl">0x10001208: ffffffff
+</span></span></code></pre></div><p>値は0xFFであり、無効であることがわかります。</p>
+<h3 id="approtectの有効化とデバッグの確認">APPROTECTの有効化とデバッグの確認</h3>
+<p>このアドレスを0x00に設定し有効化します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; halt; flash fillw 0x10001208 0xFFFFFF00 1
+</span></span><span class="line"><span class="cl">nRF52840-xxAA(build code: D0) 1024kB Flash, 256kB RAM
+</span></span><span class="line"><span class="cl">wrote 4 bytes to 0x10001208 in 0.269560s (0.014 KiB/s)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; mdw 0x10001208 1                         
+</span></span><span class="line"><span class="cl">0x10001208: ffffff00
+</span></span></code></pre></div><p>ここでresetしてみると・・・</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; reset
+</span></span><span class="line"><span class="cl">nrf52.cpu -- clearing lockup after double fault
+</span></span><span class="line"><span class="cl">Failed to enable the FPB
+</span></span><span class="line"><span class="cl">Polling target nrf52.cpu failed, trying to reexamine
+</span></span><span class="line"><span class="cl">Could not find MEM-AP to control the core
+</span></span><span class="line"><span class="cl">****** WARNING ******
+</span></span><span class="line"><span class="cl">nRF52 device has AP lock engaged (see UICR APPROTECT register).
+</span></span><span class="line"><span class="cl">Debug access is denied.
+</span></span><span class="line"><span class="cl">Use &#39;nrf52_recover&#39; to erase and unlock the device.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Examination failed, GDB will be halted. Polling again in 100ms
+</span></span><span class="line"><span class="cl">&gt; 
+</span></span><span class="line"><span class="cl">&gt; mdw 0x0 1
+</span></span><span class="line"><span class="cl">Target not examined yet
+</span></span></code></pre></div><p>APPROTECTの影響でデバッグができなくなりました。当然mdwなどでメモリを参照することもできません。この状態ではCPUのデバッグ用アクセスポートである<strong>AHB-AP</strong>に対するアクセスがすべて禁止されています。ただコントロール用アクセスポートである<strong>CTRL-AP</strong>はAPPROTECTの影響を受けないため、APPROTECTの状態を示すレジスタ（APPROTECTSTATUS）の参照や、APPROTECTの設定含む全てのフラッシュの初期化を伝えるレジスタ(ERASEALL)への書き込みが可能です。もしCTRL-APまで無効になってしまうと初期化もできなくなりますからね。</p>
+<h3 id="ctrl-apを用いたデバイス設定の初期化">CTRL-APを用いたデバイス設定の初期化</h3>
+<p>CTRL-APを操作することで、APPROTECTの初期化を行ってみましょう。</p>
+<h4 id="approtectstatusレジスタ0xc">APPROTECTSTATUSレジスタ(0xc)</h4>
+<p>APPROTECTが有効のとき、値は0になっています。これでCTRL-APでもターゲットのプロテクションが有効になっているかどうかがわかります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; nrf52.dap apreg 1 0x0c
+</span></span><span class="line"><span class="cl">0x00000000
+</span></span></code></pre></div><h4 id="eraseallレジスタ0x4">ERASEALLレジスタ(0x4)</h4>
+<p>Writeオンリーのレジスタです。このレジスタに1を設定することで、APPROTECTの設定を含む全てのフラッシュを消去します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; nrf52.dap apreg 1 0x4 1 
+</span></span></code></pre></div><p>この状態で、resetすると・・・</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; reset
+</span></span><span class="line"><span class="cl">nrf52.cpu: hardware has 6 breakpoints, 4 watchpoints
+</span></span></code></pre></div><p>デバッグ機能が復活しています。mdwを利用したメモリ読み込みもできています。APPROTECTSTATUSレジスタを参照すると、0x1が格納されておりAPPROTECTが無効になっています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; mdw 0x0 1
+</span></span><span class="line"><span class="cl">0x00000000: ffffffff
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; nrf52.dap apreg 1 0x0c
+</span></span><span class="line"><span class="cl">0x00000001
+</span></span></code></pre></div><p>また改めてフラッシュを確認すると、データが削除されていることがわかります。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; halt; dump_image flashdump_after_erase.bin 0x0 0x800000
+</span></span><span class="line"><span class="cl">dumped 8388608 bytes in 142.200241s (57.609 KiB/s)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ hexdump -C flashdump_after_erase.bin |head
+</span></span><span class="line"><span class="cl">00000000  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  |................|
+</span></span><span class="line"><span class="cl">*
+</span></span><span class="line"><span class="cl">00100000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+</span></span><span class="line"><span class="cl">*
+</span></span><span class="line"><span class="cl">00800000
+</span></span></code></pre></div><p><strong>APPROTECTを無効にするためにはフラッシュを全消去しないといけない</strong>わけですね。</p>
+<p>プロテクションを有効にした機器では書き込まれているファームウェアでのデバッグができないし、デバッグできないとフラッシュの内容も読み取れない。APPROTECTを無効にするとフラッシュが消えるので初期化してデバッグも意味が無い。というセキュリティ対策になっているとわかります（既に破られているので完全な対策になっていないわけですが）。</p>
+<p>最後に、またフラッシュにサンプルファームウェアを書き込んだうえで、APPROTECTを設定し、プロテクトがかかっている状態にしておきます。</p>
+  </div>
+</div>
+<h1 id="グリッチャーの設計">グリッチャーの設計</h1>
+<p>グリッチには、グリッチ用ファームウェアの作成と、グリッチャーとターゲットボード(Dongle)、MOSFETの接続が必要です。</p>
+<p>理想的な電圧グリッチは、特定タイミングで特定の長さをグリッチすることで必ず成功します。しかし現実は甘くありません。成功するタイミングと長さは現実世界の環境や微妙な電圧の揺らぎで変わります。そのため、以下の2つの可変パラメータが必ず存在します。</p>
+<ol>
+<li>グリッチを開始するタイミング(delay)</li>
+<li>グリッチの長さ(width)</li>
+</ol>
+<p>オシロスコープで実際に攻撃を行ったときの波形はこちらです。CH1(黄)がMOSFETゲートに流れる電圧、CH2(青)がターゲットのCPU電圧の波形です。</p>
+<p><img src="./img/glitch_timing.png" alt="" loading="lazy" /></p>
+<p>この2つのパラメータをプログラム上で増減させてグリッチを成功させます。難しそうですか？いえいえ、ロジックとしては、以下のようなたった2つのforループなのです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">target_reset() -&gt; ターゲットのリセット
+</span></span></span><span class="line"><span class="cl"><span class="cm">sleep_count() -&gt; 一定時間のスリープ
+</span></span></span><span class="line"><span class="cl"><span class="cm">glitch_on() / glitch_off() -&gt; グリッチ操作の開始/終了関数
+</span></span></span><span class="line"><span class="cl"><span class="cm">if_glitch_success() -&gt; グリッチ成功の評価関数
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="n">delay</span> <span class="o">=</span> <span class="n">delay_start</span><span class="p">;</span> <span class="n">delay</span> <span class="o">&lt;</span> <span class="n">delay_end</span><span class="p">;</span> <span class="n">delay</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="n">width_start</span><span class="p">;</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">width_end</span><span class="p">;</span> <span class="n">width</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">target_reset</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sleep_count</span><span class="p">(</span><span class="n">delay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">glitch_on</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sleep_count</span><span class="p">(</span><span class="n">width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">glitch_off</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">is_glitch_success</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>原理としては非常に簡単です。次はコード内で抽象化している各関数の実現方法を説明します。</p>
+<p>今回の電圧グリッチにあてはめて考えると、各関数は以下の機能に対応します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">関数</th>
+<th style="text-align:center">対応する機能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>target_reset()</code></td>
+<td style="text-align:center">ターゲットのリセット</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sleep_count()</code></td>
+<td style="text-align:center">一定時間のスリープ</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>glitch_on()/glitch_off()</code></td>
+<td style="text-align:center">CPU電圧をGNDに落とす/戻す</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>is_glitch_success()</code></td>
+<td style="text-align:center">デバッグ可能か</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2 id="ターゲットのリセットの方法">「ターゲットのリセット」の方法</h2>
+<p>APPROTECTバイパスでは、グリッチのタイミングはパワーオンリセットからの時間という単純なものなので、ここはグリッチャーのGPIOを用いて電源供給の線をオンオフすることで実現可能です。</p>
+<p>別のバイパスではこの機能は複雑なものになる可能性があります。例えば攻撃対象のファームウェアの特定コマンドにパスワード認証があり、電圧グリッチで認証バイパスを試みる場合、「ターゲットのリセット」は、「特定コマンドを送り、パスワードを送信した直後」になります。</p>
+<h2 id="一定時間のスリープの方法">「一定時間のスリープ」の方法</h2>
+<p>これは攻撃対象がどれだけシビアかによります。今回の攻撃対象であるnRF52のAPPROTECTバイパスでは、電圧グリッチ時間が7-10us程度で成功することを確認しています。またスリープ精度が1us単位でも十分成功するので、よほど遅いマイコンでない限りは成功します。Arduino-IDEには<code>delayMicroseconds()</code>が用意されているので、一定時間のスリープはこの関数を利用するだけで実現できます。</p>
+<h2 id="cpu電圧をgndに落とす戻す方法">「CPU電圧をGNDに落とす/戻す」方法</h2>
+<p>参考記事ではnRF52のDEC4を特定タイミングでGNDに接続することで実現しています。次の画像はnRF52840のデータシート上のレギュレータの構成図です。</p>
+<p><img src="./img/reg_dec4_edit.png" alt="REG_DEC4" loading="lazy" /></p>
+<blockquote>
+<p>赤線、MOSFET、GNDの記載は筆者による加筆</p>
+</blockquote>
+<p>DEC4の部分がデカップリングコンデンサからの供給線となっています。このデカップリングコンデンサの手前で一瞬GNDに落とす操作ができれば、電圧グリッチ操作ができるということです。私はN-ch MOSFETに以下のように接続することで実現できると考えました。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">MOSFET</th>
+<th style="text-align:center">接続先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ゲート</td>
+<td style="text-align:center">グリッチャーのGPIO OUT</td>
+</tr>
+<tr>
+<td style="text-align:center">ドレイン</td>
+<td style="text-align:center">ターゲットのDEC4</td>
+</tr>
+<tr>
+<td style="text-align:center">ソース</td>
+<td style="text-align:center">GND</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<blockquote>
+<p>※あとでDEC4のポイントでMOSFETに接続する線を生やします。</p>
+</blockquote>
+<h2 id="デバッグ可能か確認する方法">「デバッグ可能か」確認する方法</h2>
+<p>APPROTECTバイパスが成功するとデバッグが可能になります。よって「デバッグ可能か」が<code>is_glitch_success()</code>の実装になります。</p>
+<p>nRF52のデバッグポートはSWDです。グリッチャー単体でこれが使えるか確認するということは、グリッチャーでのSWD実装が必要になるわけです。</p>
+<p>ただし今回はモロ参考になるコードがあったので、グリッチャーにSWD実装を含めることにしました。もしグリッチャー作成の負荷を下げたい場合は、PC+J-Link+OpenOCDとオシロスコープのトリガ出力を組み合わせることで同じようにグリッチが可能と思います。</p>
+<p>なお別のバイパスではこの機能は複雑・簡単なものになる可能性があります。例えば攻撃対象のファームウェアの特定コマンドにパスワード認証があり、電圧グリッチで認証バイパスを試みたい場合、「デバッグ可能か」は、「認証なしで特定コマンドが受け入れるか」になります。コマンドのプロトコルによりますが、単純なUARTであればSWD実装より簡単な気がします。</p>
+<h1 id="グリッチ回路の作成">グリッチ回路の作成</h1>
+<h2 id="前準備dec4への配線">前準備:DEC4への配線</h2>
+<p>グリッチ回路の前に、DongleのDEC4への配線を済ませておきます。DEC4に繋がるポイントはDongleでC5のシルクが印字されたところです。SMDコンデンサのCPU側に配線が必要です。極小なので、はんだ付けに慣れていない方は頑張ってください。</p>
+<p><img src="./img/nrf52_c5_edit.jpg" alt="" loading="lazy" /></p>
+<p>結線後は次のようになります。</p>
+<p><img src="./img/nrf52_c5_short.jpg" alt="" loading="lazy" /></p>
+<p>うまく結線できた場合、電源投入後にテスターで計測すると1.3V程度を指します。</p>
+<p>より詳細を確認するため、電源投入時のDEC4の電圧をオシロスコープで見てみましょう。
+DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入時から約2秒後を1us程度のスケールで調査します。そうするとだいたい200mV程度降下しているところがあります。参考記事によって、ここの降下の直前がグリッチのタイミングだとわかっています。</p>
+<p><img src="./img/dec4_down_edit.png" alt="" loading="lazy" /></p>
+<h2 id="グリッチ回路の作成-1">グリッチ回路の作成</h2>
+<p>これまでの設計をもとに、図のようなグリッチ回路を考えました。</p>
+<p><img src="./img/glitch_circuit.png" alt="グリッチ回路" loading="lazy" /></p>
+<p>グリッチャーのGPIOピンは後述するファームウェアに合わせて記載していますが、自由です。回路ではXY-MOSを利用していますが自分でMOSFETを用意してもOKです。
+図でわかるようにターゲットの電源(VDD OUT)はESP32のGPIOに任せています。ESP32のGPIOから出力できる電流は1ピンで最大40mAなので、場合によっては動かないかも。ちゃんとやりたい場合は電源回路を用意してVDD OUTに流してください。</p>
+<p>実際に結線した写真は以下です。ぐちゃぐちゃですが、動けばいいです！</p>
+<p><img src="./img/glitch_breadboard.jpg" alt="" loading="lazy" /></p>
+<h1 id="グリッチャーのファームウェア作成">グリッチャーのファームウェア作成</h1>
+<p>グリッチャーのファームウェア作成が一番面倒なわけですが、作り方を1から説明するのは紙面の都合上厳しいです。そこで私が作成した、コンソール上でタイミングを設定してグリッチ可能なESP32のファームウェアを用意しました。</p>
+<p><a href="https://github.com/shutingrz/nrf52-glitcher">https://github.com/shutingrz/nrf52-glitcher</a></p>
+<blockquote>
+<p>このファームウェアのコア部分はAaron Christophel氏の<a href="https://github.com/atc1441/ESP32_nRF52_SWD">ESP32 SWD Flasher for nRF52</a>を流用しています。</p>
+</blockquote>
+<p>PlatformIOでビルドできるようにしています。コンパイルしてESP32に書き込んでください。
+ここでは設計で記載した各機能について、どのような実装を行っているかを簡単に説明します。</p>
+<h2 id="実装ターゲットのリセット">実装:「ターゲットのリセット」</h2>
+<p>パワーオンリセットを行うだけなので、ターゲットのVDD OUTに接続されるGPIOを指定しオン、オフすればOKです。<code>digitalWrite()</code>を使います。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">set_power</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">NRF_POWER</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="実装一定時間のスリープとcpu電圧をgndに落とす戻す">実装:「一定時間のスリープ」と「CPU電圧をGNDに落とす/戻す」</h2>
+<p>今回のグリッチは速度が求められないので、Arduino-IDEでよく使われるような実装方法で十分です。</p>
+<p>スリープには<code>delayMicroseconds()</code>を使います。
+グリッチについては、MOSFETのゲートに接続されるGPIOを指定しオン/オフすればターゲットのDEC4がGNDに落ちたり戻ったりするので、<code>digitalWrite()</code>を使って実現します。</p>
+<p>以下はグリッチのコードです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">slow_glitch</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="accordion">
+  <input id="id-346718529" class="toggle" type="checkbox">
+  <label class="title" for="id-346718529">高速なグリッチをしたい場合</label>
+  <div class="content">
+<h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
+<p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
+<p>GPIOオンオフの<code>digitalWrite()</code>、スリープの<code>delayMicroseconds()</code>は速度の観点で非常に遅いです。高速にGPIOをオンオフするためには直接レジスタを触ると良いでしょう。ESP32では<code>GPIO_OUT_W1TS_REG</code>と<code>GPIO_OUT_W1TC_REG_REF</code>を操作することで、高速にGPIO0～31をオンオフできます。また、スリープはビジーウェイトを用いることで1usよりも細かい時間を制御できます。</p>
+<p>次のコードは高速なグリッチです。GPIOのオンオフで10ns、ループ1回に25nsを消費するので最低35nsから、25ns刻みでスリープできます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define GPIO_OUT_W1TS_REG_REF *(volatile uint32_t *)GPIO_OUT_W1TS_REG
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define GPIO_OUT_W1TC_REG_REF *(volatile uint32_t *)GPIO_OUT_W1TC_REG
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">fast_glitch</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">)</span> <span class="c1">// width min 35ns, count+1 = +25ns
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">GPIO_OUT_W1TS_REG_REF</span> <span class="o">=</span> <span class="n">BIT</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">width</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">asm</span> <span class="k">volatile</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">GPIO_OUT_W1TC_REG_REF</span> <span class="o">=</span> <span class="n">BIT</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>forループは空のコードだとコンパイルの最適化で処理が消えてしまうので、volatileを行うことでforループだけを生成します。</p>
+<p>念のため高速なグリッチをコンパイルしたときのXtensaアセンブリも載せておきます。</p>
+<p><img src="./img/volatile_fast_asm.png" alt="" loading="lazy" /></p>
+<p>標準のグリッチルーチンと異なり、<code>digitalWrite()</code>や<code>delayMicroseconds()</code>のような関数呼び出しが一切存在せずこのアセンブリで完結します。またforループもただカウンタの増加だけを行うようなものになっています。</p>
+  </div>
+</div>
+<h2 id="実装デバッグ可能か">実装:「デバッグ可能か」</h2>
+<p>まずSWDの実装を行います。次にSWDの関数を利用して特定の値の状態からデバッグが有効か確認します。以下がルーチンです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">nrf_begin() -&gt; SWDの初期化
+</span></span></span><span class="line"><span class="cl"><span class="cm">read_register() -&gt; AHB-APのレジスタを取得
+</span></span></span><span class="line"><span class="cl"><span class="cm">nrf_read_lock_state() -&gt; CTRL-APのAPPROTECTSTATUSレジスタ(0xc)を取得し、APPROTECTが有効なら0、無効なら1を返却
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">check_nrf_unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">bool</span> <span class="n">isUnlocked</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">delay</span><span class="p">(</span><span class="n">_swd_wait_delay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">nrf_begin</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint32_t</span> <span class="n">variant_read</span> <span class="o">=</span> <span class="n">read_register</span><span class="p">(</span><span class="mh">0x10000100</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">variant_read</span> <span class="o">==</span> <span class="mh">0x00052840</span> <span class="o">||</span> <span class="n">nrf_read_lock_state</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">&#34;glitch success!&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">isUnlocked</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">isUnlocked</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>variant_read</code>は、AHB-APのレジスタの値が格納されます。<code>0x10000100</code>は、FICRと呼ばれるコンフィギュレーションレジスタのINFO.PARTレジスタです。nRF52840では値に<code>0x00052840</code>が格納されています。この値が読めるときはデバッグポート(AHB-AP)にアクセスできているということなので、グリッチが成功したとわかります。
+また<code>nrf_read_lock_state()</code>はコード中コメントのとおり、CTRL-AP上のAPPROTECTの有効状態を取得する関数です。この値からAPPROTECTが無効だった場合も、グリッチが成功したとわかります。</p>
+<h1 id="グリッチの実践">グリッチの実践</h1>
+<p>グリッチ回路の結線とグリッチャーのファームウェアの書き込みまで行えば攻撃の準備は完了です。</p>
+<p>グリッチャーのシリアルに接続すると、コンソールが表示されます。<code>nrf</code>と入力するとnRF52のグリッチモードに移行します（現状このモードしか無い😂）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">  ____  _  _  _         _
+</span></span><span class="line"><span class="cl"> / ___|| |(_)| |_  ___ | |__    ___  _ __
+</span></span><span class="line"><span class="cl">| |  _ | || || __|/ __|| &#39;_ \  / _ \| &#39;__|
+</span></span><span class="line"><span class="cl">| |_| || || || |_| (__ | | | ||  __/| |
+</span></span><span class="line"><span class="cl"> \____||_||_| \__|\___||_| |_| \___||_|    by @shutingrz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Serial terminal usage:
+</span></span><span class="line"><span class="cl">  help               Print this usage
+</span></span><span class="line"><span class="cl">  nrf                Voltage glitch for nrf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; nrf
+</span></span><span class="line"><span class="cl">switch nrf mode.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Serial terminal usage:
+</span></span><span class="line"><span class="cl">  help               Print this usage
+</span></span><span class="line"><span class="cl">  set &lt;item&gt; &lt;value&gt; set param
+</span></span><span class="line"><span class="cl">  exit               exit nrf mode
+</span></span><span class="line"><span class="cl">  show               show glitch options
+</span></span><span class="line"><span class="cl">  power &lt;on|off&gt;     Power on or off nRF.
+</span></span><span class="line"><span class="cl">  swd                SWD IDCODE check
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">You can set glitch option value with &#34;set&#34; command.
+</span></span><span class="line"><span class="cl"> Params: delay_start, delay_end, width_start, width_end, paranoia_mode
+</span></span><span class="line"><span class="cl">and can get current value with &#34;show&#34; command.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nrf&gt; 
+</span></span></code></pre></div><p>ここで<code>swd</code>コマンドを実行すれば、グリッチャーがSWDを用いてデバッグポートへのアクセスを試みます。プロテクションがかかっていれば、<code>APPROTECT enabled</code>というメッセージが表示されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">nrf&gt; swd
+</span></span><span class="line"><span class="cl">SWD IDCODE: 0x00000064
+</span></span><span class="line"><span class="cl">UICR device type(0x10000100): 0x00000000
+</span></span><span class="line"><span class="cl">APPROTECT enabled.
+</span></span><span class="line"><span class="cl">SWD port locked.
+</span></span></code></pre></div><blockquote>
+<p>グリッチャーと回路が正常かどうかを確認したいときは、ターゲットのDongleを初期化しAPPROTECTを無効にしたうえでswdコマンドを実行すると良いでしょう。構成が正常ならプロテクションがかかっていないので、<code>APPROTECT disabled</code>およびdevice typeの値として<code>0x00052840</code>が表示されます。</p>
+</blockquote>
+<p>次にグリッチタイミングと長さの設定です。
+<code>show</code>コマンドで、現在のパラメータが表示されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">nrf&gt; show
+</span></span><span class="line"><span class="cl">----------------
+</span></span><span class="line"><span class="cl">Glitch options:
+</span></span><span class="line"><span class="cl">  delay_start   : 2300
+</span></span><span class="line"><span class="cl">  width_start   : 0
+</span></span><span class="line"><span class="cl">  delay_end     : 2500
+</span></span><span class="line"><span class="cl">  width_end     : 10
+</span></span><span class="line"><span class="cl">  paranoia_mode : 0
+</span></span><span class="line"><span class="cl">----------------
+</span></span></code></pre></div><p>ここの数値は1us単位です。delay・widthのstartはforループの開始値、endはforループの終了値です。設定は<code>set</code>コマンドで可能です。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">nrf&gt; set delay_start 2360
+</span></span><span class="line"><span class="cl">set: delay_start=2360
+</span></span></code></pre></div><p>ここの部分は実際にグリッチを実行させて、オシロスコープのトリガーを組み合わせて自分のかけたいタイミングかどうかをトライアンドエラーで設定していくのがいいでしょう。</p>
+<p>グリッチは<code>run</code>で行います。実行すると、先の機能で示したような形のグリッチが行われます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">nrf&gt; run
+</span></span><span class="line"><span class="cl">----------------
+</span></span><span class="line"><span class="cl">Glitch options:
+</span></span><span class="line"><span class="cl">  delay_start   : 2360
+</span></span><span class="line"><span class="cl">  width_start   : 0
+</span></span><span class="line"><span class="cl">  delay_end     : 2500
+</span></span><span class="line"><span class="cl">  width_end     : 10
+</span></span><span class="line"><span class="cl">  paranoia_mode : 0
+</span></span><span class="line"><span class="cl">----------------
+</span></span><span class="line"><span class="cl">Start glitch! Press any key to stop.
+</span></span><span class="line"><span class="cl">...........2361...........2362....
+</span></span></code></pre></div><p>実行時の動画(gif)を載せます。この動画はまさにAPPROTECTバイパスの最適なタイミングである、DEC4の電圧降下の直前での電圧グリッチを狙ったものです。</p>
+<p><img src="./img/glitcher_run_long_resize.gif" alt="" loading="lazy" /></p>
+<p>CH1(黄)はMOSFETのゲートに流れる電圧、CH2(青)はDEC4の電圧です。
+グリッチの開始タイミング(delay)とグリッチの長さ(width)が二重ループになっており、width_endに到達したときにdelayが加算されてグリッチのタイミングのタイミングが少し後ろになります。青線の電圧下降の位置が徐々に左に移動していることがわかると思います。
+もちろん最初からこの最適タイミングから開始できるのは稀なので、あまりに攻撃位置から遠すぎたらパラメータを調整して何度もチャレンジしてください。</p>
+<p>成功したときの波形が以下です。成功時の波形は状況によってバラバラですが、少なくともいつもの電圧降下する波形とは異なる形をしています。</p>
+<p><img src="./img/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%81%E6%88%90%E5%8A%9F%E6%99%82%E3%81%AE%E6%B3%A2%E5%BD%A22.png" alt="" loading="lazy" /></p>
+<p>グリッチャーはグリッチのたびにSWDデバッグを試みているので、もしバイパスに成功した場合はその旨が表示されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">.....glitch success!
+</span></span><span class="line"><span class="cl">SWD Id: 0x2ba01477
+</span></span><span class="line"><span class="cl">UCIR_LOCK: 0xffffff00
+</span></span><span class="line"><span class="cl">Flash size: 1048576
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Connect your debugger to the SWD port and attach it!
+</span></span><span class="line"><span class="cl">nrf&gt;
+</span></span></code></pre></div><p>この状態でswdコマンドを実行すると、<code>APPROTECT disabled</code>およびdevice typeの値として<code>0x00052840</code>が表示されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">nrf&gt; swd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SWD IDCODE: 0x2ba01477
+</span></span><span class="line"><span class="cl">UICR device type(0x10000100): 0x00052840
+</span></span><span class="line"><span class="cl">APPEOTECT disabled.
+</span></span><span class="line"><span class="cl">SWD port unlocked!
+</span></span><span class="line"><span class="cl">nrf&gt;
+</span></span></code></pre></div><p>成功した方はおめでとうございます！</p>
+<p>グリッチの設定から成功までキャプチャしたものをTwitterに上げているので、良ければこちらもご覧ください。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">nRF52に対してVoltage Fault Injectionを行う、シリアルコンソールで簡単に操作可能なグリッチャーを作ったぞ！<br>安定して成功するので、nRF52のSoCを使った機器はロックかかっててもファームウェアが吸えるようになるはず <a href="https://t.co/B3AJRmzWzv">pic.twitter.com/B3AJRmzWzv</a></p>&mdash; しゅーと (@shutingrz) <a href="https://twitter.com/shutingrz/status/1463072771173322752?ref_src=twsrc%5Etfw">November 23, 2021</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>成功後のアプローチは多様ですが、今回はファームウェア抽出をしてみます。</p>
+<h2 id="バイパスした状態でファームウェア抽出">バイパスした状態でファームウェア抽出</h2>
+<p>今回の攻撃の一番の目的はファームウェアの抽出でしょう。ファームウェアを抽出してしまえば、CTRL-APからnRF52を初期化したうえで抽出したファームウェアを書き込むことでデバッグ可能な機器に早変わりです。</p>
+<p>DongleのSWDIO・SWDCLKをJ-Linkに繋ぎかえたあとにOpenOCDを使います。やることは正常系の確認と変わらないので省略します。以下のようにファームウェアを抽出できていることがわかります。</p>
+<p><img src="./img/glitch%E5%BE%8C%E3%81%AEopenocd.png" alt="" loading="lazy" /></p>
+<p>ここで面白いのが、画像にあるOCDコマンドの最初の部分です。</p>
+<p>AHB-APのAPPROTECTレジスタの値は<code>0x00</code>と<strong>プロテクション有効</strong>を示しています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; mdw 0x10001208 1                         
+</span></span><span class="line"><span class="cl">0x10001208: ffffff00
+</span></span></code></pre></div><p>しかしCTRL-APのAPPROTECTSTATUSレジスタの値は<code>0x01</code>であり、<strong>プロテクション無効</strong>を示しているのです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; nrf52.dap apreg 1 0x0c
+</span></span><span class="line"><span class="cl">0x00000001
+</span></span></code></pre></div><p>フォールトインジェクションはこのように非常に奇妙な状態を作り出すことができるのです。
+ここでターゲットをリセットするとどうなるでしょうか。やってみます。</p>
+<p><img src="./img/glitch%E5%BE%8C%E3%81%ABreset%E3%81%97%E3%81%9F.png" alt="" loading="lazy" /></p>
+<p>デバッグができなくなりました。このようにAPPROTECTバイパスは一時的な効果であり、次のリセットまでにファームウェア抽出などの作業を終えておく必要があるとわかりますね。</p>
+<h1 id="対策">対策</h1>
+<p>APPROTECTバイパスによって、nRF52シリーズでのAPPROTECTによるデバッグ・ファームウェア保護は完全ではなくなりました。もちろん設定すれば攻撃のハードルが高くなるのでやる価値はあります。ですがプロテクションを完全なものと考えてはいけません。</p>
+<p>できることはファームウェアから機密情報を削除することです。どうしても鍵情報を機器に含める場合は、TPMなどのセキュリティチップに配置し、抽出されないようにします。また鍵情報は機器ごとに固有とし、侵害後の影響を軽減するようにします。</p>
+<h1 id="さいごに">さいごに</h1>
+<p>ハードウェアハッキングの中でもとりわけハードルが高い攻撃のひとつであるフォールトインジェクション、電圧グリッチを説明しました。</p>
+<p>ここでは触れませんでしたが、実はフォールトインジェクションに脆弱な機器はnRF52に限らず複数存在します。公表されているものだとSTM8、ESP32の古いリビジョンがフォールトインジェクションに脆弱です。このように少し前に販売されたSoCはこれらの対策を行っていないため注意が必要です。</p>
+<p>みなさんがこの記事をきっかけにしてハードウェアセキュリティに足を踏み入れることを願っています。</p>
+<h1 id="参考文献">参考文献</h1>
+<ul>
+<li>
+<p>LimitedResults, nRF52 Debug Resurrection (APPROTECT Bypass) Part 1, <a href="https://limitedresults.com/2020/06/nrf52-debug-resurrection-approtect-bypass/">https://limitedresults.com/2020/06/nrf52-debug-resurrection-approtect-bypass/</a></p>
+</li>
+<li>
+<p>Nordic Semiconductor, nRF52840のデータシート(pdf), <a href="https://infocenter.nordicsemi.com/pdf/nRF52840_PS_v1.0.pdf">https://infocenter.nordicsemi.com/pdf/nRF52840_PS_v1.0.pdf</a></p>
+</li>
+<li>
+<p>Nordic Semiconductor, nRF52840 Dongleのデータシート(pdf), <a href="https://infocenter.nordicsemi.com/pdf/nRF52840_Dongle_User_Guide_v1.0.pdf">https://infocenter.nordicsemi.com/pdf/nRF52840_Dongle_User_Guide_v1.0.pdf</a></p>
+</li>
+<li>
+<p>atc1441, ESP32 SWD Flasher for nRF52, <a href="https://github.com/atc1441/ESP32_nRF52_SWD">https://github.com/atc1441/ESP32_nRF52_SWD</a></p>
+</li>
+<li>
+<p>PC Watch, AirTagのハッキングに成功。知らないAirTagのスキャン時は注意, <a href="https://pc.watch.impress.co.jp/docs/news/1323993.html">https://pc.watch.impress.co.jp/docs/news/1323993.html</a></p>
+</li>
+<li>
+<p>IPA, ハードウェアセキュリティ ―IoTの時代に向けて, <a href="https://www.trustedcomputinggroup.org/wp-content/uploads/uploads/JRF/%5BJRFWS%5DDec2015_3.%20IPA_S.%20Sato_Presen+ForWeb.pdf.pdf">https://www.trustedcomputinggroup.org/wp-content/uploads/uploads/JRF/%5BJRFWS%5DDec2015_3.%20IPA_S.%20Sato_Presen+ForWeb.pdf.pdf</a></p>
+</li>
+<li>
+<p>DARKMATTER CDI Engineer&rsquo;s Blog, Voltage Fault Injection をやってみた, <a href="https://io.cyberdefense.jp/entry/2018/10/10/Voltage_Fault_Injection_%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F">https://io.cyberdefense.jp/entry/2018/10/10/Voltage_Fault_Injection_をやってみた</a></p>
+</li>
+<li>
+<p>梨本 翔永, 組込みソフトウェアへの故障注入攻撃に対する安全性評価に関する研究, <a href="https://core.ac.uk/download/pdf/236162266.pdf">https://core.ac.uk/download/pdf/236162266.pdf</a></p>
+</li>
+<li>
+<p>オライリー, (書籍) カーハッカーズ・ハンドブック, <a href="https://www.oreilly.co.jp/books/9784873118239/">https://www.oreilly.co.jp/books/9784873118239/</a></p>
+</li>
+</ul>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/pentest/">pentest</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/hardware-security/">hardware-security</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="https://www.shutingrz.com/post/avoid-detection-powershell/">検知回避の手法 - PowerShell &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/bypass/">bypass</a>
+			
+			<a class="mt-1 mb-1" href="/tags/car-security/">car-security</a>
+			
+			<a class="mt-1 mb-1" href="/tags/develop/">develop</a>
+			
+			<a class="mt-1 mb-1" href="/tags/dns/">dns</a>
+			
+			<a class="mt-1 mb-1" href="/tags/ethical_hacking/">ethical_hacking</a>
+			
+			<a class="mt-1 mb-1" href="/tags/exploit/">exploit</a>
+			
+			<a class="mt-1 mb-1" href="/tags/hardware-security/">hardware-security</a>
+			
+			<a class="mt-1 mb-1" href="/tags/intelligence/">intelligence</a>
+			
+			<a class="mt-1 mb-1" href="/tags/misc/">misc</a>
+			
+			<a class="mt-1 mb-1" href="/tags/pentest/">pentest</a>
+			
+			<a class="mt-1 mb-1" href="/tags/priv_escalation/">priv_escalation</a>
+			
+			<a class="mt-1 mb-1" href="/tags/web/">web</a>
+			
+			<a class="mt-1 mb-1" href="/tags/%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8/">仮想通貨</a>
+			
+			<a class="mt-1 mb-1" href="/tags/%E8%87%AA%E4%BD%9C%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8%E5%85%A5%E9%96%80/">自作仮想通貨入門</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">    
+                <a target="_blank" rel="noopener" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-137567513-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </body>
+</html>
