@@ -59,7 +59,7 @@
   "headline": "フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ",
   "description" : "しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞い",
   "inLanguage" : "en",
-  "wordCount":  14546 ,
+  "wordCount":  14513 ,
   "datePublished" : "2022-03-07T03:00:00",
   "dateModified" : "2022-03-07T03:00:00",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -213,7 +213,7 @@
                                     <i class="far fa-star"></i>
                                     Mar 7, 2022
                                     <i class="far fa-clock clock"></i>
-                                    30 min read
+                                    29 min read
                                 </span>					
                             </div>
                         </div>			
@@ -260,8 +260,8 @@
       <ol>
         <li><a href="#ターゲットのリセットの方法">「ターゲットのリセット」の方法</a></li>
         <li><a href="#一定時間のスリープの方法">「一定時間のスリープ」の方法</a></li>
-        <li><a href="#cpu電圧をgndに落とす戻す方法">「CPU電圧をGNDに落とす/戻す」方法</a></li>
         <li><a href="#デバッグ可能か確認する方法">「デバッグ可能か」確認する方法</a></li>
+        <li><a href="#cpu電圧をgndに落とす戻す方法">「CPU電圧をGNDに落とす/戻す」方法</a></li>
       </ol>
     </li>
     <li><a href="#グリッチ回路の作成">グリッチ回路の作成</a>
@@ -361,8 +361,8 @@
 <h1 id="正常系の確認">正常系の確認</h1>
 <p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
 <div class="accordion">
-  <input id="id-749861352" class="toggle" type="checkbox">
-  <label class="title" for="id-749861352">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-317482659" class="toggle" type="checkbox">
+  <label class="title" for="id-317482659">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
 <p>今回は次のコードを用いました。</p>
@@ -565,12 +565,12 @@
 <td style="text-align:center">一定時間のスリープ</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>glitch_on()/glitch_off()</code></td>
-<td style="text-align:center">CPU電圧をGNDに落とす/戻す</td>
-</tr>
-<tr>
 <td style="text-align:center"><code>is_glitch_success()</code></td>
 <td style="text-align:center">デバッグ可能か</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>glitch_on()/glitch_off()</code></td>
+<td style="text-align:center">CPU電圧をGNDに落とす/戻す</td>
 </tr>
 </tbody>
 </table>
@@ -580,6 +580,11 @@
 <p>別のバイパスではこの機能は複雑なものになる可能性があります。例えば攻撃対象のファームウェアの特定コマンドにパスワード認証があり、電圧グリッチで認証バイパスを試みる場合、「ターゲットのリセット」は、「特定コマンドを送り、パスワードを送信した直後」になります。</p>
 <h2 id="一定時間のスリープの方法">「一定時間のスリープ」の方法</h2>
 <p>これは攻撃対象がどれだけシビアかによります。今回の攻撃対象であるnRF52のAPPROTECTバイパスでは、電圧グリッチ時間が7-10us程度で成功することを確認しています。またスリープ精度が1us単位でも十分成功するので、よほど遅いマイコンでない限りは成功します。Arduino-IDEには<code>delayMicroseconds()</code>が用意されているので、一定時間のスリープはこの関数を利用するだけで実現できます。</p>
+<h2 id="デバッグ可能か確認する方法">「デバッグ可能か」確認する方法</h2>
+<p>APPROTECTバイパスが成功するとデバッグが可能になります。よって「デバッグ可能か」が<code>is_glitch_success()</code>の実装になります。</p>
+<p>nRF52のデバッグポートはSWDです。グリッチャー単体でこれが使えるか確認するということは、グリッチャーでのSWD実装が必要になるわけです。</p>
+<p>ただし今回はモロ参考になるコードがあったので、グリッチャーにSWD実装を含めることにしました。もしグリッチャー作成の負荷を下げたい場合は、PC+J-Link+OpenOCDとオシロスコープのトリガ出力を組み合わせることで同じようにグリッチが可能と思います。</p>
+<p>なお別のバイパスではこの機能は複雑・簡単なものになる可能性があります。例えば攻撃対象のファームウェアの特定コマンドにパスワード認証があり、電圧グリッチで認証バイパスを試みたい場合、「デバッグ可能か」は、「認証なしで特定コマンドが受け入れるか」になります。コマンドのプロトコルによりますが、単純なUARTであればSWD実装より簡単な気がします。</p>
 <h2 id="cpu電圧をgndに落とす戻す方法">「CPU電圧をGNDに落とす/戻す」方法</h2>
 <p>参考記事ではnRF52のDEC4を特定タイミングでGNDに接続することで実現しています。次の画像はnRF52840のデータシート上のレギュレータの構成図です。</p>
 <p><img src="./img/reg_dec4_edit.png" alt="REG_DEC4" loading="lazy" /></p>
@@ -610,14 +615,6 @@
 </tbody>
 </table>
 <br/>
-<blockquote>
-<p>※あとでDEC4のポイントでMOSFETに接続する線を生やします。</p>
-</blockquote>
-<h2 id="デバッグ可能か確認する方法">「デバッグ可能か」確認する方法</h2>
-<p>APPROTECTバイパスが成功するとデバッグが可能になります。よって「デバッグ可能か」が<code>is_glitch_success()</code>の実装になります。</p>
-<p>nRF52のデバッグポートはSWDです。グリッチャー単体でこれが使えるか確認するということは、グリッチャーでのSWD実装が必要になるわけです。</p>
-<p>ただし今回はモロ参考になるコードがあったので、グリッチャーにSWD実装を含めることにしました。もしグリッチャー作成の負荷を下げたい場合は、PC+J-Link+OpenOCDとオシロスコープのトリガ出力を組み合わせることで同じようにグリッチが可能と思います。</p>
-<p>なお別のバイパスではこの機能は複雑・簡単なものになる可能性があります。例えば攻撃対象のファームウェアの特定コマンドにパスワード認証があり、電圧グリッチで認証バイパスを試みたい場合、「デバッグ可能か」は、「認証なしで特定コマンドが受け入れるか」になります。コマンドのプロトコルによりますが、単純なUARTであればSWD実装より簡単な気がします。</p>
 <h1 id="グリッチ回路の作成">グリッチ回路の作成</h1>
 <h2 id="前準備dec4への配線">前準備:DEC4への配線</h2>
 <p>グリッチ回路の前に、DongleのDEC4への配線を済ませておきます。DEC4に繋がるポイントはDongleでC5のシルクが印字されたところです。SMDコンデンサのCPU側に配線が必要です。極小なので、はんだ付けに慣れていない方は頑張ってください。</p>
@@ -662,8 +659,8 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="accordion">
-  <input id="id-694532817" class="toggle" type="checkbox">
-  <label class="title" for="id-694532817">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-183749625" class="toggle" type="checkbox">
+  <label class="title" for="id-183749625">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
 <p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
