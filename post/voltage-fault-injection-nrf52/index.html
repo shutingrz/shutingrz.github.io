@@ -290,7 +290,7 @@
     </details>
 </div>
                         <p>しゅーと(<a href="https://twitter.com/shutingrz">@shutingrz</a>)です。久しぶりの投稿です。</p>
-<p>皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？フォールトインジェクションはハードウェアセキュリティ分野におけるサイドチャネル攻撃手法のひとつです。今までこの攻撃を試すには高価な機材が必要でハードルが高いものでした。しかし2020年に<strong>nRF52</strong>という世界中で使われるマイコンにおいてフォールトインジェクションが可能な脆弱性が発見され、誰でも容易に検証ができるようになりました。nRF52は1000円ちょっとで入手でき、攻撃のために特殊な機材を必要としません。</p>
+<p>皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？ハードウェアセキュリティ分野におけるフォールトインジェクションはサイドチャネル攻撃手法のひとつです。今までこの攻撃を試すには高価な機材が必要でハードルが高いものでした。しかし2020年に<strong>nRF52</strong>という世界中で使われるマイコンにおいてフォールトインジェクションが可能な脆弱性が発見され、誰でも容易に検証ができるようになりました。nRF52は1000円ちょっとで入手でき、攻撃のために特殊な機材を必要としません。</p>
 <p>そこで皆さんにフォールトインジェクションという面白い攻撃手法を共有するために、攻撃成功までの道筋を教育資料として使えるように作成しました。頑張って書いたのでぜひ読んでください。</p>
 <p><strong>※検証は自分自身が所有する機器に対してのみ行ってください。</strong></p>
 <h1 id="voltage-fault-injectionとは">Voltage Fault Injectionとは</h1>
@@ -345,7 +345,7 @@
 <p>今回は<a href="https://akizukidenshi.com/catalog/g/gM-11819/">ESP32-DevKitC</a>を使いました。クロック周波数が240MHzとスペックが良いのに秋月で1480円なのでコスパ最強です。今回私が用意したファームウェアでグリッチを試したい方はこちらを利用してください。</p>
 <h3 id="mosfet">MOSFET</h3>
 <p><img src="./img/xy-mos_struct.png" alt="" loading="lazy" /></p>
-<p>CPU電圧をGNDに落とすためのパーツです。MOSFET単体と抵抗を使って構成してもいいのですが、@jptomoya氏からXY-MOSというドライバーモジュールを教えてもらいました。Amazonで<a href="amazon.co.jp/gp/product/B07BVKL4VW">5個セット600円弱で購入できます</a>し、AliExpressでも売っています。回路構成としてはMOSFETが並列で設置されており、Signalがゲート、GNDがソース、OUT-がドレインに接続されています。Signal、GNDは大きいスルーホールと小さいものがありますが、電気的につながっておりどちらの穴を使ってもかまいません。写真右の青いものはターミナルブロックで、ジャンパワイヤなどをグサっと刺せるようになっています。</p>
+<p>CPU電圧をGNDに落とすためのパーツです。MOSFET単体と抵抗を使って構成してもいいのですが、@jptomoya氏からXY-MOSというドライバーモジュールを教えてもらいました。Amazonで<a href="https://amazon.co.jp/gp/product/B07BVKL4VW">5個セット600円弱で購入できます</a>し、AliExpressでも売っています。回路構成としてはMOSFETが並列で設置されており、Signalがゲート、GNDがソース、OUT-がドレインに接続されています。Signal、GNDは大きいスルーホールと小さいものがありますが、電気的につながっておりどちらの穴を使ってもかまいません。写真右の青いものはターミナルブロックで、ジャンパワイヤなどをグサっと刺せるようになっています。</p>
 <h3 id="デバッガ">デバッガ</h3>
 <p><img src="./img/jlink_photo.jpg" alt="" loading="lazy" /></p>
 <p>nRF52にSWD接続するためのデバッガです。OpenOCDが対応している機材であればなんでも構いません。安いものだとFT232Hなどがあげられます。私は<a href="https://www.embitek.co.jp/product/jlink-edu.html">J-Link EDU</a>を使いました（商用利用時などライセンスに注意）。</p>
@@ -361,8 +361,8 @@
 <h1 id="正常系の確認">正常系の確認</h1>
 <p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
 <div class="accordion">
-  <input id="id-317482659" class="toggle" type="checkbox">
-  <label class="title" for="id-317482659">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-579462381" class="toggle" type="checkbox">
+  <label class="title" for="id-579462381">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
 <p>今回は次のコードを用いました。</p>
@@ -659,8 +659,8 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="accordion">
-  <input id="id-183749625" class="toggle" type="checkbox">
-  <label class="title" for="id-183749625">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-456789321" class="toggle" type="checkbox">
+  <label class="title" for="id-456789321">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
 <p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
