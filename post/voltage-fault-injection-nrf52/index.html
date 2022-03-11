@@ -59,7 +59,7 @@
   "headline": "フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ",
   "description" : "しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞い",
   "inLanguage" : "en",
-  "wordCount":  14513 ,
+  "wordCount":  14365 ,
   "datePublished" : "2022-03-07T03:00:00",
   "dateModified" : "2022-03-07T03:00:00",
   "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -310,8 +310,6 @@
 <p>基板上の同コントローラはロックダウンされており、消去や書き込みは可能なものの、ファームウェアを読み出せなかったという。<strong>一方で同種のnRF52840コントローラでは、電圧変化によるフォールトインジェクションを利用してデバッグ機能を再度有効化できた例がすでに存在しており</strong>、同氏はこの手法を活用してデバッグ機能を有効化し、ファームウェアの読み出しに成功した。</p>
 </blockquote>
 <p>本記事での攻撃対象はAirTagではなくnRF52840のリファレンスボードであるnRF52840 Dongleに対するものですが、原理は全く一緒です。これをマスターすればAirTagに対しても成功させることは可能です。</p>
-<p>メーカー技術者の方もこれを検証してもらえれば、ファームウェア上に鍵などの機密情報をハードコーディングすることが危険ということがわかるはずです。
-増減させるためのMOSFETなどの素子に送信されます。パルス電圧の特性にあまりこだわる必要はないので、一般的なFPGAやGPIOをもつマイコンでOKです。</p>
 <h2 id="攻撃の脅威">攻撃の脅威</h2>
 <p>攻撃者は攻撃対象機器でデバッグ機能が有効になっているかを高い優先度で調査します。デバッグ機能が有効だと、ファームウェアに含まれる秘密情報の窃取や、ファームウェアの抽出、脆弱性の効率的な調査を行うためのブレークポイント設置、ステップ実行ができるためです。逆にファームウェアが取得できず、デバッグができない場合、攻撃者は完全なブラックボックス調査をすることになります。そのためデバッグを強制的に有効にできるAPPROTECTバイパスは攻撃者にとって有益な攻撃手段なのです。</p>
 <p>nRF52はそもそもAPPROTECTが有効でも初期化を行うことでAPPROTECTを無効にできます。ただし同時にフラッシュ内のデータが消去されるので、ファームウェアが抽出できない状況では文鎮になります。逆にこの仕様を逆手にとることで、APPROTECTバイパスでデバッグを有効にしたあとにファームウェアを抽出し、初期化して抽出したファームウェアをフラッシュに書き込むことでデバッグ可能な機器に早変わりするのです。</p>
@@ -361,8 +359,8 @@
 <h1 id="正常系の確認">正常系の確認</h1>
 <p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
 <div class="accordion">
-  <input id="id-579462381" class="toggle" type="checkbox">
-  <label class="title" for="id-579462381">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-278693145" class="toggle" type="checkbox">
+  <label class="title" for="id-278693145">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
 <p>今回は次のコードを用いました。</p>
@@ -659,8 +657,8 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="accordion">
-  <input id="id-456789321" class="toggle" type="checkbox">
-  <label class="title" for="id-456789321">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-431729685" class="toggle" type="checkbox">
+  <label class="title" for="id-431729685">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
 <p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
