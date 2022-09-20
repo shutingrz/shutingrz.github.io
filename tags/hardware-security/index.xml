@@ -6,7 +6,7 @@
     <description>Recent content in hardware-security on Shooting!!!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright>
+    <copyright>shutingrz - All rights reserved.</copyright>
     <lastBuildDate>Mon, 07 Mar 2022 03:00:00 +0900</lastBuildDate><atom:link href="https://www.shutingrz.com/tags/hardware-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ</title>

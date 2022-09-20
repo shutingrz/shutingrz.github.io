@@ -15,14 +15,14 @@
     "@type": "WebSite",
     "name": "Shooting!!!",
     
-    "url": "https:\/\/www.shutingrz.com\/"
+    "url": "https:\/\/www.shutingrz.com"
 }
 </script><script type="application/ld+json">
 {
   "@context": "http://schema.org",
   "@type": "Organization",
   "name": "",
-  "url": "https:\/\/www.shutingrz.com\/"
+  "url": "https:\/\/www.shutingrz.com"
   
   
   
@@ -37,7 +37,7 @@
         "@type": "ListItem",
         "position": 1,
         "item": {
-          "@id": "https:\/\/www.shutingrz.com\/",
+          "@id": "https:\/\/www.shutingrz.com",
           "name": "home"
         }
     },{
@@ -67,7 +67,7 @@
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/voltage-fault-injection-nrf52\/",
   "publisher" : {
     "@type": "Organization",
-    "name" : "https:\/\/www.shutingrz.com\/",
+    "name" : "https:\/\/www.shutingrz.com",
     "logo" : {
         "@type" : "ImageObject",
         "url" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
@@ -116,12 +116,16 @@
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="alternate"
+	type="application/rss+xml"
+	href="https://www.shutingrz.com/index.xml"
+	title="Shooting!!!">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
     <div class="container pr-0">
         
-        <a class="navbar-brand" href="https://www.shutingrz.com//">
+        <a class="navbar-brand" href="https://www.shutingrz.com/">
 
             
             <img src="/img/favicon.ico" alt="logo">
@@ -359,8 +363,8 @@
 <h1 id="正常系の確認">正常系の確認</h1>
 <p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
 <div class="accordion">
-  <input id="id-278693145" class="toggle" type="checkbox">
-  <label class="title" for="id-278693145">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-367912548" class="toggle" type="checkbox">
+  <label class="title" for="id-367912548">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
 <p>今回は次のコードを用いました。</p>
@@ -657,8 +661,8 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="accordion">
-  <input id="id-431729685" class="toggle" type="checkbox">
-  <label class="title" for="id-431729685">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-812795436" class="toggle" type="checkbox">
+  <label class="title" for="id-812795436">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
 <p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
@@ -935,7 +939,7 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                &copy; Copyright shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。
+                &copy; Copyright shutingrz - All rights reserved. / 本サイトではアクセス解析に Google Analytics を利用しています。
             </div>
             <div class="col-md-6 col-sm-6 text-center text-lg-right">    
                 <a target="_blank" rel="noopener" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net

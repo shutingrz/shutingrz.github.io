@@ -6,8 +6,12 @@
     <description>Recent content on Shooting!!!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <copyright>shutingrz - All rights reserved / 本サイトではアクセス解析に Google Analytics を利用しています。</copyright>
+    <copyright>shutingrz - All rights reserved.</copyright>
     <lastBuildDate>Mon, 07 Mar 2022 03:00:00 +0900</lastBuildDate><atom:link href="https://www.shutingrz.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+
+    
     <item>
       <title>フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ</title>
       <link>https://www.shutingrz.com/post/voltage-fault-injection-nrf52/</link>
@@ -15,7 +19,16 @@
       
       <guid>https://www.shutingrz.com/post/voltage-fault-injection-nrf52/</guid>
       <description>しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞い</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ</title>
+        <link>https://www.shutingrz.com/post/voltage-fault-injection-nrf52/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>検知回避の手法 - PowerShell</title>
@@ -24,7 +37,16 @@
       
       <guid>https://www.shutingrz.com/post/avoid-detection-powershell/</guid>
       <description>しゅーと(@shutingrz)です。 前回の記事では実行ファイルにおいて Windows Defender のリアルタイムスキャン、クラウド保護の検知回避を試みました。 まだ</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>検知回避の手法 - PowerShell</title>
+        <link>https://www.shutingrz.com/post/avoid-detection-powershell/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>検知回避の手法 - 実行ファイル</title>
@@ -33,7 +55,16 @@
       
       <guid>https://www.shutingrz.com/post/avoid-detection-dotnet/</guid>
       <description>しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blu</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>検知回避の手法 - 実行ファイル</title>
+        <link>https://www.shutingrz.com/post/avoid-detection-dotnet/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>GadgetToJScript を利用した Office VBA のAMSI バイパスと原理</title>
@@ -42,7 +73,16 @@
       
       <guid>https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/</guid>
       <description>しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マ</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>GadgetToJScript を利用した Office VBA のAMSI バイパスと原理</title>
+        <link>https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>コインチェックのドメインハイジャックの手法を調査した</title>
@@ -51,7 +91,16 @@
       
       <guid>https://www.shutingrz.com/post/dig-coincheck/</guid>
       <description>しゅーとです。 コインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>コインチェックのドメインハイジャックの手法を調査した</title>
+        <link>https://www.shutingrz.com/post/dig-coincheck/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>ラテラルムーブメントとそれを阻むUACに関する調査</title>
@@ -60,7 +109,16 @@
       
       <guid>https://www.shutingrz.com/post/ad_remote-uac/</guid>
       <description>ラテラルムーブメントを阻む、通称「リモートUAC」に関して調査しました。 結果はまあそうだよねという感じになってしまいましたが、ここにメモしま</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>ラテラルムーブメントとそれを阻むUACに関する調査</title>
+        <link>https://www.shutingrz.com/post/ad_remote-uac/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>アクアのスピードメーターを解析してPS3のコントローラで動かす</title>
@@ -69,7 +127,16 @@
       
       <guid>https://www.shutingrz.com/post/aqua-meter-hack/</guid>
       <description>しゅーとです。 リアルECUシリーズ第二作目。 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。 要約 スピードメーター</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>アクアのスピードメーターを解析してPS3のコントローラで動かす</title>
+        <link>https://www.shutingrz.com/post/aqua-meter-hack/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>リアルECUを召喚して本物のCAN通信の雰囲気を知る</title>
@@ -78,7 +145,16 @@
       
       <guid>https://www.shutingrz.com/post/summon-real-ecu/</guid>
       <description>これまでシミュレーション環境でカーセキュリティの勉強をしていて、その成果は妄想CAN三部作ということで以下の記事にまとめている。 シミュレーシ</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>リアルECUを召喚して本物のCAN通信の雰囲気を知る</title>
+        <link>https://www.shutingrz.com/post/summon-real-ecu/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>ECUの車速に関するCANメッセージを特定して騙す</title>
@@ -87,7 +163,16 @@
       
       <guid>https://www.shutingrz.com/post/can-training3/</guid>
       <description>CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。 前回はドア開錠メッセージをSavvyCANのOverwri</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>ECUの車速に関するCANメッセージを特定して騙す</title>
+        <link>https://www.shutingrz.com/post/can-training3/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>ドア開錠を行うCAN通信を特定する</title>
@@ -96,7 +181,16 @@
       
       <guid>https://www.shutingrz.com/post/can-training2/</guid>
       <description>今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。 前回 はどのCANメッセージがドアをあけるものなのかわからないながらも、通信</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>ドア開錠を行うCAN通信を特定する</title>
+        <link>https://www.shutingrz.com/post/can-training2/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>シミュレーション環境でCAN通信を試す</title>
@@ -105,7 +199,16 @@
       
       <guid>https://www.shutingrz.com/post/can-training-first/</guid>
       <description>車がなくてもカーセキュリティの勉強がしたい！ ということでカーハッカーズハンドブックを読みつつICSimを使ってCAN通信を試してみる。 環境 Ubuntu</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>シミュレーション環境でCAN通信を試す</title>
+        <link>https://www.shutingrz.com/post/can-training-first/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>ペネトレ検証-権限昇格とWildcard Injectionの原理</title>
@@ -114,7 +217,16 @@
       
       <guid>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</guid>
       <description>しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>ペネトレ検証-権限昇格とWildcard Injectionの原理</title>
+        <link>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>ペネトレ検証-ECサイトに侵入</title>
@@ -123,7 +235,16 @@
       
       <guid>https://www.shutingrz.com/post/ad_hack-ec_exploit/</guid>
       <description>しゅーとです。 家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。 また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>ペネトレ検証-ECサイトに侵入</title>
+        <link>https://www.shutingrz.com/post/ad_hack-ec_exploit/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>記事に特定のタグがあったら「悪用禁止」と表示されるようにしてみた</title>
@@ -132,25 +253,16 @@
       
       <guid>https://www.shutingrz.com/post/hugo-notice-banner/</guid>
       <description>要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacki</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>記事に特定のタグがあったら「悪用禁止」と表示されるようにしてみた</title>
+        <link>https://www.shutingrz.com/post/hugo-notice-banner/</link>
+      </image>
     </item>
     
-    <item>
-      <title>セキュリティ情報の公開について</title>
-      <link>https://www.shutingrz.com/pages/about-disclosure-security-information/</link>
-      <pubDate>Wed, 08 May 2019 00:42:34 +0900</pubDate>
-      
-      <guid>https://www.shutingrz.com/pages/about-disclosure-security-information/</guid>
-      <description>近頃サイバー犯罪による金銭的被害、社会的被害が急増しています。 これらのサイバー犯罪に対抗するため、セキュリティエンジニアは攻撃者が利用するツ</description>
-    </item>
     
-    <item>
-      <title>自作仮想通貨入門</title>
-      <link>https://www.shutingrz.com/pages/oreore-coin/</link>
-      <pubDate>Tue, 30 Apr 2019 00:03:52 +0900</pubDate>
-      
-      <guid>https://www.shutingrz.com/pages/oreore-coin/</guid>
-      <description>自作仮想通貨入門 - 実際に作って学ぶビットコイン 2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記</description>
-    </item>
+    
+
     
     <item>
       <title>自作仮想通貨入門(10) - 著作権表示の記載・おわりに</title>
@@ -159,7 +271,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin10/</guid>
       <description>この章で自作仮想通貨入門は終わりです。 著作権表示をしてあなたの仮想通貨をアピールしましょう。 著作権表示の記載 著作権表示は下記のファイルに記載</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(10) - 著作権表示の記載・おわりに</title>
+        <link>https://www.shutingrz.com/post/oreore-coin10/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(9) - ブロックデータのマジックバイト変更</title>
@@ -168,7 +289,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin9/</guid>
       <description>※この章では src/chainparams.cpp を変更します。 あまり話題にならないものの仮想通貨では極めて重要な、ブロックデータのマジックバイトを変更します。 ビットコインプロ</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(9) - ブロックデータのマジックバイト変更</title>
+        <link>https://www.shutingrz.com/post/oreore-coin9/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(8) - アドレスのプレフィックス変更</title>
@@ -177,7 +307,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin8/</guid>
       <description>※この章では src/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組み</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(8) - アドレスのプレフィックス変更</title>
+        <link>https://www.shutingrz.com/post/oreore-coin8/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(7) - コンセンサスの設定</title>
@@ -186,7 +325,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin7/</guid>
       <description>※この章では src/chainparams.cpp を変更します。 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。 実はここはデフォルトのままでも問題ないのですが、</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(7) - コンセンサスの設定</title>
+        <link>https://www.shutingrz.com/post/oreore-coin7/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(6) - ジェネシスブロックの作成と設定</title>
@@ -195,7 +343,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin6/</guid>
       <description>※この章では src/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチ</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(6) - ジェネシスブロックの作成と設定</title>
+        <link>https://www.shutingrz.com/post/oreore-coin6/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(5) - 単純な文字列置換</title>
@@ -204,7 +361,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin5/</guid>
       <description>この章からいよいよLitecoinのソースコードに修正を加えていきます。 この章ではソースコードおよび関連ドキュメントに含まれるLitecoi</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(5) - 単純な文字列置換</title>
+        <link>https://www.shutingrz.com/post/oreore-coin5/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(4) - テンプレートファイルのコピー</title>
@@ -213,7 +379,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin4/</guid>
       <description>チェックポイントなどの確認処理を全て消したテンプレートファイルをコピーし新しい仮想通貨に合わせて色々な設定をしていきます。 chainparams.cpp / chainparams.h の置き換え B</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(4) - テンプレートファイルのコピー</title>
+        <link>https://www.shutingrz.com/post/oreore-coin4/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(3) - Litecoinを試してみよう</title>
@@ -222,7 +397,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin3/</guid>
       <description>自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。 既にコマンドラインでマイニングや送金を行ったことがあるか</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(3) - Litecoinを試してみよう</title>
+        <link>https://www.shutingrz.com/post/oreore-coin3/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(2) - Litecoinの準備</title>
@@ -231,7 +415,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin2/</guid>
       <description>自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。 今回は、フォークとリリースを容易に行えるように、gitを使って</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(2) - Litecoinの準備</title>
+        <link>https://www.shutingrz.com/post/oreore-coin2/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>自作仮想通貨入門(1) - はじめに</title>
@@ -240,7 +433,16 @@
       
       <guid>https://www.shutingrz.com/post/oreore-coin1/</guid>
       <description>自作仮想通貨「Raccoin」のアイコン 皆さんは自作仮想通貨を作ったことはあるでしょうか？ イーサリアムのトークンやCounterPartyも</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>自作仮想通貨入門(1) - はじめに</title>
+        <link>https://www.shutingrz.com/post/oreore-coin1/</link>
+      </image>
     </item>
+    
+    
+    
+
     
     <item>
       <title>サイトをリニューアルしました</title>
@@ -249,16 +451,11 @@
       
       <guid>https://www.shutingrz.com/post/first-article/</guid>
       <description>今までのポートフォリオサイトが適当すぎたのと、ブログははてなブログを使ってたので ポートフォリオ兼ブログとしてリニューアルしました。</description>
+      <image>
+        <url>https://www.shutingrz.com/cover.png</url>
+        <title>サイトをリニューアルしました</title>
+        <link>https://www.shutingrz.com/post/first-article/</link>
+      </image>
     </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://www.shutingrz.com/pages/about/</link>
-      <pubDate>Fri, 12 Apr 2019 02:05:11 +0900</pubDate>
-      
-      <guid>https://www.shutingrz.com/pages/about/</guid>
-      <description>しゅーと(@shutingrz) です。ハッカーです。 昔からシステムの構造を調べるのが好きでした。 趣味が高じて今はリバースエンジニアリングやペ</description>
-    </item>
-    
-  </channel>
+    </channel>
 </rss>
