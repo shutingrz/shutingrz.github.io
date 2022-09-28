@@ -14,7 +14,7 @@
       <pubDate>Mon, 24 Feb 2020 01:18:40 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/ad_remote-uac/</guid>
-      <description>ラテラルムーブメントを阻む、通称「リモートUAC」に関して調査しました。 結果はまあそうだよねという感じになってしまいましたが、ここにメモしま</description>
+      <description>ラテラルムーブメントを阻む、通称「リモートUAC」に関して調査しました。 結果はまあそうだよねという感じになってしまいましたが、ここにメモします。 UACの効果 UAC といえば、管理者権限で実行するときに暗転して表示されるポップアップを連想されると思います。 しかしUACには、管理共有やWMIなどの機能をリモートから防ぐためのリモート UAC という機能もあります。 例えば組織内でセットアップ用のローカル管理者ユーザが</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Thu, 03 Oct 2019 04:34:00 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/aqua-meter-hack/</guid>
-      <description>しゅーとです。 リアルECUシリーズ第二作目。 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。 要約 スピードメーター</description>
+      <description>しゅーとです。 リアルECUシリーズ第二作目。 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。 要約 スピードメーターが反応するCANIDを特定できた。 そしてその情報を使ってPS3コントローラでスピードメーターを操作してみたよ。 コントローラで動いているのだけ見たい人はこの動画を見てください。 検証環境 DC安定化電源 メーターへの給電用 Canable CAN通信ができるUSB機器。(ファームウェ</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Mon, 13 May 2019 03:15:21 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</guid>
-      <description>しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱</description>
+      <description>しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱性を用いてRCE、そしてwww-data権限でのバックドア作成に成功しました。 今回はLinuxでの権限昇格です。 権限昇格したい！ 現状コントロールできているのはwww-dataユーザの権限であり、rootではありません。 ここから横展開するにあたり、root権限は</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@
       <pubDate>Sat, 11 May 2019 07:01:20 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/ad_hack-ec_exploit/</guid>
-      <description>しゅーとです。 家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。 また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残</description>
+      <description>しゅーとです。 家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。 また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残っているかも確認します。 今回は初期侵入フェーズとしてECサイトへの侵入です。 エクスプロイトとバックドアの作成をやっていきます。 なお今回はIDSとして申し訳程度にSuricataを立てていますが、デフォルトのポリシーだし正直検知できるとは思っていません。 自作自演</description>
     </item>
     
     <item>
@@ -50,7 +50,7 @@
       <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/hugo-notice-banner/</guid>
-      <description>要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacki</description>
+      <description>要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。 ※この記事はハッキングには関係ありませんが、デモ用に表示が出るようにしています。 一応情報公開のスタンスをここに書いておきます。 セキュリティ情報の公開について セキュリティ情報を広く公開することは大事です。 最近は色々</description>
     </item>
     
   </channel>

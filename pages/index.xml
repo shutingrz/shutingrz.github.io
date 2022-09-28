@@ -14,7 +14,7 @@
       <pubDate>Wed, 08 May 2019 00:42:34 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/pages/about-disclosure-security-information/</guid>
-      <description>近頃サイバー犯罪による金銭的被害、社会的被害が急増しています。 これらのサイバー犯罪に対抗するため、セキュリティエンジニアは攻撃者が利用するツ</description>
+      <description>近頃サイバー犯罪による金銭的被害、社会的被害が急増しています。 これらのサイバー犯罪に対抗するため、セキュリティエンジニアは攻撃者が利用するツールや脆弱性情報などの最新動向を追う必要があります。 またリスクを明確にするために時には攻撃者目線でセキュリティを考える必要もあります。 このような状況の中、セキュリティエンジニアの助けになればという思いで、実践的なセキュリティ情報を発信していくことにしました。 私</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Tue, 30 Apr 2019 00:03:52 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/pages/oreore-coin/</guid>
-      <description>自作仮想通貨入門 - 実際に作って学ぶビットコイン 2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記</description>
+      <description>自作仮想通貨入門 - 実際に作って学ぶビットコイン 2018年、技術書展5で頒布された合同誌「ITやみなべ」に「オレオレ仮想通貨の作り方」という記事を寄稿しました。 ただ頒布から半年も経ったということで、記事を無償でブログに公開することにしました。 なお合同誌では付録として「chainparams.cpp」に出てくる各変数の意味と歴史的経緯を7ページにわたって記載していますが、これは合同誌を購入いただいた方</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Fri, 12 Apr 2019 02:05:11 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/pages/about/</guid>
-      <description>しゅーと(@shutingrz) です。ハッカーです。 昔からシステムの構造を調べるのが好きでした。 趣味が高じて今はリバースエンジニアリングやペ</description>
+      <description>しゅーと(@shutingrz) です。ハッカーです。 昔からシステムの構造を調べるのが好きでした。 趣味が高じて今はリバースエンジニアリングやペンテストをしています。 Keywords: ネットワークフォレンジック(IPS/FW/Sandbox) / 脆弱性検証 / Exploiting /DNS /仮想通貨 /IoTセキュリティ / リバースエンジニアリング PGP Fingerprint: 306E71FA574F7618B9CCE6C118F4C438B4CD4B50 Works Presentations Analyze Automotive ECU (Slide) (IoTSecJP version.6.0) DNSトンネリングの手法 (Slide) (ssmjp 2018/05) JC3が教える！ Gozi/DreamBot 判別法 (Slide) (非公開勉強会) KnotR</description>
     </item>
     
   </channel>

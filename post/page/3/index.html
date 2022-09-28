@@ -143,7 +143,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/ad_hack-ec_exploit/">ペネトレ検証-ECサイトに侵入</a></h2>
-            <h4 class="card-text">しゅーとです。 家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。 また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残</h4>            
+            <h4 class="card-text">しゅーとです。 家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。 また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残っているかも確認します。 今回は初期侵入フェーズとしてECサイトへの侵入です。 エクスプロイトとバックドアの作成をやっていきます。 なお今回はIDSとして申し訳程度にSuricataを立てていますが、デフォルトのポリシーだし正直検知できるとは思っていません。 自作自演</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -175,7 +175,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/hugo-notice-banner/">記事に特定のタグがあったら「悪用禁止」と表示されるようにしてみた</a></h2>
-            <h4 class="card-text">要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacki</h4>            
+            <h4 class="card-text">要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。 ※この記事はハッキングには関係ありませんが、デモ用に表示が出るようにしています。 一応情報公開のスタンスをここに書いておきます。 セキュリティ情報の公開について セキュリティ情報を広く公開することは大事です。 最近は色々</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -207,7 +207,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin10/">自作仮想通貨入門(10) - 著作権表示の記載・おわりに</a></h2>
-            <h4 class="card-text">この章で自作仮想通貨入門は終わりです。 著作権表示をしてあなたの仮想通貨をアピールしましょう。 著作権表示の記載 著作権表示は下記のファイルに記載</h4>            
+            <h4 class="card-text">この章で自作仮想通貨入門は終わりです。 著作権表示をしてあなたの仮想通貨をアピールしましょう。 著作権表示の記載 著作権表示は下記のファイルに記載します。 ./COPYING ./doc/man/raccoin-cli.1 ./doc/man/raccoin-qt.1 ./doc/man/raccoin-tx.1 ./doc/man/raccoind.1 例えばRaccoinなら以下のようにします。 Copyright (C) 2018 The Raccoin Core developers 記載箇所については&quot;Litecoin&quot;で検索して確認してください。 フォーク元(BitcoinとLitecoin)の著作権表示を残しつつ、自分の仮想通貨の著作権表示を</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -239,7 +239,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin9/">自作仮想通貨入門(9) - ブロックデータのマジックバイト変更</a></h2>
-            <h4 class="card-text">※この章では src/chainparams.cpp を変更します。 あまり話題にならないものの仮想通貨では極めて重要な、ブロックデータのマジックバイトを変更します。 ビットコインプロ</h4>            
+            <h4 class="card-text">※この章では src/chainparams.cpp を変更します。 あまり話題にならないものの仮想通貨では極めて重要な、ブロックデータのマジックバイトを変更します。 ビットコインプロトコルにはブロックに関するデータを含みますが、そのデータを示すためのマジックバイトが存在します。 それが以下の記載です。 pchMessageStart[0] = 0xfb; pchMessageStart[1] = 0xc0; pchMessageStart[2] = 0xb6; pchMessageStart[3] = 0xdb; このデータは誤って文字として解釈されないように、ASCII でも UTF-8 でも定義されていない適当な32bitの値になっています</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -271,7 +271,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin8/">自作仮想通貨入門(8) - アドレスのプレフィックス変更</a></h2>
-            <h4 class="card-text">※この章では src/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組み</h4>            
+            <h4 class="card-text">※この章では src/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組みについて Litecoinではアドレスの1文字目に必ず&quot;L&quot;が入ります。このようにアドレスの1文字目に何らかのプレフィックスがつく仕様は、bitcoinの実装に由来するものです。 bitcoinでは各種管理情報(ウォレットの秘密鍵や公開鍵など)</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -303,7 +303,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin7/">自作仮想通貨入門(7) - コンセンサスの設定</a></h2>
-            <h4 class="card-text">※この章では src/chainparams.cpp を変更します。 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。 実はここはデフォルトのままでも問題ないのですが、</h4>            
+            <h4 class="card-text">※この章では src/chainparams.cpp を変更します。 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。 コンセンサスについて chainparams.cpp には Mainnet, Testnet, Regtest それぞれでconsensusというコンセンサスに関わる変数が存在します。 コンセンサスには色々な設定項目がありますが、この章では実際の仮想通貨の運営で重要な設定項目のみ説明をします。 ※コンセンサスには非常に沢山</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">

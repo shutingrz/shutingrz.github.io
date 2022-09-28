@@ -143,7 +143,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin6/">自作仮想通貨入門(6) - ジェネシスブロックの作成と設定</a></h2>
-            <h4 class="card-text">※この章では src/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチ</h4>            
+            <h4 class="card-text">※この章では src/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、 すなわちジェネシス（起源）ブロックを作成する必要があります。 ジェネシスブロック(genesis)の構造 ジェネシスブロックは以下の構造になっています。 (括弧内はchainparams.cppでの変数名をあらわしています) ブロッ</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -175,7 +175,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin5/">自作仮想通貨入門(5) - 単純な文字列置換</a></h2>
-            <h4 class="card-text">この章からいよいよLitecoinのソースコードに修正を加えていきます。 この章ではソースコードおよび関連ドキュメントに含まれるLitecoi</h4>            
+            <h4 class="card-text">この章からいよいよLitecoinのソースコードに修正を加えていきます。 この章ではソースコードおよび関連ドキュメントに含まれるLitecoin関連の文字列を自作仮想通貨の通貨名に変更します。 この時点でLitecoinのどの名称を自分の仮想通貨の名称に変えるかを決めておきましょう。 また、待ち受けるサーバのポート番号についてもこの章で変更するので、ポート番号についても決めていきます。 ノード待受ポート番</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -207,7 +207,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin4/">自作仮想通貨入門(4) - テンプレートファイルのコピー</a></h2>
-            <h4 class="card-text">チェックポイントなどの確認処理を全て消したテンプレートファイルをコピーし新しい仮想通貨に合わせて色々な設定をしていきます。 chainparams.cpp / chainparams.h の置き換え B</h4>            
+            <h4 class="card-text">チェックポイントなどの確認処理を全て消したテンプレートファイルをコピーし新しい仮想通貨に合わせて色々な設定をしていきます。 chainparams.cpp / chainparams.h の置き換え BitcoinやLitecoinなど既に流通済みの仮想通貨は、その仮想通貨が流通済みの仮想通貨の仕様と合致しているかを確認するため、様々なチェックを行います。 例えばジェネシスブロックのハッシュがこの値と一致しているかだとか、その通貨の1000番目のブロックがこの</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -239,7 +239,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin3/">自作仮想通貨入門(3) - Litecoinを試してみよう</a></h2>
-            <h4 class="card-text">自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。 既にコマンドラインでマイニングや送金を行ったことがあるか</h4>            
+            <h4 class="card-text">自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。 既にコマンドラインでマイニングや送金を行ったことがあるかたは、読み飛ばしてもかまいません。 なお、前の項目でLitecoinをコンパイルしましたが、Litecoinはテスト用に起動するだけなので、 システムへのインストール(make install)は行いません。 注意事項 このページにはアドレス・トランザクション・ブロック</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -271,7 +271,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin2/">自作仮想通貨入門(2) - Litecoinの準備</a></h2>
-            <h4 class="card-text">自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。 今回は、フォークとリリースを容易に行えるように、gitを使って</h4>            
+            <h4 class="card-text">自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。 今回は、フォークとリリースを容易に行えるように、gitを使って作業していきましょう。 Litecoin 0.16のclone 以下のgitコマンドを使ってgithubからLitecoinをダウンロードし、v0.16.0のtagにcheckoutしてください。 $ git clone https://github.com/litecoin-project/litecoin $ cd litecoin $ git checkout refs/tags/v0.16.0 これでLitecoin 0.16の初期バージョンである0.16.</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">
@@ -303,7 +303,7 @@
         </div>
         <div class="card-body">
             <h2 class="card-title"><a class="text-dark" href="https://www.shutingrz.com/post/oreore-coin1/">自作仮想通貨入門(1) - はじめに</a></h2>
-            <h4 class="card-text">自作仮想通貨「Raccoin」のアイコン 皆さんは自作仮想通貨を作ったことはあるでしょうか？ イーサリアムのトークンやCounterPartyも</h4>            
+            <h4 class="card-text">自作仮想通貨「Raccoin」のアイコン 皆さんは自作仮想通貨を作ったことはあるでしょうか？ イーサリアムのトークンやCounterPartyもいいですが、やはり仮想通貨の思想を深く知りたいなら、好きな仮想通貨のソースコードをフォークして自作仮想通貨を作ってみるべきです。 ただ、巷に溢れているアルトコインは総じて古いBitcoin Coreの実装を流用しており、英語で書かれている断片的な解説ページも、同じ</h4>            
         </div>
         <div class="card-footer bg-white">
             <div class="wrapfooter">

@@ -14,7 +14,7 @@
       <pubDate>Mon, 29 Apr 2019 23:19:55 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin10/</guid>
-      <description>この章で自作仮想通貨入門は終わりです。 著作権表示をしてあなたの仮想通貨をアピールしましょう。 著作権表示の記載 著作権表示は下記のファイルに記載</description>
+      <description>この章で自作仮想通貨入門は終わりです。 著作権表示をしてあなたの仮想通貨をアピールしましょう。 著作権表示の記載 著作権表示は下記のファイルに記載します。 ./COPYING ./doc/man/raccoin-cli.1 ./doc/man/raccoin-qt.1 ./doc/man/raccoin-tx.1 ./doc/man/raccoind.1 例えばRaccoinなら以下のようにします。 Copyright (C) 2018 The Raccoin Core developers 記載箇所については&amp;quot;Litecoin&amp;quot;で検索して確認してください。 フォーク元(BitcoinとLitecoin)の著作権表示を残しつつ、自分の仮想通貨の著作権表示を</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Mon, 29 Apr 2019 22:52:33 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin9/</guid>
-      <description>※この章では src/chainparams.cpp を変更します。 あまり話題にならないものの仮想通貨では極めて重要な、ブロックデータのマジックバイトを変更します。 ビットコインプロ</description>
+      <description>※この章では src/chainparams.cpp を変更します。 あまり話題にならないものの仮想通貨では極めて重要な、ブロックデータのマジックバイトを変更します。 ビットコインプロトコルにはブロックに関するデータを含みますが、そのデータを示すためのマジックバイトが存在します。 それが以下の記載です。 pchMessageStart[0] = 0xfb; pchMessageStart[1] = 0xc0; pchMessageStart[2] = 0xb6; pchMessageStart[3] = 0xdb; このデータは誤って文字として解釈されないように、ASCII でも UTF-8 でも定義されていない適当な32bitの値になっています</description>
     </item>
     
     <item>
@@ -32,7 +32,7 @@
       <pubDate>Mon, 29 Apr 2019 00:45:29 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin8/</guid>
-      <description>※この章では src/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組み</description>
+      <description>※この章では src/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組みについて Litecoinではアドレスの1文字目に必ず&amp;quot;L&amp;quot;が入ります。このようにアドレスの1文字目に何らかのプレフィックスがつく仕様は、bitcoinの実装に由来するものです。 bitcoinでは各種管理情報(ウォレットの秘密鍵や公開鍵など)</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@
       <pubDate>Mon, 29 Apr 2019 00:17:41 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin7/</guid>
-      <description>※この章では src/chainparams.cpp を変更します。 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。 実はここはデフォルトのままでも問題ないのですが、</description>
+      <description>※この章では src/chainparams.cpp を変更します。 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。 コンセンサスについて chainparams.cpp には Mainnet, Testnet, Regtest それぞれでconsensusというコンセンサスに関わる変数が存在します。 コンセンサスには色々な設定項目がありますが、この章では実際の仮想通貨の運営で重要な設定項目のみ説明をします。 ※コンセンサスには非常に沢山</description>
     </item>
     
     <item>
@@ -50,7 +50,7 @@
       <pubDate>Sun, 28 Apr 2019 23:47:48 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin6/</guid>
-      <description>※この章では src/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチ</description>
+      <description>※この章では src/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、 すなわちジェネシス（起源）ブロックを作成する必要があります。 ジェネシスブロック(genesis)の構造 ジェネシスブロックは以下の構造になっています。 (括弧内はchainparams.cppでの変数名をあらわしています) ブロッ</description>
     </item>
     
     <item>
@@ -59,7 +59,7 @@
       <pubDate>Sun, 28 Apr 2019 23:17:11 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin5/</guid>
-      <description>この章からいよいよLitecoinのソースコードに修正を加えていきます。 この章ではソースコードおよび関連ドキュメントに含まれるLitecoi</description>
+      <description>この章からいよいよLitecoinのソースコードに修正を加えていきます。 この章ではソースコードおよび関連ドキュメントに含まれるLitecoin関連の文字列を自作仮想通貨の通貨名に変更します。 この時点でLitecoinのどの名称を自分の仮想通貨の名称に変えるかを決めておきましょう。 また、待ち受けるサーバのポート番号についてもこの章で変更するので、ポート番号についても決めていきます。 ノード待受ポート番</description>
     </item>
     
     <item>
@@ -68,7 +68,7 @@
       <pubDate>Sun, 28 Apr 2019 22:45:13 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin4/</guid>
-      <description>チェックポイントなどの確認処理を全て消したテンプレートファイルをコピーし新しい仮想通貨に合わせて色々な設定をしていきます。 chainparams.cpp / chainparams.h の置き換え B</description>
+      <description>チェックポイントなどの確認処理を全て消したテンプレートファイルをコピーし新しい仮想通貨に合わせて色々な設定をしていきます。 chainparams.cpp / chainparams.h の置き換え BitcoinやLitecoinなど既に流通済みの仮想通貨は、その仮想通貨が流通済みの仮想通貨の仕様と合致しているかを確認するため、様々なチェックを行います。 例えばジェネシスブロックのハッシュがこの値と一致しているかだとか、その通貨の1000番目のブロックがこの</description>
     </item>
     
     <item>
@@ -77,7 +77,7 @@
       <pubDate>Sun, 28 Apr 2019 22:05:53 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin3/</guid>
-      <description>自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。 既にコマンドラインでマイニングや送金を行ったことがあるか</description>
+      <description>自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。 既にコマンドラインでマイニングや送金を行ったことがあるかたは、読み飛ばしてもかまいません。 なお、前の項目でLitecoinをコンパイルしましたが、Litecoinはテスト用に起動するだけなので、 システムへのインストール(make install)は行いません。 注意事項 このページにはアドレス・トランザクション・ブロック</description>
     </item>
     
     <item>
@@ -86,7 +86,7 @@
       <pubDate>Sat, 27 Apr 2019 15:11:43 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin2/</guid>
-      <description>自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。 今回は、フォークとリリースを容易に行えるように、gitを使って</description>
+      <description>自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。 今回は、フォークとリリースを容易に行えるように、gitを使って作業していきましょう。 Litecoin 0.16のclone 以下のgitコマンドを使ってgithubからLitecoinをダウンロードし、v0.16.0のtagにcheckoutしてください。 $ git clone https://github.com/litecoin-project/litecoin $ cd litecoin $ git checkout refs/tags/v0.16.0 これでLitecoin 0.16の初期バージョンである0.16.</description>
     </item>
     
     <item>
@@ -95,7 +95,7 @@
       <pubDate>Sat, 27 Apr 2019 14:24:31 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/oreore-coin1/</guid>
-      <description>自作仮想通貨「Raccoin」のアイコン 皆さんは自作仮想通貨を作ったことはあるでしょうか？ イーサリアムのトークンやCounterPartyも</description>
+      <description>自作仮想通貨「Raccoin」のアイコン 皆さんは自作仮想通貨を作ったことはあるでしょうか？ イーサリアムのトークンやCounterPartyもいいですが、やはり仮想通貨の思想を深く知りたいなら、好きな仮想通貨のソースコードをフォークして自作仮想通貨を作ってみるべきです。 ただ、巷に溢れているアルトコインは総じて古いBitcoin Coreの実装を流用しており、英語で書かれている断片的な解説ページも、同じ</description>
     </item>
     
   </channel>

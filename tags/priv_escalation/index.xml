@@ -14,7 +14,7 @@
       <pubDate>Mon, 13 May 2019 03:15:21 +0900</pubDate>
       
       <guid>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</guid>
-      <description>しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱</description>
+      <description>しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱性を用いてRCE、そしてwww-data権限でのバックドア作成に成功しました。 今回はLinuxでの権限昇格です。 権限昇格したい！ 現状コントロールできているのはwww-dataユーザの権限であり、rootではありません。 ここから横展開するにあたり、root権限は</description>
     </item>
     
   </channel>
