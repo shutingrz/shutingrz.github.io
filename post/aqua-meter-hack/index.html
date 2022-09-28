@@ -54,7 +54,8 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : ""
+    "@type": "Person",
+    "name" : "しゅーと (@shutingrz)"
   },
   "headline": "アクアのスピードメーターを解析してPS3のコントローラで動かす",
   "description" : "しゅーとです。 リアルECUシリーズ第二作目。 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。 要約 スピードメーター",
@@ -62,7 +63,10 @@
   "wordCount":  5345 ,
   "datePublished" : "2019-10-03T04:34:00",
   "dateModified" : "2019-10-03T04:34:00",
-  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "image" : {
+    "@type": "ImageObject",
+    "url": "https:\/\/www.shutingrz.com\/post\/aqua-meter-hack\/cover.png",
+  }
   "keywords" : [ "car-security, ethical_hacking" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/aqua-meter-hack\/",
   "publisher" : {
@@ -106,7 +110,7 @@
 	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f03e931d3c01ce494a5999d05a64c9da3166b95b754c86dd9849eb9a5f7ccd28.css" integrity="sha256-8D6THTwBzklKWZnQWmTJ2jFmuVt1TIbdmEnrml98zSg=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
 
 	
 	
@@ -270,7 +274,9 @@
 </li>
 </ul>
 <p>ちなみに我が家のCANの検証環境は画像のような感じ。</p>
-<p><img src="car_env.png" alt="car_env" loading="lazy" /></p>
+<p>
+  <img src="car_env.png" alt="car_env">
+</p>
 <p>CANだけであれば、電源・GNDと、CANバスとみなしたブレッドボード2ライン分を用意するだけで検証が可能。</p>
 <p>これだけなら結構すぐ始められる。みんなも始めよう！</p>
 <h2 id="コンビネーションメーターの仕様">コンビネーションメーターの仕様</h2>
@@ -291,12 +297,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="ecu_pins.png" alt="ecu_pins" loading="lazy" /></p>
+<p>
+  <img src="ecu_pins.png" alt="ecu_pins">
+</p>
 <p>ピン数がめちゃくちゃ多い。</p>
 <h1 id="ハードウェア解析">ハードウェア解析</h1>
 <p>解析というほどできていない。ただの紹介である。</p>
 <h2 id="ハードウェア仕様">ハードウェア仕様</h2>
-<p><img src="cpu_rom.png" alt="cpu_rom" loading="lazy" /></p>
+<p>
+  <img src="cpu_rom.png" alt="cpu_rom">
+</p>
 <ul>
 <li>CPU: MB91F047
 <ul>
@@ -313,7 +323,9 @@
 <p>DENSOが工場で使っているデバッグポートがある。ここにアクセスすることでもEEPROMの内容を書き換えることができる模様。</p>
 <p>ピンはそれぞれ「UINA」「UOUTA」「TEST1」「TEST2」と表記されており、実際にこのポートを使ってEEPROMの内容を書き換える怪しい製品が売っている (SFTool, iProg+, M Toolなど)。</p>
 <p>ただ残念ながら書き換えるための技術的な情報はノウハウのためか公開されていない。</p>
-<p><img src="debug_port.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="debug_port.png" alt="">
+</p>
 <h2 id="電源通信用ピンの特定">電源・通信用ピンの特定</h2>
 <p>アクアのコンビネーションメータは、40ピンコネクタと13ピンコネクタの合計53ピンある。</p>
 <p>GNDピンはGNDのレイヤとの導通チェックで、IG+ピンは電源回路っぽいパターンから追うとすぐに推測が可能。<br>
@@ -333,7 +345,9 @@
 <li>CAN-H: 31</li>
 <li>CAN-L: 32</li>
 </ul>
-<p><img src="meter_pinassign.png" alt="meter_pinassign" loading="lazy" /></p>
+<p>
+  <img src="meter_pinassign.png" alt="meter_pinassign">
+</p>
 <p>このとおりに接続すると無事に起動する。</p>
 <h1 id="can通信解析">CAN通信解析</h1>
 <p>スピードメーターを起動すると、以下のようなデータがひたすら垂れ流される。</p>
@@ -448,7 +462,9 @@ Enabling Logfile &#39;candump-2019-08-11_145103.log&#39;
 <p>結果、6バイト目の1バイトが車速に関する部分ということがわかった。</p>
 <pre tabindex="0"><code># cangen can0 -g 4 -I 0b4 -L 8 -D 0000000000450000  -v -v
 </code></pre><p>上記のように 4ms間隔で6バイト目に45を入れておけば、スピードメーターは180kmを指す。</p>
-<p><img src="speed_max.png" alt="speed_max" loading="lazy" /></p>
+<p>
+  <img src="speed_max.png" alt="speed_max">
+</p>
 <hr>
 <p>こんなことを繰り返し車速以外も特定していく。<br>
 そしてCANID・データ部と機能の対応表ができあがった。</p>

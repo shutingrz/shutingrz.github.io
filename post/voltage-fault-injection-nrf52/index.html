@@ -54,7 +54,8 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : ""
+    "@type": "Person",
+    "name" : "しゅーと (@shutingrz)"
   },
   "headline": "フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ",
   "description" : "しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞い",
@@ -62,7 +63,10 @@
   "wordCount":  14365 ,
   "datePublished" : "2022-03-07T03:00:00",
   "dateModified" : "2022-03-07T03:00:00",
-  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "image" : {
+    "@type": "ImageObject",
+    "url": "https:\/\/www.shutingrz.com\/post\/voltage-fault-injection-nrf52\/cover.jpg",
+  }
   "keywords" : [ "pentest, hardware-security" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/voltage-fault-injection-nrf52\/",
   "publisher" : {
@@ -106,7 +110,7 @@
 	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f03e931d3c01ce494a5999d05a64c9da3166b95b754c86dd9849eb9a5f7ccd28.css" integrity="sha256-8D6THTwBzklKWZnQWmTJ2jFmuVt1TIbdmEnrml98zSg=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
 
 	
 	
@@ -300,7 +304,9 @@
 <h1 id="voltage-fault-injectionとは">Voltage Fault Injectionとは</h1>
 <p>Voltage Fault Injectionとは、動作している機器の特定のタイミングでCPU電圧を変化させることで機器に誤動作（グリッチ）を引き起こさせる手法です。Voltage Glitch(電圧グリッチ)とも呼ばれます。フォールトインジェクションには今回行う電圧グリッチのほかにクロック、電磁などの非侵襲型、レーザー、ニードルなどの侵襲型があります。</p>
 <p>CPUがグリッチされると、命令がスキップされて本来到達し得ないコードに到達し実行される可能性があります。下記はif文の命令のタイミングで電圧グリッチを行った場合の処理の流れです。</p>
-<p><img src="./img/glitch_flow.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/glitch_flow.png" alt="">
+</p>
 <p>フォールトインジェクションが成功すると、ifの条件分岐をスキップして、条件を満たしていないのに<code>open_debug_port();</code>が実行されます。そう、こんなミラクルが実際に起こってしまうのがフォールトインジェクションなのです。</p>
 <p>電圧グリッチにはグリッチャーと呼ばれる、特定タイミングで単一パルス(矩形波)を発生させる機器が必要です。パルスと言ってもグリッチャー単体でターゲットに攻撃するわけではなく、パルスは電圧を増減させるためのMOSFETなどの素子に送信されます。パルス電圧の特性にあまりこだわる必要はないので、一般的なFPGAやGPIOをもつマイコンでOKです。</p>
 <p>フォールトインジェクションの概要や理論をもっと詳しく知りたい方は、<a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a>にある日本語資料を読むと良いでしょう。</p>
@@ -320,11 +326,15 @@
 <h2 id="approtectバイパスの攻撃手法">APPROTECTバイパスの攻撃手法</h2>
 <p>今回のAPPROTECTバイパスは電圧を加圧するのではなく、CPU電圧を一定時間GNDに落とすことで命令をスキップさせます。何度も書いていますが、攻撃で一番重要なのはタイミングです。</p>
 <p>nRF52ではメモリ領域にUICRと呼ばれるユーザが利用できるコンフィグ領域が存在します。UICRには色々なパラメータを保存されていますが、そこにはAPPROCTECTを有効にするフラグ領域もあります。下はnRF52840のデータシートに記載されているAPPROTECTレジスタの仕様です。</p>
-<p><img src="./img/approtect.png" alt="UICR_APPROTECT" loading="lazy" /></p>
+<p>
+  <img src="./img/approtect.png" alt="UICR_APPROTECT">
+</p>
 <p>起動時にメモリコントローラーがCPUコアにAPPROTECTのフラグを含むUICR情報を転送しますが、この転送するタイミングを見計らって電圧グリッチさせます。うまくいくと、<strong>UICRでAPPROTECTフラグ領域がオンなのにCPUのプロテクションがオフになっている</strong>という奇妙な状態が発生します。</p>
 <p>今回は参考記事によってどのタイミングで転送が行われているかが明らかになっています。
 下の波形画像は参考記事からの引用で、メモリコントローラーの転送タイミング付近です。電圧降下の直前、赤枠で囲った部分が電圧グリッチを行うべき箇所です。</p>
-<p><img src="./img/Identification-1.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/Identification-1.png" alt="">
+</p>
 <p>このタイミングでグリッチを行うことで、一定の確率でプロテクションをバイパス可能です。それではこの情報をもとに、ターゲットを入手して攻撃を試行します。</p>
 <h1 id="検証環境">検証環境</h1>
 <p>今回の電圧グリッチを行うためには、以下の物品が必要です。</p>
@@ -337,19 +347,27 @@
 <li>はんだごてセット</li>
 </ul>
 <h3 id="nrf52搭載のターゲット">nRF52搭載のターゲット</h3>
-<p><img src="./img/nrf52840-page.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/nrf52840-page.png" alt="">
+</p>
 <p>まずは攻撃対象のnRF52シリーズを搭載しているデバイスの選定です。</p>
 <p>参考記事でのターゲットであるnRF52840-DKは高くて手が出せなかったので(1つ6000円)、検証には<a href="https://www.nordicsemi.com/Products/Development-hardware/nrf52840-dongle">nRF52840 Dongle</a>を用いることにしました。Mouserで1180円です。</p>
 <h3 id="グリッチャーボード">グリッチャーボード</h3>
-<p><img src="./img/esp32_devkitc.jpg" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/esp32_devkitc.jpg" alt="">
+</p>
 <p>特定のタイミングでMOSFETにパルスを発生させるものです。</p>
 <p>グリッチはターゲットの特定処理をスキップさせるため、その特定処理を行っているタイミングをナノ秒〜マイクロ秒で合わせないといけません。このように非常に繊細な処理が必要とされるためグリッチャーにはしばしばFPGAが利用されますが、ターゲットへの攻撃タイミングがシビアではない場合は速度が遅い一般的なマイコン(STM32, Arduino等)を使っても問題ありません。</p>
 <p>今回は<a href="https://akizukidenshi.com/catalog/g/gM-11819/">ESP32-DevKitC</a>を使いました。クロック周波数が240MHzとスペックが良いのに秋月で1480円なのでコスパ最強です。今回私が用意したファームウェアでグリッチを試したい方はこちらを利用してください。</p>
 <h3 id="mosfet">MOSFET</h3>
-<p><img src="./img/xy-mos_struct.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/xy-mos_struct.png" alt="">
+</p>
 <p>CPU電圧をGNDに落とすためのパーツです。MOSFET単体と抵抗を使って構成してもいいのですが、@jptomoya氏からXY-MOSというドライバーモジュールを教えてもらいました。Amazonで<a href="https://amazon.co.jp/gp/product/B07BVKL4VW">5個セット600円弱で購入できます</a>し、AliExpressでも売っています。回路構成としてはMOSFETが並列で設置されており、Signalがゲート、GNDがソース、OUT-がドレインに接続されています。Signal、GNDは大きいスルーホールと小さいものがありますが、電気的につながっておりどちらの穴を使ってもかまいません。写真右の青いものはターミナルブロックで、ジャンパワイヤなどをグサっと刺せるようになっています。</p>
 <h3 id="デバッガ">デバッガ</h3>
-<p><img src="./img/jlink_photo.jpg" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/jlink_photo.jpg" alt="">
+</p>
 <p>nRF52にSWD接続するためのデバッガです。OpenOCDが対応している機材であればなんでも構いません。安いものだとFT232Hなどがあげられます。私は<a href="https://www.embitek.co.jp/product/jlink-edu.html">J-Link EDU</a>を使いました（商用利用時などライセンスに注意）。</p>
 <h3 id="オシロスコープ">オシロスコープ</h3>
 <p>今回は5us程度の速度をキャプチャできれば良く精度が重要視されないので、トリガーが設定できるものなら何でもいいです。やってないので保証はできませんが、以下のスペックがあればいいと思っています。</p>
@@ -363,8 +381,8 @@
 <h1 id="正常系の確認">正常系の確認</h1>
 <p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
 <div class="accordion">
-  <input id="id-367912548" class="toggle" type="checkbox">
-  <label class="title" for="id-367912548">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-457129638" class="toggle" type="checkbox">
+  <label class="title" for="id-457129638">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
 <p>今回は次のコードを用いました。</p>
@@ -387,14 +405,18 @@
 <h2 id="swdを試す">SWDを試す</h2>
 <p>はんだ付けが必要です。</p>
 <p>Dongleのデータシートを確認し、SWDIO、SWDCLK、GND、VDD OUT、VBUSをケーブルに接続します。次の画像は基板とはんだ付けポイントをマッピングした図です。</p>
-<p><img src="./img/swd_pin.png" alt="はんだ付け対象のピン" loading="lazy" /></p>
+<p>
+  <img src="./img/swd_pin.png" alt="はんだ付け対象のピン">
+</p>
 <p>SWDIO、SWDCLKはランドが複数あります。USB端子側を使ってもいいですが、ここに結線するとUSB接続時に干渉する恐れがあります。そのため基板裏のSWDコネクタ用ランドを使うといいでしょう。</p>
 <blockquote>
 <p>VDD OUTの補足: VDD OUTは初期状態の回路では3.3Vの<strong>出力</strong>として用いることになっています。しかし、Dongleでは電源入力にUSB電源であるVBUSの5V入力のほかに、VDD OUTを3.3Vの電源入力として使えます。後述するグリッチのためにVDD OUTを使うため、あわせて結線しておいてください。参考URLによれば、VDD OUTを3.3Vの電源入力として利用するときは基板裏のSB1をショートさせ、SB2のパターンをカットする必要があります。ただ実際試してみたところSB1、SB2を変更せずとも電源入力として使えました（自己責任でどうぞ）。</p>
 <p>参考: <a href="https://infocenter.nordicsemi.com/index.jsp?topic=%2Fug_nrf52840_dongle%2FUG%2Fnrf52840_Dongle%2Fhw_power_ext_reg_source.html">External regulated source</a></p>
 </blockquote>
 <p>J-Linkに結線した場合はこんな感じになります。J-Linkは5Vを供給できるので、J-Linkの5V出力をVBUSに接続して駆動させています。</p>
-<p><img src="./img/nrf52_j-link.jpg" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/nrf52_j-link.jpg" alt="">
+</p>
 <h2 id="openocdでのswdデバッグ">OpenOCDでのSWDデバッグ</h2>
 <p>次に、OpenOCDでSWDを用いたデバッグをします。まずはOpenOCDのインストールから。</p>
 <blockquote>
@@ -428,7 +450,9 @@
 </span></span></code></pre></div><h3 id="ファームウェアダンプ">ファームウェアダンプ</h3>
 <p>この時点でのDongleはAPPROTECT=デバッグロックがかかっていないため、ブレークポイントの設定、レジスタ操作、メモリ操作が可能です。これを利用して先ほど書き込んだサンプルプログラムのファームウェアをダンプしてみます。</p>
 <p>nRF52840のデータシートにはメモリマップが記載されています。メモリマップから、フラッシュ領域は0x0 ~ 0x00800000であることがわかります。</p>
-<p><img src="./img/nrf52840_memory_map.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/nrf52840_memory_map.png" alt="">
+</p>
 <p>OpenOCDのコンソールに接続し、当該領域をdump_imageコマンドでダンプします。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">$ telnet localhost 4444
 </span></span><span class="line"><span class="cl">Trying 127.0.0.1...
@@ -452,7 +476,9 @@
 </span></span></code></pre></div><h3 id="approtectレジスタの確認">APPROTECTレジスタの確認</h3>
 <p>APPROTECTレジスタは0x10001208に存在します。
 データシートには当該アドレスの下位8ビットが0xFFのとき無効、0x00のとき有効と記載があります。</p>
-<p><img src="./img/approtect.png" alt="APPROTECTのデータシート" loading="lazy" /></p>
+<p>
+  <img src="./img/approtect.png" alt="APPROTECTのデータシート">
+</p>
 <p><code>mdw</code>で確認します。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; flash banks
 </span></span><span class="line"><span class="cl">#0 : nrf52.flash (nrf5) at 0x00000000, size 0x00000000, buswidth 1, chipwidth 1
@@ -525,7 +551,9 @@
 <li>グリッチの長さ(width)</li>
 </ol>
 <p>オシロスコープで実際に攻撃を行ったときの波形はこちらです。CH1(黄)がMOSFETゲートに流れる電圧、CH2(青)がターゲットのCPU電圧の波形です。</p>
-<p><img src="./img/glitch_timing.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/glitch_timing.png" alt="">
+</p>
 <p>この2つのパラメータをプログラム上で増減させてグリッチを成功させます。難しそうですか？いえいえ、ロジックとしては、以下のようなたった2つのforループなのです。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/*
 </span></span></span><span class="line"><span class="cl"><span class="cm">target_reset() -&gt; ターゲットのリセット
@@ -589,7 +617,9 @@
 <p>なお別のバイパスではこの機能は複雑・簡単なものになる可能性があります。例えば攻撃対象のファームウェアの特定コマンドにパスワード認証があり、電圧グリッチで認証バイパスを試みたい場合、「デバッグ可能か」は、「認証なしで特定コマンドが受け入れるか」になります。コマンドのプロトコルによりますが、単純なUARTであればSWD実装より簡単な気がします。</p>
 <h2 id="cpu電圧をgndに落とす戻す方法">「CPU電圧をGNDに落とす/戻す」方法</h2>
 <p>参考記事ではnRF52のDEC4を特定タイミングでGNDに接続することで実現しています。次の画像はnRF52840のデータシート上のレギュレータの構成図です。</p>
-<p><img src="./img/reg_dec4_edit.png" alt="REG_DEC4" loading="lazy" /></p>
+<p>
+  <img src="./img/reg_dec4_edit.png" alt="REG_DEC4">
+</p>
 <blockquote>
 <p>赤線、MOSFET、GNDの記載は筆者による加筆</p>
 </blockquote>
@@ -620,20 +650,30 @@
 <h1 id="グリッチ回路の作成">グリッチ回路の作成</h1>
 <h2 id="前準備dec4への配線">前準備:DEC4への配線</h2>
 <p>グリッチ回路の前に、DongleのDEC4への配線を済ませておきます。DEC4に繋がるポイントはDongleでC5のシルクが印字されたところです。SMDコンデンサのCPU側に配線が必要です。極小なので、はんだ付けに慣れていない方は頑張ってください。</p>
-<p><img src="./img/nrf52_c5_edit.jpg" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/nrf52_c5_edit.jpg" alt="">
+</p>
 <p>結線後は次のようになります。</p>
-<p><img src="./img/nrf52_c5_short.jpg" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/nrf52_c5_short.jpg" alt="">
+</p>
 <p>うまく結線できた場合、電源投入後にテスターで計測すると1.3V程度を指します。</p>
 <p>より詳細を確認するため、電源投入時のDEC4の電圧をオシロスコープで見てみましょう。
 DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入時から約2秒後を1us程度のスケールで調査します。そうするとだいたい200mV程度降下しているところがあります。参考記事によって、ここの降下の直前がグリッチのタイミングだとわかっています。</p>
-<p><img src="./img/dec4_down_edit.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/dec4_down_edit.png" alt="">
+</p>
 <h2 id="グリッチ回路の作成-1">グリッチ回路の作成</h2>
 <p>これまでの設計をもとに、図のようなグリッチ回路を考えました。</p>
-<p><img src="./img/glitch_circuit.png" alt="グリッチ回路" loading="lazy" /></p>
+<p>
+  <img src="./img/glitch_circuit.png" alt="グリッチ回路">
+</p>
 <p>グリッチャーのGPIOピンは後述するファームウェアに合わせて記載していますが、自由です。回路ではXY-MOSを利用していますが自分でMOSFETを用意してもOKです。
 図でわかるようにターゲットの電源(VDD OUT)はESP32のGPIOに任せています。ESP32のGPIOから出力できる電流は1ピンで最大40mAなので、場合によっては動かないかも。ちゃんとやりたい場合は電源回路を用意してVDD OUTに流してください。</p>
 <p>実際に結線した写真は以下です。ぐちゃぐちゃですが、動けばいいです！</p>
-<p><img src="./img/glitch_breadboard.jpg" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/glitch_breadboard.jpg" alt="">
+</p>
 <h1 id="グリッチャーのファームウェア作成">グリッチャーのファームウェア作成</h1>
 <p>グリッチャーのファームウェア作成が一番面倒なわけですが、作り方を1から説明するのは紙面の都合上厳しいです。そこで私が作成した、コンソール上でタイミングを設定してグリッチ可能なESP32のファームウェアを用意しました。</p>
 <p><a href="https://github.com/shutingrz/nrf52-glitcher">https://github.com/shutingrz/nrf52-glitcher</a></p>
@@ -661,8 +701,8 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="accordion">
-  <input id="id-812795436" class="toggle" type="checkbox">
-  <label class="title" for="id-812795436">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-976815423" class="toggle" type="checkbox">
+  <label class="title" for="id-976815423">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
 <p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
@@ -681,7 +721,9 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>forループは空のコードだとコンパイルの最適化で処理が消えてしまうので、volatileを行うことでforループだけを生成します。</p>
 <p>念のため高速なグリッチをコンパイルしたときのXtensaアセンブリも載せておきます。</p>
-<p><img src="./img/volatile_fast_asm.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/volatile_fast_asm.png" alt="">
+</p>
 <p>標準のグリッチルーチンと異なり、<code>digitalWrite()</code>や<code>delayMicroseconds()</code>のような関数呼び出しが一切存在せずこのアセンブリで完結します。またforループもただカウンタの増加だけを行うようなものになっています。</p>
   </div>
 </div>
@@ -776,12 +818,16 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">Start glitch! Press any key to stop.
 </span></span><span class="line"><span class="cl">...........2361...........2362....
 </span></span></code></pre></div><p>実行時の動画(gif)を載せます。この動画はまさにAPPROTECTバイパスの最適なタイミングである、DEC4の電圧降下の直前での電圧グリッチを狙ったものです。</p>
-<p><img src="./img/glitcher_run_long_resize.gif" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/glitcher_run_long_resize.gif" alt="">
+</p>
 <p>CH1(黄)はMOSFETのゲートに流れる電圧、CH2(青)はDEC4の電圧です。
 グリッチの開始タイミング(delay)とグリッチの長さ(width)が二重ループになっており、width_endに到達したときにdelayが加算されてグリッチのタイミングのタイミングが少し後ろになります。青線の電圧下降の位置が徐々に左に移動していることがわかると思います。
 もちろん最初からこの最適タイミングから開始できるのは稀なので、あまりに攻撃位置から遠すぎたらパラメータを調整して何度もチャレンジしてください。</p>
 <p>成功したときの波形が以下です。成功時の波形は状況によってバラバラですが、少なくともいつもの電圧降下する波形とは異なる形をしています。</p>
-<p><img src="./img/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%81%E6%88%90%E5%8A%9F%E6%99%82%E3%81%AE%E6%B3%A2%E5%BD%A22.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%81%E6%88%90%E5%8A%9F%E6%99%82%E3%81%AE%E6%B3%A2%E5%BD%A22.png" alt="">
+</p>
 <p>グリッチャーはグリッチのたびにSWDデバッグを試みているので、もしバイパスに成功した場合はその旨が表示されます。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">.....glitch success!
 </span></span><span class="line"><span class="cl">SWD Id: 0x2ba01477
@@ -807,7 +853,9 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 <h2 id="バイパスした状態でファームウェア抽出">バイパスした状態でファームウェア抽出</h2>
 <p>今回の攻撃の一番の目的はファームウェアの抽出でしょう。ファームウェアを抽出してしまえば、CTRL-APからnRF52を初期化したうえで抽出したファームウェアを書き込むことでデバッグ可能な機器に早変わりです。</p>
 <p>DongleのSWDIO・SWDCLKをJ-Linkに繋ぎかえたあとにOpenOCDを使います。やることは正常系の確認と変わらないので省略します。以下のようにファームウェアを抽出できていることがわかります。</p>
-<p><img src="./img/glitch%E5%BE%8C%E3%81%AEopenocd.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/glitch%E5%BE%8C%E3%81%AEopenocd.png" alt="">
+</p>
 <p>ここで面白いのが、画像にあるOCDコマンドの最初の部分です。</p>
 <p>AHB-APのAPPROTECTレジスタの値は<code>0x00</code>と<strong>プロテクション有効</strong>を示しています。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">&gt; mdw 0x10001208 1                         
@@ -817,7 +865,9 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">0x00000001
 </span></span></code></pre></div><p>フォールトインジェクションはこのように非常に奇妙な状態を作り出すことができるのです。
 ここでターゲットをリセットするとどうなるでしょうか。やってみます。</p>
-<p><img src="./img/glitch%E5%BE%8C%E3%81%ABreset%E3%81%97%E3%81%9F.png" alt="" loading="lazy" /></p>
+<p>
+  <img src="./img/glitch%E5%BE%8C%E3%81%ABreset%E3%81%97%E3%81%9F.png" alt="">
+</p>
 <p>デバッグができなくなりました。このようにAPPROTECTバイパスは一時的な効果であり、次のリセットまでにファームウェア抽出などの作業を終えておく必要があるとわかりますね。</p>
 <h1 id="対策">対策</h1>
 <p>APPROTECTバイパスによって、nRF52シリーズでのAPPROTECTによるデバッグ・ファームウェア保護は完全ではなくなりました。もちろん設定すれば攻撃のハードルが高くなるのでやる価値はあります。ですがプロテクションを完全なものと考えてはいけません。</p>

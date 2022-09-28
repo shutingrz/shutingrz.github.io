@@ -54,7 +54,8 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : ""
+    "@type": "Person",
+    "name" : "しゅーと (@shutingrz)"
   },
   "headline": "コインチェックのドメインハイジャックの手法を調査した",
   "description" : "しゅーとです。 コインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変",
@@ -62,7 +63,10 @@
   "wordCount":  4804 ,
   "datePublished" : "2020-06-04T20:00:00",
   "dateModified" : "2020-06-04T20:00:00",
-  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "image" : {
+    "@type": "ImageObject",
+    "url": "https:\/\/www.shutingrz.com\/post\/dig-coincheck\/cover.png",
+  }
   "keywords" : [ "DNS, intelligence" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/dig-coincheck\/",
   "publisher" : {
@@ -106,7 +110,7 @@
 	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f03e931d3c01ce494a5999d05a64c9da3166b95b754c86dd9849eb9a5f7ccd28.css" integrity="sha256-8D6THTwBzklKWZnQWmTJ2jFmuVt1TIbdmEnrml98zSg=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
 
 	
 	
@@ -306,7 +310,9 @@
 <pre tabindex="0"><code>Updated Date: 2020-06-01T20:52:53Z
 </code></pre><h2 id="登録情報が侵害されたときの情報">登録情報が侵害されたときの情報</h2>
 <p><a href="https://whoisrequest.com/history/">Domain history checker</a>を用いることで、coincheck.comの過去のwhois情報を取得することが出来ました。</p>
-<p><img src="./whois_history.png" alt="whois_history" loading="lazy" /></p>
+<p>
+  <img src="./whois_history.png" alt="whois_history">
+</p>
 <p>細かい時刻はわかりませんが、<strong>5/31 にネームサーバが変更されています</strong>。</p>
 <p>具体的にはAWSのネームサーバが削除され、代わりに正しいネームサーバの名前に似せた不正なネームサーバが登録されていることがわかります。</p>
 <ul>
@@ -421,7 +427,9 @@ coincheck.com.          86400   IN      MX      5 alt2.aspmx.l.google.com.
 <ul>
 <li>mail.coincheck[.]com</li>
 </ul>
-<p><img src="./mx_history.png" alt="mx_history" loading="lazy" /></p>
+<p>
+  <img src="./mx_history.png" alt="mx_history">
+</p>
 <p>名前が存在する期間も 5/30 - 31 と、侵害された期間と一致しています。</p>
 <p>コインチェックは過去のDNSレコードを見る限り G Suiteのメールサービスを使っているため、5/30 に突然 G Suite ではない MXレコードが設定されるのは非常に怪しいです。</p>
 <p>これは攻撃者が不正なネームサーバに設定したMXレコードと考えるのが自然でしょう。</p>
@@ -455,7 +463,9 @@ Escape character is &#39;^]&#39;.
 </code></pre></br>
 <p>SMTPリクエストを送ってみます。</p>
 </br>
-<p><img src="./smtp.png" alt="smtp" loading="lazy" /></p>
+<p>
+  <img src="./smtp.png" alt="smtp">
+</p>
 <p>自身をcoincheck.comと偽っているようです。<br>
 RCPT TOコマンドの動作から、宛先メールアドレスがcoincheck.comのときにのみ受信するようにしているみたいです。<br>
 受信したメールを本来のcoincheck.comのメールサーバに転送しているかはここからは判断できませんでした。</p>

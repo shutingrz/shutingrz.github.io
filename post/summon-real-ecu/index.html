@@ -54,7 +54,8 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : ""
+    "@type": "Person",
+    "name" : "しゅーと (@shutingrz)"
   },
   "headline": "リアルECUを召喚して本物のCAN通信の雰囲気を知る",
   "description" : "これまでシミュレーション環境でカーセキュリティの勉強をしていて、その成果は妄想CAN三部作ということで以下の記事にまとめている。 シミュレーシ",
@@ -62,7 +63,10 @@
   "wordCount":  4200 ,
   "datePublished" : "2019-08-04T00:47:55",
   "dateModified" : "2019-08-04T00:47:55",
-  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "image" : {
+    "@type": "ImageObject",
+    "url": "https:\/\/www.shutingrz.com\/post\/summon-real-ecu\/cover.png",
+  }
   "keywords" : [ "car-security" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/summon-real-ecu\/",
   "publisher" : {
@@ -106,7 +110,7 @@
 	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f03e931d3c01ce494a5999d05a64c9da3166b95b754c86dd9849eb9a5f7ccd28.css" integrity="sha256-8D6THTwBzklKWZnQWmTJ2jFmuVt1TIbdmEnrml98zSg=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
 
 	
 	
@@ -267,7 +271,9 @@
 ECUとCAN通信するために必要なものは記事後半に記載する。</p>
 <h1 id="ヨーレートセンサーの解析">ヨーレートセンサーの解析</h1>
 <h2 id="解析対象">解析対象</h2>
-<p><img src="toyota_yaw.png" alt="toyota_yaw" loading="lazy" /></p>
+<p>
+  <img src="toyota_yaw.png" alt="toyota_yaw">
+</p>
 <p>というわけでヨーレートセンサーを手に入れた。ヤフオクでコネクタつきで送料込み1800円くらいだった。</p>
 <ul>
 <li>メーカー: デンソー</li>
@@ -279,18 +285,24 @@ ECUとCAN通信するために必要なものは記事後半に記載する。</
 </ul>
 <p>なぜヨーレートセンサーなのかは記事後半をどうぞ。</p>
 <h2 id="ピンアサインの推測">ピンアサインの推測</h2>
-<p><img src="yaw_pins.png" alt="yaw_pins" loading="lazy" /></p>
+<p>
+  <img src="yaw_pins.png" alt="yaw_pins">
+</p>
 <p>ヨーレートセンサーを手に入れたのはいいものの、6pinのうちどのピンがIG(イグニッション電源)・GND・CAN-H・CAN-Lなのかは頑張って推測するしかない。</p>
 <p>基板でわかることが多いので、何とかして基板を見てみる。</p>
 <p>本体の表側は硬いプラスチックに覆われており、開けることは不可能な模様（熱や薬品で溶かしたり硬い刃物で切れば行ける気もするが）。</p>
 <p>裏側はプレートがはめ込まれているようで、これはマイナスドライバーでこじ開けることができた。</p>
-<p><img src="yaw_board.png" alt="yaw_board" loading="lazy" /></p>
+<p>
+  <img src="yaw_board.png" alt="yaw_board">
+</p>
 <p>テスタで導通チェックをしたところ、上の大きいポイント6個が端子の6pinの位置と対応していることがわかった。<br>
 便宜上、右からpin1～pin6とする。</p>
 <p>このうちpin5、pin6は付属したコネクタにて埋められていることからNCであることがわかる。<br>
 この時点で、残りの4pinがIG・GND・CAN-H・CAN-Lのいずれかであることが確定する。</p>
 <p>pin1は基板のグランドへ抜けていることと、テスタで基板の各所に開けられている小さい穴と導通していることを確認したのでGNDとわかる。</p>
-<p><img src="yaw_board_vol.png" alt="yaw_board_vol" loading="lazy" /></p>
+<p>
+  <img src="yaw_board_vol.png" alt="yaw_board_vol">
+</p>
 <p>pin4については、青枠で囲った部分に接続されているように見える。<br>
 パターンを追うと最初にコンデンサに接続されており、（多層基板なので完全には追えないが）周囲に3端子レギュレータなど電源回路があることからこの時点でIGでは？と察する。</p>
 <p>pin2, 3は、オレンジ枠で囲った部分に接続されているように見える。<br>
@@ -300,7 +312,9 @@ ECUとCAN通信するために必要なものは記事後半に記載する。</
 <p>ここまでくればECUに電源を入れることは可能になる。<br>
 ということでpin1とpin4を安定化電源に接続する。（これで火噴いたら推測は間違ってたということで。。）</p>
 <h2 id="ecuに電源を入れる">ECUに電源を入れる</h2>
-<p><img src="yaw_connect.png" alt="yaw_connect" loading="lazy" /></p>
+<p>
+  <img src="yaw_connect.png" alt="yaw_connect">
+</p>
 <p>電源を入れた。発火する様子はない。<br>
 当然ながらLEDなどはないので、これだけでは正常に電源が入ったか判断することはできない。</p>
 <p>ただ、正しく電源が入っているなら、CANポートであるpin2、 pin3にはCAN通信が出ているはず。</p>
@@ -332,13 +346,19 @@ ECUとCAN通信するために必要なものは記事後半に記載する。</
 </tbody>
 </table>
 <h2 id="canデバイスにecuを接続">CANデバイスにECUを接続</h2>
-<p><img src="yaw_ready.png" alt="yaw_ready" loading="lazy" /></p>
+<p>
+  <img src="yaw_ready.png" alt="yaw_ready">
+</p>
 <p>受信側のCANデバイスで終端抵抗を入れるようにして、candumpしてみる。</p>
 <p>動画でどうぞ。</p>
-<p><img src="candump.gif" alt="candump" loading="lazy" /></p>
+<p>
+  <img src="candump.gif" alt="candump">
+</p>
 <p>いけた！！</p>
 <p>本体を振り回すとそれに合わせてデータが変わることも確認。</p>
-<p><img src="candump_swing.gif" alt="candump_swing" loading="lazy" /></p>
+<p>
+  <img src="candump_swing.gif" alt="candump_swing">
+</p>
 </br>
 <p>面白い。</p>
 <hr>
@@ -360,7 +380,9 @@ ECUは車から電源を取る。
 </br>
 <h4 id="ecuとcanデバイスを接続するための線コネクタ">ECUとCANデバイスを接続するための線・コネクタ</h4>
 <p>どのECUにも他のパーツと接続するためのハーネスがあり、そしてコネクタが存在する。<br>
-<img src="pins.png" alt="pins" loading="lazy" /></p>
+
+  <img src="pins.png" alt="pins">
+</p>
 <p>上はトヨタ車のヨーレートセンサーのピン。幸運にもブレッドボード用のジャンプワイヤを接続可能。<br>
 下はスバル車のエアバッグECUのピン。ピンが平たくジャンプワイヤでは接続できず、コネクタが必要になる。</p>
 <p>コネクタはメーカごとに様々なタイプが有るため、慣れないうちはECUに合ったコネクタを用意するよりも最初からコネクタがついているECUを落札したほうがいい。</p>
@@ -373,7 +395,9 @@ ECUは車から電源を取る。
 <p>実は車のECUはヤフオクで大量に流通している。<br>
 パーツを選べばそれこそ500円程度(送料別)でECUが手に入るのだ。</p>
 <p>ただ一口にECUといっても、車にはECUの筆頭であるエンジンECUやボディ系ECUのパワーウインドウECU、ドアECUなど数え切れないくらいの種類がある。</p>
-<p><img src="ecus.png" alt="ecus" loading="lazy" /></p>
+<p>
+  <img src="ecus.png" alt="ecus">
+</p>
 <blockquote>
 <p><em>Design Wave Magazine No.104 &ldquo;「クルマ」という名の組み込みシステムPart3&rdquo; P.21</em></p>
 </blockquote>
@@ -384,7 +408,9 @@ ECUは車から電源を取る。
 <p>ということでその線で色々探してみたが、車の知識に乏しいこともあり一人ではうまく見つけられなかった。。</p>
 <p>が、私が勝手に師匠と崇めているjptomoya氏から、ヨーレートセンサーがオススメですよというアドバイスを貰えた。</p>
 <h2 id="ヨーレートセンサーの入手">ヨーレートセンサーの入手</h2>
-<p><img src="bosch_yaw.png" alt="bosch_yaw" loading="lazy" /></p>
+<p>
+  <img src="bosch_yaw.png" alt="bosch_yaw">
+</p>
 <blockquote>
 <p>ベンツに搭載されているボッシュのヨーレートセンサー (0 265 005 230)。<br>
 ただしコイツはCANに対応していなかった。。</p>

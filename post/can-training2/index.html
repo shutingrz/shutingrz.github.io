@@ -54,7 +54,8 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : ""
+    "@type": "Person",
+    "name" : "しゅーと (@shutingrz)"
   },
   "headline": "ドア開錠を行うCAN通信を特定する",
   "description" : "今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。 前回 はどのCANメッセージがドアをあけるものなのかわからないながらも、通信",
@@ -62,7 +63,10 @@
   "wordCount":  2445 ,
   "datePublished" : "2019-07-22T03:37:54",
   "dateModified" : "2019-07-22T03:37:54",
-  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "image" : {
+    "@type": "ImageObject",
+    "url": "https:\/\/www.shutingrz.com\/post\/can-training2\/cover.png",
+  }
   "keywords" : [ "car-security" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/can-training2\/",
   "publisher" : {
@@ -106,7 +110,7 @@
 	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f03e931d3c01ce494a5999d05a64c9da3166b95b754c86dd9849eb9a5f7ccd28.css" integrity="sha256-8D6THTwBzklKWZnQWmTJ2jFmuVt1TIbdmEnrml98zSg=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
 
 	
 	
@@ -278,7 +282,9 @@ $ make
 <li>SerialBus Device Type: socketcan</li>
 <li>Port: vcan0</li>
 </ul>
-<p><img src="add_device.png" alt="add_device" loading="lazy" /></p>
+<p>
+  <img src="add_device.png" alt="add_device">
+</p>
 <p>ICSimを起動しておくと、接続後に大量のCANデータが流れることを確認できる。</p>
 <h1 id="savvycanを使ってドア開錠通信を特定">SavvyCANを使ってドア開錠通信を特定</h1>
 <p>まず前提として、CAN通信の話。</p>
@@ -300,7 +306,9 @@ $ make
 <li>開錠操作後に初めて追加されてCntが非常に少ないCAN IDを探す。</li>
 </ol>
 <p>動画でどうぞ。</p>
-<p><img src="detect_doorlock.gif" alt="detect_doorlock" loading="lazy" /></p>
+<p>
+  <img src="detect_doorlock.gif" alt="detect_doorlock">
+</p>
 <br/>
 <p>すぐにわかる。ドア開錠メッセージのCAN IDは0x19Bっぽい。データは「00 00 0E 00 00 00」。</p>
 <h2 id="ドアが開錠するか試す">ドアが開錠するか試す</h2>
@@ -308,7 +316,9 @@ $ make
 <p>SavvyCANのPlayback機能を使って通信を送ることもできるが、今回送るメッセージは１つだけなのでcansendの方がわかりやすい。</p>
 <pre tabindex="0"><code>$ cansend vcan0 19B#00.00.0E.00.00.00
 </code></pre><p>動画でどうぞ（スマホは見づらいかも）</p>
-<p><img src="send_doorlock.gif" alt="send_doorlock" loading="lazy" /></p>
+<p>
+  <img src="send_doorlock.gif" alt="send_doorlock">
+</p>
 <p>見事に開いた！SavvyCANいいっすね＾～</p>
 <h1 id="全てのドア開錠通信を調べる">全てのドア開錠通信を調べる</h1>
 <p>ICSimは全てで4つのドアがある。全てのパターンを試したところ、全てCAN IDは 0x19Bだった。</p>

@@ -54,7 +54,8 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : ""
+    "@type": "Person",
+    "name" : "しゅーと (@shutingrz)"
   },
   "headline": "シミュレーション環境でCAN通信を試す",
   "description" : "車がなくてもカーセキュリティの勉強がしたい！ ということでカーハッカーズハンドブックを読みつつICSimを使ってCAN通信を試してみる。 環境 Ubuntu",
@@ -62,7 +63,10 @@
   "wordCount":  2136 ,
   "datePublished" : "2019-07-16T00:02:39",
   "dateModified" : "2019-07-16T00:02:39",
-  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "image" : {
+    "@type": "ImageObject",
+    "url": "https:\/\/www.shutingrz.com\/post\/can-training-first\/cover.png",
+  }
   "keywords" : [ "car-security" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/can-training-first\/",
   "publisher" : {
@@ -106,7 +110,7 @@
 	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f03e931d3c01ce494a5999d05a64c9da3166b95b754c86dd9849eb9a5f7ccd28.css" integrity="sha256-8D6THTwBzklKWZnQWmTJ2jFmuVt1TIbdmEnrml98zSg=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
 
 	
 	
@@ -282,7 +286,9 @@ ip link set up vcan0
 <pre tabindex="0"><code>./controls vcan0
 </code></pre></li>
 </ul>
-<p><img src="icsim.png" alt="icsim" loading="lazy" /></p>
+<p>
+  <img src="icsim.png" alt="icsim">
+</p>
 <p>すごい。コントローラーがなくてもキーボードでドアをあけたりスピードを上げたりできた。</p>
 <p>この状態でcandumpを使う。</p>
 <pre tabindex="0"><code>$ candump vcan0
@@ -378,7 +384,9 @@ ICSimのノイズが多いのでCAN IDでフィルタをしておくとよい。
 </code></pre><h2 id="canplayerでドアを開ける">canplayerでドアを開ける</h2>
 <pre tabindex="0"><code>$ canplayer -I open_door.can 
 </code></pre><p>gifでどうぞ。
-<img src="replay-open_door.gif" alt="replay-open_door" loading="lazy" /></p>
+
+  <img src="replay-open_door.gif" alt="replay-open_door">
+</p>
 <p>開いた！多分できている気がする。</p>
 <h1 id="まとめ">まとめ</h1>
 <p>実際のCANデバイスがなくても通信出したりキャプチャしたり楽しめた。<br>

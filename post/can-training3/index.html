@@ -54,7 +54,8 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : ""
+    "@type": "Person",
+    "name" : "しゅーと (@shutingrz)"
   },
   "headline": "ECUの車速に関するCANメッセージを特定して騙す",
   "description" : "CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。 前回はドア開錠メッセージをSavvyCANのOverwri",
@@ -62,7 +63,10 @@
   "wordCount":  3361 ,
   "datePublished" : "2019-07-25T04:38:22",
   "dateModified" : "2019-07-25T04:38:22",
-  "image" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+  "image" : {
+    "@type": "ImageObject",
+    "url": "https:\/\/www.shutingrz.com\/post\/can-training3\/cover.png",
+  }
   "keywords" : [ "car-security" ],
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/can-training3\/",
   "publisher" : {
@@ -106,7 +110,7 @@
 	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f03e931d3c01ce494a5999d05a64c9da3166b95b754c86dd9849eb9a5f7ccd28.css" integrity="sha256-8D6THTwBzklKWZnQWmTJ2jFmuVt1TIbdmEnrml98zSg=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
 
 	
 	
@@ -254,7 +258,9 @@
 <h2 id="車速に関するメッセージについて">車速に関するメッセージについて</h2>
 <p>そもそもCANバスに車速を直接示すメッセージは流れているのかという話。</p>
 <p>少なくともICSimにはメーター計があるので、何らかの形で速度を割り出すことができているということはわかる。</p>
-<p><img src="icsim_meter.gif" alt="icsim_meter" loading="lazy" /></p>
+<p>
+  <img src="icsim_meter.gif" alt="icsim_meter">
+</p>
 <p>↑　ICSimのcontrolsを起動するとメーター計がブルブル震え始める</p>
 <br/>
 <p>インターネッツで調べたところ、現代の車ではCANバスに車速データが流れていることがわかった。<br>
@@ -289,14 +295,18 @@ ABS(アンチロック・ブレーキシステム)のECUが以下の流れで車
 <li>データのグラフを見る</li>
 </ol>
 <p>恒例の動画。</p>
-<p><img src="icsim_throttle.gif" alt="icsim_throttle" loading="lazy" /></p>
+<p>
+  <img src="icsim_throttle.gif" alt="icsim_throttle">
+</p>
 <p>記録後、各CAN IDごとのデータフレームのグラフを見る。<br>
 RE ToolsのFrame Data Analysisウインドウで確認することが可能。</p>
 <blockquote>
 <p>Frame Data Analysisはデータ参照時にnull pointerアクセスでクラッシュすることがあるため、事前にFile-&gt;Save Log FileでCANデータを保存しておくことをオススメします</p>
 </blockquote>
 <p>ウインドウにある各CAN IDをポチポチと見たところ、ID 0x244 にて非常に特徴的なグラフを見ることができた。</p>
-<p><img src="0x244_analysis.png" alt="0x244_analysis" loading="lazy" /></p>
+<p>
+  <img src="0x244_analysis.png" alt="0x244_analysis">
+</p>
 <p>右下の Bytes Graphは、データフレームの各バイトがそれぞれ時間ごとにどの数値を示したかを視覚的に確認するためのグラフになっている。</p>
 <p>その中でもData Byte 3のデータが山なりになっていることがすぐにわかる。</p>
 <p>他のCAN IDではこのようなわかりやすい山なりはなかったので、車速に関する情報は 0x244、特に Data Bytes 3ではないかと推測できる。</p>
@@ -310,7 +320,9 @@ RE ToolsのFrame Data Analysisウインドウで確認することが可能。</
 </ol>
 <p>リプレイ時はキャプチャ時の間隔でCANメッセージを送信するほか、自分で間隔と送信レートを指定することも可能。</p>
 <p>これも動画でどうぞ。</p>
-<p><img src="playback.gif" alt="playback" loading="lazy" /></p>
+<p>
+  <img src="playback.gif" alt="playback">
+</p>
 <br/>
 <p>0x244をリプレイしたときにICSimのメーターが動いたため、車速データは0x244に含まれることがわかる。</p>
 <hr>
@@ -335,17 +347,23 @@ RE ToolsのFrame Data Analysisウインドウで確認することが可能。</
 </code></pre><p>車速は 0から80 の範囲で動かしたが、データ上は0x00から0x2Fを示すことがわかる。</p>
 <p>このことから恐らく 0x2F が 80mph付近だろうということでcansendを試す。</p>
 <pre tabindex="0"><code>$ cansend vcan0 244#00.00.00.2F.00
-</code></pre><p><img src="cansend.png" alt="cansend" loading="lazy" /></p>
+</code></pre><p>
+  <img src="cansend.png" alt="cansend">
+</p>
 <p>予想通りメータは80mph付近を指した。<br>
 新しい車速データを送らない限りはICSimのメータ計はその車速を指し続ける模様。</p>
 <h3 id="data-byte-4">Data Byte 4</h3>
-<p><img src="databyte4.png" alt="databyte4" loading="lazy" /></p>
+<p>
+  <img src="databyte4.png" alt="databyte4">
+</p>
 <p>先程のByte3は山なりになっていることから車速を示すことがすぐにわかったものの、Byte4 は 0x00 から0xFF をまんべんなく移動しているため、ぱっと見で何も示しているかがよくわからない。</p>
 <p>そこでSavvyCANのFlow Viewウインドウを使って速度との関係性を調査する。</p>
 <p>Flow ViewウインドウではキャプチャしたCAN通信をプレイバックでき、時間軸と各データの流れを視覚的に見られる。<br>
 またプレイバック速度も変更できるので、大量のデータでも細かいところまで見られる。</p>
 <p>動画でどうぞ。画面中央のCurrent Valuesに注目。</p>
-<p><img src="flowview.gif" alt="flowview" loading="lazy" /></p>
+<p>
+  <img src="flowview.gif" alt="flowview">
+</p>
 <p>Byte4が0xFFを超えて0x00に戻るとき、Byte3の値が1増加することが見て取れる。</p>
 <p>つまり、Byte4はByte3の下位バイトであり、車速の細かい値の部分を示すことがわかる。</p>
 <h1 id="車速を詐称してみる">車速を詐称してみる</h1>
@@ -356,7 +374,9 @@ cangenは指定した間隔で指定したデータ(あるいはランダムデ�
 <pre tabindex="0"><code>$ cangen vcan0 -g 1 -I 244 -D 0000002F00 -L 5
 </code></pre><p>今回は Byte3 に 0x2F を指定しているので 80mph と詐称することになる。</p>
 <p>動画でどうぞ。</p>
-<p><img src="spoof.gif" alt="spoof" loading="lazy" /></p>
+<p>
+  <img src="spoof.gif" alt="spoof">
+</p>
 <p>controlsの0mphの車速メッセージに対抗するように80mphが指し示されている。<br>
 しかしながら本来の車速メッセージも流れ続けているので時々0mphを指してしまうことも。</p>
 <p>これを防ぐには、本来のメッセージを出すECUが送信待ちになるような高い頻度でメッセージを出すか、バスオフ攻撃をECUに行いメッセージを出させないようにする必要がある。</p>
