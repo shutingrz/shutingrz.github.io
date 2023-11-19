@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>matter on Shooting!!!</title>
+    <link>https://www.shutingrz.com/tags/matter/</link>
+    <description>Recent content in matter on Shooting!!!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <copyright>shutingrz - All rights reserved.</copyright>
+    <lastBuildDate>Mon, 20 Nov 2023 04:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.shutingrz.com/tags/matter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～</title>
+      <link>https://www.shutingrz.com/post/zigbee-hacking-unlock-door/</link>
+      <pubDate>Mon, 20 Nov 2023 04:00:00 +0900</pubDate>
+      <guid>https://www.shutingrz.com/post/zigbee-hacking-unlock-door/</guid>
+      <description>要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。 はじめに しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。 みなさんのご家庭はスマートホーム化していますか？最近はスイ</description>
+    </item>
+  </channel>
+</rss>

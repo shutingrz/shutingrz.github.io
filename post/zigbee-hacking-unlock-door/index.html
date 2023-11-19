@@ -62,14 +62,14 @@
   "headline": "温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～",
   "description" : "要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。 はじめに しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。 みなさんのご家庭はスマートホーム化していますか？最近はスイ",
   "inLanguage" : "ja",
-  "wordCount":  7603 ,
+  "wordCount":  7401 ,
   "datePublished" : "2023-11-20T04:00:00",
   "dateModified" : "2023-11-20T04:00:00",
   "image" : {
     "@type": "ImageObject",
     "url": "https:\/\/www.shutingrz.com\/post\/zigbee-hacking-unlock-door\/cover.png"
   },
-  "keywords" : "pentest, hardware-security, ZigBee, smart-home",
+  "keywords" : "pentest, hardware-security, ZigBee, smart-home, matter",
   "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/zigbee-hacking-unlock-door\/",
   "publisher" : {
     "@type": "Organization",
@@ -224,7 +224,7 @@
                                     <i class="far fa-star"></i>
                                     Nov 20, 2023
                                     <i class="far fa-clock clock"></i>
-                                    16 min read
+                                    15 min read
                                 </span>					
                             </div>
                         </div>			
@@ -329,34 +329,7 @@
 <h1 id="ボタン通信の盗聴">ボタン通信の盗聴</h1>
 <p>攻撃者としてまず行うのは、ボタンを押したときのZigBee通信を盗聴することです。<strong>ここで攻撃者は何食わぬ顔でスニファを標的の家の近くで起動します。</strong>（もうここで非現実的だろとか言わないで）</p>
 <!-- ![](./images/network_hacker.png) -->
-<p>ZigBeeスニファとしてオススメなのは、安定していて一番安く手に入る<a href="https://www.nordicsemi.com/Products/Development-hardware/nrf52840-dongle">nRF52840-dongle</a>です。1600円です。私が以前書いた<a href="/post/voltage-fault-injection-nrf52/">ボルテージフォールトインジェクションの記事</a>で標的になったハードウェアです。この記事を読んでない人はぜひ読んでください（宣伝）。</p>
-
-     <div class="web-embed">
-        <a href="https://www.shutingrz.com/post/voltage-fault-injection-nrf52/">
-          <div class="web-embed-thumbnail">
-           
-            
-             <img src="https://www.shutingrz.com/post/voltage-fault-injection-nrf52/cover.jpg" alt="しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？ハードウェアセキュリティ分野におけるフォールトインジェクションはサイドチャネル攻撃手法のひとつです。今までこの攻撃を試すには高価な機材が必要でハードルが高いものでした。しかし2020年にnRF52という世界中で使われるマイコンにおいてフォー">
-           
-           
-         </div>
-     
-        <div class="web-embed-content">
-            <div class="web-embed-title">
-               
-                
-                 フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ
-               
-               
-            </div>
-            <div class="web-embed-description">しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？ハードウェアセキ …</div>
-            <div class="web-embed-site-name">
-                <img src="https://www.google.com/s2/favicons?sz=14&amp;domain_url=https://www.shutingrz.com"  alt="" class="favicon">
-                www.shutingrz.com
-            </div>
-        </div>
-      </a>
-    </div>
+<p>ZigBeeスニファとしてオススメなのは、安定していて一番安く手に入る<a href="https://www.nordicsemi.com/Products/Development-hardware/nrf52840-dongle">nRF52840-dongle</a>です。1600円です。</p>
 <p>スニファで盗聴すると、以下のようにZigBee通信が取得できます。</p>
 <p>
   <figure>
@@ -645,6 +618,10 @@
                         
                         <li>
                         <a href="/tags/smart-home/">smart-home</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/matter/">matter</a>
                         </li>
                         
                         </ul>
