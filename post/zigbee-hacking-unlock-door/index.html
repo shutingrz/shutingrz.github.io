@@ -62,7 +62,7 @@
   "headline": "温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～",
   "description" : "要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。 はじめに しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。 みなさんのご家庭はスマートホーム化していますか？最近はスイ",
   "inLanguage" : "ja",
-  "wordCount":  7760 ,
+  "wordCount":  7800 ,
   "datePublished" : "2023-11-20T04:00:00",
   "dateModified" : "2023-11-20T04:00:00",
   "image" : {
@@ -300,7 +300,7 @@
 <p>
   <figure>
     <img src="./images/zigbee_network.jpg" alt="" loading="lazy">
-    <figcaption>ZigBeeのネットワークトポロジ(スカイリー「ZigBee入門」から引用」)</figcaption>
+    <figcaption>ZigBeeのネットワークトポロジ(スカイリー「ZigBee入門」から引用)</figcaption>
   </figure>
 </p>
 <p>通信上のセキュリティも考えられています。現在主流のZigBee 3.0では、通信データの暗号化に2種の128bitの暗号鍵が使われます。<strong>ZigBeeネットワーク全体で共通の値である</strong>ネットワークレイヤ(NWK)の「Network Key」と、その上のレイヤであるアプリケーションレイヤ(APS)の「Link Key」です。もちろんNetwork Keyの値はネットワークによって異なります。また暗号通信上では、ヘッダに存在する<strong>フレームカウンタ</strong>によってリプレイ攻撃から保護されます。</p>
@@ -566,7 +566,7 @@
 <p>
   <img src="./images/wireshark_log_spoof_brute_framecounter.png" alt="">
 </p>
-<p>Home Assistantのログにも鍵が開錠したログが残っています。</p>
+<p>Home Assistantにもスマートロックが開錠したログが残っています。これは攻撃によって不正に開錠されたものです(攻撃時のキャプチャ時刻と一致）。</p>
 <p>
   <img src="./images/ha_log_spoof_brute_framecounter.png" alt="">
 </p>
