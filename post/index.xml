@@ -7,240 +7,196 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>shutingrz - All rights reserved.</copyright>
-    <lastBuildDate>Thu, 29 Sep 2022 05:00:00 +0900</lastBuildDate><atom:link href="https://www.shutingrz.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Nov 2023 04:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.shutingrz.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～</title>
+      <link>https://www.shutingrz.com/post/zigbee-hacking-unlock-door/</link>
+      <pubDate>Mon, 20 Nov 2023 04:00:00 +0900</pubDate>
+      <guid>https://www.shutingrz.com/post/zigbee-hacking-unlock-door/</guid>
+      <description>要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。 はじめに しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。 みなさんのご家庭はスマートホーム化していますか？最近はスイ</description>
+    </item>
     <item>
       <title>レンタルカメラで情報漏洩！？付属のSDカードに気をつけろ！</title>
       <link>https://www.shutingrz.com/post/rental-camera-leak/</link>
       <pubDate>Thu, 29 Sep 2022 05:00:00 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/rental-camera-leak/</guid>
       <description>しゅーとです。 先日沖縄旅行に行ったんですが、アクティビティを撮るためにアクションカメラが必要となりました。 ただ1回の旅行のために高い機材を買うのは気が引けたので、最近流行りのレンタルをしてみました。 レンタルしたのはGoProです。短期旅行のときに使うだけなら購入よりも安くて保証もあっていいですよね。 レンタルサービスはカメラの料金にプラスで様々な付属品をレンタルすることができるのですが、その中にmi</description>
     </item>
-    
     <item>
       <title>フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ</title>
       <link>https://www.shutingrz.com/post/voltage-fault-injection-nrf52/</link>
       <pubDate>Mon, 07 Mar 2022 03:00:00 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/voltage-fault-injection-nrf52/</guid>
       <description>しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？ハードウェアセキュリティ分野におけるフォールトインジェクションはサイドチャネル攻撃手法のひとつです。今までこの攻撃を試すには高価な機材が必要でハードルが高いものでした。しかし2020年にnRF52という世界中で使われるマイコンにおいてフォー</description>
     </item>
-    
     <item>
       <title>検知回避の手法 - PowerShell</title>
       <link>https://www.shutingrz.com/post/avoid-detection-powershell/</link>
       <pubDate>Sat, 10 Apr 2021 00:00:00 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/avoid-detection-powershell/</guid>
       <description>しゅーと(@shutingrz)です。 前回の記事では実行ファイルにおいて Windows Defender のリアルタイムスキャン、クラウド保護の検知回避を試みました。 まだ読んでない方はぜひ読んでください。 検知回避の手法 - 実行ファイル AMSIの概念については前回の記事に記載しており、本記事では説明を省略しています。 今回はスクリプトの検知回避に挑戦し、Windows Defender のリアルタイムスキャン・クラウド保護がオンの状態で、PowerS</description>
     </item>
-    
     <item>
       <title>検知回避の手法 - 実行ファイル</title>
       <link>https://www.shutingrz.com/post/avoid-detection-dotnet/</link>
       <pubDate>Thu, 08 Apr 2021 00:00:07 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/avoid-detection-dotnet/</guid>
       <description>しゅーとです。今回は実行ファイル、特に.NETプログラムの検知回避に関する記事です。 ペネトレーションテストに携わりたい方だけではなく、Blue Teamの方もアンチウイルスソフト単体の限界を知る意味で有用と思います。 .NETプログラムの例として、セットアップが簡単なC2フレームワークである、Covenant の検知回避をゴールに説明します。 エージェントであるCovenant Gruntは.NETプログラ</description>
     </item>
-    
     <item>
       <title>GadgetToJScript を利用した Office VBA のAMSI バイパスと原理</title>
       <link>https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/</link>
       <pubDate>Mon, 16 Nov 2020 18:41:10 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/explore-dotnet-serialize-g2js/</guid>
       <description>しゅーとです。普段は IoT 機器のリバースエンジニアリングを生業としていますが、最近は流行に乗ってRed Teaming の研究もしています。 今回は WSH (vbs, js, hta) と Office マクロ事情を追ってみました。 WSH (Windows Script Host) は Windows に搭載されているスクリプトエンジンで、VBScript と JScript を実行できます。 Office マクロで動作する機能・言語は様々ありますが、一般的なのは VBA (Visual Basic for Application) です。WSH、特に VBScript と VBA は構文はほとんど同じですが、実行環境は割と違っていたりし</description>
     </item>
-    
     <item>
       <title>コインチェックのドメインハイジャックの手法を調査した</title>
       <link>https://www.shutingrz.com/post/dig-coincheck/</link>
       <pubDate>Thu, 04 Jun 2020 20:00:00 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/dig-coincheck/</guid>
       <description>しゅーとです。 コインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変更されたこと、またそれによって第三者によるメールの不正取得が行われたと発表しました。 プレスリリース(第一報)は以下です。 当社利用のドメイン登録サービスにおける不正アクセスについて（第一報） 攻撃を受けた時刻が 5/31 0:05 で、検知時刻が 6/1 12:00 と攻撃に気付くまでの時間は1日で</description>
     </item>
-    
     <item>
       <title>ラテラルムーブメントとそれを阻むUACに関する調査</title>
       <link>https://www.shutingrz.com/post/ad_remote-uac/</link>
       <pubDate>Mon, 24 Feb 2020 01:18:40 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/ad_remote-uac/</guid>
       <description>ラテラルムーブメントを阻む、通称「リモートUAC」に関して調査しました。 結果はまあそうだよねという感じになってしまいましたが、ここにメモします。 UACの効果 UAC といえば、管理者権限で実行するときに暗転して表示されるポップアップを連想されると思います。 しかしUACには、管理共有やWMIなどの機能をリモートから防ぐためのリモート UAC という機能もあります。 例えば組織内でセットアップ用のローカル管理者ユーザが</description>
     </item>
-    
     <item>
       <title>アクアのスピードメーターを解析してPS3のコントローラで動かす</title>
       <link>https://www.shutingrz.com/post/aqua-meter-hack/</link>
       <pubDate>Thu, 03 Oct 2019 04:34:00 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/aqua-meter-hack/</guid>
       <description>しゅーとです。 リアルECUシリーズ第二作目。 ヤフオクにてアクアのコンビネーションメータを手に入れたので色々いじってみた。 要約 スピードメーターが反応するCANIDを特定できた。 そしてその情報を使ってPS3コントローラでスピードメーターを操作してみたよ。 コントローラで動いているのだけ見たい人はこの動画を見てください。 検証環境 DC安定化電源 メーターへの給電用 Canable CAN通信ができるUSB機器。(ファームウェ</description>
     </item>
-    
     <item>
       <title>リアルECUを召喚して本物のCAN通信の雰囲気を知る</title>
       <link>https://www.shutingrz.com/post/summon-real-ecu/</link>
       <pubDate>Sun, 04 Aug 2019 00:47:55 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/summon-real-ecu/</guid>
       <description>これまでシミュレーション環境でカーセキュリティの勉強をしていて、その成果は妄想CAN三部作ということで以下の記事にまとめている。 シミュレーション環境でCAN通信を試す ドア開錠を行うCAN通信を特定する ECUの車速に関するCANメッセージを特定して騙す 車をいじったこともないし持ってすらないのによくここまで続いたなと我ながら思うが、さすがにネタ切れ感もありモチベが保てない。 そこで実際に車で使われている</description>
     </item>
-    
     <item>
       <title>ECUの車速に関するCANメッセージを特定して騙す</title>
       <link>https://www.shutingrz.com/post/can-training3/</link>
       <pubDate>Thu, 25 Jul 2019 04:38:22 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/can-training3/</guid>
       <description>CANの記事も3回目。引き続きシミュレーション環境のICSimでCAN通信の勉強。 前回はドア開錠メッセージをSavvyCANのOverwrite Modeで特定した。 しかしあの程度ならわざわざSavvyCANを使わずともcansnifferなどでも十分見つけることができる。 今回は、常に膨大なデータが流れていて普通のCUIでは見つけることが難しそうな車速に関するメッセージを、GUIモニタのSavvyC</description>
     </item>
-    
     <item>
       <title>ドア開錠を行うCAN通信を特定する</title>
       <link>https://www.shutingrz.com/post/can-training2/</link>
       <pubDate>Mon, 22 Jul 2019 03:37:54 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/can-training2/</guid>
       <description>今回も引き続きシミュレーション環境のICSimでCAN通信の勉強。 前回 はどのCANメッセージがドアをあけるものなのかわからないながらも、通信そのままリプレイさせることでドアの開錠を成功させた。 今回は、どのCANメッセージがドアをあける通信なのか特定を試みる。 環境 Ubuntu 18.04 Desktop CAN通信をモニターしてフィルタするソフトウェアはいくつか存在する。 が、色々試していくうちに現時点においてはSavvyCANがOSS</description>
     </item>
-    
     <item>
       <title>シミュレーション環境でCAN通信を試す</title>
       <link>https://www.shutingrz.com/post/can-training-first/</link>
       <pubDate>Tue, 16 Jul 2019 00:02:39 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/can-training-first/</guid>
       <description>車がなくてもカーセキュリティの勉強がしたい！ ということでカーハッカーズハンドブックを読みつつICSimを使ってCAN通信を試してみる。 環境 Ubuntu 18.04.2 LTS Desktop 参考 カーハッカーズハンドブック https://www.amazon.co.jp/dp/4873118239 Playing with SocketCan using can-utils https://dayba.wordpress.com/2017/05/25/playing-with-socketcan-using-can-utils/ CANを使えるようにする can-utilsのインストール sudo apt install can-utils 仮想CANデバイス機能の有効化 modprobe vcan 仮想CANインターフェイス vcanの設定 ip link add dev vcan0 type vcan ip link set up vcan0 vcan0があることを確認 $ ip link show dev vcan0 3: vcan0: &amp;lt;NOARP,UP,LOWER_UP&amp;gt; mtu 72</description>
     </item>
-    
     <item>
       <title>ペネトレ検証-権限昇格とWildcard Injectionの原理</title>
       <link>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</link>
       <pubDate>Mon, 13 May 2019 03:15:21 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/ad_hack-linux_priv_escalation/</guid>
       <description>しゅーとです。 引き続きペネトレーションテストの検証をしていきます。 前回の記事はこちら。 ペネトレ検証-ECサイトに侵入 前回はECShopの脆弱性を用いてRCE、そしてwww-data権限でのバックドア作成に成功しました。 今回はLinuxでの権限昇格です。 権限昇格したい！ 現状コントロールできているのはwww-dataユーザの権限であり、rootではありません。 ここから横展開するにあたり、root権限は</description>
     </item>
-    
     <item>
       <title>ペネトレ検証-ECサイトに侵入</title>
       <link>https://www.shutingrz.com/post/ad_hack-ec_exploit/</link>
       <pubDate>Sat, 11 May 2019 07:01:20 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/ad_hack-ec_exploit/</guid>
       <description>しゅーとです。 家にADの検証環境を立てたので、一連のペネトレーションテストの練習をします。 また、攻撃後にブルーチーム目線で攻撃の痕跡がどう残っているかも確認します。 今回は初期侵入フェーズとしてECサイトへの侵入です。 エクスプロイトとバックドアの作成をやっていきます。 なお今回はIDSとして申し訳程度にSuricataを立てていますが、デフォルトのポリシーだし正直検知できるとは思っていません。 自作自演</description>
     </item>
-    
     <item>
       <title>記事に特定のタグがあったら「悪用禁止」と表示されるようにしてみた</title>
       <link>https://www.shutingrz.com/post/hugo-notice-banner/</link>
       <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/hugo-notice-banner/</guid>
       <description>要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。 ※この記事はハッキングには関係ありませんが、デモ用に表示が出るようにしています。 一応情報公開のスタンスをここに書いておきます。 セキュリティ情報の公開について セキュリティ情報を広く公開することは大事です。 最近は色々</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(10) - 著作権表示の記載・おわりに</title>
       <link>https://www.shutingrz.com/post/oreore-coin10/</link>
       <pubDate>Mon, 29 Apr 2019 23:19:55 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin10/</guid>
       <description>この章で自作仮想通貨入門は終わりです。 著作権表示をしてあなたの仮想通貨をアピールしましょう。 著作権表示の記載 著作権表示は下記のファイルに記載します。 ./COPYING ./doc/man/raccoin-cli.1 ./doc/man/raccoin-qt.1 ./doc/man/raccoin-tx.1 ./doc/man/raccoind.1 例えばRaccoinなら以下のようにします。 Copyright (C) 2018 The Raccoin Core developers 記載箇所については&amp;quot;Litecoin&amp;quot;で検索して確認してください。 フォーク元(BitcoinとLitecoin)の著作権表示を残しつつ、自分の仮想通貨の著作権表示を</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(9) - ブロックデータのマジックバイト変更</title>
       <link>https://www.shutingrz.com/post/oreore-coin9/</link>
       <pubDate>Mon, 29 Apr 2019 22:52:33 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin9/</guid>
       <description>※この章では src/chainparams.cpp を変更します。 あまり話題にならないものの仮想通貨では極めて重要な、ブロックデータのマジックバイトを変更します。 ビットコインプロトコルにはブロックに関するデータを含みますが、そのデータを示すためのマジックバイトが存在します。 それが以下の記載です。 pchMessageStart[0] = 0xfb; pchMessageStart[1] = 0xc0; pchMessageStart[2] = 0xb6; pchMessageStart[3] = 0xdb; このデータは誤って文字として解釈されないように、ASCII でも UTF-8 でも定義されていない適当な32bitの値になっています</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(8) - アドレスのプレフィックス変更</title>
       <link>https://www.shutingrz.com/post/oreore-coin8/</link>
       <pubDate>Mon, 29 Apr 2019 00:45:29 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin8/</guid>
       <description>※この章では src/chainparams.cpp を変更します。 仮想通貨の花形的存在、ウォレットアドレスについての説明とソースコードの変更をしていきます。 プレフィックスの仕組みについて Litecoinではアドレスの1文字目に必ず&amp;quot;L&amp;quot;が入ります。このようにアドレスの1文字目に何らかのプレフィックスがつく仕様は、bitcoinの実装に由来するものです。 bitcoinでは各種管理情報(ウォレットの秘密鍵や公開鍵など)</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(7) - コンセンサスの設定</title>
       <link>https://www.shutingrz.com/post/oreore-coin7/</link>
       <pubDate>Mon, 29 Apr 2019 00:17:41 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin7/</guid>
       <description>※この章では src/chainparams.cpp を変更します。 ジェネシスブロックに続いて、今回はコンセンサスも決めていきます。 実はここはデフォルトのままでも問題ないのですが、一応軽く説明します。 コンセンサスについて chainparams.cpp には Mainnet, Testnet, Regtest それぞれでconsensusというコンセンサスに関わる変数が存在します。 コンセンサスには色々な設定項目がありますが、この章では実際の仮想通貨の運営で重要な設定項目のみ説明をします。 ※コンセンサスには非常に沢山</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(6) - ジェネシスブロックの作成と設定</title>
       <link>https://www.shutingrz.com/post/oreore-coin6/</link>
       <pubDate>Sun, 28 Apr 2019 23:47:48 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin6/</guid>
       <description>※この章では src/chainparams.cpp を変更します。 仮想通貨はブロックチェーンの原理を基にして運用されています。 つまり、ブロックチェーンを利用するためにはブロックチェーンの一番初めに位置するブロック、 すなわちジェネシス（起源）ブロックを作成する必要があります。 ジェネシスブロック(genesis)の構造 ジェネシスブロックは以下の構造になっています。 (括弧内はchainparams.cppでの変数名をあらわしています) ブロッ</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(5) - 単純な文字列置換</title>
       <link>https://www.shutingrz.com/post/oreore-coin5/</link>
       <pubDate>Sun, 28 Apr 2019 23:17:11 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin5/</guid>
       <description>この章からいよいよLitecoinのソースコードに修正を加えていきます。 この章ではソースコードおよび関連ドキュメントに含まれるLitecoin関連の文字列を自作仮想通貨の通貨名に変更します。 この時点でLitecoinのどの名称を自分の仮想通貨の名称に変えるかを決めておきましょう。 また、待ち受けるサーバのポート番号についてもこの章で変更するので、ポート番号についても決めていきます。 ノード待受ポート番</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(4) - テンプレートファイルのコピー</title>
       <link>https://www.shutingrz.com/post/oreore-coin4/</link>
       <pubDate>Sun, 28 Apr 2019 22:45:13 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin4/</guid>
       <description>チェックポイントなどの確認処理を全て消したテンプレートファイルをコピーし新しい仮想通貨に合わせて色々な設定をしていきます。 chainparams.cpp / chainparams.h の置き換え BitcoinやLitecoinなど既に流通済みの仮想通貨は、その仮想通貨が流通済みの仮想通貨の仕様と合致しているかを確認するため、様々なチェックを行います。 例えばジェネシスブロックのハッシュがこの値と一致しているかだとか、その通貨の1000番目のブロックがこの</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(3) - Litecoinを試してみよう</title>
       <link>https://www.shutingrz.com/post/oreore-coin3/</link>
       <pubDate>Sun, 28 Apr 2019 22:05:53 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin3/</guid>
       <description>自作仮想通貨を作る前に、もととなるLitecoinでマイニングや送金を試してみます。 既にコマンドラインでマイニングや送金を行ったことがあるかたは、読み飛ばしてもかまいません。 なお、前の項目でLitecoinをコンパイルしましたが、Litecoinはテスト用に起動するだけなので、 システムへのインストール(make install)は行いません。 注意事項 このページにはアドレス・トランザクション・ブロック</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(2) - Litecoinの準備</title>
       <link>https://www.shutingrz.com/post/oreore-coin2/</link>
       <pubDate>Sat, 27 Apr 2019 15:11:43 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin2/</guid>
       <description>自作仮想通貨のもととなる、Litecoin 0.16をダウンロードしていきます。 今回は、フォークとリリースを容易に行えるように、gitを使って作業していきましょう。 Litecoin 0.16のclone 以下のgitコマンドを使ってgithubからLitecoinをダウンロードし、v0.16.0のtagにcheckoutしてください。 $ git clone https://github.com/litecoin-project/litecoin $ cd litecoin $ git checkout refs/tags/v0.16.0 これでLitecoin 0.16の初期バージョンである0.16.</description>
     </item>
-    
     <item>
       <title>自作仮想通貨入門(1) - はじめに</title>
       <link>https://www.shutingrz.com/post/oreore-coin1/</link>
       <pubDate>Sat, 27 Apr 2019 14:24:31 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/oreore-coin1/</guid>
       <description>自作仮想通貨「Raccoin」のアイコン 皆さんは自作仮想通貨を作ったことはあるでしょうか？ イーサリアムのトークンやCounterPartyもいいですが、やはり仮想通貨の思想を深く知りたいなら、好きな仮想通貨のソースコードをフォークして自作仮想通貨を作ってみるべきです。 ただ、巷に溢れているアルトコインは総じて古いBitcoin Coreの実装を流用しており、英語で書かれている断片的な解説ページも、同じ</description>
     </item>
-    
     <item>
       <title>サイトをリニューアルしました</title>
       <link>https://www.shutingrz.com/post/first-article/</link>
       <pubDate>Sat, 27 Apr 2019 02:37:37 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/first-article/</guid>
       <description>今までのポートフォリオサイトが適当すぎたのと、ブログははてなブログを使ってたので ポートフォリオ兼ブログとしてリニューアルしました。</description>
     </item>
-    
   </channel>
 </rss>

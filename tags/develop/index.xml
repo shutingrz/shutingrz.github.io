@@ -7,15 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>shutingrz - All rights reserved.</copyright>
-    <lastBuildDate>Wed, 08 May 2019 02:43:52 +0900</lastBuildDate><atom:link href="https://www.shutingrz.com/tags/develop/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 May 2019 02:43:52 +0900</lastBuildDate>
+    <atom:link href="https://www.shutingrz.com/tags/develop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>記事に特定のタグがあったら「悪用禁止」と表示されるようにしてみた</title>
       <link>https://www.shutingrz.com/post/hugo-notice-banner/</link>
       <pubDate>Wed, 08 May 2019 02:43:52 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/hugo-notice-banner/</guid>
       <description>要はGDPR対応用のライブラリを「悪用禁止」の意思表示に使うってだけの話です。 記事に特定のタグ(本Webサイトではethical_hacking)があったらバナーが出るようになっています。 ※この記事はハッキングには関係ありませんが、デモ用に表示が出るようにしています。 一応情報公開のスタンスをここに書いておきます。 セキュリティ情報の公開について セキュリティ情報を広く公開することは大事です。 最近は色々</description>
     </item>
-    
   </channel>
 </rss>

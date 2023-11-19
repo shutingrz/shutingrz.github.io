@@ -2,29 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.shutingrz.com/tags/hardware-security/</loc>
+    <lastmod>2023-11-20T04:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.shutingrz.com/tags/pentest/</loc>
+    <lastmod>2023-11-20T04:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.shutingrz.com/post/</loc>
+    <lastmod>2023-11-20T04:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.shutingrz.com/</loc>
+    <lastmod>2023-11-20T04:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.shutingrz.com/tags/smart-home/</loc>
+    <lastmod>2023-11-20T04:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.shutingrz.com/tags/</loc>
+    <lastmod>2023-11-20T04:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.shutingrz.com/tags/zigbee/</loc>
+    <lastmod>2023-11-20T04:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.shutingrz.com/post/zigbee-hacking-unlock-door/</loc>
+    <lastmod>2023-11-20T04:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://www.shutingrz.com/tags/forensics/</loc>
     <lastmod>2022-09-29T05:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.shutingrz.com/tags/misc/</loc>
     <lastmod>2022-09-29T05:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://www.shutingrz.com/post/</loc>
-    <lastmod>2022-09-29T05:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.shutingrz.com/</loc>
-    <lastmod>2022-09-29T05:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.shutingrz.com/tags/</loc>
-    <lastmod>2022-09-29T05:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://www.shutingrz.com/post/rental-camera-leak/</loc>
     <lastmod>2022-09-29T05:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.shutingrz.com/tags/hardware-security/</loc>
-    <lastmod>2022-03-07T03:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.shutingrz.com/tags/pentest/</loc>
-    <lastmod>2022-03-07T03:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.shutingrz.com/post/voltage-fault-injection-nrf52/</loc>
     <lastmod>2022-03-07T03:00:00+09:00</lastmod>

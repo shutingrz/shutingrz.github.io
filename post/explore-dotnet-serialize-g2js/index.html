@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.94.0-DEV" />
+	<meta name="generator" content="Hugo 0.120.4">
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -109,10 +109,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css" integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo&#43;pyc=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f760d5a4187983370747b77f500be7e4986116f2bf360021cc71cefd77dcfec8.css" integrity="sha256-92DVpBh5gzcHR7d/UAvn5JhhFvK/NgAhzHHO/Xfc/sg=">
 
 	
 	
@@ -122,6 +122,7 @@
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/web-embed.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="alternate"
 	type="application/rss+xml"
 	href="https://www.shutingrz.com/index.xml"
@@ -393,21 +394,21 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Definitely non-serializable class.</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">NonSerializable</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">private</span> <span class="kt">string</span> <span class="m">_</span><span class="n">text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kt">string</span> <span class="n">_text</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">public</span> <span class="n">NonSerializable</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="m">_</span><span class="n">text</span> <span class="p">=</span> <span class="n">text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">NonSerializable</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_text</span> <span class="p">=</span> <span class="n">text</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">public</span> <span class="k">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="m">_</span><span class="n">text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">override</span> <span class="kt">string</span> <span class="n">ToString</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">_text</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Custom serialization surrogate</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">_SurrogateSelector</span> <span class="p">:</span> <span class="n">SurrogateSelector</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">override</span> <span class="n">ISerializationSurrogate</span> <span class="n">GetSurrogate</span><span class="p">(</span><span class="n">Type</span> <span class="n">type</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">,</span> <span class="k">out</span> <span class="n">ISurrogateSelector</span> <span class="n">selector</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="n">ISerializationSurrogate</span> <span class="n">GetSurrogate</span><span class="p">(</span><span class="n">Type</span> <span class="n">type</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">,</span> <span class="k">out</span> <span class="n">ISurrogateSelector</span> <span class="n">selector</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">selector</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="n">type</span><span class="p">.</span><span class="n">IsSerializable</span><span class="p">)</span>
@@ -421,10 +422,10 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">TestObjectSerializedRef</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="k">void</span> <span class="n">TestObjectSerializedRef</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">BinaryFormatter</span> <span class="n">fmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BinaryFormatter</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">MemoryStream</span> <span class="n">stm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">fmt</span><span class="p">.</span><span class="n">SurrogateSelector</span> <span class="p">=</span> <span class="k">new</span> <span class="m">_</span><span class="n">SurrogateSelector</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fmt</span><span class="p">.</span><span class="n">SurrogateSelector</span> <span class="p">=</span> <span class="k">new</span> <span class="n">_SurrogateSelector</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">fmt</span><span class="p">.</span><span class="n">Serialize</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="k">new</span> <span class="n">NonSerializable</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">        <span class="n">stm</span><span class="p">.</span><span class="n">Position</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -432,7 +433,7 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">fmt</span><span class="p">.</span><span class="n">Deserialize</span><span class="p">(</span><span class="n">stm</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">TestObjectSerializedRef</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -451,9 +452,9 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <p>例外が発生しました。発生箇所は ObjectSurrogate.GetObjectDataです。</p>
 <p><strong>これは最近の Windows10 / WindowsServer で予期された動作です。</strong></p>
 <p>Forshaw 氏のブログが公開された後、Microsoft は ObjectSurrogate の任意にデシリアライズできる実装について好ましく思っておらず、.NET 4.8 のアップデートでデシリアライズ時の型チェックを行うようにしました。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">ObjectSurrogate</span> <span class="p">:</span> <span class="n">ISerializationSurrogate</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">sealed</span> <span class="k">class</span> <span class="nc">ObjectSurrogate</span> <span class="p">:</span> <span class="n">ISerializationSurrogate</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">public</span> <span class="k">void</span> <span class="n">GetObjectData</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">,</span> <span class="n">SerializationInfo</span> <span class="n">info</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="k">void</span> <span class="n">GetObjectData</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">,</span> <span class="n">SerializationInfo</span> <span class="n">info</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(!</span><span class="n">AppSettings</span><span class="p">.</span><span class="n">DisableActivitySurrogateSelectorTypeCheck</span> <span class="p">&amp;&amp;</span>
 </span></span><span class="line"><span class="cl">			<span class="p">!(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">ActivityBind</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">!(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">DependencyObject</span><span class="p">))</span>
@@ -490,7 +491,7 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <p>なお呼び出される .NET プログラム側では、COM コンポーネント経由で呼び出されるように ComVisible アトリビュートを付けたうえでコンパイルをする必要があります。</p>
 <blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="na">[ComVisible(true)]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">TestClass</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">TestClass</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="p">...</span>
 </span></span></code></pre></div></blockquote>
@@ -533,24 +534,24 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </span></span></span><span class="line"><span class="cl"><span class="cm">**/</span>
 </span></span><span class="line"><span class="cl"><span class="na">
 </span></span></span><span class="line"><span class="cl"><span class="na">[Serializable]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">TextFormattingRunPropertiesMarshal</span> <span class="p">:</span> <span class="n">ISerializable</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">TextFormattingRunPropertiesMarshal</span> <span class="p">:</span> <span class="n">ISerializable</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="m">_</span><span class="n">xaml</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">GetObjectData</span><span class="p">(</span><span class="n">SerializationInfo</span> <span class="n">info</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">_xaml</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">GetObjectData</span><span class="p">(</span><span class="n">SerializationInfo</span> <span class="n">info</span><span class="p">,</span> <span class="n">StreamingContext</span> <span class="n">context</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">Type</span> <span class="n">t</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="n">GetType</span><span class="p">(</span><span class="s">&#34;Microsoft.VisualStudio.Text.Formatting.TextFormattingRunProperties, Microsoft.PowerShell.Editor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">SetType</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">AddValue</span><span class="p">(</span><span class="s">&#34;ForegroundBrush&#34;</span><span class="p">,</span> <span class="m">_</span><span class="n">xaml</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">AddValue</span><span class="p">(</span><span class="s">&#34;ForegroundBrush&#34;</span><span class="p">,</span> <span class="n">_xaml</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">TextFormattingRunPropertiesMarshal</span><span class="p">(</span><span class="kt">string</span> <span class="n">xaml</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">TextFormattingRunPropertiesMarshal</span><span class="p">(</span><span class="kt">string</span> <span class="n">xaml</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="m">_</span><span class="n">xaml</span> <span class="p">=</span> <span class="n">xaml</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_xaml</span> <span class="p">=</span> <span class="n">xaml</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Program</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>    
-</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">string</span> <span class="n">xaml_payload</span> <span class="p">=</span> <span class="s">@&#34;&lt;ResourceDictionary
 </span></span></span><span class="line"><span class="cl"><span class="s">        xmlns=&#34;&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;&#34;
@@ -612,9 +613,9 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">Test</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">class</span> <span class="nc">Program</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">public</span> <span class="n">Program</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">public</span> <span class="n">Program</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">		<span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&#34;Hello, World!&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
@@ -826,7 +827,7 @@ kernel32.RtlMoveMemory(,00000292c4ba3498,0000000000000001);
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
+<script src="https://www.shutingrz.com/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js" integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {

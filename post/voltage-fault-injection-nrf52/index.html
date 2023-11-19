@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.94.0-DEV" />
+	<meta name="generator" content="Hugo 0.120.4">
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -109,10 +109,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css" integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo&#43;pyc=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f760d5a4187983370747b77f500be7e4986116f2bf360021cc71cefd77dcfec8.css" integrity="sha256-92DVpBh5gzcHR7d/UAvn5JhhFvK/NgAhzHHO/Xfc/sg=">
 
 	
 	
@@ -122,6 +122,7 @@
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/web-embed.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="alternate"
 	type="application/rss+xml"
 	href="https://www.shutingrz.com/index.xml"
@@ -383,8 +384,8 @@
 <h1 id="正常系の確認">正常系の確認</h1>
 <p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
 <div class="accordion">
-  <input id="id-483619725" class="toggle" type="checkbox">
-  <label class="title" for="id-483619725">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-865492713" class="toggle" type="checkbox">
+  <label class="title" for="id-865492713">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
 <p>今回は次のコードを用いました。</p>
@@ -393,15 +394,15 @@
 </span></span><span class="line"><span class="cl"><span class="cp">#define LED_RED PIN_SERIAL_RX
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;hello, world!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;hello, world!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pinMode</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">LED_RED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>起動直後にシリアルに&quot;hello, world!&ldquo;を出力し、そのあと1秒ごとにLチカするコードです。書き込んだ後にLチカすることを確認します。</p>
 <h2 id="swdを試す">SWDを試す</h2>
@@ -567,13 +568,13 @@
 </span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="n">delay</span> <span class="o">=</span> <span class="n">delay_start</span><span class="p">;</span> <span class="n">delay</span> <span class="o">&lt;</span> <span class="n">delay_end</span><span class="p">;</span> <span class="n">delay</span><span class="o">++</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="n">width_start</span><span class="p">;</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">width_end</span><span class="p">;</span> <span class="n">width</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">target_reset</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">sleep_count</span><span class="p">(</span><span class="n">delay</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">glitch_on</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">sleep_count</span><span class="p">(</span><span class="n">width</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">glitch_off</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">target_reset</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">sleep_count</span><span class="p">(</span><span class="n">delay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">glitch_on</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">sleep_count</span><span class="p">(</span><span class="n">width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">glitch_off</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">is_glitch_success</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nf">is_glitch_success</span><span class="p">()){</span>
 </span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>  
@@ -688,8 +689,8 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 <p>パワーオンリセットを行うだけなので、ターゲットのVDD OUTに接続されるGPIOを指定しオン、オフすればOKです。<code>digitalWrite()</code>を使います。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">set_power</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">NRF_POWER</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">NRF_POWER</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h2 id="実装一定時間のスリープとcpu電圧をgndに落とす戻す">実装:「一定時間のスリープ」と「CPU電圧をGNDに落とす/戻す」</h2>
 <p>今回のグリッチは速度が求められないので、Arduino-IDEでよく使われるような実装方法で十分です。</p>
@@ -698,13 +699,13 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 <p>以下はグリッチのコードです。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">slow_glitch</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">width</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delayMicroseconds</span><span class="p">(</span><span class="n">width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="accordion">
-  <input id="id-792534168" class="toggle" type="checkbox">
-  <label class="title" for="id-792534168">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-719642853" class="toggle" type="checkbox">
+  <label class="title" for="id-719642853">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
 <p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
@@ -715,11 +716,11 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">fast_glitch</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">)</span> <span class="c1">// width min 35ns, count+1 = +25ns
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">GPIO_OUT_W1TS_REG_REF</span> <span class="o">=</span> <span class="n">BIT</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">GPIO_OUT_W1TS_REG_REF</span> <span class="o">=</span> <span class="nf">BIT</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">width</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="k">asm</span> <span class="k">volatile</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="n">GPIO_OUT_W1TC_REG_REF</span> <span class="o">=</span> <span class="n">BIT</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">GPIO_OUT_W1TC_REG_REF</span> <span class="o">=</span> <span class="nf">BIT</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>forループは空のコードだとコンパイルの最適化で処理が消えてしまうので、volatileを行うことでforループだけを生成します。</p>
 <p>念のため高速なグリッチをコンパイルしたときのXtensaアセンブリも載せておきます。</p>
@@ -741,13 +742,13 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">bool</span> <span class="n">isUnlocked</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="n">delay</span><span class="p">(</span><span class="n">_swd_wait_delay</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">nrf_begin</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="kt">uint32_t</span> <span class="n">variant_read</span> <span class="o">=</span> <span class="n">read_register</span><span class="p">(</span><span class="mh">0x10000100</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">delay</span><span class="p">(</span><span class="n">_swd_wait_delay</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">nrf_begin</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint32_t</span> <span class="n">variant_read</span> <span class="o">=</span> <span class="nf">read_register</span><span class="p">(</span><span class="mh">0x10000100</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">variant_read</span> <span class="o">==</span> <span class="mh">0x00052840</span> <span class="o">||</span> <span class="n">nrf_read_lock_state</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">variant_read</span> <span class="o">==</span> <span class="mh">0x00052840</span> <span class="o">||</span> <span class="nf">nrf_read_lock_state</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">&#34;glitch success!&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Serial</span><span class="p">.</span><span class="nf">println</span><span class="p">(</span><span class="nf">F</span><span class="p">(</span><span class="s">&#34;glitch success!&#34;</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="n">isUnlocked</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">isUnlocked</span><span class="p">;</span>
@@ -972,7 +973,7 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
+<script src="https://www.shutingrz.com/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js" integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {

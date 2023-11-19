@@ -7,15 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <copyright>shutingrz - All rights reserved.</copyright>
-    <lastBuildDate>Thu, 04 Jun 2020 20:00:00 +0900</lastBuildDate><atom:link href="https://www.shutingrz.com/tags/intelligence/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Jun 2020 20:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.shutingrz.com/tags/intelligence/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>コインチェックのドメインハイジャックの手法を調査した</title>
       <link>https://www.shutingrz.com/post/dig-coincheck/</link>
       <pubDate>Thu, 04 Jun 2020 20:00:00 +0900</pubDate>
-      
       <guid>https://www.shutingrz.com/post/dig-coincheck/</guid>
       <description>しゅーとです。 コインチェックは 6月2日 、ドメインレジストラである「お名前.com」の管理アカウントに不正にアクセスされ、ドメイン登録情報が変更されたこと、またそれによって第三者によるメールの不正取得が行われたと発表しました。 プレスリリース(第一報)は以下です。 当社利用のドメイン登録サービスにおける不正アクセスについて（第一報） 攻撃を受けた時刻が 5/31 0:05 で、検知時刻が 6/1 12:00 と攻撃に気付くまでの時間は1日で</description>
     </item>
-    
   </channel>
 </rss>

