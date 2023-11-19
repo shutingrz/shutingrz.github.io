@@ -62,7 +62,7 @@
   "headline": "温度センサーを起点にスマートロックを不正開錠してみた～ZigBeeデバイスに対する攻撃手法～",
   "description" : "要約: ZigBeeネットワークに間接的に接続されたスマートロックを不正開錠できた。格安センサーとZigBeeネットワークの組み合わせは危険。この記事では1つのセキュリティの綻びから、スマートロックが不正開錠されるまでの流れを解説する。 はじめに しゅーとです。もはやブームが去ったであろうZigBeeに最近初めて触れたので、今更ながら投稿します。 みなさんのご家庭はスマートホーム化していますか？最近はスイ",
   "inLanguage" : "ja",
-  "wordCount":  7401 ,
+  "wordCount":  7439 ,
   "datePublished" : "2023-11-20T04:00:00",
   "dateModified" : "2023-11-20T04:00:00",
   "image" : {
@@ -347,7 +347,7 @@
 </p>
 <p>おっと、温度センサーがありますね！デバイスはZigBeeネットワーク内で通信するために、必ずNetwork Keyをデバイス内に保持しておく必要があります。仮にセンサーのCPUにセキュリティモジュールやフラッシュ暗号化などの耐タンパー機構がない場合、ハードウェアハッキングによりフラッシュから鍵が抽出される可能性があります。</p>
 <p>温度センサーを見つけた攻撃者は家の人に見つからないように<strong>センサーを拝借</strong>することにしました。（※窃盗）</p>
-<h1 id="センサーから鍵の抽出">センサーから鍵の抽出</h1>
+<h1 id="センサーからnetwork-keyの抽出">センサーからNetwork Keyの抽出</h1>
 <p>
   <img src="./images/wsd500a.jpg" alt="">
 </p>
@@ -450,19 +450,19 @@
 </span></span><span class="line"><span class="cl">-------------------------------------------------------
 </span></span><span class="line"><span class="cl">Worked Time: 13197.675 sec
 </span></span><span class="line"><span class="cl">Done!
-</span></span></code></pre></div><p>フラッシュダンプができました。このダンプイメージから鍵を探します。</p>
+</span></span></code></pre></div><p>フラッシュダンプができました。このダンプイメージからNetwork Keyを探します。</p>
 <p>～～～</p>
 <p>本筋ではないので詳細を割愛しますが、ダンプイメージからZigBeeネットワークで使われているNetwork Keyが見つかりました(<code>02 F8 00・・・</code>)。</p>
 <p>
   <img src="./images/dump_diff.png" alt="">
 </p>
-<p>今回検証した温度センサー2モデルのZTUモジュールは同じような領域に鍵が保存されており、<a href="https://github.com/doctor64/tuyaZigBee/tree/master/originalFirmwares/tempsensor_WSD500A">インターネット上に公開されている他の人のダンプイメージ</a>でも同様の場所に保存されていました。</p>
-<p>このことから、標的デバイスで使われるモジュールが特定できれば攻撃者はすぐにフラッシュから鍵を抽出できることを示しています。（鍵を上書きせずメルカリ等に出品すると怖いですね）</p>
-<p>さてNetwork Keyが抽出できたので、Wiresharkに鍵を設定して復号します。</p>
+<p>今回検証した温度センサー2モデルのZTUモジュールは同じような領域にNetwork Keyが保存されており、<a href="https://github.com/doctor64/tuyaZigBee/tree/master/originalFirmwares/tempsensor_WSD500A">インターネット上に公開されている他の人のダンプイメージ</a>でも同様の場所に保存されていました。</p>
+<p>このことから、標的デバイスで使われるモジュールが特定できれば攻撃者はすぐにフラッシュからNetwork Keyを抽出できることを示しています。（メルカリ等に出品すると怖いですね）</p>
+<p>さてNetwork Keyが抽出できたので、Wiresharkに値を設定して復号します。</p>
 <p>
   <figure>
     <img src="./images/decrypt_temp_data.png" alt="" loading="lazy">
-    <figcaption>Wiresharkに鍵を設定した結果、復号された値が表示される</figcaption>
+    <figcaption>WiresharkにNetwork Keyを設定した結果、復号された値が表示される</figcaption>
   </figure>
 </p>
 <p>しっかりと温度が送信されていることがわかりました。
