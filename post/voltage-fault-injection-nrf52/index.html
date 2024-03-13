@@ -62,7 +62,7 @@
   "headline": "フォールトインジェクションとは？電圧グリッチでnRF52のプロテクションを破って学ぶ",
   "description" : "しゅーと(@shutingrz)です。久しぶりの投稿です。 皆さんはフォールトインジェクション(Fault Injection)という言葉を聞いたことがありますか？ハードウェアセキュリティ分野におけるフォールトインジェクションはサイドチャネル攻撃手法のひとつです。今までこの攻撃を試すには高価な機材が必要でハードルが高いものでした。しかし2020年にnRF52という世界中で使われるマイコンにおいてフォー",
   "inLanguage" : "ja",
-  "wordCount":  14365 ,
+  "wordCount":  14432 ,
   "datePublished" : "2022-03-07T03:00:00",
   "dateModified" : "2022-03-07T03:00:00",
   "image" : {
@@ -277,7 +277,7 @@
     </li>
     <li><a href="#グリッチ回路の作成">グリッチ回路の作成</a>
       <ol>
-        <li><a href="#前準備dec4への配線">前準備:DEC4への配線</a></li>
+        <li><a href="#前準備dec1への配線">前準備:DEC1への配線</a></li>
         <li><a href="#グリッチ回路の作成-1">グリッチ回路の作成</a></li>
       </ol>
     </li>
@@ -296,6 +296,7 @@
     <li><a href="#対策">対策</a></li>
     <li><a href="#さいごに">さいごに</a></li>
     <li><a href="#参考文献">参考文献</a></li>
+    <li><a href="#更新履歴">更新履歴</a></li>
   </ol>
 </nav>
     </details>
@@ -384,8 +385,8 @@
 <h1 id="正常系の確認">正常系の確認</h1>
 <p>本項目ではnRF52、SWDデバッグに慣れていない読者のために結線方法とデバッグ方法を説明しています。既に知っている方や、攻撃手法を早く知りたい方は飛ばしてください。</p>
 <div class="accordion">
-  <input id="id-684321579" class="toggle" type="checkbox">
-  <label class="title" for="id-684321579">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-853172649" class="toggle" type="checkbox">
+  <label class="title" for="id-853172649">正常系の確認 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <p>まずは購入したnRF52840 Dongleでサンプルプログラムを作成しましょう。DongleはUSB端子がついており、USB経由でファームウェアを書き込めます。コンパイルし書き込むために環境は自由ですが、私はVSCodeにPlatformIOの環境を構築しています。</p>
 <p>今回は次のコードを用いました。</p>
@@ -619,14 +620,14 @@
 <p>ただし今回はモロ参考になるコードがあったので、グリッチャーにSWD実装を含めることにしました。もしグリッチャー作成の負荷を下げたい場合は、PC+J-Link+OpenOCDとオシロスコープのトリガ出力を組み合わせることで同じようにグリッチが可能と思います。</p>
 <p>なお別のバイパスではこの機能は複雑・簡単なものになる可能性があります。例えば攻撃対象のファームウェアの特定コマンドにパスワード認証があり、電圧グリッチで認証バイパスを試みたい場合、「デバッグ可能か」は、「認証なしで特定コマンドが受け入れるか」になります。コマンドのプロトコルによりますが、単純なUARTであればSWD実装より簡単な気がします。</p>
 <h2 id="cpu電圧をgndに落とす戻す方法">「CPU電圧をGNDに落とす/戻す」方法</h2>
-<p>参考記事ではnRF52のDEC4を特定タイミングでGNDに接続することで実現しています。次の画像はnRF52840のデータシート上のレギュレータの構成図です。</p>
+<p>参考記事ではnRF52のDEC1を特定タイミングでGNDに接続することで実現しています。次の画像はnRF52840のデータシート上の回路図です。</p>
 <p>
-  <img src="./img/reg_dec4_edit.png" alt="REG_DEC4">
+  <img src="./img/reg_dec1_edit.png" alt="REG_DEC1">
 </p>
 <blockquote>
 <p>赤線、MOSFET、GNDの記載は筆者による加筆</p>
 </blockquote>
-<p>DEC4の部分がデカップリングコンデンサからの供給線となっています。このデカップリングコンデンサの手前で一瞬GNDに落とす操作ができれば、電圧グリッチ操作ができるということです。私はN-ch MOSFETに以下のように接続することで実現できると考えました。</p>
+<p>DEC1の部分がデカップリングコンデンサからの供給線となっています。このデカップリングコンデンサの手前で一瞬GNDに落とす操作ができれば、電圧グリッチ操作ができるということです。私はN-ch MOSFETに以下のように接続することで実現できると考えました。</p>
 <table>
 <thead>
 <tr>
@@ -641,7 +642,7 @@
 </tr>
 <tr>
 <td style="text-align:center">ドレイン</td>
-<td style="text-align:center">ターゲットのDEC4</td>
+<td style="text-align:center">ターゲットのDEC1</td>
 </tr>
 <tr>
 <td style="text-align:center">ソース</td>
@@ -651,8 +652,8 @@
 </table>
 <br/>
 <h1 id="グリッチ回路の作成">グリッチ回路の作成</h1>
-<h2 id="前準備dec4への配線">前準備:DEC4への配線</h2>
-<p>グリッチ回路の前に、DongleのDEC4への配線を済ませておきます。DEC4に繋がるポイントはDongleでC5のシルクが印字されたところです。SMDコンデンサのCPU側に配線が必要です。極小なので、はんだ付けに慣れていない方は頑張ってください。</p>
+<h2 id="前準備dec1への配線">前準備:DEC1への配線</h2>
+<p>グリッチ回路の前に、DongleのDEC1への配線を済ませておきます。DEC1に繋がるポイントはDongleでC5のシルクが印字されたところです。SMDコンデンサのCPU側に配線が必要です。極小なので、はんだ付けに慣れていない方は頑張ってください。</p>
 <p>
   <img src="./img/nrf52_c5_edit.jpg" alt="">
 </p>
@@ -661,10 +662,10 @@
   <img src="./img/nrf52_c5_short.jpg" alt="">
 </p>
 <p>うまく結線できた場合、電源投入後にテスターで計測すると1.3V程度を指します。</p>
-<p>より詳細を確認するため、電源投入時のDEC4の電圧をオシロスコープで見てみましょう。
-DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入時から約2秒後を1us程度のスケールで調査します。そうするとだいたい200mV程度降下しているところがあります。参考記事によって、ここの降下の直前がグリッチのタイミングだとわかっています。</p>
+<p>より詳細を確認するため、電源投入時のDEC1の電圧をオシロスコープで見てみましょう。
+DEC1の適当な電圧の立ち上がりをトリガーにして、電源投入時から約2秒後を1us程度のスケールで調査します。そうするとだいたい200mV程度降下しているところがあります。参考記事によって、ここの降下の直前がグリッチのタイミングだとわかっています。</p>
 <p>
-  <img src="./img/dec4_down_edit.png" alt="">
+  <img src="./img/dec1_down_edit.png" alt="">
 </p>
 <h2 id="グリッチ回路の作成-1">グリッチ回路の作成</h2>
 <p>これまでの設計をもとに、図のようなグリッチ回路を考えました。</p>
@@ -695,7 +696,7 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span></code></pre></div><h2 id="実装一定時間のスリープとcpu電圧をgndに落とす戻す">実装:「一定時間のスリープ」と「CPU電圧をGNDに落とす/戻す」</h2>
 <p>今回のグリッチは速度が求められないので、Arduino-IDEでよく使われるような実装方法で十分です。</p>
 <p>スリープには<code>delayMicroseconds()</code>を使います。
-グリッチについては、MOSFETのゲートに接続されるGPIOを指定しオン/オフすればターゲットのDEC4がGNDに落ちたり戻ったりするので、<code>digitalWrite()</code>を使って実現します。</p>
+グリッチについては、MOSFETのゲートに接続されるGPIOを指定しオン/オフすればターゲットのDEC1がGNDに落ちたり戻ったりするので、<code>digitalWrite()</code>を使って実現します。</p>
 <p>以下はグリッチのコードです。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="nf">slow_glitch</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -704,8 +705,8 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">  <span class="nf">digitalWrite</span><span class="p">(</span><span class="n">GLITCHER</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="accordion">
-  <input id="id-362894715" class="toggle" type="checkbox">
-  <label class="title" for="id-362894715">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
+  <input id="id-218365479" class="toggle" type="checkbox">
+  <label class="title" for="id-218365479">高速なグリッチをしたい場合 <span class="acc-desc">（クリックで開閉）</span></label>
   <div class="content">
 <h3 id="高速なグリッチをしたい場合">高速なグリッチをしたい場合</h3>
 <p>今回のnRF52に対するグリッチでは速度は求められませんが、電圧グリッチを行うターゲットによっては、高速なグリッチが求められる場合があります。そのためにESP32を使った高速なグリッチ方法をここに残しておきます。</p>
@@ -820,11 +821,11 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 </span></span><span class="line"><span class="cl">----------------
 </span></span><span class="line"><span class="cl">Start glitch! Press any key to stop.
 </span></span><span class="line"><span class="cl">...........2361...........2362....
-</span></span></code></pre></div><p>実行時の動画(gif)を載せます。この動画はまさにAPPROTECTバイパスの最適なタイミングである、DEC4の電圧降下の直前での電圧グリッチを狙ったものです。</p>
+</span></span></code></pre></div><p>実行時の動画(gif)を載せます。この動画はまさにAPPROTECTバイパスの最適なタイミングである、DEC1の電圧降下の直前での電圧グリッチを狙ったものです。</p>
 <p>
   <img src="./img/glitcher_run_long_resize.gif" alt="">
 </p>
-<p>CH1(黄)はMOSFETのゲートに流れる電圧、CH2(青)はDEC4の電圧です。
+<p>CH1(黄)はMOSFETのゲートに流れる電圧、CH2(青)はDEC1の電圧です。
 グリッチの開始タイミング(delay)とグリッチの長さ(width)が二重ループになっており、width_endに到達したときにdelayが加算されてグリッチのタイミングのタイミングが少し後ろになります。青線の電圧下降の位置が徐々に左に移動していることがわかると思います。
 もちろん最初からこの最適タイミングから開始できるのは稀なので、あまりに攻撃位置から遠すぎたらパラメータを調整して何度もチャレンジしてください。</p>
 <p>成功したときの波形が以下です。成功時の波形は状況によってバラバラですが、少なくともいつもの電圧降下する波形とは異なる形をしています。</p>
@@ -908,6 +909,11 @@ DEC4の適当な電圧の立ち上がりをトリガーにして、電源投入�
 <li>
 <p>オライリー, (書籍) カーハッカーズ・ハンドブック, <a href="https://www.oreilly.co.jp/books/9784873118239/">https://www.oreilly.co.jp/books/9784873118239/</a></p>
 </li>
+</ul>
+<h1 id="更新履歴">更新履歴</h1>
+<ul>
+<li>2022年3月7日 新規作成</li>
+<li>2024年3月14日 DEC4と記載してしまっていたところをDEC1に修正(thanks yamaさん！(<a href="https://x.com/yamarobo0804/status/1756348825919430778?s=20">参考リンク</a>)</li>
 </ul>
 
                     </div>
